@@ -47,6 +47,9 @@ class App extends Component {
   render() {
     return (
       <>
+        <NavBar>
+          
+        </NavBar>
         <Router>
           <Skeleton
             path="/"
