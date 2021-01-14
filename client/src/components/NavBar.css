@@ -16,11 +16,13 @@
   
   .NavBar-linkContainer {
     margin-left: var(--l);
+    margin-top: var(--m);
   }
   
   .NavBar-link,
   .NavBar-link:visited {
     color: var(--primary--dim);
+    font-size: var(--l);
     opacity: 0.6;
     text-decoration: underline overline var(--primary--dim);
   }
