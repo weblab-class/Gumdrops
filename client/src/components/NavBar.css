@@ -1,0 +1,36 @@
+.NavBar-container {
+    padding: var(--m) var(--l);
+    background-color: var(--primary);
+  }
+  
+  .NavBar-title {
+    color: var(--primary--dim);
+    font-size: 20px;
+    /* Tried use our Logo as the title
+    padding: var(--s) var(--m);
+    background-image: url("../public/Gumdrops\ Logo.png"); */
+  }
+  
+  .NavBar-linkContainer {
+    margin-left: var(--l);
+  }
+  
+  .NavBar-link,
+  .NavBar-link:visited {
+    color: var(--primary--dim);
+    opacity: 0.6;
+    text-decoration: underline overline var(--primary--dim);
+  }
+  
+  .NavBar-link:hover {
+    opacity: 0.8;
+  }
+  
+  .NavBar-link.NavBar-login {
+    opacity: 1;
+  }
+  
+  .NavBar-link + .NavBar-link {
+    margin-left: var(--m);
+  }
+  
