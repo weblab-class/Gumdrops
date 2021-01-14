@@ -17,9 +17,6 @@ class Profile extends Component {
         get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
     }
     render() {
-        if (!this.state.user) {
-            return <div> Loading! </div>;
-        }
         return(
             <div>
                 <h2 className='u-textCenter'>Welcome {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
