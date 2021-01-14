@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../utilities.css";
 
 //Props
 //userId: String (used in special routing from App.js)
@@ -10,7 +11,7 @@ class Profile extends Component {
     render() {
         return(
             <div>
-                <h1>Welcome {this.props.userId==="undefined" ? "Anonymous" : this.props.userId}</h1>
+                <h2 className='u-textCenter'>Welcome {this.props.userId==="undefined" ? "Anonymous" : this.props.userId}</h2>
             </div>
 
         );

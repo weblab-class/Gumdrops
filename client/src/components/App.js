@@ -5,7 +5,8 @@ import Skeleton from "./pages/Skeleton.js";
 import NavBar from "./NavBar.js";
 import Profile from "./pages/Profile.js";
 import "../utilities.css";
-
+import Projects from "./pages/Projects.js";
+import Explore from "./pages/Explore.js";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
@@ -58,6 +59,8 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Profile path="/profile/:userId"/>
+          <Explore path="/explore"/>
+          <Projects path="/projects"/>
           <NotFound default />
         </Router>
       </>
