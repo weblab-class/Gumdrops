@@ -29,7 +29,7 @@ class NavBar extends Component {
                         buttonText="Logout"
                         onLogoutSuccess={this.props.handleLogout}
                         onFailure={(err) => console.log(err)}
-                        className="NavBar-link NavBar-login"
+                        className="u-link NavBar-login"
                     />
                     ) : (
                     <GoogleLogin
@@ -37,7 +37,7 @@ class NavBar extends Component {
                         buttonText="Login"
                         onSuccess={this.props.handleLogin}
                         onFailure={(err) => console.log(err)}
-                        className="NavBar-link NavBar-login"
+                        className="u-link NavBar-login"
                     />
                 )}
             </div>
