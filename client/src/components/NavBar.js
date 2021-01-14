@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import {Link} from "@reach/router";
-
+import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "./NavBar.css";
+
+//TODO: REPLACE WITH YOUR OWN CLIENT_ID
+const GOOGLE_CLIENT_ID = "645405290237-qdttkk69k3hubem22c5bm8cf356qr2vg.apps.googleusercontent.com";
+
 //Props
 //userId: String
 
@@ -20,6 +24,21 @@ class NavBar extends Component {
                 <Link to="/projects" className="NavBar-link">Projects</Link>
                 <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
             </div>
+            {this.props.userId ? (
+                <GoogleLogout
+                    clientId={GOOGLE_CLIENT_ID}
+                    buttonText="Logout"
+                    onLogoutSuccess={this.props.handleLogout}
+                    onFailure={(err) => console.log(err)}
+                />
+                ) : (
+                <GoogleLogin
+                    clientId={GOOGLE_CLIENT_ID}
+                    buttonText="Login"
+                    onSuccess={this.props.handleLogin}
+                    onFailure={(err) => console.log(err)}
+                />
+                )}
         </nav>);
     }
 }

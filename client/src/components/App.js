@@ -48,12 +48,13 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar userId={this.state.userId}/>
+        <NavBar userId={this.state.userId} 
+            handleLogin={this.handleLogin}
+            handleLogout={this.handleLogout}
+        />
         <Router>
           <Skeleton
             path="/"
-            handleLogin={this.handleLogin}
-            handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
           <Profile path="/profile/:userId"/>
