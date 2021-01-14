@@ -23,22 +23,24 @@ class NavBar extends Component {
                 <Link to="/explore" className="NavBar-link">Explore</Link>
                 <Link to="/projects" className="NavBar-link">Projects</Link>
                 <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
-            </div>
-            {this.props.userId ? (
-                <GoogleLogout
-                    clientId={GOOGLE_CLIENT_ID}
-                    buttonText="Logout"
-                    onLogoutSuccess={this.props.handleLogout}
-                    onFailure={(err) => console.log(err)}
-                />
-                ) : (
-                <GoogleLogin
-                    clientId={GOOGLE_CLIENT_ID}
-                    buttonText="Login"
-                    onSuccess={this.props.handleLogin}
-                    onFailure={(err) => console.log(err)}
-                />
+                {this.props.userId ? (
+                    <GoogleLogout
+                        clientId={GOOGLE_CLIENT_ID}
+                        buttonText="Logout"
+                        onLogoutSuccess={this.props.handleLogout}
+                        onFailure={(err) => console.log(err)}
+                        className="NavBar-link NavBar-login"
+                    />
+                    ) : (
+                    <GoogleLogin
+                        clientId={GOOGLE_CLIENT_ID}
+                        buttonText="Login"
+                        onSuccess={this.props.handleLogin}
+                        onFailure={(err) => console.log(err)}
+                        className="NavBar-link NavBar-login"
+                    />
                 )}
+            </div>
         </nav>);
     }
 }
