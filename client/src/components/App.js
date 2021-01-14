@@ -8,7 +8,6 @@ import "../utilities.css";
 import Projects from "./pages/Projects.js";
 import Explore from "./pages/Explore.js";
 import { socket } from "../client-socket.js";
-
 import { get, post } from "../utilities";
 
 /**
@@ -43,7 +42,8 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({ userId: undefined });
-    post("/api/logout");
+    post("/api/logout").then(()=> window.location.replace("/"));
+
   };
 
   render() {
