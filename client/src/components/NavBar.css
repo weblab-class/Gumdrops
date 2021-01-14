@@ -6,9 +6,9 @@
   .NavBar-title {
     color: var(--primary--dim);
     font-size: 20px;
-    /* Tried use our Logo as the title
     padding: var(--s) var(--m);
-    background-image: url("../public/GumdropsLogo.png"); */
+    background-image: url("../public/GumdropsLogo.png");
+    background-size: 135px 45px;
   }
   
   .NavBar-linkContainer {
