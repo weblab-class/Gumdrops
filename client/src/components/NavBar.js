@@ -22,7 +22,9 @@ class NavBar extends Component {
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
                 <Link to="/projects" className="NavBar-link">Projects</Link>
-                <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
+                {this.props.userId ? (
+                    <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
+                ) : (<span></span>)}
                 {this.props.userId ? (
                     <GoogleLogout
                         clientId={GOOGLE_CLIENT_ID}
