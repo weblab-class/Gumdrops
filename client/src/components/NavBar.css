@@ -4,7 +4,7 @@
   }
   
   .NavBar-title {
-    color: var(--primary--dim);
+    color: transparent;
     font-size: 20px;
     padding: var(--s) var(--m);
     background-image: url("../public/GumdropsLogo.png");

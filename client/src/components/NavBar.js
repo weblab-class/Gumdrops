@@ -17,7 +17,7 @@ class NavBar extends Component {
         console.log(this.props.userId);
         return(
         <nav className="NavBar-container">
-            <div className="NavBar-title u-inlineBlock"></div> 
+            <div className="NavBar-title u-inlineBlock">Gumdrops</div> 
             <div className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
