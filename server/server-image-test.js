@@ -24,7 +24,8 @@ const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
-
+const fs = require("fs");
+const Image = require("./models/image");
 require("dotenv").config()
 const api = require("./api");
 const auth = require("./auth");
@@ -103,3 +104,35 @@ socketManager.init(server);
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+
+(async () => {
+
+  try {
+
+    await Image.deleteOne(); 
+
+    let data = await fs.readFileSync('./Moon.jpeg');
+    // Convert to Base64 and print out a bit to show it's a string
+    let base64 = data.toString('base64');
+    console.log(base64.substr(0,200));
+
+    // Feed out string to a buffer and then put it in the database
+    let wolf = Buffer.from(base64, 'base64');
+    await Image.create({ projectId: "abcdefg", image: wolf });
+
+    // Get from the database
+    // - for demo, we could have just used the return from the create() instead
+    let aWolf =  await Image.findOne();
+
+    // Show the data record and write out to a new file.
+    console.log(aWolf);
+    
+    await fs.writeFile('./output2.png', aWolf.image, ()=>{})
+    
+    Image.deleteOne();
+
+  } catch(e) {
+    console.error(e);
+  } 
+})()
+
