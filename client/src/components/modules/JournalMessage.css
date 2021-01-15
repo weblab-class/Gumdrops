@@ -1,0 +1,21 @@
+.JournalMessage-container {
+    margin: 0 0 var(--xs);
+}
+  
+.JournalMessage-sender {
+    width: 106px;
+    margin-right: var(--xs);
+    flex-shrink: 0;
+}
+  
+.JournalMessage-content {
+    padding: var(--s) var(--m);
+    background: var(--medgrey);
+    border-radius: var(--l);
+}
+  
+.JournalMessage-mine .JournalMessage-content {
+    background: var(--primary--dim);
+    color: var(--white);
+}
+  

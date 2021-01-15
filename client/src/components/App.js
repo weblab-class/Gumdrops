@@ -7,6 +7,7 @@ import Profile from "./pages/Profile.js";
 import "../utilities.css";
 import Projects from "./pages/Projects.js";
 import Explore from "./pages/Explore.js";
+import Journal from "./modules/Journal.js"
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 
@@ -61,6 +62,7 @@ class App extends Component {
           <Profile path="/profile/:userId"/>
           <Explore path="/explore"/>
           <Projects path="/projects"/>
+          <Journal path="/journal/" userId={this.state.userId} />
           <NotFound default />
         </Router>
       </>

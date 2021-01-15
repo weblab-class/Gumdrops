@@ -1,0 +1,16 @@
+.JournalMessages-container {
+    height: 85%;
+    width: 35%;
+    position: absolute right;
+    background-color: var(--primary--dim);
+    border-radius: 16% 16% 0 0;
+}
+  
+.JournalMessages-newContainer {
+    width: 100%;
+}
+  
+.JournalMessages-historyContainer {
+    flex-grow: 1;
+    overflow-y: auto;
+}
