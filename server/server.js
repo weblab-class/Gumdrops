@@ -25,6 +25,7 @@ const session = require("express-session"); // library that stores info about ea
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
 
+require("dotenv").config()
 const api = require("./api");
 const auth = require("./auth");
 
@@ -33,7 +34,7 @@ const socketManager = require("./server-socket");
 
 // Server configuration below
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL = "mongodb+srv://grayhimakar:aeOnmQnWNOP9PJxm@cluster0.8327j.mongodb.net/gumdrops?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.MONGO_SRV;
 // TODO change database name to the name you chose
 const databaseName = "gumdrops";
 
