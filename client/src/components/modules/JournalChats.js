@@ -1,3 +1,5 @@
+//THIS IS CURRENTLY DEAD CODE, BUT IT CAN BE USED TO DISPLAY A LIST OF USERS
+
 // import React, { Component } from "react";
 // import SingleUser from "./SingleUser.js";
 
