@@ -99,7 +99,7 @@ router.get("/activeUsers", (req, res) => {
 
 router.post("/image",(req,res)=>{
   console.log("Received save image request");
-  let bufferedImg = Buffer.from(req.body.image,'base64');
+  let bufferedImg = Buffer.from(req.body.image);
   const image = new Image({
     projectId: req.body.projectId,
     cardId : req.body.cardId,
@@ -115,8 +115,8 @@ router.get("/image",(req,res)=>{
   console.log("Received get image request");
   Image.findOne(req.content) //Uses the req.content as the query body
     .then((returnImage)=> {
-      let unbufferedImg = returnImage.image.toString('base64');
-      console.log("Recovered image string "+unbufferedImg);
+      let unbufferedImg = returnImage.image.toString();
+      console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({
         image: unbufferedImg
       });
