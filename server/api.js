@@ -12,6 +12,7 @@ const express = require("express");
 // import models so we can interact with the database
 const User = require("./models/user");
 const message = require("./models/message");
+const Image = require("./models/image");
 
 // import authentication library
 const auth = require("./auth");
@@ -92,6 +93,37 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
 router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
+
+//Post an image to the database. Expects an object with:
+//{ projectId: String, cardId: String, image: String (need to be in base64!), imageName : String }
+
+router.post("/image",(req,res)=>{
+  console.log("Received save image request");
+  let bufferedImg = Buffer.from(req.body.image,'base64');
+  const image = new Image({
+    projectId: req.body.projectId,
+    cardId : req.body.cardId,
+    image: bufferedImg,
+    imageName: req.body.imageName,
+  });
+  image.save();
+});
+
+//Get an image from the database. Expects an object with one or more of the following fields:
+//{ projectId: String, cardId: String, imageName: String}
+router.get("/image",(req,res)=>{
+  console.log("Received get image request");
+  Image.findOne(req.content) //Uses the req.content as the query body
+    .then((returnImage)=> {
+      let unbufferedImg = returnImage.image.toString('base64');
+      console.log("Recovered image string "+unbufferedImg);
+      res.send({
+        image: unbufferedImg
+      });
+    })
+    .catch((err)=>console.log(err));
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

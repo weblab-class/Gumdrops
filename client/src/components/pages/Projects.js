@@ -9,7 +9,6 @@ class Projects extends Component {
             <div>
                 <h1>This is your project dashboard page</h1>
             </div>
-
         );
     }
 }

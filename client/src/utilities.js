@@ -61,3 +61,11 @@ export function post(endpoint, params = {}) {
       throw `POST request to ${endpoint} failed with error:\n${error}`;
     });
 }
+
+//Helper code to convert an file (either from fs.ReadFileSync or file submission) to a react Buffer object.
+//The intermediate step of converting to Base64 is not necessary, but is included anyways.
+export function fileToBuffer(data) {
+  let base64 = data.toString('base64');
+  let bufferedObj = Buffer.from(base64,'base64');
+  return bufferedObj;
+}
