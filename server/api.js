@@ -73,6 +73,10 @@ router.get("/projects",(req,res)=>{
 });
 
 router.get("/chat", (req, res) => {
+  console.log(req.query);
+  Message.find(req.query).then((messages)=>res.send(messages));
+  /*
+  //Original version of get /chat
   let query;
   if (req.query.recipient_id === "ALL_CHAT") {
     // get any message sent by anybody to ALL_CHAT
@@ -87,7 +91,7 @@ router.get("/chat", (req, res) => {
     };
   }
 
-  Message.find(query).then((messages) => res.send(messages));
+  Message.find(query).then((messages) => res.send(messages));*/
 });
 
 router.post("/message", auth.ensureLoggedIn, (req, res) => {

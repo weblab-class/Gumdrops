@@ -14,6 +14,7 @@ const ALL_CHAT = {
 // Props
 // userId: String (id of current logged in user)
 // projectId: String (id of the project it corresponds to)
+
 class Journal extends Component {
   /**
    * @typedef UserObject
@@ -33,6 +34,10 @@ class Journal extends Component {
 
     constructor(props) {
         super(props);
+        let mainJournal = {
+            _id: this.props.projectId,
+            name: "MainJournal",
+        };
         this.state = {
             activeUsers: [],
             activeChat: {
@@ -43,7 +48,8 @@ class Journal extends Component {
     }
 
     loadMessageHistory(recipient) {
-        get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+        console.log("Looking for chat with id "+recipient._id)
+        get("/api/chat", { "recipient._id": recipient._id }).then((messages) => {
             this.setState({
                 activeChat: {
                     recipient: recipient,
@@ -54,7 +60,7 @@ class Journal extends Component {
     }
 
     componentDidMount() {
-        this.loadMessageHistory(ALL_CHAT);
+        this.loadMessageHistory(this.state.activeChat.recipient);
 
         get("/api/activeUsers").then((data) => {
             // If user is logged in, we load their chats. If they are not logged in,
@@ -101,7 +107,7 @@ class Journal extends Component {
     };
 
     render() {
-        if (!this.props.userId) return <div>Log in before using Journal</div>;
+        if (!this.props.userId) return <div>Log in before using Journal</div>; //will never happen
 
         return (
             <>
