@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {Link} from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "./NavBar.css";
+import Logo from "../public/GumdropsIcon_Transparent.png";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "645405290237-qdttkk69k3hubem22c5bm8cf356qr2vg.apps.googleusercontent.com";
@@ -17,7 +18,8 @@ class NavBar extends Component {
         console.log(this.props.userId);
         return(
         <nav className="NavBar-container">
-            <div className="NavBar-title u-inlineBlock">Gumdrops</div> 
+            {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
+            <img className="NavBar-mainImg" src={Logo}/>
             <div className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>

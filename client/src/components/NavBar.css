@@ -3,7 +3,7 @@
     background-color: var(--primary);
   }
   
-  .NavBar-title {
+  .NavBar-title { /*deprecated*/
     color: transparent;
     font-size: 20px;
     padding: var(--s) var(--m);
@@ -13,12 +13,19 @@
     margin-bottom: var(--s);
     margin-right: var(--s);
   }
-  
-  .NavBar-linkContainer {
-    margin-left: var(--l);
-    margin-top: var(--m);
+
+  .NavBar-mainImg {
+    width: 8em;
+    height: auto;
+    vertical-align: middle;
   }
-  
+
+  .NavBar-linkContainer {
+    margin-left: var(--s);
+    vertical-align: middle;
+    /*margin-top: var(--m);*/
+  }
+
   .NavBar-link,
   .NavBar-link:visited {
     color: var(--primary--dim);
