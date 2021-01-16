@@ -61,7 +61,7 @@ class App extends Component {
           />
           <Profile path="/profile/:userId"/>
           <Explore path="/explore"/>
-          <Projects path="/projects"/>
+          <Projects path="/projects" userId={this.state.userId}/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <StoryCard path ="/test1" />
           <NotFound default />

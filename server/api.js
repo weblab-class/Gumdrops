@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Message = require("./models/message");
 const Image = require("./models/image");
+const Project = require("./models/project");
 
 // import authentication library
 const auth = require("./auth");
@@ -47,6 +48,26 @@ router.post("/initsocket", (req, res) => {
 router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
+  });
+});
+
+router.get("/projects",(req,res)=>{
+
+  User.findById(req.query.userid).then( async (user)=>
+  {
+    try{
+      let arrayLength = user.projectIds.length;
+      let outProjects = [];
+      for (var i = 0; i < arrayLength; i++) {
+        console.log("User is in "+user.projectIds[i]+'\n');
+        let project = await Project.findById(user.projectIds[i]);
+        outProjects.push(project);
+        console.log("Found project "+project+"\n");
+      }
+      res.send({projects:outProjects});
+    } catch(e) {
+      res.status(400).json({message:e.message});
+    }
   });
 });
 

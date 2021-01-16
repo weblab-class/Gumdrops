@@ -26,8 +26,8 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
-      projectIds: [1], //hardcoded for now
-      teamIds: [1], //hardcoded for now
+      projectIds: ["6002597bb45b7733b322e9ad"], //hardcoded for now. Set to Weekly Project #1
+      teamIds: ["1"], //hardcoded for now
     });
 
     return newUser.save();
