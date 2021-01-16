@@ -19,33 +19,65 @@ class NewImageInput extends Component {
         submitKey : Date.now(),
       };
     }
-  
+
+    //handles reading from an File object and ensuring image type
+    readImage = (blob) => {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onloadend = () => {
+          if (r.error) {
+            reject(r.error.message);
+            return;
+          } else if (r.result.length < 50) {
+            // too short. probably just failed to read, or ridiculously small image
+            reject("small image? or truncated response");
+            return;
+          } else if (!r.result.startsWith("data:image/")) {
+            reject("not an image!");
+            return;
+          } else {
+            resolve(r.result);
+          }
+        };
+        r.readAsDataURL(blob);
+      });
+    };
+
+
     // called whenever the user types in the new post input box
     handleChange = (event) => {
-        console.log(event.target.files);
-        console.log(event.target.files[0]);
+      console.log(event.target.files);
+      console.log(event.target.files[0]);
+
+      const fileInput = event.target;
+      this.readImage(fileInput.files[0]).then(image => {
         this.setState({
-            selectedFile: event.target.files[0],
-            fileName: event.target.files[0].name,
-            loaded: 0,
+          selectedFile: image,
+          fileName: fileInput.files[0].name,
         });
-        console.log("Change handled. File selected is now: "+event.target.files[0].name);
-        console.log("Type of file:"+typeof(event.target.files[0]));
+        //console.log("Change handled. File selected is now: "+image);
+        console.log("Loaded image "+image);
+        console.log("Name of file"+fileInput.files[0].name)
+        console.log("Type of file:"+typeof(fileInput.files[0]));
+      }).catch(err => {
+        console.log(err);
+      });
+
     };
   
     // called when the user hits "Submit" for a new post
     handleSubmit = () => {
         if(this.state.selectedFile==null) { /*do nothing*/ } 
         else {
-        let base64_img = this.state.selectedFile.toString('base64');
-        console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
+        //let base64_img = this.state.selectedFile.toString('base64');
+        //console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
         let postObj = { 
             projectId: "123456", //hard coded for now
             cardId : "abcdefg",
-            image: base64_img,
+            image: this.state.selectedFile,
             imageName: this.state.fileName,
         };
-        post("/api/image",postObj).then(get("/api/image",{})).then((img)=>console.log(img.image));
+        post("/api/image",postObj);
         this.setState({
             selectedFile: null,
             submitKey : Date.now(),
@@ -58,7 +90,8 @@ class NewImageInput extends Component {
         <div className="u-flex">
           <input
             type="file"
-            name="file"
+            name="files[]"
+            accept="image/*"
             key={this.state.submitKey}
             onChange={this.handleChange}
             className="NewPostInput-input"
