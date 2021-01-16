@@ -7,7 +7,16 @@
     margin-right: var(--xs);
     flex-shrink: 0;
 }
-  
+
+.JournalMessage-time {
+    color: gray;
+    margin-right: var(--xs);
+    font-size:0.9em;
+    order:1;
+}
+
+
+
 .JournalMessage-content {
     padding: var(--s);
     /* background: var(--medgrey);
@@ -18,4 +27,3 @@
     background: var(--primary--dim);
     color: var(--white);
 }
-  
