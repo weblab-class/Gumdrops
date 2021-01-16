@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import JournalMessage from "./JournalMessage.js";
-import { NewJournalMessage } from "./NewPostInput.js";
+import { /*DeleteJournalMessage,*/ NewJournalMessage } from "./NewPostInput.js";
 
 import "./JournalMessages.css";
 
@@ -43,6 +43,7 @@ class JournalMessages extends Component {
         </div>
         <div className="JournalMessages-newContainer">
           <NewJournalMessage recipient={this.props.data.recipient} />
+          {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
         </div>
       </div>
     );

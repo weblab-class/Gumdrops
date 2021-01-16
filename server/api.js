@@ -111,6 +111,12 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   }
 });
 
+
+// ATTEMPT AT DELETE BUTTON
+// router.post("/deleteMessage", (req, res) => {
+//   Message.deleteOne({"userId": `${req.user._id}`})
+// })
+
 router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
 });
