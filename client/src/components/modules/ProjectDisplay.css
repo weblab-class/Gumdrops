@@ -1,15 +1,19 @@
-.ProjectDisplay-card {
+.ProjectDisplay-container {
     width: 140px;
-    height: auto;
-    background-color: var(--primary--dim);
-    /* background-image: ; */
-    border-radius: 0 0 var(--m) var(--m);
+    height: 140px;
 }
 
-.ProjectDisplay-name {
-    align-self: flex-end;
-    height: 16%;
-    border-radius: 0 0 var(--m) var(--m);
+.ProjectDisplay-image {
+    /* background-image: ; */
+    height: 75%;
+    background-color: var(--primary--dim);
+    border-radius: var(--m) var(--m) 0 0;
+}
+
+.ProjectDisplay-link {
+    width: 100%;
+    height: 25%;
     background-color: var(--primary);
     color: var(--white);
+    border-radius: 0 0 var(--m) var(--m);
 }

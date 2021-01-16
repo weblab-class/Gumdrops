@@ -16,17 +16,12 @@ class ProjectDisplay extends Component {
     render() {
         console.log("ProjectDisplay was called.");
         return (
-            <Link to={`/project/${this.props.projectId}`} className="ProjectDisplay-card u-inlineBlock">
-                <div className="u-textCenter ProjectsDisplay-name">{this.props.projectName}</div>
-            </Link>
-            // <button
-            // type="submit"
-            // className="NewPostInput-button u-pointer"
-            // value="Submit"
-            // onClick={this.handleSubmit}
-            // >
-            //     Submit
-            // </button>
+            <div className="ProjectDisplay-container">
+                <div className="ProjectDisplay-image"></div>
+                <Link to={`/project/${this.props.projectId}`} className="ProjectDisplay-link u-inlineBlock">
+                    <div className="u-textCenter">{this.props.projectName}</div>
+                </Link>
+            </div>
         );
     }
 }
