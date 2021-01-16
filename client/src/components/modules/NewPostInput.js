@@ -128,4 +128,32 @@ class NewJournalMessage extends Component {
   }
 }
 
-export { /*NewComment, NewStory,*/ NewJournalMessage };
+// /** ATTEMPT AT DELETE BUTTON
+//  * New Message is a New Message component for messages
+//  *
+//  * Proptypes
+//  * @param {UserObject} recipient is the intended recipient
+//  */
+// class DeleteJournalMessage extends Component {
+//   constructor(props) {
+//    super(props);
+//   }
+
+//   deleteMessage = () => {
+//     post("/api/deleteMessage", { user: this.props.sender});
+//   };
+
+//   render() {
+//     return (
+//       <button
+//           type="delete"
+//           value="Delete"
+//           onClick={this.deleteMessage}
+//         >
+//           Delete Message
+//         </button>
+//     )
+//   }
+// }
+
+export { /*NewComment, NewStory,*/ NewJournalMessage/*, DeleteJournalMessage*/};
