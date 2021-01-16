@@ -17,9 +17,11 @@ class ProjectDisplay extends Component {
         console.log("ProjectDisplay was called.");
         return (
             <div className="ProjectDisplay-container">
-                <div className="ProjectDisplay-image"></div>
-                <Link to={`/project/${this.props.projectId}`} className="ProjectDisplay-link u-inlineBlock">
-                    <div className="u-textCenter">{this.props.projectName}</div>
+                <Link to={`/project/${this.props.projectId}`}>
+                    <div className="ProjectDisplay-image"></div>
+                    <div className="ProjectDisplay-text u-inlineBlock u-textCenter">
+                        {this.props.projectName}
+                    </div>
                 </Link>
             </div>
         );

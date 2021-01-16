@@ -1,6 +1,7 @@
 .ProjectDisplay-container {
     width: 140px;
     height: 140px;
+    margin-left: var(--m);
 }
 
 .ProjectDisplay-image {
@@ -10,7 +11,7 @@
     border-radius: var(--m) var(--m) 0 0;
 }
 
-.ProjectDisplay-link {
+.ProjectDisplay-text {
     width: 100%;
     height: 25%;
     background-color: var(--primary);
