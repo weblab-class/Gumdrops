@@ -23,11 +23,11 @@ class NavBar extends Component {
             <div className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
-                <Link to="/projects" className="NavBar-link">Projects</Link>
                 {this.props.userId ? (
                     <>
                         <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
                         <Link to="/project/:projectId" className="NavBar-link">SingleProject</Link>
+                        <Link to="/projects" className="NavBar-link">Projects</Link>
                     </>
                 ) : (<span></span>)}
                 {this.props.userId ? (
