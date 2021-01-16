@@ -3,6 +3,13 @@ import React, { Component } from "react";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+let yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+
 /**
  * New Post is a parent component for all input components
  *
@@ -112,7 +119,7 @@ class NewPostInput extends Component {
  */
 class NewJournalMessage extends Component {
   sendMessage = (value) => {
-    const body = { recipient: this.props.recipient, content: value };
+    const body = { recipient: this.props.recipient, content: value }
     post("/api/message", body);
   };
 
