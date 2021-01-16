@@ -69,6 +69,7 @@ class NewImageInput extends Component {
     handleSubmit = () => {
         if(this.state.selectedFile==null) { /*do nothing*/ } 
         else {
+        console.log("Tries to submit");
         //let base64_img = this.state.selectedFile.toString('base64');
         //console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
         let postObj = { 
