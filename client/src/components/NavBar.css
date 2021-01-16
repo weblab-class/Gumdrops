@@ -3,16 +3,16 @@
     background-color: var(--primary);
   }
   
-  .NavBar-title { /*deprecated*/
+  /* .NavBar-title {  //deprecated
     color: transparent;
     font-size: 20px;
     padding: var(--s) var(--m);
-    /* background-image: url("../public/GumdropsLogo.png"); */
+    //background-image: url("../public/GumdropsLogo.png"); 
     background-image: url("../public/GumdropsIcon_Transparent.png");
     background-size: 140px 50px;
     margin-bottom: var(--s);
     margin-right: var(--s);
-  }
+  } */
 
   .NavBar-mainImg {
     width: 8em;

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
+import ProjectDisplay from "../modules/ProjectDisplay.js";
+// import "../modules/ProjectDisplay.css";
 //Usage: This is equivalent to the project dashboard
 
 //Props
@@ -14,14 +16,14 @@ class Projects extends Component {
     }
 
     handleInit = () =>{
-        if(this.props.userId != undefined){
+        if(this.props.userId) {
             console.log("Going into handleInit with user");
             get("/api/projects",{ userid:this.props.userId })
             .then((projectObj)=>{
                 this.setState({
                     projects: projectObj.projects,
                 })
-            })
+            }).then(console.log("Projects: "+this.state.projects))
         }   
     }
     componentDidMount(){
@@ -31,13 +33,23 @@ class Projects extends Component {
         //this.handleInit();
     }
     render() {
-        let projectList;
         if(this.state.projects){
             console.log("Type of projects "+typeof(this.state.projects));
-            return this.state.projects.map((value)=>
-                 <h3>My project name is {value.name}</h3>);
+            console.log("Project: "+this.state.projects[0].name);
+            console.log("ProjectId: "+this.state.projects[0]._id);
+            console.log("UserId: "+this.props.userId);
+            const projectList = [...this.state.projects];
+            projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
+            return (
+                <div>
+                <h1> This is what you came for</h1>
+                {projectList.map((project)=> (
+                    <ProjectDisplay userId={this.props.userId} projectName={project.name} projectId={project._id} />))}
+                {/* <ProjectDisplay userId={this.props.userId} projectName={this.state.projects[0].name} projectId={this.state.projects[0]._id} />*/}
+                </div>
+            );
         }
-        console.log("At project.js, the userId props is "+this.props.userId);
+        console.log("At Projects.js, the userId props is "+this.props.userId);
         if(this.props.userId==undefined){
             return(
             <div>
@@ -46,8 +58,7 @@ class Projects extends Component {
         }
         return(
             <div>
-                <h1>This is your project dashboard page</h1>
-                {this.projectList}
+                <h1>This is your project dashboard page. Try creating a new Project!</h1>
             </div>
         );
     }

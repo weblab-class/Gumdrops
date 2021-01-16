@@ -13,6 +13,7 @@ const ALL_CHAT = {
 
 // Props
 // userId: String (id of current logged in user)
+// projectId: String (id of the project it corresponds to)
 class Journal extends Component {
   /**
    * @typedef UserObject

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 import "../../utilities.css";
 import "./Skeleton.css";
 
@@ -22,7 +21,7 @@ class Skeleton extends Component {
         <section className="u-textCenter ">
           <h1>For all your project needs</h1>
         </section>
-        <section className="u-textCenter">
+        <section className="u-textCenter mainPage-Description">
           <p>From brainstorming new ideas to designing your next project wiki, Gumdrops make it easy for you to document your project and collaborate with others.</p>
         </section>
       </div>

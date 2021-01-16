@@ -26,7 +26,6 @@ class NavBar extends Component {
                 {this.props.userId ? (
                     <>
                         <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
-                        <Link to="/project/:projectId" className="NavBar-link">SingleProject</Link>
                         <Link to="/projects" className="NavBar-link">Projects</Link>
                     </>
                 ) : (<span></span>)}

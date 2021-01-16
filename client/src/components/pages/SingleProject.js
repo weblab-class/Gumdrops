@@ -65,12 +65,14 @@ class SingleProject extends Component{
             <>
             
             {storiesList}
+           
             {/* <NewInputStory onSubmit = {this.loadStoryCards(project._id)}/> */}
             <div>
-                <Journal userId ={this.props.userId}/>
+                <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
             </div>
             </>
         );
     }
 }
+
 export default SingleProject;

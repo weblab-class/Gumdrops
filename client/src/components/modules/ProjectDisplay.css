@@ -1,0 +1,20 @@
+.ProjectDisplay-container {
+    width: 140px;
+    height: 140px;
+    margin-left: var(--m);
+}
+
+.ProjectDisplay-image {
+    /* background-image: ; */
+    height: 75%;
+    background-color: var(--primary--dim);
+    border-radius: var(--m) var(--m) 0 0;
+}
+
+.ProjectDisplay-text {
+    width: 100%;
+    height: 25%;
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 0 0 var(--m) var(--m);
+}

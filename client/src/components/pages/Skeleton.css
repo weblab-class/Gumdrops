@@ -1,1 +1,7 @@
 /* Fill me in :) */
+
+
+.mainPage-Description{
+    padding-left: var(--xl);
+    padding-right: var(--xl);
+}

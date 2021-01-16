@@ -134,7 +134,7 @@ router.post("/image",(req,res)=>{
     image: bufferedImg,
     imageName: req.body.imageName,
   });
-  image.save().then(()=console.log("Image saved successfullu."));
+  
 });
 
 //Get an image from the database. Expects an object with one or more of the following fields:
