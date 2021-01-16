@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "@reach/router";
 import "./ProjectDisplay.css";
 import "../../utilities.css"
 
@@ -13,6 +14,7 @@ class ProjectDisplay extends Component {
     }
 
     render() {
+        console.log("ProjectDisplay was called.");
         return (
             <Link to={`/project/${this.props.projectId}`} className="ProjectDisplay-card u-inlineBlock">
                 <div className="u-textCenter ProjectsDisplay-name">{this.props.projectName}</div>
@@ -28,3 +30,5 @@ class ProjectDisplay extends Component {
         );
     }
 }
+
+export default ProjectDisplay;

@@ -41,9 +41,12 @@ class Projects extends Component {
             const projectList = [...this.state.projects];
             projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
             return (
-                projectList.forEach((project)=> (
-                    <ProjectDisplay userId={this.props.userId} projectName={project.name} projectId={project._id} />))
-                // <ProjectDisplay userId={this.props.userId} projectName={this.state.projects[0].name} projectId={this.state.projects[0]._id} />
+                <div>
+                <h1> This is what you came for</h1>
+                {projectList.map((project)=> (
+                    <ProjectDisplay userId={this.props.userId} projectName={project.name} projectId={project._id} />))}
+                {/* <ProjectDisplay userId={this.props.userId} projectName={this.state.projects[0].name} projectId={this.state.projects[0]._id} />*/}
+                </div>
             );
         }
         console.log("At Projects.js, the userId props is "+this.props.userId);
