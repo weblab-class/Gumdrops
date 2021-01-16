@@ -1,5 +1,5 @@
 .JournalMessage-container {
-    margin: 0 var(--s) var(--xs);
+    margin: 0 var(--m) var(--xs);
 }
   
 .JournalMessage-sender {
@@ -11,11 +11,13 @@
 .JournalMessage-time {
     color: gray;
     margin-right: var(--xs);
-    font-size:0.9em;
+    font-size:0.8em;
     order:1;
 }
 
-
+.JournalMessage-date {
+    padding-left: var(--s);
+}
 
 .JournalMessage-content {
     padding: var(--s);

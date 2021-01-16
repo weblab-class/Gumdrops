@@ -36,13 +36,13 @@ class JournalMessages extends Component {
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
       lastTimeStamp=this.props.data.messages[0].timestamp.substr(0,10);
-      renderOutput.push(<h2>{lastTimeStamp}</h2>); //header for first date
+      renderOutput.push(<h2 className="JournalMessage-date">{lastTimeStamp}</h2>); //header for first date
     }
     for(var i=0; i<this.props.data.messages.length;i++){
       let currTimeStamp = this.props.data.messages[i].timestamp.substr(0,10);
       if (currTimeStamp!==lastTimeStamp){
         console.log("Date was pushed here");
-        renderOutput.push(<h2>{currTimeStamp}</h2>);
+        renderOutput.push(<h2 className="JournalMessage-date">{currTimeStamp}</h2>);
         lastTimeStamp = currTimeStamp;
       }
       renderOutput.push(<JournalMessage message={this.props.data.messages[i]} key={i}/>);
