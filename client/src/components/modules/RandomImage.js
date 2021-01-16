@@ -18,12 +18,13 @@ class RandomImage extends Component {
     }
 
     componentDidMount() {
-        get("/api/image",{}).then(result=>{
-            this.setState({
-                image: result.image,
-            })
-            console.log("This state is being changed to "+result.image.substr(0,200));
-        });
+      let query = {projectId: "123456"};
+      get("/api/thumbnail",query).then(result=>{
+          this.setState({
+              image: result.image,
+          })
+          console.log("This state is being changed to "+result.image.substr(0,200));
+      });
     }
 
     render() {
