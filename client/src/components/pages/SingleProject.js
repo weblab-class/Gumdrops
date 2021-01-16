@@ -4,6 +4,7 @@ import StoryCard from "../modules/StoryCard";
 import { get } from "../../utilities";
 import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
+import NewInputStory from "../modules/NewInputStory.js";
 //this would be used to render what you see w
 //when you open a project 
 //
@@ -16,7 +17,7 @@ import Journal from "../modules/Journal.js";
  * @param {string} project_id of the project 
  * @param {string} project_name
  * @param {string} collaborators
- * @param {string} user_id
+ * @param {string} userId
  * 
  */
 class SingleProject extends Component{
@@ -42,11 +43,8 @@ class SingleProject extends Component{
             document.title = "Single Project";
             //this.loadStoryCards(project._id);
     }
-    addNewStory = (storyObj) => {
-        this.setState({
-            storiesIds: [storyObj].concat(this.state.storiesIds),
-        });
-    }
+
+    
     render(){
         let storiesList = null;
         const hasStories = this.state.storiesIds.length !== 0;
@@ -67,6 +65,7 @@ class SingleProject extends Component{
             <>
             
             {storiesList}
+            {/* <NewInputStory onSubmit = {this.loadStoryCards(project._id)}/> */}
             <div>
                 <Journal userId ={this.props.userId}/>
             </div>
