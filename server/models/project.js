@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 
+//Explanation of values:
+//name: the name of the project
+//collaborators: list of objects containing userId's and their rolename
+//stories: a list of the storyCard ids associated with the project
+//commentsID: the id of the comments section associated with the project
+
 const ProjectSchema = new mongoose.Schema({
   name: String,
   collaborators: [
@@ -8,8 +14,6 @@ const ProjectSchema = new mongoose.Schema({
       role: String,
     }
   ],
-  stories : [String],
-  commentsID : String,
 },
 {
   timestamps: true,

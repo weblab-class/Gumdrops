@@ -12,7 +12,7 @@ import StoryCard from "./modules/StoryCard.js";
 //import SingleProject from "./pages/SingleProject.js";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
-
+import SingleProject from "./pages/SingleProject.js";
 /**
  * Define the "App" component as a class.
  */
@@ -64,6 +64,7 @@ class App extends Component {
           <Profile path="/profile/:userId"/>
           <Explore path="/explore"/>
           <Projects path="/projects"/>
+          <SingelProject path="/project/:projectId" userId={this.state.userId}/>
           <Journal path="/journal/" userId={this.state.userId} />
           <StoryCard path ="/test1" />
           {/* <SingleProject path = "/singleproject/" userID={this.state.userID}/> */}
