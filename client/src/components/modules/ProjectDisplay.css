@@ -1,0 +1,15 @@
+.ProjectDisplay-card {
+    width: 140px;
+    height: auto;
+    background-color: var(--primary--dim);
+    /* background-image: ; */
+    border-radius: 0 0 var(--m) var(--m);
+}
+
+.ProjectDisplay-name {
+    align-self: flex-end;
+    height: 16%;
+    border-radius: 0 0 var(--m) var(--m);
+    background-color: var(--primary);
+    color: var(--white);
+}
