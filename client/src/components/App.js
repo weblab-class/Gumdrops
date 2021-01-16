@@ -7,9 +7,7 @@ import Profile from "./pages/Profile.js";
 import "../utilities.css";
 import Projects from "./pages/Projects.js";
 import Explore from "./pages/Explore.js";
-import Journal from "./modules/Journal.js";
 import StoryCard from "./modules/StoryCard.js";
-//import SingleProject from "./pages/SingleProject.js";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import SingleProject from "./pages/SingleProject.js";
@@ -65,9 +63,7 @@ class App extends Component {
           <Explore path="/explore"/>
           <Projects path="/projects"/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
-          <Journal path="/journal/" userId={this.state.userId} />
           <StoryCard path ="/test1" />
-          {/* <SingleProject path = "/singleproject/" userID={this.state.userID}/> */}
           <NotFound default />
         </Router>
       </>
