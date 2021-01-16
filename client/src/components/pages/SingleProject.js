@@ -65,10 +65,9 @@ class SingleProject extends Component{
 
         return(
             <>
-            
             {storiesList}
             <div>
-                <Journal userId ={this.props.userId}/>
+                <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
             </div>
             </>
         );
