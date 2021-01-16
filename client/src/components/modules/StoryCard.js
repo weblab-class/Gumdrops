@@ -20,7 +20,7 @@ class StoryCard extends Component{
     //     });
     console.log("recovered");
     }
-    
+    //posts story and immediately updates
     addNewStory =(storyObj)=>{
        
         // post("/api/story", this.state.storycontent).then((story) =>{
@@ -39,11 +39,12 @@ class StoryCard extends Component{
             storycontent: this.state.storycontent.concat(event.target.value),
         })
     }
-    handleSave = (event) =>{
+    
 
-    }
+
 render(){   
     return(
+        //add logic later for view only or edit 
         <div className ="u-flex">
             <input 
                 type = "text"
