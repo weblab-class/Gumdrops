@@ -7,10 +7,7 @@ import { post } from "../../utilities";
 import { get} from "../../utilities";
 /**
  * Proptypes 
- * <<<<<< 
-=======
  * @params {string } storyObj : sends story object
->>>>>>> 02e81b421be8fd08cc0355c9d4ff0d749193af79
  * @params {string}  userId
  */
 class StoryCard extends Component{

@@ -52,6 +52,16 @@ router.get("/user", (req, res) => {
   });
 });
 
+//Return the Project object corresponding to a specific projectID. Expects an object of:
+// { projectId: String }
+router.get("/project",(req,res)=>{
+  Project.findById(req.query.projectId).then((project)=>{
+  res.send(project);
+  });
+  });
+  
+//Retrieve all the projects associated with a specific UserId: Expects an object of:
+//{ userid : String}
 router.get("/projects",(req,res)=>{
 
   User.findById(req.query.userid).then( async (user)=>
