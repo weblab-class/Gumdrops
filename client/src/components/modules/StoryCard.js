@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
+//import EditStoryCard from "EditStoryCard.js"
 /**
  * Proptypes 
  * @param {Object } storyObj : sends story object
@@ -15,6 +16,7 @@ class StoryCard extends Component{
         super(props);
         this.state = {
             storytext: "",
+            editing: false
         };
         
     }
@@ -22,7 +24,11 @@ class StoryCard extends Component{
     componentDidMount(){
         this.setState({storytext : this.props.storyObj.textContent},)
     }
-
+    //changes state of editing 
+    clickedEditing=(event)=>{
+        event.preventDefault();
+        this.setState({editing: !this.state.editing});
+    }
     //this would eventually allow to edit stories
     editStory =(storyObjs)=>{
         // const body = {_id: this.props.storyId, content: this.state.storytext}
@@ -40,14 +46,47 @@ class StoryCard extends Component{
         });
     }
     
-    render(){   
+    render(){ 
+        let output = null;
+        if(!this.props.edit){
+            output = (<p>{this.state.storytext}</p>)
+        } else{
+            
+            if(!this.state.editing){
+                output = (
+                    <>
+                    <p>{this.state.storytext}</p>
+                    <button 
+                    type = "submit"
+                    className = "NewPostInput-button u-pointer"
+                    value = "Submit"
+                    onClick={this.clickedEditing}
+                    >Edit
+                    </button>
+                </>
+                )
+            }
+            else{
+                output = (
+                <>
+                    <p>im editing</p>
+                    <button 
+                    type = "submit"
+                    className = "NewPostInput-button u-pointer"
+                    value = "Submit"
+                    onClick={this.clickedEditing}
+                    >Cancel
+                    </button>
+                </>
+                )   
+            }
+        }
         return(
-            <div>
-                <p>
-                    {this.state.storytext}
-                </p>
+            <div className = "u-flex">
+                {output}
+            
             </div>
-        );
+        )
     }
 }
 export default StoryCard;

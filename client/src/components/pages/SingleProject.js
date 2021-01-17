@@ -73,7 +73,7 @@ class SingleProject extends Component{
         
         return(
             <>
-            <div>
+            <div className = "u-flex">
                 {storiesList}
             </div>
             {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/>  */}
