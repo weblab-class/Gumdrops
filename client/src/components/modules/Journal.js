@@ -34,14 +34,14 @@ class Journal extends Component {
 
     constructor(props) {
         super(props);
-        let mainJournal = {
+        const mainJournal = {
             _id: this.props.projectId,
             name: "MainJournal",
         };
         this.state = {
             activeUsers: [],
             activeChat: {
-                recipient: ALL_CHAT, //for compatibility with existing database entries
+                recipient: mainJournal, //for compatibility with existing database entries
                 messages: [],
             },
         };
@@ -61,6 +61,7 @@ class Journal extends Component {
 
     componentDidMount() {
         this.loadMessageHistory(this.state.activeChat.recipient);
+        console.log("In Journal.js, my current projectId is "+this.state.activeChat.recipient._id);
 
         get("/api/activeUsers").then((data) => {
             // If user is logged in, we load their chats. If they are not logged in,
@@ -73,20 +74,13 @@ class Journal extends Component {
         })
 
         socket.on("message", (data) => {
-            if (
-                (data.recipient._id === this.state.activeChat.recipient._id &&
-                    data.sender._id === this.props.userId) ||
-                (data.sender._id === this.state.activeChat.recipient._id &&
-                    data.recipient._id === this.props.userId) ||
-                (data.recipient._id === "ALL_CHAT" && this.state.activeChat.recipient._id === "ALL_CHAT")
-                ) {
-                this.setState((prevstate) => ({
-                    activeChat: {
-                        recipient: prevstate.activeChat.recipient,
-                        messages: prevstate.activeChat.messages.concat(data),
-                    },
-                }));
-            }
+            console.log("Received update notice");
+            this.setState((prevstate) => ({
+                activeChat: {
+                    recipient: prevstate.activeChat.recipient,
+                    messages: prevstate.activeChat.messages.concat(data),
+                },
+            }));
         });
 
         socket.on("activeUsers", (data) => {

@@ -58,7 +58,7 @@ router.get("/project",(req,res)=>{
   Project.findById(req.query.projectId).then((project)=>{
   res.send(project);
   });
-  });
+});
   
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
@@ -137,13 +137,21 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
   message.save();
+  
+  let collaborators = [];
 
-  if (req.body.recipient._id == "ALL_CHAT") {
-    socketManager.getIo().emit("message", message);
-  } else {
-    socketManager.getSocketFromUserID(req.body.recipient._id).emit("message", message);
-    if(req.user._id !== req.body.recipient._id) socketManager.getSocketFromUserID(req.user._id).emit("message", message);
-  }
+  Project.findById(req.body.recipient._id).then((projectObj)=>{
+    console.log("I retrieved the project you wanted");
+    console.log(projectObj.collaborators);
+    projectObj.collaborators.forEach(element => {
+      collaborators.push(element.userId);
+      let socketObj = socketManager.getSocketFromUserID(element.userId);
+      if(socketObj){ //if user is connected
+        socketObj.emit("message",message);
+      }
+    });
+    console.log(collaborators);
+  });
 });
 
 

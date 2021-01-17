@@ -7,13 +7,18 @@ let project1 = new Project({
     name: "Weekly Projects #1",
     collaborators: [
       {
-        userId: "thisisacollab1",
+        userId: "60024cc4bdc8da271ed50f0f",
         role:"magic wand"
       }
       ,{
-        userId: "thisisacollab2",
+        userId: "60025fac44a0c93344e6a28d",
         role: "dragonator"
-      }],
+      }
+      ,{
+        userId: "6002848932976068eca6a53d",
+        role: "king"
+      }
+    ],
   });
   project1.save();
 
