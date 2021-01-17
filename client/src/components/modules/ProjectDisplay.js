@@ -12,6 +12,9 @@ class ProjectDisplay extends Component {
     constructor(props) {
         super(props);
     }
+    componentDidMount(){
+        
+    }
 
     render() {
         console.log("ProjectDisplay was called.");

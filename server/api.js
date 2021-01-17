@@ -73,7 +73,7 @@ router.get("/projects",(req,res)=>{
         console.log("User is in "+user.projectIds[i]+'\n');
         let project = await Project.findById(user.projectIds[i]);
         outProjects.push(project);
-        console.log("Found project "+project+"\n");
+        console.log("Found project "+project.name+"\n");
       }
       res.send({projects:outProjects});
     } catch(e) {

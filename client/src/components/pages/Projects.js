@@ -43,14 +43,16 @@ class Projects extends Component {
             return (
                 <div>
                 <h1> This is what you came for</h1>
-                {projectList.map((project)=> (
-                    <ProjectDisplay 
-                        userId={this.props.userId} 
-                        projectName={project.name} 
-                        projectId={project._id} 
-                        key={project._id} 
-                    />
-                ))}
+                    <section className="u-flex">
+                        {projectList.map((project)=> (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id} 
+                                key={project._id} 
+                            />
+                        ))}
+                    </section>
                 </div>
             );
         }
