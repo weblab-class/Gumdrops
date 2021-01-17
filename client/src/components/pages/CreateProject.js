@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NewProjectInput from "../modules/NewProjectInput";
 
 /**
  * CreateProject is a component page that displays options to create a new project
@@ -24,6 +25,7 @@ class CreateProject extends Component {
       return (
           <div>
               <p>Yo what up fam</p>
+              <NewProjectInput />
           </div>
       );
     }

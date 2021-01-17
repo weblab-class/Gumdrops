@@ -156,4 +156,4 @@ class NewJournalMessage extends Component {
 //   }
 // }
 
-export { /*NewComment, NewStory,*/ NewJournalMessage/*, DeleteJournalMessage*/};
+export { NewPostInput, /*NewComment, NewStory,*/ NewJournalMessage/*, DeleteJournalMessage*/};
