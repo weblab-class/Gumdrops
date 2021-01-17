@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import "../../utilities.css";
 import NewImageInput from "../modules/NewImageInput.js";
-import RandomImage from "../modules/RandomImage.js";
 
 //Props
 //userId: String (used in special routing from App.js)
@@ -25,7 +24,6 @@ class Profile extends Component {
                 <h2 className='u-textCenter'>Welcome {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
             </div>
             <NewImageInput />
-            <RandomImage />
             </>
         );
     }

@@ -7,9 +7,10 @@ import { get } from "../../utilities";
  * RandomImage is a component for a random picture from the database
  *
  * Proptypes
+ * @param {String} projectId
  */
 
-class RandomImage extends Component {
+class Thumbnail extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -18,22 +19,19 @@ class RandomImage extends Component {
     }
 
     componentDidMount() {
-      let query = {projectId: "123456"};
+      let query = {projectId: this.props.projectId};
       get("/api/thumbnail",query).then(result=>{
           this.setState({
               image: result.image,
           })
-          console.log("This state is being changed to "+result.image.substr(0,200));
       });
     }
 
     render() {
       return (
-        <div className="u-flex">
-            <img src={this.state.image}/>
-        </div>
+          <img style={{height: "100%", width: "100%", objectFit: "contain"}} src={this.state.image}/>
       );
     }
   }
 
-export default RandomImage;
+export default Thumbnail;
