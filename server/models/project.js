@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema({
       role: String,
     }
   ],
-  storyIds:[]
+  teamId: String,
 },
 {
   timestamps: true,
