@@ -1,13 +1,20 @@
 .Journal-container {
-    height: calc(100vh - 120px);
+    height: 526px;
+    width: 30%;
+    margin: 0;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: right;
 }
   
-.Journal-userList {
+/* .Journal-userList {
     width: 260px;
     margin-right: var(--l);
-}
+} */
   
 .Journal-chatContainer {
-    flex-grow: 1;
+    overflow-y: auto;
 }
   

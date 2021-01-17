@@ -82,6 +82,12 @@ router.get("/projects",(req,res)=>{
   });
 });
 
+//Retrieve all the projects in the database
+//Expects no input
+router.get("/explore",(req,res)=> {
+  Project.find().then((projects)=>res.send(projects))
+});
+
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
 // { projectId: String }
 router.get("/storycards",(req,res)=>{

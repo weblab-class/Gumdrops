@@ -114,7 +114,7 @@ class Journal extends Component {
                         active={this.state.activeChat.recipient}
                         />
                     </div> */}
-                    <div className="Journal-chatContainer u-relative">
+                    <div className="Journal-chatContainer">
                         <JournalMessages data={this.state.activeChat} />{/*senderId={this.props.userId}*/}
                     </div>
                 </div>
