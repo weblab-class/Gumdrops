@@ -1,4 +1,5 @@
 .JournalMessages-container {
+    height: 100%;
     background-color: var(--primary--dim);
     border-radius: 10% 10% 0 0;
 }
