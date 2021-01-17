@@ -11,6 +11,7 @@ import StoryCard from "./modules/StoryCard.js";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import SingleProject from "./pages/SingleProject.js";
+import CreateProject from "./pages/CreateProject.js";
 /**
  * Define the "App" component as a class.
  */
@@ -64,6 +65,7 @@ class App extends Component {
           <Projects path="/projects" userId={this.state.userId}/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <StoryCard path ="/test1" />
+          <CreateProject path="/createproject" />
           <NotFound default />
         </Router>
       </>
