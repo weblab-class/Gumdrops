@@ -5,7 +5,12 @@ const mongoose = require("mongoose");
 // content: content of the story
 
 const StoryCardSchema = new mongoose.Schema({
-    content: String,
+    projectId: String,
+    textTitle: String,
+    textContent: [String],
+    links: [String],
+    videoMedia: String,
+    imageMedia: Buffer,
 });
 
 module.exports = mongoose.model("storycard",StoryCardSchema);
