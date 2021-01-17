@@ -76,7 +76,6 @@ class SingleProject extends Component{
             <div>
                 {storiesList}
             </div>
-           
             {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/>  */}
             <div>
                 <Journal userId ={this.props.userId} projectId={this.props.projectId}/>

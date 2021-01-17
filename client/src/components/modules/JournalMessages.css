@@ -1,13 +1,12 @@
 .JournalMessages-container {
-    height: 85%;
-    width: 35%;
-    position: absolute right;
     background-color: var(--primary--dim);
-    border-radius: 16% 16% 0 0;
+    border-radius: 10% 10% 0 0;
 }
   
 .JournalMessages-newContainer {
     width: 100%;
+    position: absolute;
+    bottom: 0;
 }
   
 .JournalMessages-historyContainer {
