@@ -30,13 +30,15 @@ class StoryCard extends Component{
         // post("/api/editstory",).then((story) =>{
         //     console.log("sent to server");
        // });
-        console.log(this.props.storyObj._Id);
+       // console.log(this.props.storyObj._Id);
+            console.log("story was")
         }
     
         //handles typing 
     handleChange = (event) =>{
+        
         this.setState({
-            storytext: this.state.storytext.concat(event.target.value),
+            storytext: event.target.value,
         });
     }
     

@@ -1,6 +1,7 @@
 //Makes new stories 
 import React, {Component, useCallback} from "react";
 import {render} from "react-dom";
+import {post} from "../../utilities.js";
 import "./NewPostInput.css";
 import "./NewPostInput.css";
 
@@ -19,10 +20,10 @@ class NewInputStory extends Component {
     }
     
     //called when the user hits "add"  for a story
-    handleAdd = (event) => {
-        event.preventDefault();
-        const body = {textcontent: "", projectId: this.props.projectId, links: []};
-        post("/api/storycard", body).then((story)=>
+    handleAdd = () => {
+        console.log("hey i added a new story")
+        const body = {textcontent: "", projectId: this.props.projectId , links: []};
+        post("/api/storycards", body).then((story)=>
         {
             this.props.onSubmit && this.props.onSubmit(body);
         });

@@ -31,18 +31,19 @@ class SingleProject extends Component{
     }
     //i want the api to filter by project id and return stories state
     loadStoryCards(project){
-        get("/api/stories",{project_id: this.props.projectId}).then((storyObjs)=>{
+        get("/api/storycards",{project_id: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs.reverse();
             reversedStory.map((storyObj)=>{
-                this.setState({stories: this.state.stories.concat([storyObj]),
+                this.setState({stories: this.state.stories.concat([storyObjs]),
                 });
             });
         });
+        console.log("i getted")
     }
     //called when "SingleProject" mounts
     componentDidMount(){
             document.title = "Single Project";
-            //this.loadStoryCards(this.prop.projectId);
+            //this.loadStoryCards(this.props.projectId);
     }
 
     addNewStory = (storyObj) =>{
@@ -74,9 +75,9 @@ class SingleProject extends Component{
                 {storiesList}
             </div>
            
-            {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.loadStoryCards}/> */}
+            {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/>  */}
             <div>
-                <Journal userId ={this.props.userId} projectId={this.props.addNewStory}/>
+                <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
             </div>
             </>
         );
