@@ -5,51 +5,50 @@ import { render } from "react-dom";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
-
+/**
+ * Proptypes 
+ * @params {string } storyId : sends id of story
+ * @params {string}  userId
+ */
 class StoryCard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            storycontent: "",
+            storytext: "",
         };
     }
-    //retrieves story 
+    //retrieves story with a get request
     componentDidMount(){
-    // get("/api/story").then((storyObjs)=>{
-    //         this.setState({storycontent: storyObj})
-    //     });
+        this.setState({storytext : storyObjs.textcontent},)
     console.log("recovered");
     }
-    //posts story and immediately updates
-    addNewStory =(storyObj)=>{
-       
-        // post("/api/story", this.state.storycontent).then((story) =>{
-        //     this.setState({
-        //         storycontent: story,
-        //     });
+
+    //edit database sends new test and same id
+    editStory =(storyObj)=>{
+        // const body = {_id: this.props.storyId, content: this.state.storytext}
+        // post("/api/editstory",).then((story) =>{
+        //     console.log("sent to server");
        // });
-            this.setState({
-                 storycontent: story,
-             });   
+        console.log(this.props.storyObj.Id);
         }
     
-
+        //handles typing 
     handleChange = (event) =>{
         this.setState({
-            storycontent: this.state.storycontent.concat(event.target.value),
-        })
+            storytext: this.state.storytext.concat(event.target.value),
+        });
     }
     
 
-
+    
 render(){   
     return(
-        //add logic later for view only or edit 
+        //add logic later user matches 
         <div className ="u-flex">
             <input 
                 type = "text"
                 placeholder="enter story"
-                value = {this.state.value}
+                value = {this.state.storytext}
                 onChange = {this.handleChange}
                 className = "NewPostInput-story"
                 />
@@ -57,7 +56,7 @@ render(){
                 type = "submit"
                 className = "NewPostInput-button u-pointer"
                 value = "Submit"
-                onClick={this.addStory}
+                onClick={this.editStory}
                 >Save
             </button>
         </div>
