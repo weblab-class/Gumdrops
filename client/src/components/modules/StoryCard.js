@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
+import "./StoryCard.css";
 /**
  * Proptypes 
  * @param {Object } storyObj : sends story object
@@ -42,7 +43,7 @@ class StoryCard extends Component{
     
     render(){   
         return(
-            <div>
+            <div className="storyCard-container">
                 <p>
                     {this.state.storytext}
                 </p>
