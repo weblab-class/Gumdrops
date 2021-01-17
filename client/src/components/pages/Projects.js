@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
-// import "../modules/ProjectDisplay.css";
 //Usage: This is equivalent to the project dashboard
 
 //Props

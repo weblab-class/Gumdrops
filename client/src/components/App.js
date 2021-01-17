@@ -60,7 +60,7 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Profile path="/profile/:userId"/>
-          <Explore path="/explore"/>
+          <Explore path="/explore" userId={this.state.userId}/>
           <Projects path="/projects" userId={this.state.userId}/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <StoryCard path ="/test1" />
