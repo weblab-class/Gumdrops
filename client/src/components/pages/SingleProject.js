@@ -25,7 +25,7 @@ class SingleProject extends Component{
         super(props);
         this.state = {
 
-            stories: [{textcontent:"Hello this a test story",projectId:"123",links:[1,2],_id:"1"},],
+            stories: [{textcontent:"Hello this a test story", projectId:"123",links:[1,2], _id:"1"},],
         }
         
     }
@@ -54,20 +54,19 @@ class SingleProject extends Component{
         let storiesList = null;
         const hasStories = this.state.stories.length !== 0;
         if(hasStories){
-            console.log("no errors here")
             storiesList = this.state.stories.map((StoryObj)=>
-            {
+            (
                 <StoryCard
-                    key ={`StoryCard_${StoryObj._id}`}
+                    key = {`StoryCard_${StoryObj._id}`}
                     storyObj = {StoryObj}
-                    userId={this.props.userId}
+                    userId = {this.props.userId}
                 />
-                
-            });
+            
+            ));
         } else{
             storiesList = <div>No Stories!</div>
         }
-        console.log("hello")
+        
         console.log(this.state.stories[0].textcontent);
         return(
             <>
