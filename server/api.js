@@ -15,7 +15,7 @@ const Message = require("./models/message");
 const Image = require("./models/image");
 const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
-
+const ProjectThumbnail = require("./models/project-thumbnail.js");
 // import authentication library
 const auth = require("./auth");
 
@@ -183,7 +183,7 @@ router.post("/image",(req,res)=>{
 //{ projectId: String, cardId: String, imageName: String}
 router.get("/image",(req,res)=>{
   console.log("Received get image request");
-  Image.findOne(req.content) //Uses the req.content as the query body
+  Image.findOne(req.query) //Uses the req.query as the content body
     .then((returnImage)=> {
       let unbufferedImg = returnImage.image.toString();
       console.log("Recovered image string "+unbufferedImg.substr(0,200));
@@ -194,6 +194,35 @@ router.get("/image",(req,res)=>{
     .catch((err)=>console.log(err));
 });
 
+//Get a project thumbnail image from the database. Expects an object with following field:
+//{ projectId: String }
+router.get("/thumbnail",(req,res)=>{
+  console.log("Received get thumbnail request");
+  console.log("Trying to match thumbnail with id "+req.query.projectId);
+  ProjectThumbnail.findOne(req.query)
+    .then((returnImage)=> {
+      let unbufferedImg = returnImage.image.toString();
+      console.log("Recovered thumbnail string "+unbufferedImg.substr(0,200));
+      res.send({
+        image: unbufferedImg
+      });
+    })
+    .catch((err)=>console.log(err));
+});
+
+//Post a thumbnail to the database. Expects an object with:
+//{ projectId: String, image: String (need to be in base64!), imageName : String }
+
+router.post("/thumbnail",(req,res)=>{
+  console.log("Received save thumbnail request");
+  let bufferedImg = Buffer.from(req.body.image);
+  const image = new ProjectThumbnail({
+    projectId: req.body.projectId,
+    image: bufferedImg,
+    imageName: req.body.imageName,
+  });
+  image.save().then(()=>console.log("Thumbnail saved successfully."));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
