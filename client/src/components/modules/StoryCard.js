@@ -7,8 +7,8 @@ import { post } from "../../utilities";
 import { get} from "../../utilities";
 /**
  * Proptypes 
- * @params {string } storyObj : sends story object
- * @params {string}  userId
+ * @param {Object } storyObj : sends story object
+ * @param {string}  userId 
  */
 class StoryCard extends Component{
     constructor(props){
@@ -16,57 +16,37 @@ class StoryCard extends Component{
         this.state = {
             storytext: "",
         };
-        console.log("i constructed")
+        
     }
-    //retrieves story with a get request
+    //runs when storycard mounts
     componentDidMount(){
-        this.setState({storytext : this.props.storyObj.textcontent},)
-    console.log("recovered");
+        this.setState({storytext : this.props.storyObj.textContent},)
     }
 
-    //edit database sends new test and same id
+    //this would eventually allow to edit stories
     editStory =(storyObjs)=>{
         // const body = {_id: this.props.storyId, content: this.state.storytext}
         // post("/api/editstory",).then((story) =>{
         //     console.log("sent to server");
        // });
        // console.log(this.props.storyObj._Id);
-            console.log("story was")
+            console.log("story was saved ")
         }
     
-        //handles typing 
+        //method that will allow for edit
     handleChange = (event) =>{
-        
         this.setState({
             storytext: event.target.value,
         });
     }
     
-
-    
     render(){   
         return(
-            //add logic later user matches 
-            <div className ="u-flex">
-                <input 
-
-                   type = "text"
-                    placeholder="enter story"
-                    value = {this.state.storytext}
-                    onChange = {this.handleChange}
-                    className = "NewPostInput-story"
-
-                    />
-
-                <button 
-                    type = "submit"
-                    className = "NewPostInput-button u-pointer"
-                    value = "Submit"
-                    onClick={this.editStory}
-                    >Save
-                </button>
+            <div>
+                <p>
+                    {this.state.storytext}
+                </p>
             </div>
-
         );
     }
 }
