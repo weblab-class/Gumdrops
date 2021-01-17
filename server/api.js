@@ -50,7 +50,7 @@ router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
-});
+}); 
 
 //Return the Project object corresponding to a specific projectID. Expects an object of:
 // { projectId: String }
@@ -81,6 +81,24 @@ router.get("/projects",(req,res)=>{
     }
   });
 });
+
+//Retrieve all story cards corresponding to a specific projectId. Expects an object of:
+// { projectId: String }
+router.get("/storycards",(req,res)=>{
+  let query = { projectId : req.query.projectId };
+  StoryCard.find(query).then((storyCards)=>{
+    res.send(storyCards);
+  })
+});
+
+//Creates a new StoryCard document based on given content. Expects an object with at least:
+// {  projectId: String, textTitle: String, textContent: String} and optional parameters
+// { links: [String], videoMedia: String, imageMedia: Buffer }
+//Note: This is enforced in storyCard.js!
+router.post("/storycards",(req,res)=>{
+  const storycard = new StoryCard(req.content);
+  storycard.save();
+})
 
 router.get("/chat", (req, res) => {
   console.log(req.query);

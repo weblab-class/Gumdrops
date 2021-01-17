@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const StoryCardSchema = new mongoose.Schema({
     projectId: String,
     textTitle: String,
-    textContent: [String],
+    textContent: String,
     links: [String],
     videoMedia: String,
     imageMedia: Buffer,
