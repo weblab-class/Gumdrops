@@ -24,7 +24,6 @@ class SingleProject extends Component{
     constructor(props){
         super(props);
         this.state = {
-
             stories: [{textcontent:"Hello this a test story",projectId:"123",links:[1,2],_id:"1"},],
         }
         
@@ -62,8 +61,9 @@ class SingleProject extends Component{
                     storyObj = {StoryObj}
                     userId={this.props.userId}
                 />
-                
+                console.log("This is working");
             });
+            console.log("Test: " + storiesList)
         } else{
             storiesList = <div>No Stories!</div>
         }
@@ -71,8 +71,9 @@ class SingleProject extends Component{
         console.log(this.state.stories[0].textcontent);
         return(
             <>
-            
-            {storiesList}
+            <div>
+                {storiesList}
+            </div>
            
             {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.loadStoryCards}/> */}
             <div>

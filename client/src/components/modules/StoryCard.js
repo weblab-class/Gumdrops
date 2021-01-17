@@ -7,7 +7,7 @@ import { post } from "../../utilities";
 import { get} from "../../utilities";
 /**
  * Proptypes 
- * @params {string } storyId : sends id of story
+ * @params {string } storyObj : sends story object
  * @params {string}  userId
  */
 class StoryCard extends Component{
@@ -41,24 +41,24 @@ class StoryCard extends Component{
     
 
     
-render(){   
-    return(
-        //add logic later user matches 
-        <div className ="u-flex">
-            <input 
-                type = "text"
-                placeholder="enter story"
-                value = {this.state.storytext}
-                onChange = {this.handleChange}
-                className = "NewPostInput-story"
+    render(){   
+        return(
+            //add logic later user matches 
+            <div className ="u-flex">
+                <input 
+                    type = "text"
+                    placeholder="enter story"
+                    value = {this.state.storytext}
+                    onChange = {this.handleChange}
+                    className = "NewPostInput-story"
                 />
-            <button 
-                type = "submit"
-                className = "NewPostInput-button u-pointer"
-                value = "Submit"
-                onClick={this.editStory}
+                <button 
+                    type = "submit"
+                    className = "NewPostInput-button u-pointer"
+                    value = "Submit"
+                    onClick={this.editStory}
                 >Save
-            </button>
+                </button>
         </div>
 
         );

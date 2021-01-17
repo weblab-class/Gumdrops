@@ -44,8 +44,13 @@ class Projects extends Component {
                 <div>
                 <h1> This is what you came for</h1>
                 {projectList.map((project)=> (
-                    <ProjectDisplay userId={this.props.userId} projectName={project.name} projectId={project._id} key={project._id} />))}
-                {/* <ProjectDisplay userId={this.props.userId} projectName={this.state.projects[0].name} projectId={this.state.projects[0]._id} />*/}
+                    <ProjectDisplay 
+                        userId={this.props.userId} 
+                        projectName={project.name} 
+                        projectId={project._id} 
+                        key={project._id} 
+                    />
+                ))}
                 </div>
             );
         }
