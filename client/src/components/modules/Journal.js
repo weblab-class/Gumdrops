@@ -41,7 +41,7 @@ class Journal extends Component {
         this.state = {
             activeUsers: [],
             activeChat: {
-                recipient: ALL_CHAT,
+                recipient: ALL_CHAT, //for compatibility with existing database entries
                 messages: [],
             },
         };
