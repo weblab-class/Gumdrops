@@ -25,7 +25,7 @@ class SingleProject extends Component{
         super(props);
         this.state = {
 
-
+            
             stories: [{textcontent:"Hello this a test story", projectId:"123",links:[1,2], _id:"1"},],
 
         }
