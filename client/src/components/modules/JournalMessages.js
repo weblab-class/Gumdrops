@@ -31,18 +31,27 @@ class JournalMessages extends Component {
   constructor(props) {
     super(props);
   }
+
+  convert = (timeStamp) => {
+    const mm = timeStamp.substr(5,2);
+    const dd = timeStamp.substr(8,2);
+    const yyyy = timeStamp.substr(0,4);
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
   render() {
     let renderOutput = [];
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
-      lastTimeStamp=this.props.data.messages[0].timestamp.substr(0,10);
-      renderOutput.push(<h2 className="JournalMessage-date">{lastTimeStamp}</h2>); //header for first date
+      console.log("Test: " + this.convert("5678-12-34"))
+      lastTimeStamp = this.convert(this.props.data.messages[0].timestamp.substr(0,10));
+      renderOutput.push(<><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></>); //header for first date
     }
     for(var i=0; i<this.props.data.messages.length;i++){
-      let currTimeStamp = this.props.data.messages[i].timestamp.substr(0,10);
+      let currTimeStamp = this.convert(this.props.data.messages[i].timestamp.substr(0,10));
       if (currTimeStamp!==lastTimeStamp){
         console.log("Date was pushed here");
-        renderOutput.push(<h2 className="JournalMessage-date">{currTimeStamp}</h2>);
+        renderOutput.push(<><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></>);
         lastTimeStamp = currTimeStamp;
       }
       renderOutput.push(<JournalMessage message={this.props.data.messages[i]} key={i}/>);
