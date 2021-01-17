@@ -43,7 +43,6 @@ class JournalMessages extends Component {
     let renderOutput = [];
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
-      console.log("Test: " + this.convert("5678-12-34"))
       lastTimeStamp = this.convert(this.props.data.messages[0].timestamp.substr(0,10));
       renderOutput.push(<><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></>); //header for first date
     }
