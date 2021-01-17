@@ -21,31 +21,34 @@ import NewInputStory from "../modules/NewInputStory.js";
  * 
  */
 class SingleProject extends Component{
+    
     constructor(props){
         super(props);
         this.state = {
-            stories: [{textcontent:"Hello this a test story", projectId:"6002597bb45b7733b322e9ad",links:[1,2], _id:"1"},],
+            stories: [],
+            edit: false
 
         }
         
     }
+    
     //i want the api to filter by project id and return stories state
-    loadStoryCards(project){
-        get("/api/storycards",{project_id: this.props.projectId}).then((storyObjs)=>{
+    loadStoryCards= () => {
+        let varId = "6002597bb45b7733b322e9ad";
+        get("/api/storycards",{projectId: varId}).then((storyObjs)=>{
             let reversedStory = storyObjs.reverse();
             reversedStory.map((storyObj)=>{
-                this.setState({stories: this.state.stories.concat([storyObjs]),
+                this.setState({stories: this.state.stories.concat([storyObj]),
                 });
             });
         });
-        console.log("i getted")
     }
     //called when "SingleProject" mounts
     componentDidMount(){
             document.title = "Single Project";
-            //this.loadStoryCards(this.props.projectId);
+            this.loadStoryCards();
     }
-
+    //this will eventually add a new story
     addNewStory = (storyObj) =>{
         this.setState({
             stories: [storyObj].concat(this.state.stories)
@@ -61,14 +64,13 @@ class SingleProject extends Component{
                     key = {`StoryCard_${StoryObj._id}`}
                     storyObj = {StoryObj}
                     userId = {this.props.userId}
+                    edit = {this.state.edit}
                 />
-            
             ));
         } else{
             storiesList = <div>No Stories!</div>
         }
         
-        console.log(this.state.stories[0].textcontent);
         return(
             <>
             <div>
