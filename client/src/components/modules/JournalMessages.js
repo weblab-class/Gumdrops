@@ -49,14 +49,13 @@ class JournalMessages extends Component {
     for(var i=0; i<this.props.data.messages.length;i++){
       let currTimeStamp = this.convert(this.props.data.messages[i].timestamp.substr(0,10));
       if (currTimeStamp!==lastTimeStamp){
-        console.log("Date was pushed here");
         renderOutput.push(<><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></>);
         lastTimeStamp = currTimeStamp;
       }
-      renderOutput.push(<JournalMessage message={this.props.data.messages[i]} key={i}/>);
+      renderOutput.push(
+      <JournalMessage message={this.props.data.messages[i]} 
+        key={"JournalMessage_"+this.props.data.messages[i].timestamp}/>);
     }
-    console.log(renderOutput);
-    console.log("Type of: "+typeof(renderOutput));
     return (
       <div className="u-flexColumn JournalMessages-container">
         <h3 className="u-textCenter">Team Journal</h3>

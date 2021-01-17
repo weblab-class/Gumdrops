@@ -43,9 +43,6 @@ class JournalMessage extends Component {
     } else {
       readableTime += " PM";
     }
-    console.log("Entire timestamp "+this.props.message.timestamp);
-    console.log("hmStamp "+hh +mm);
-
     return (
       <div className={"u-flex u-flex-alignCenter JournalMessage-container"}>
         <span className="JournalMessage-sender u-bold">{this.props.message.sender.name}</span>
