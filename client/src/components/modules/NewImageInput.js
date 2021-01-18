@@ -5,8 +5,9 @@ import { get, post } from "../../utilities";
 
 /**
  * New Image Input is a component for picture inputs
- *
+ * 
  * Proptypes
+ * 
  */
 
 class NewImageInput extends Component {
@@ -74,7 +75,6 @@ class NewImageInput extends Component {
         //console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
         let postObj = { 
             projectId: "123456", //hard coded for now
-            //cardId : "abcdefg",
             image: this.state.selectedFile,
             imageName: this.state.fileName,
         };
@@ -88,7 +88,8 @@ class NewImageInput extends Component {
   
     render() {
       return (
-        <div className="u-flex">
+        /*className="u-flex"*/
+        <div>
           <input
             type="file"
             name="files[]"

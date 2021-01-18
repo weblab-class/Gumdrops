@@ -12,10 +12,11 @@ const express = require("express");
 // import models so we can interact with the database
 const User = require("./models/user");
 const Message = require("./models/message");
-const Image = require("./models/image");
+const ProfileImage = require("./models/profile-image");
 const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
+const ProfileBio = require("./models/profile-bio");
 // import authentication library
 const auth = require("./auth");
 
@@ -180,25 +181,23 @@ router.get("/activeUsers", (req, res) => {
 });
 
 //Post an image to the database. Expects an object with:
-//{ projectId: String, cardId: String, image: String (need to be in base64!), imageName : String }
-
+//{ userId: String, image: String (need to be in base64!), }
 router.post("/image",(req,res)=>{
-  console.log("Received save image request");
+  console.log("Received save profile image request");
   let bufferedImg = Buffer.from(req.body.image);
-  const image = new Image({
-    projectId: req.body.projectId,
-    cardId : req.body.cardId,
+  const image = new ProfileImage({
+    userId: req.body.userId,
     image: bufferedImg,
-    imageName: req.body.imageName,
   });
-  
+  image.save().then(()=>console.log("Profile image saved successfully."));
 });
 
 //Get an image from the database. Expects an object with one or more of the following fields:
-//{ projectId: String, cardId: String, imageName: String}
+//{ userId: String }
 router.get("/image",(req,res)=>{
-  console.log("Received get image request");
-  Image.findOne(req.query) //Uses the req.query as the content body
+  console.log("Received get profile image request");
+  console.log("Trying to match image with id "+req.query.userId);
+  ProfileImage.find({"userId": req.query.userId})
     .then((returnImage)=> {
       let unbufferedImg = returnImage.image.toString();
       console.log("Recovered image string "+unbufferedImg.substr(0,200));
@@ -207,6 +206,22 @@ router.get("/image",(req,res)=>{
       });
     })
     .catch((err)=>console.log(err));
+});
+
+//Get a user's profile bio information from the database. Expects an object with following field:
+//{ userId: String }
+router.get("/profile-bio", (req,res)=>{
+  ProfileBio.find({"userId": req.query.userId}).then((bio)=>res.send(bio));
+});
+
+//Post a user bio to the database. Expects an object with following field:
+//{ userId: String, content: String }
+router.post("/profile-bio",(req,res)=>{
+  const bio = new ProfileBio({
+    userId: req.body.userId,
+    bio: req.body.content,
+  });
+  bio.save().then(()=>console.log("Profile bio saved successfully."));
 });
 
 //Get a project thumbnail image from the database. Expects an object with following field:

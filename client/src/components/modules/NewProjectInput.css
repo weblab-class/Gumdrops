@@ -1,0 +1,17 @@
+.NewProjectInput-input {
+  border: var(--darkgrey) 1px solid;
+  border-radius: var(--m);
+  transition: box-shadow 0.1s;
+  font-family: "Lato",sans-serif;
+  font-size: 14px;
+  padding: var(--s) var(--m);
+  width: 40%;
+  background-color: #F0F2EC;
+}
+
+.NewProjectInput-input:focus-within {
+  border-color: var(--primary--dim);
+  box-shadow: 0 0 0 var(--xxs) lightblue;
+}
+
+
