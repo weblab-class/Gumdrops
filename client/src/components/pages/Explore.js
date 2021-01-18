@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
-
+import "./Explore.css";
 //Props
 //userId : String (passed from App.js)
 class Explore extends Component {
@@ -36,7 +36,7 @@ class Explore extends Component {
             return(
                 <div>
                     <marquee><h1>Alas! You have found the explore page!</h1></marquee>
-                    <section className="u-flex">
+                    <section className="u-flex Explore-container">
                         {projectList.map((project)=> (
                             <ProjectDisplay 
                                 userId={this.props.userId} 

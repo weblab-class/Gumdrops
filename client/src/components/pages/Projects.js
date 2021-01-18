@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
 import CreateProjectDisplay from "../modules/CreateProjectDisplay.js";
+import "./Projects.css";
 //Usage: This is equivalent to the project dashboard
 
 //Props
@@ -43,7 +44,7 @@ class Projects extends Component {
             return (
                 <div>
                 <h1> This is what you came for</h1>
-                    <section className="u-flex">
+                    <section className="u-flex Projects-container">
                         {projectList.map((project)=> (
                             <ProjectDisplay 
                                 userId={this.props.userId} 
