@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../utilities.css";
 import "./NewPostInput.css";
 import { get } from "../../utilities";
-
+import "./Thumbnail.css";
 /**
  * RandomImage is a component for a random picture from the database
  *
@@ -29,7 +29,7 @@ class Thumbnail extends Component {
 
     render() {
       return (
-          <img style={{height: "100%", width: "100%", objectFit: "contain"}} src={this.state.image}/>
+          <img className="Thumbnail-image" src={this.state.image}/>
       );
     }
   }

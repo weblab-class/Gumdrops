@@ -1,14 +1,31 @@
-.Profile-imageContainer, .Profile-bioContainer {
-    width: 32em;
+.Profile-imageInputContainer, .Profile-image, .Profile-bioContainer {
+    margin-top: var(--m);
     position: relative;
     left: 50%;
     transform: translate(-50%);
 }
 
+.Profile-imageInputContainer {
+    width: 22em;
+}
+
 .Profile-bioContainer {
+    width: 32em;
+}
+
+.Profile-sectionContainer {
     margin-top: var(--m);
 }
 
 .Profile-image {
     border-radius: 50%;
+}
+
+.h2 {
+    margin: 0;
+}
+
+.new-h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
 }

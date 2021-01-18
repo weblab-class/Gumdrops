@@ -6,3 +6,7 @@
 .project-container {
     padding: var(--m);
 }
+
+.projectJournal-container {
+    width: 30%;
+}

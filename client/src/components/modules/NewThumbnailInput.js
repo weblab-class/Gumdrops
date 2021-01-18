@@ -1,22 +1,20 @@
 import React, { Component } from "react";
 import "../../utilities.css";
-import "./NewPostInput.css";
+import "./NewProjectInput.css";
 import { get, post } from "../../utilities";
 
 /**
  * New Image Input is a component for picture inputs
- *
+ * 
  * Proptypes
- * //userId : String (passed down from ProfileImage.js)
+ * @param {function} handleChange .Used as a callback to update CreateProject
  */
 
-class NewImageInput extends Component {
+class NewThumbnailInput extends Component {
     constructor(props) {
       super(props);
   
       this.state = {
-        selectedFile: null,
-        fileName: null,
         submitKey : Date.now(),
       };
     }
@@ -44,69 +42,36 @@ class NewImageInput extends Component {
       });
     };
 
-
-    // called whenever the user types in the new post input box
+    // called whenever the user chooses a new image in the input box
     handleChange = (event) => {
       console.log(event.target.files);
       console.log(event.target.files[0]);
 
       const fileInput = event.target;
       this.readImage(fileInput.files[0]).then(image => {
-        this.setState({
-          selectedFile: image,
-          fileName: fileInput.files[0].name,
-        });
+        this.props.onChange(image);
         //console.log("Change handled. File selected is now: "+image);
         console.log("Loaded image "+image);
-        console.log("Name of file: "+fileInput.files[0].name)
-        console.log("Type of file: "+typeof(fileInput.files[0]));
+        console.log("Name of file"+fileInput.files[0].name)
+        console.log("Type of file:"+typeof(fileInput.files[0]));
       }).catch(err => {
         console.log(err);
       });
 
     };
   
-    // called when the user hits "Submit" for a new post
-    handleSubmit = () => {
-        if(this.state.selectedFile==null) { /*do nothing*/ } 
-        else {
-        console.log("Tries to submit");
-        //let base64_img = this.state.selectedFile.toString('base64');
-        //console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
-        let postObj = { 
-            userId: this.props.userId,
-            image: this.state.selectedFile,
-        };
-        post("/api/image", postObj).then(()=>console.log("Image was saved"));
-        this.setState({
-            selectedFile: null,
-            submitKey : Date.now(),
-        });
-        }
-    };
-  
     render() {
       return (
-        <>
-          <input
+        <input
             type="file"
             name="files[]"
             accept="image/*"
             key={this.state.submitKey}
             onChange={this.handleChange}
-            className="NewPostInput-input"
-          />
-          <button
-            type="submit"
-            className="NewPostInput-button u-pointer"
-            value="Submit"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </button>
-        </>
+            className="NewProjectInput-input"
+        />
       );
     }
   }
 
-export default NewImageInput;
+export default NewThumbnailInput;

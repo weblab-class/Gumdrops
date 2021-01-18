@@ -1,0 +1,10 @@
+.Thumbnail-image {
+    height: 100%;
+    width: 100%; 
+    object-fit: cover;
+    /*set to be same as projectDocumentation-container in ProjectDisplay.css*/
+    border-radius: var(--m) var(--m) 0 0; 
+    border: 1px solid lightseagreen;
+}
+   
+        

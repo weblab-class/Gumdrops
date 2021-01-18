@@ -61,6 +61,23 @@ router.get("/project",(req,res)=>{
   });
 });
   
+//Stores a new Project document. Expects an object of:
+// { name: String, collaborators: [{userId:String,role:String}], teamId:String}
+router.post("/project",(req,res)=>{
+  let newproject = new Project({
+    name : req.body.name,
+    collaborators: req.body.collaborators,
+    teamId: req.body.teamId,
+  });
+  newproject.save()
+    .then(result=>{
+      console.log("The newly saved projectId is "+result._id);
+      res.send(result._id);
+    })
+    .catch(error=>console.log(error));
+})
+
+
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
 router.get("/projects",(req,res)=>{
@@ -189,6 +206,10 @@ router.get("/activeUsers", (req, res) => {
 //Post an image to the database. Expects an object with:
 //{ userId: String, image: String (need to be in base64!), }
 router.post("/image",(req,res)=>{
+  let prevImage = ProfileImage.findOne({"userId": req.body.userId}).then(()=>console.log("Found prevImage: "+prevImage));
+  if (prevImage) {
+    ProfileImage.deleteOne({"userId": req.body.userId}).then(()=>console.log("Deleted Image: "+prevImage.userId+" "+prevImage.image));
+  }
   console.log("Received save profile image request");
   let bufferedImg = Buffer.from(req.body.image);
   const image = new ProfileImage({
@@ -196,6 +217,7 @@ router.post("/image",(req,res)=>{
     image: bufferedImg,
   });
   image.save().then(()=>console.log("Profile image saved successfully."));
+  socketManager.getSocketFromUserID(req.body.userId).emit("profile-image", image);
 });
 
 //Get an image from the database. Expects an object with one or more of the following fields:
@@ -203,7 +225,7 @@ router.post("/image",(req,res)=>{
 router.get("/image",(req,res)=>{
   console.log("Received get profile image request");
   console.log("Trying to match image with id "+req.query.userId);
-  ProfileImage.find({"userId": req.query.userId})
+  ProfileImage.findOne({"userId": req.query.userId})
     .then((returnImage)=> {
       let unbufferedImg = returnImage.image.toString();
       console.log("Recovered image string "+unbufferedImg.substr(0,200));
@@ -224,11 +246,16 @@ router.get("/profile-bio", (req,res)=>{
 //Post a user bio to the database. Expects an object with following field:
 //{ userId: String, content: String }
 router.post("/profile-bio",(req,res)=>{
+  const prevBio = ProfileBio.findOne({"userId": req.body.userId}).then(()=>console.log("Found prevBio: "+prevBio));
+  if (prevBio) {
+    ProfileBio.deleteOne({"userId": req.body.userId}).then(()=>console.log("Deleted Bio: "+prevBio.userId+" "+prevBio.content));
+  }
   const bio = new ProfileBio({
     userId: req.body.userId,
-    bio: req.body.content,
+    content: req.body.content,
   });
-  bio.save().then(()=>console.log("Profile bio saved successfully."));
+  bio.save().then(()=>console.log("Profile bio saved successfully: "+bio.content));
+  socketManager.getSocketFromUserID(req.body.userId).emit("profile-bio", bio);
 });
 
 //Get a project thumbnail image from the database. Expects an object with following field:
@@ -258,7 +285,10 @@ router.post("/thumbnail",(req,res)=>{
     image: bufferedImg,
     imageName: req.body.imageName,
   });
-  image.save().then(()=>console.log("Thumbnail saved successfully."));
+  image.save().then(()=>{
+    console.log("Thumbnail saved successfully.");
+    res.send({});
+  });
 });
 
 // anything else falls to this "not found" case
