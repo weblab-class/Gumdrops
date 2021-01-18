@@ -55,7 +55,7 @@ class CreateProject extends Component {
       console.log("Collaborators is "+this.state.collaborators);
       if(this.state.collaborators==="") {
         console.log("I went into here");
-        collabArray = [this.props.userId];
+        collabArray = ["@"+this.props.userId];
       } else {
         collabArray = this.state.collaborators.split(" ");
         collabArray.push(this.props.userId);
@@ -87,6 +87,14 @@ class CreateProject extends Component {
             thumbnail: null, 
           });
         });
+        } else {
+          //nothing more to do
+          this.setState({ //resets the fields
+            projectName: "", 
+            collaborators: "", 
+            teamId: "", 
+            thumbnail: null, 
+          });
         }
       });
 

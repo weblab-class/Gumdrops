@@ -271,6 +271,8 @@ router.get("/thumbnail",(req,res)=>{
       res.send({
         image: unbufferedImg
       });
+      } else {
+        res.status(200).send({});
       }
     })
     .catch((err)=>console.log(err));
