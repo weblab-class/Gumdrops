@@ -34,8 +34,8 @@ class SingleProject extends Component{
     
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
-        let varId = "6002597bb45b7733b322e9ad";
-        get("/api/storycards",{projectId: varId}).then((storyObjs)=>{
+        
+        get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs.reverse();
             reversedStory.map((storyObj)=>{
                 this.setState({stories: this.state.stories.concat([storyObj]),
@@ -73,10 +73,10 @@ class SingleProject extends Component{
         
         return(
             <>
-            <div className = "u-flex">
+            <div className = "u-flex u-flexColumn">
                 {storiesList}
             </div>
-            {/* <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/>  */}
+            <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
             <div>
                 <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
             </div>

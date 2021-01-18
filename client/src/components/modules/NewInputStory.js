@@ -19,15 +19,16 @@ class NewInputStory extends Component {
         
     }
     
-    //called when the user hits "add"  for a story
-    handleAdd = () => {
+    //will add new story to server and inform single project
+    handleAdd = (event) => {
+        event.preventDefault();
         console.log("hey i added a new story")
-        const body = {textcontent: "", projectId: this.props.projectId , links: []};
-        post("/api/storycards", body).then((story)=>
-        {
-            this.props.onSubmit && this.props.onSubmit(body);
-        });
-        
+        const body = {textContent: "empty story", projectId: this.props.projectId , links: []};
+        // post("/api/storycards", body).then((story)=>
+        // {
+        //     this.props.onSubmit && this.props.onSubmit(body);
+        // });
+        this.props.onSubmit && this.props.onSubmit(body);
     }
     render(){
         return(
