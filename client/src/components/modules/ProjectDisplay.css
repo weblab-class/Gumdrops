@@ -6,7 +6,7 @@
 
 .ProjectDisplay-image {
     /* background-image: ; */
-    height: 75%;
+    height: 100%;
     background-color: var(--primary--dim);
     border-radius: var(--m) var(--m) 0 0;
 }
@@ -17,4 +17,7 @@
     background-color: var(--primary);
     color: var(--white);
     border-radius: 0 0 var(--m) var(--m);
+    border-left: 1px solid lightgreen;
+    border-right: 1px solid lightgreen;
+    border-bottom: 1px solid lightgreen;
 }
