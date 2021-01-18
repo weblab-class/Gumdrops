@@ -6,6 +6,7 @@ import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
 import "./StoryCard.css";
+import DeleteStoryCard from "./DeleteStoryCard.js";
 //import EditStoryCard from "EditStoryCard.js"
 /**
  * Proptypes 
@@ -25,6 +26,7 @@ class StoryCard extends Component{
     componentDidMount(){
         this.setState({storytext : this.props.storyObj.textContent},)
     }
+
     //changes state of editing 
     clickedEditing=(event)=>{
         event.preventDefault();
@@ -62,6 +64,7 @@ class StoryCard extends Component{
                     className = "NewPostInput-button u-pointer"
                     value = "Submit"
                     onClick={this.clickedEditing}
+
                     >Edit
                     </button>
                 </>
@@ -70,6 +73,7 @@ class StoryCard extends Component{
             else{
                 output = (
                 <>
+                    <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
                     <p>im editing</p>
                     <button 
                     type = "submit"

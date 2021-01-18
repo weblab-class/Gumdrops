@@ -104,7 +104,7 @@ router.get("/storycards",(req,res)=>{
 //Note: This is enforced in storyCard.js!
 router.post("/storycards",(req,res)=>{
   const storycard = new StoryCard(req.body);
-  storycard.save();
+  storycard.save().then((storycard)=>res.send(storycard));
 })
 
 //Deletes all StoryCards document that matches the body. 

@@ -3,7 +3,6 @@ import React, {Component, useCallback} from "react";
 import {render} from "react-dom";
 import {post} from "../../utilities.js";
 import "./NewPostInput.css";
-import "./NewPostInput.css";
 
 /**
  * New Post is a parent component for all input components
@@ -27,13 +26,15 @@ class NewInputStory extends Component {
     //will add new story to server and inform single project
     handleAdd = (event) => {
         event.preventDefault();
-        console.log("hey i added a new story")
-        const body = {textContent: "", textTitle: "",videoMedia:"", projectId: this.props.projectId , links: []};
+        
+        const body = {projectId: this.props.projectId , textTitle: "",textContent: "",links: [],videoMedia:"" };
         post("/api/storycards", body).then((story)=>
         {
-            this.props.onSubmit && this.props.onSubmit(body);
+            console.log("hey i added a new story");
+            this.props.onSubmit && this.props.onSubmit(story);
+            
         });
-        this.props.onSubmit && this.props.onSubmit(body);
+        
     }
     render(){
         return(

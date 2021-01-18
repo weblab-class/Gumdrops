@@ -50,29 +50,49 @@ class SingleProject extends Component{
             document.title = "Single Project";
             this.loadStoryCards();
     }
-    //this will eventually add a new story
+    //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
+        console.log("i added a new story")
         this.setState({
             stories: [storyObj].concat(this.state.stories)
         });
     }
+    //automatically deletes story when clicked
+    deleteNewStory = (storyObj)=>{
+
+        let tempArray = [...this.state.stories];
+        for(let i = 0; i< this.state.stories.length ; i++){
+            if(this.state.stories[i]._id  == storyObj._id){
+                tempArray.splice(i,1);
+                break;
+            }
+        }
+        this.setState({
+            stories: tempArray,
+        });
+    }
     render(){
         let storiesList = null;
+        let stringId = null;
         const hasStories = this.state.stories.length !== 0;
         if(hasStories){
-            storiesList = this.state.stories.map((StoryObj)=>
+            storiesList = this.state.stories.map((storyObj)=>
             (
+                
+                
                 <StoryCard
-                    key = {`StoryCard_${StoryObj._id}`}
-                    storyObj = {StoryObj}
+                    storyObj = {storyObj}
+                    key = {storyObj._id}
                     userId = {this.props.userId}
                     edit = {this.state.edit}
+                    delete = {this.deleteNewStory}
                 />
             ));
         } else{
             storiesList = <div>No Stories!</div>
         }
-        
+      //  console.log(this.state.stories[0]._id)
+        //console.log(typeof this.state.stories[0]._id)
         return(
             <>
             <div className="u-flex project-container"> 
