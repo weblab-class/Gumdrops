@@ -31,7 +31,7 @@ class ProfileBio extends Component {
         if (this.state.bio) {
             console.log("Bio: "+this.state.bio);
             return(
-                <div className="Profile-bio">
+                <div className="Profile-sectionContainer">
                     <h2 className="u-textCenter h2">Bio:</h2>
                     <p className="u-textCenter">{this.state.bio}</p>
                 </div>
@@ -39,6 +39,7 @@ class ProfileBio extends Component {
         }
         return (
             <div className="Profile-bioContainer">
+                <h2 className="u-textCenter h2">Bio:</h2>
                 <NewBio userId={this.props.userId}/>
             </div>
         );

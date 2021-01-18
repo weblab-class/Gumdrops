@@ -31,15 +31,19 @@ class ProfileImage extends Component {
         if (this.state.image) {
             console.log("Attempting to display image: "+this.state.image)
             return(
-                <img 
-                    style={{height: "15%", width: "15%", objectFit: "contain"}} 
-                    src={this.state.image}
-                    className="Profile-image"
-                />
+                <div className="Profile-sectionContainer">
+                    <h2 className="u-textCenter h2">Profile Pic:</h2>
+                    <img 
+                        style={{height: "15%", width: "15%", objectFit: "contain"}} 
+                        src={this.state.image}
+                        className="Profile-image"
+                    />
+                </div>
             );
         }
         return (
             <div className="Profile-imageInputContainer">
+                <h2 className="u-textCenter h2">Profile Pic:</h2>
                 <NewProfileImageInput userId={this.props.userId}/>
             </div>
         );

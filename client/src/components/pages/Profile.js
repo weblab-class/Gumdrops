@@ -37,9 +37,8 @@ class Profile extends Component {
         if(this.state.user) {
             return(
                 <>
-                    <div>
-                        <h2 className='u-textCenter'>Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
-                    </div>
+                    <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                    <hr></hr>
                     <ProfileImage userId={this.props.userId}/>
                     <ProfileBio userId={this.props.userId}/>
                 </>
