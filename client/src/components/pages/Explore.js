@@ -12,7 +12,7 @@ class Explore extends Component {
         }
     }
 
-    handleInit = () =>{
+    handleInit = () => {
         console.log("Log 1: "+this.state.projects)
         if(this.props.userId) {
             console.log("Going into handleInit for explore");
@@ -26,6 +26,16 @@ class Explore extends Component {
         }   
     }
 
+    organize = (projects, categories) => {
+        const dict = {
+            "Music" : projects[0, 2],
+            "Math" : projects[2, 2],
+            "Sience" : projects[4, 2],
+        };
+        console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
+        return(dict);
+    }
+
     componentDidMount(){
         this.handleInit();
     }
@@ -34,12 +44,36 @@ class Explore extends Component {
         if(this.state.projects) {
             console.log("Log 3: "+this.state.projects)
             const projectList = [...this.state.projects];
+            const categoryList = ["Music", "Math", "Science"];
+            const organizedLists = this.organize(projectList, categoryList);
             //projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
+            const projects1 = organizedLists[categoryList[0]];
+            const projects2 = organizedLists[categoryList[1]];
+            const projects3 = organizedLists[categoryList[2]];
             return(
                 <div>
                     <marquee><h1>Alas! You have found the explore page!</h1></marquee>
                     <section className="u-flex">
-                        {projectList.map((project)=> (
+                        <div><hr></hr>{categoryList[0]}<hr></hr></div>
+                        {projects1.map((project) => (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id} 
+                                key={project._id} 
+                            />
+                        ))}
+                        <div><hr></hr>{categoryList[2]}<hr></hr></div>
+                        {projects2.map((project) => (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id} 
+                                key={project._id} 
+                            />
+                        ))}
+                        <div><hr></hr>{categoryList[3]}<hr></hr></div>
+                        {projects3.map((project) => (
                             <ProjectDisplay 
                                 userId={this.props.userId} 
                                 projectName={project.name} 
