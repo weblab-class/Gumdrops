@@ -65,7 +65,7 @@ class App extends Component {
           <Projects path="/projects" userId={this.state.userId}/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <StoryCard path ="/test1" />
-          <CreateProject path="/createproject" />
+          <CreateProject path="/createproject" userId={this.state.userId}/>
           <NotFound default />
         </Router>
       </>
