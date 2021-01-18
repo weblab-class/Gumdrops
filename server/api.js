@@ -91,10 +91,8 @@ router.get("/explore",(req,res)=> {
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
 // { projectId: String }
 router.get("/storycards",(req,res)=>{
-  console.log("Passed in projectId "+req.query.projectId);
   let query = { "projectId" : req.query.projectId };
   StoryCard.find(query).then((storyCards)=>{
-    console.log(storyCards);
     res.send(storyCards);
   })
 });

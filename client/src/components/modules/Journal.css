@@ -1,11 +1,11 @@
 .Journal-container {
-    height: 526px;
-    width: 30%;
+    height: 80vh;
+    width: 100%;
     margin: 0;
-    position: fixed;
+    /*position: fixed;
     right: 0;
     bottom: 0;
-    display: flex;
+    display: flex;*/
     justify-content: right;
 }
   
