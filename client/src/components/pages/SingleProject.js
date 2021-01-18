@@ -100,8 +100,7 @@ class SingleProject extends Component{
                     {storiesList}
                     <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
                 </section>
-                
-            <section >
+                <section className="projectJournal-container">
                     <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
                 </section>
             </div>
