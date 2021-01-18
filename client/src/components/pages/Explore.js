@@ -25,11 +25,13 @@ class Explore extends Component {
     }
 
     organize = (projects, categories) => {
+        projects.forEach((project)=>console.log(project.name));
         const dict = {
-            "Music" : projects[0, 2],
-            "Math" : projects[2, 2],
-            "Sience" : projects[4, 2],
+            "Music" : projects.slice(0, 2),
+            "Math" : projects.slice(2, 4),
+            "Sience" : projects.slice(4, projects.length),
         };
+        dict[categories[0]].forEach((project)=>console.log("Project: "+project.name));
         console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
         return(dict);
     }
@@ -71,14 +73,14 @@ class Explore extends Component {
                             />
                         ))}
                         <div><hr></hr>{categoryList[3]}<hr></hr></div>
-                        {projects3.map((project) => (
+                        {/* {projects3.map((project) => (
                             <ProjectDisplay 
                                 userId={this.props.userId} 
                                 projectName={project.name} 
                                 projectId={project._id} 
                                 key={project._id} 
                             />
-                        ))}
+                        ))} */}
                     </section>
                 </div>
             );
