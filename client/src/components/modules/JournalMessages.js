@@ -57,21 +57,23 @@ class JournalMessages extends Component {
         key={"JournalMessage_"+this.props.data.messages[i].timestamp}/>);
     }
     return (
-      <div className="u-flexColumn JournalMessages-container">
-        <h3 className="u-textCenter">Team Journal</h3>
-        {/*<div className="JournalMessages-historyContainer">
-          {this.props.data.messages.map((m, i) => (
-            <JournalMessage message={m} key={i} />
-          ))}
-          </div>*/}
-        <div className="JournalMessages-historyContainer">
-          {renderOutput}
+      <>
+        <div className="u-flexColumn JournalMessages-container">
+          <h3 className="u-textCenter">Team Journal</h3>
+          {/*<div className="JournalMessages-historyContainer">
+            {this.props.data.messages.map((m, i) => (
+              <JournalMessage message={m} key={i} />
+            ))}
+            </div>*/}
+          <div className="JournalMessages-historyContainer">
+            {renderOutput}
+          </div>
         </div>
-        <div className="JournalMessages-newContainer">
-          <NewJournalMessage recipient={this.props.data.recipient} />
-          {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
-        </div>
+      <div className="JournalMessages-newContainer">
+        <NewJournalMessage recipient={this.props.data.recipient} />
+        {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
       </div>
+    </>
     );
   }
 }
