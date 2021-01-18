@@ -54,8 +54,7 @@ class Explore extends Component {
                 <div>
                     <marquee><h1>Alas! You have found the explore page!</h1></marquee>
                     <section className="u-flex">
-                        <div><hr></hr>{categoryList[0]}<hr></hr></div>
-                        {projects1.map((project) => (
+                        {projectList.map((project) => (
                             <ProjectDisplay 
                                 userId={this.props.userId} 
                                 projectName={project.name} 
