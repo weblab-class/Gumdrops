@@ -18,16 +18,21 @@ class NewInputStory extends Component {
         super(props);
         
     }
-    
+    // projectId: String,
+    // textTitle: String,
+    // textContent: String,
+    // links: [String],
+    // videoMedia: String,
+    // imageMedia: Buffer,
     //will add new story to server and inform single project
     handleAdd = (event) => {
         event.preventDefault();
         console.log("hey i added a new story")
-        const body = {textContent: "empty story", projectId: this.props.projectId , links: []};
-        // post("/api/storycards", body).then((story)=>
-        // {
-        //     this.props.onSubmit && this.props.onSubmit(body);
-        // });
+        const body = {textContent: "", textTitle: "",videoMedia:"", projectId: this.props.projectId , links: []};
+        post("/api/storycards", body).then((story)=>
+        {
+            this.props.onSubmit && this.props.onSubmit(body);
+        });
         this.props.onSubmit && this.props.onSubmit(body);
     }
     render(){
