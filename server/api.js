@@ -64,7 +64,6 @@ router.get("/project",(req,res)=>{
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
 router.get("/projects",(req,res)=>{
-
   User.findById(req.query.userid).then( async (user)=>
   {
     try{
@@ -211,7 +210,8 @@ router.get("/image",(req,res)=>{
 //Get a user's profile bio information from the database. Expects an object with following field:
 //{ userId: String }
 router.get("/profile-bio", (req,res)=>{
-  ProfileBio.find({"userId": req.query.userId}).then((bio)=>res.send(bio));
+  ProfileBio.findOne({"userId" : req.query.userId}).then((bio)=>res.send(bio))
+  .catch((err)=>console.log(err));
 });
 
 //Post a user bio to the database. Expects an object with following field:

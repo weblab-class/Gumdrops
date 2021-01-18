@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 //Parameters
 //userId : identifies the user
-//bio : the content of the user's bio
+//content : the content of the user's bio
 //timestamps are included for later organization purposes
 
 const ProfileBioSchema = new mongoose.Schema({
     userId: String,
-    bio: String,
+    content: String,
     /*roles: [String]*/
 },
 {

@@ -1,0 +1,14 @@
+.Profile-imageContainer, .Profile-bioContainer {
+    width: 32em;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.Profile-bioContainer {
+    margin-top: var(--m);
+}
+
+.Profile-image {
+    border-radius: 50%;
+}
