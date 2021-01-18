@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
 import "./Explore.css";
+
 //Props
 //userId : String (passed from App.js)
 class Explore extends Component {
@@ -29,7 +30,7 @@ class Explore extends Component {
         const dict = {
             "Music" : projects.slice(0, 2),
             "Math" : projects.slice(2, 4),
-            "Sience" : projects.slice(4, projects.length),
+            "Science" : projects.slice(4, projects.length),
         };
         dict[categories[0]].forEach((project)=>console.log("Project: "+project.name));
         console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
@@ -53,34 +54,39 @@ class Explore extends Component {
             return(
                 <div>
                     <marquee><h1>Alas! You have found the explore page!</h1></marquee>
-                    <section className="u-flex Explore-container">
-                        {projectList.map((project)=> (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id} 
-                                key={project._id} 
-                            />
-                        ))}
+                        <div><hr></hr>{categoryList[0]}<hr></hr></div>
+                        <section className="u-flex Explore-container">
+                            {projects1.map((project) => (
+                                <ProjectDisplay 
+                                    userId={this.props.userId} 
+                                    projectName={project.name} 
+                                    projectId={project._id} 
+                                    key={project._id} 
+                                />
+                            ))}
+                        </section>
+                        <div><hr></hr>{categoryList[1]}<hr></hr></div>
+                            <section className="u-flex Explore-container">
+                            {projects2.map((project) => (
+                                <ProjectDisplay 
+                                    userId={this.props.userId} 
+                                    projectName={project.name} 
+                                    projectId={project._id} 
+                                    key={project._id} 
+                                />
+                            ))}
+                        </section>
                         <div><hr></hr>{categoryList[2]}<hr></hr></div>
-                        {projects2.map((project) => (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id} 
-                                key={project._id} 
-                            />
-                        ))}
-                        <div><hr></hr>{categoryList[3]}<hr></hr></div>
-                        {/* {projects3.map((project) => (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id} 
-                                key={project._id} 
-                            />
-                        ))} */}
-                    </section>
+                        <section className="u-flex Explore-container">
+                            {projects3.map((project) => (
+                                <ProjectDisplay 
+                                    userId={this.props.userId} 
+                                    projectName={project.name} 
+                                    projectId={project._id} 
+                                    key={project._id} 
+                                />
+                            ))} 
+                        </section>
                 </div>
             );
         }
