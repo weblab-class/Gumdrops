@@ -3,8 +3,7 @@ import { NewPostInput } from "./NewPostInput.js";
 import "../../utilities.css";
 import "./NewProjectInput.css";
 /**
- * NewPostInput is a component for handling input fields within Project. This is very similar to NewPostInput
- * but with modified styling and submit functionality
+ * NewProject is a controlled component for handling input fields within CreateProject.
  * 
  * Proptypes
  * 

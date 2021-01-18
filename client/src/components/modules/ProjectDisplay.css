@@ -1,7 +1,7 @@
 .ProjectDisplay-container {
-    width: 140px;
+    width: 170px;
     height: 140px;
-    margin-left: var(--m);
+    margin-left: var(--l);
 }
 
 .ProjectDisplay-image {

@@ -1,0 +1,18 @@
+.CreateProjectDisplay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 175px; /* 100% + 25% from ProjectDisplay container + text */
+    margin-left: var(--l);
+    background-color: lightgray;
+    border-radius: var(--m);
+}
+
+.CreateProjectDisplay-symbol {
+    height: 100%;
+    width:100%;
+    line-height: 175px; /*somewhat hacky way of making it in the middle. Equal to container height*/
+    font-size: 40px;
+    text-align: center;
+}

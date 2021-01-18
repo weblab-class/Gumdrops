@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
+import CreateProjectDisplay from "../modules/CreateProjectDisplay.js";
 //Usage: This is equivalent to the project dashboard
 
 //Props
@@ -51,6 +52,7 @@ class Projects extends Component {
                                 key={project._id} 
                             />
                         ))}
+                        <CreateProjectDisplay />
                     </section>
                 </div>
             );
