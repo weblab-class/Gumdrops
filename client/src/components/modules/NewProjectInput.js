@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NewPostInput } from "./NewPostInput.js";
 import "../../utilities.css";
-
+import "./NewProjectInput.css";
 /**
  * NewPostInput is a component for handling input fields within Project. This is very similar to NewPostInput
  * but with modified styling and submit functionality
@@ -40,22 +40,15 @@ class NewProjectInput extends Component {
 
   render() {
     return(      
-    <div className="u-flex">
+    <div className="u-flex u-flex-justifyCenter">
         <input
-        type="text"
-        placeholder={this.props.defaultText}
-        value={this.state.value}
-        onChange={this.handleChange}
-        className="NewPostInput-input"
+            type="text"
+            placeholder={this.props.defaultText}
+            value={this.state.value}
+            onChange={this.handleChange}
+            className="NewProjectInput-input"
         />
-        <button
-        type="submit"
-        className="NewPostInput-button u-pointer"
-        value="Submit"
-        onClick={this.handleSubmit}
-        >
-        Submit
-        </button>
+
     </div>);
   }
 }

@@ -5,8 +5,9 @@ import { get, post } from "../../utilities";
 
 /**
  * New Image Input is a component for picture inputs
- *
+ * 
  * Proptypes
+ * 
  */
 
 class NewImageInput extends Component {
