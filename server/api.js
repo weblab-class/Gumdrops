@@ -61,6 +61,23 @@ router.get("/project",(req,res)=>{
   });
 });
   
+//Stores a new Project document. Expects an object of:
+// { name: String, collaborators: [{userId:String,role:String}], teamId:String}
+router.post("/project",(req,res)=>{
+  let newproject = new Project({
+    name : req.body.name,
+    collaborators: req.body.collaborators,
+    teamId: req.body.teamId,
+  });
+  newproject.save()
+    .then(result=>{
+      console.log("The newly saved projectId is "+result._id);
+      res.send(result._id);
+    })
+    .catch(error=>console.log(error));
+})
+
+
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
 router.get("/projects",(req,res)=>{
@@ -251,7 +268,10 @@ router.post("/thumbnail",(req,res)=>{
     image: bufferedImg,
     imageName: req.body.imageName,
   });
-  image.save().then(()=>console.log("Thumbnail saved successfully."));
+  image.save().then(()=>{
+    console.log("Thumbnail saved successfully.");
+    res.send({});
+  });
 });
 
 // anything else falls to this "not found" case
