@@ -99,7 +99,7 @@ router.get("/storycards",(req,res)=>{
   })
 });
 
-//Creates a new StoryCard document based on given content. Expects an object with at least:
+//Creates a new StoryCard document. Expects an object with at least:
 // {  projectId: String, textTitle: String, textContent: String} and optional parameters
 // { links: [String], videoMedia: String, imageMedia: Buffer }
 //Note: This is enforced in storyCard.js!
@@ -107,6 +107,17 @@ router.post("/storycards",(req,res)=>{
   const storycard = new StoryCard(req.body);
   storycard.save();
 })
+
+//Deletes all StoryCards document that matches the body. 
+//Sends back an object { deletedCount: #of objects deleted }
+router.post("/delstorycard",(req,res)=>{
+  StoryCard.deleteOne(req.body).then((result) => {
+    console.log("Delete story card operation was completed");
+    console.log(result.deletedCount);
+    res.send({deletedCount: result.deletedCount});
+  }).catch((err)=>console.log(err));
+})
+
 
 router.get("/chat", (req, res) => {
   console.log(req.query);
