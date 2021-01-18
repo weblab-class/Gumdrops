@@ -109,6 +109,7 @@ router.post("/storycards",(req,res)=>{
 //Deletes all StoryCards document that matches the body. 
 //Sends back an object { deletedCount: #of objects deleted }
 router.post("/delstorycard",(req,res)=>{
+  
   StoryCard.deleteOne(req.body).then((result) => {
     console.log("Delete story card operation was completed");
     console.log(result.deletedCount);
@@ -116,6 +117,12 @@ router.post("/delstorycard",(req,res)=>{
   }).catch((err)=>console.log(err));
 })
 
+router.post("/editstorycard",(req,res)=>{
+  let filter = {"_id" : req.body._id};
+  StoryCard.updateOne(filter,req.body.changes).then((result)=>{
+    res.send(result);
+    }).catch((err)=>console.log("there was an errorr alarm"));
+})
 
 router.get("/chat", (req, res) => {
   console.log(req.query);

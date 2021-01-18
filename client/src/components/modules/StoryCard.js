@@ -7,6 +7,7 @@ import { post } from "../../utilities";
 import { get} from "../../utilities";
 import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
+import EditStoryCard from "./EditStoryCard.js";
 //import EditStoryCard from "EditStoryCard.js"
 /**
  * Proptypes 
@@ -32,20 +33,19 @@ class StoryCard extends Component{
         event.preventDefault();
         this.setState({editing: !this.state.editing});
     }
-    //this would eventually allow to edit stories
-    editStory =(storyObjs)=>{
-        // const body = {_id: this.props.storyId, content: this.state.storytext}
-        // post("/api/editstory",).then((story) =>{
-        //     console.log("sent to server");
-       // });
-       // console.log(this.props.storyObj._Id);
-            console.log("story was saved ")
-        }
     
-        //method that will allow for edit
-    handleChange = (event) =>{
-        this.setState({
-            storytext: event.target.value,
+    //this would eventually allow to edit stories
+    editStory =(changesObj)=>{
+        let body = {_id: this.props.storyObj._id, changes:changesObj}
+        console.log(body);
+        post("/api/editstorycard",body).then((story) =>{
+            console.log(story);
+            
+            this.setState({
+                storytext:changesObj.textContent,
+                editing: !this.state.editing,
+            });
+            this.props.onEdit && this.props.onEdit(body);   
         });
     }
     
@@ -73,8 +73,9 @@ class StoryCard extends Component{
             else{
                 output = (
                 <>
+
                     <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
-                    <p>im editing</p>
+                    <EditStoryCard onEdit = {this.editStory} storyObj = {this.props.storyObj}/>
                     <button 
                     type = "submit"
                     className = "NewPostInput-button u-pointer"
@@ -82,6 +83,7 @@ class StoryCard extends Component{
                     onClick={this.clickedEditing}
                     >Cancel
                     </button>
+                    
                 </>
                 )   
             }

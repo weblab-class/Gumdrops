@@ -1,7 +1,7 @@
 //single project 
 import React, { Component} from "react";
 import StoryCard from "../modules/StoryCard";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
@@ -71,6 +71,18 @@ class SingleProject extends Component{
             stories: tempArray,
         });
     }
+    editStory = (storyObj) => {
+        let tempArray = [...this.state.stories];
+        for(let i=0; i<this.state.stories.length;i++){
+            if(this.state.stories[i]._id == storyObj._id){
+                tempArray[i].textContent = storyObj.changes.textContent;
+                break;
+            }
+        }
+        this.setState({
+            stories:tempArray,
+        })
+    }
     render(){
         let storiesList = null;
         let stringId = null;
@@ -86,6 +98,7 @@ class SingleProject extends Component{
                     userId = {this.props.userId}
                     edit = {this.state.edit}
                     delete = {this.deleteNewStory}
+                    onEdit = {this.editStory}
                 />
             ));
         } else{
