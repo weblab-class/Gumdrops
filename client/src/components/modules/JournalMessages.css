@@ -2,6 +2,7 @@
     position: absolute;
     bottom: 32px;
     height: calc(80vh - 32px);
+    width: 100%;
     background-color: var(--primary--dim);
     border-radius: 10% 10% 0 0;
 }
