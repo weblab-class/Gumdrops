@@ -38,7 +38,7 @@ class SingleProject extends Component{
     loadStoryCards= () => {
         
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
-            let reversedStory = storyObjs.reverse();
+            let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
                 this.setState({stories: this.state.stories.concat([storyObj]),
                 });
@@ -54,7 +54,7 @@ class SingleProject extends Component{
     addNewStory = (storyObj) =>{
         console.log("i added a new story")
         this.setState({
-            stories: [storyObj].concat(this.state.stories)
+            stories: this.state.stories.concat([storyObj]),
         });
     }
     //automatically deletes story when clicked
