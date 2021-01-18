@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { get } from "../../utilities";
 import "../../utilities.css";
 import "../pages/Profile.css"
-import NewProfileImageInput from "../modules/NewProfileImageInput.js";
+import NewProfileImageInput from "./NewProfileImageInput.js";
 
 //Props
-//userId: String (used in special routing from App.js)
+//userId: String (passed down from Profile.js)
 
 class ProfileImage extends Component {
     constructor(props) {
@@ -18,10 +18,10 @@ class ProfileImage extends Component {
     componentDidMount() {
         if(this.props.userId) {
             console.log("Going into handleInit with profile image");
-            get("/api/image",{ userid:this.props.userId })
+            get("/api/image",{ userId : this.props.userId })
             .then((image)=>{
                 this.setState({
-                    image: image,
+                    image: image.image,
                 })
             });
         }   
@@ -29,14 +29,17 @@ class ProfileImage extends Component {
 
     render() {
         if (this.state.image) {
+            console.log("Attempting to display image: "+this.state.image)
             return(
-                <div className="Profile-imageContainer Profile-image">
-                    <img src={this.state.image}/>
-                </div>
+                <img 
+                    style={{height: "15%", width: "15%", objectFit: "contain"}} 
+                    src={this.state.image}
+                    className="Profile-imageContainer Profile-image"
+                />
             );
         }
         return (
-            <div className="Profile-imageContainer">
+            <div className="Profile-imageInputContainer">
                 <NewProfileImageInput userId={this.props.userId}/>
             </div>
         );

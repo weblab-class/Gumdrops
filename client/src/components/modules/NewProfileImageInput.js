@@ -7,7 +7,7 @@ import { get, post } from "../../utilities";
  * New Image Input is a component for picture inputs
  *
  * Proptypes
- * //userId : String
+ * //userId : String (passed down from ProfileImage.js)
  */
 
 class NewImageInput extends Component {
@@ -77,7 +77,7 @@ class NewImageInput extends Component {
             userId: this.props.userId,
             image: this.state.selectedFile,
         };
-        post("/api/image",postObj).then(()=>console.log("Image was saved"));
+        post("/api/image", postObj).then(()=>console.log("Image was saved"));
         this.setState({
             selectedFile: null,
             submitKey : Date.now(),

@@ -213,7 +213,7 @@ router.post("/image",(req,res)=>{
 router.get("/image",(req,res)=>{
   console.log("Received get profile image request");
   console.log("Trying to match image with id "+req.query.userId);
-  ProfileImage.find({"userId": req.query.userId})
+  ProfileImage.findOne({"userId": req.query.userId})
     .then((returnImage)=> {
       let unbufferedImg = returnImage.image.toString();
       console.log("Recovered image string "+unbufferedImg.substr(0,200));
@@ -236,7 +236,7 @@ router.get("/profile-bio", (req,res)=>{
 router.post("/profile-bio",(req,res)=>{
   const bio = new ProfileBio({
     userId: req.body.userId,
-    bio: req.body.content,
+    content: req.body.content,
   });
   bio.save().then(()=>console.log("Profile bio saved successfully."));
 });

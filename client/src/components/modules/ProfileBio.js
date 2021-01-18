@@ -5,7 +5,7 @@ import "../pages/Profile.css"
 import { NewBio } from "./NewPostInput.js";
 
 //Props
-//userId: String (used in special routing from App.js)
+//userId: String (passed down from Profile.js)
 
 class ProfileBio extends Component {
     constructor(props) {
@@ -29,9 +29,12 @@ class ProfileBio extends Component {
 
     render() {
         if (this.state.bio) {
-            console.log("Bio: "+this.state.bio._Id+this.state.bio.content);
+            console.log("Bio: "+this.state.bio._id+" "+this.state.bio.content);
             return(
-                <p>{this.state.bio.content}</p>
+                <div className="Profile-bio">
+                    <h2 className="u-textCenter h2">Bio:</h2>
+                    <p className="u-textCenter">{this.state.bio.content}</p>
+                </div>
             );
         }
         return (
