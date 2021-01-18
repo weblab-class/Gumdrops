@@ -156,4 +156,17 @@ class NewJournalMessage extends Component {
 //   }
 // }
 
-export { NewPostInput, /*NewComment, NewStory,*/ NewJournalMessage/*, DeleteJournalMessage*/};
+// Proptypes
+// userId : String
+class NewBio extends Component {
+  sendMessage = (value) => {
+    const body = { userId: this.props.userId, content: value }
+    post("/api/profile-bio", body);
+  };
+
+  render() {
+    return <NewPostInput defaultText="New Bio" onSubmit={this.sendMessage} />;
+  }
+}
+
+export { NewPostInput, /*NewComment, NewStory,*/ NewJournalMessage/*, DeleteJournalMessage*/, NewBio};
