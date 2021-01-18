@@ -21,7 +21,7 @@ class ProfileBio extends Component {
             get("/api/profile-bio",{ userId:this.props.userId })
             .then((bio)=>{
                 this.setState({
-                    bio: bio,
+                    bio: bio.content,
                 })
             });
         }   
@@ -29,11 +29,11 @@ class ProfileBio extends Component {
 
     render() {
         if (this.state.bio) {
-            console.log("Bio: "+this.state.bio._id+" "+this.state.bio.content);
+            console.log("Bio: "+this.state.bio);
             return(
                 <div className="Profile-bio">
                     <h2 className="u-textCenter h2">Bio:</h2>
-                    <p className="u-textCenter">{this.state.bio.content}</p>
+                    <p className="u-textCenter">{this.state.bio}</p>
                 </div>
             );
         }

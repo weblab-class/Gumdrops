@@ -1,4 +1,4 @@
-.Profile-imageInputContainer, .Profile-imageContainer, .Profile-bioContainer {
+.Profile-imageInputContainer, .Profile-image, .Profile-bioContainer {
     margin-top: var(--m);
     position: relative;
     left: 50%;

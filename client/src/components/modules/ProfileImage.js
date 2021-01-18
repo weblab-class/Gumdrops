@@ -34,7 +34,7 @@ class ProfileImage extends Component {
                 <img 
                     style={{height: "15%", width: "15%", objectFit: "contain"}} 
                     src={this.state.image}
-                    className="Profile-imageContainer Profile-image"
+                    className="Profile-image"
                 />
             );
         }
