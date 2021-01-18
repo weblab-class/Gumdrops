@@ -24,3 +24,8 @@
 .h2 {
     margin: 0;
 }
+
+.new-h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
+}

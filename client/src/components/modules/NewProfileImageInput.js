@@ -58,8 +58,8 @@ class NewImageInput extends Component {
         });
         //console.log("Change handled. File selected is now: "+image);
         console.log("Loaded image "+image);
-        console.log("Name of file"+fileInput.files[0].name)
-        console.log("Type of file:"+typeof(fileInput.files[0]));
+        console.log("Name of file: "+fileInput.files[0].name)
+        console.log("Type of file: "+typeof(fileInput.files[0]));
       }).catch(err => {
         console.log(err);
       });

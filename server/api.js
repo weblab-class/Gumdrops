@@ -199,6 +199,10 @@ router.get("/activeUsers", (req, res) => {
 //Post an image to the database. Expects an object with:
 //{ userId: String, image: String (need to be in base64!), }
 router.post("/image",(req,res)=>{
+  let prevImage = ProfileImage.findOne({"userId": req.body.userId}).then(()=>console.log("Found prevImage: "+prevImage));
+  if (prevImage) {
+    ProfileImage.deleteOne({"userId": req.body.userId}).then(()=>console.log("Deleted Image: "+prevImage.userId+" "+prevImage.image));
+  }
   console.log("Received save profile image request");
   let bufferedImg = Buffer.from(req.body.image);
   const image = new ProfileImage({
@@ -206,6 +210,7 @@ router.post("/image",(req,res)=>{
     image: bufferedImg,
   });
   image.save().then(()=>console.log("Profile image saved successfully."));
+  socketManager.getSocketFromUserID(req.body.userId).emit("profile-image", image);
 });
 
 //Get an image from the database. Expects an object with one or more of the following fields:
@@ -234,11 +239,16 @@ router.get("/profile-bio", (req,res)=>{
 //Post a user bio to the database. Expects an object with following field:
 //{ userId: String, content: String }
 router.post("/profile-bio",(req,res)=>{
+  const prevBio = ProfileBio.findOne({"userId": req.body.userId}).then(()=>console.log("Found prevBio: "+prevBio));
+  if (prevBio) {
+    ProfileBio.deleteOne({"userId": req.body.userId}).then(()=>console.log("Deleted Bio: "+prevBio.userId+" "+prevBio.content));
+  }
   const bio = new ProfileBio({
     userId: req.body.userId,
     content: req.body.content,
   });
-  bio.save().then(()=>console.log("Profile bio saved successfully."));
+  bio.save().then(()=>console.log("Profile bio saved successfully: "+bio.content));
+  socketManager.getSocketFromUserID(req.body.userId).emit("profile-bio", bio);
 });
 
 //Get a project thumbnail image from the database. Expects an object with following field:
