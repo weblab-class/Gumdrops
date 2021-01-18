@@ -8,7 +8,7 @@ import { get, post } from "../../utilities.js";
  * CreateProject is a component page that displays options to create a new project
  *
  * Proptypes
- * 
+ * @param {String} userId (passed from Projects.js)
  */
 
 class CreateProject extends Component {
@@ -16,7 +16,7 @@ class CreateProject extends Component {
       super(props);
       this.state = {
           projectName: "", //String
-          collaborators: "", //Array
+          collaborators: "", //String
           teamId: "", //String
           thumbnail: null, //File object
       };
@@ -51,7 +51,16 @@ class CreateProject extends Component {
 
 
     handleSubmit = () => {
-      let collabArray = this.state.collaborators.split(" ");
+      let collabArray;
+      console.log("Collaborators is "+this.state.collaborators);
+      if(this.state.collaborators==="") {
+        console.log("I went into here");
+        collabArray = [this.props.userId];
+      } else {
+        collabArray = this.state.collaborators.split(" ");
+        collabArray.push(this.props.userId);
+      }
+      console.log(collabArray);
       collabArray = collabArray.map((value)=>{
         return({
         userId: value.slice(1),
@@ -65,6 +74,7 @@ class CreateProject extends Component {
       };
       post("/api/project",projectObj).then(projectid=>{
         console.log(projectid);
+        if(this.state.thumbnail!==null){
         let thumbnailObj = {
           projectId : projectid,
           image: this.state.thumbnail,
@@ -77,6 +87,7 @@ class CreateProject extends Component {
             thumbnail: null, 
           });
         });
+        }
       });
 
     }

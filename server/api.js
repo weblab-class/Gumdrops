@@ -265,11 +265,13 @@ router.get("/thumbnail",(req,res)=>{
   console.log("Trying to match thumbnail with id "+req.query.projectId);
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
+      if(returnImage){ //if not null
       let unbufferedImg = returnImage.image.toString();
-      console.log("Recovered thumbnail string "+unbufferedImg.substr(0,200));
+      console.log("Recovered thumbnail string "+unbufferedImg.substr(0,20));
       res.send({
         image: unbufferedImg
       });
+      }
     })
     .catch((err)=>console.log(err));
 });

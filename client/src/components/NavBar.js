@@ -23,7 +23,6 @@ class NavBar extends Component {
             <div className="NavBar-linkContainer u-inlineBlock">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
-                <Link to="/createproject" className="NavBar-link">CreateProject</Link>
                 {this.props.userId ? (
                     <>
                         <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>

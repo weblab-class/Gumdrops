@@ -14,16 +14,14 @@ class Explore extends Component {
 
     handleInit = () => {
         console.log("Log 1: "+this.state.projects)
-        if(this.props.userId) {
-            console.log("Going into handleInit for explore");
-            get("/api/explore",{})
-            .then((projects)=>{
-                this.setState({
-                    projects: projects,
-                })
-            }).then(console.log("Projects: "+this.state.projects))
-            console.log("Log 2: "+this.state.projects)
-        }   
+        console.log("Going into handleInit for explore");
+        get("/api/explore",{})
+        .then((projects)=>{
+            this.setState({
+                projects: projects,
+            })
+        }).then(console.log("Projects: "+this.state.projects))
+        console.log("Log 2: "+this.state.projects)
     }
 
     organize = (projects, categories) => {
