@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
+import "./StoryCard.css";
 //import EditStoryCard from "EditStoryCard.js"
 /**
  * Proptypes 
@@ -82,9 +83,8 @@ class StoryCard extends Component{
             }
         }
         return(
-            <div className = "u-flex">
+            <div className = "u-flex storyCard-container">
                 {output}
-            
             </div>
         )
     }
