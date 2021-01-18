@@ -1,0 +1,8 @@
+.projectDocumentation-container{
+    border: 1px solid gray;
+    width: 70%;
+}
+
+.project-container {
+    padding: var(--m);
+}

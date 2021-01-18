@@ -5,6 +5,8 @@ import { get } from "../../utilities";
 import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
+import "./SingleProject.css";
+
 //this would be used to render what you see w
 //when you open a project 
 //
@@ -73,13 +75,17 @@ class SingleProject extends Component{
         
         return(
             <>
-            <div className = "u-flex u-flexColumn">
-                {storiesList}
+            <div className="u-flex project-container"> 
+                <section className="projectDocumentation-container">
+                    {storiesList}
+                    <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
+                </section>
+                
+            <section >
+                    <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
+                </section>
             </div>
-            <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
-            <div>
-                <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
-            </div>
+
             </>
         );
     }

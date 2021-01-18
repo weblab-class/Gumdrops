@@ -39,7 +39,24 @@ class NewProjectInput extends Component {
   };
 
   render() {
-    return <NewPostInput defaultText="" onSubmit={this.sendMessage} />;
+    return(      
+    <div className="u-flex">
+        <input
+        type="text"
+        placeholder={this.props.defaultText}
+        value={this.state.value}
+        onChange={this.handleChange}
+        className="NewPostInput-input"
+        />
+        <button
+        type="submit"
+        className="NewPostInput-button u-pointer"
+        value="Submit"
+        onClick={this.handleSubmit}
+        >
+        Submit
+        </button>
+    </div>);
   }
 }
 
