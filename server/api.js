@@ -310,8 +310,11 @@ router.post("/thumbnail",(req,res)=>{
   });
 });
 
-router.post("/info",(req,res)=>{
-  linker.tryLinkPreview();
+//Retrieves information about an array of URL links (e.g. "https://www.google.com") Expects an object of:
+//{ links: [String] }
+//Note: We have to use POST to send an array to back-end
+router.post("/link", (req,res) => {
+
 })
 
 // anything else falls to this "not found" case
