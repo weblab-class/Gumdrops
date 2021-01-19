@@ -1,4 +1,4 @@
-# Project Skeleton
+<!-- # Project Skeleton
 
 ## What we provide
 
@@ -49,4 +49,8 @@ package-lock.json
 webpack.config.js
 ```
 
-## Good luck on your project :)
+## Good luck on your project :) -->
+
+## Gumdrops
+
+- For all your collaborative project needs :)
