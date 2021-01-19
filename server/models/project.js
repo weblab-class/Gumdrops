@@ -11,10 +11,11 @@ const ProjectSchema = new mongoose.Schema({
   collaborators: [
     {
       userId : String,
-      role: String,
+      role: String, //stored without the @ sign
     }
   ],
-  teamId: String,
+  teamId: String, 
+  tags: [String], //stored WITH the # sign
 },
 {
   timestamps: true,

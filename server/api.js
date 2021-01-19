@@ -79,6 +79,7 @@ router.post("/project",(req,res)=>{
     name : req.body.name,
     collaborators: req.body.collaborators,
     teamId: req.body.teamId,
+    tags: req.body.tags,
   });
   newproject.save()
     .then(result=>{
