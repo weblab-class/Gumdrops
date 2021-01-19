@@ -18,6 +18,7 @@ class CreateProject extends Component {
           projectName: "", //String
           collaborators: "", //String
           teamId: "", //String
+          tags: "", //String
           thumbnail: null, //File object
       };
     }
@@ -49,30 +50,41 @@ class CreateProject extends Component {
       console.log("I received an image at main of "+image.substr(0,100))
     }
 
+    projectTagsOnChange = (event) => {
+      this.setState({
+        tags: event.target.value,
+      });
+    }
 
     handleSubmit = () => {
-      let collabArray;
-      console.log("Collaborators is "+this.state.collaborators);
+      let collabArray; //handling split of collaborators
       if(this.state.collaborators==="") {
-        console.log("I went into here");
         collabArray = ["@"+this.props.userId];
       } else {
         collabArray = this.state.collaborators.split(" ");
         collabArray.push(this.props.userId);
       }
-      console.log(collabArray);
       collabArray = collabArray.map((value)=>{
         return({
         userId: value.slice(1),
         role: "team_member",}); //hard-coded to member for now
       });
-      console.log(collabArray);
+
+      let tagsArray; //handling split of tags
+      if(this.state.tags==="") {
+        tagsArray = ["#no-tag"];
+      } else {
+        tagsArray = this.state.tags.split(" ");
+      }
+      console.log(tagsArray);
       let projectObj = {
         name : this.state.projectName,
         collaborators: collabArray,
         teamId: this.state.teamId,
+        tags: tagsArray,
       };
-      post("/api/project",projectObj).then(projectid=>{
+      //proceed to post to new project
+      post("/api/project",projectObj).then(projectid=>{ 
         console.log(projectid);
         post("/api/user_add_project",{ //adds projectId to user's projectIds array
         userId: this.props.userId,
@@ -83,11 +95,13 @@ class CreateProject extends Component {
           projectId : projectid,
           image: this.state.thumbnail,
         }
+        //proceeds to upload thumbnail, if it exists
         post("/api/thumbnail",thumbnailObj).then((res)=>{
           this.setState({ //resets the fields
             projectName: "", 
             collaborators: "", 
             teamId: "", 
+            tags: "",
             thumbnail: null, 
           });
         });
@@ -97,6 +111,7 @@ class CreateProject extends Component {
             projectName: "", 
             collaborators: "", 
             teamId: "", 
+            tags: "",
             thumbnail: null, 
           });
         }
@@ -121,9 +136,14 @@ class CreateProject extends Component {
               <NewProjectInput onChange={event => this.teamIdOnChange(event)} value={this.state.teamId}/>
             </section>
             <section className="CreateProject-inputContainer">
+              <h4 className="u-textCenter">Relevant Project Tags: (#fun-project, #magnetism)</h4> 
+              <NewProjectInput onChange={event => this.projectTagsOnChange(event)} value={this.state.tags}/>
+            </section>
+            <section className="CreateProject-inputContainer">
               <h4 className="u-textCenter">Please select an image for your thumbnail</h4> 
               <NewThumbnailInput onChange={event => this.thumbnailOnChange(event)} selectedFile={this.state.thumbnail}/>
             </section>
+
             <button
               type="submit"
               className="CreateProject-button u-pointer"
