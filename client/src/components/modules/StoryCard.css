@@ -15,6 +15,7 @@
 }
 
 .StoryCard-editButton { /*add-on to NewPostInput-button*/
+    border-radius: var(--xs);
 }
 
 .StoryCard-linkBlockContainer {
