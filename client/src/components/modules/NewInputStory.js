@@ -27,12 +27,11 @@ class NewInputStory extends Component {
     handleAdd = (event) => {
         event.preventDefault();
         
-        const body = {projectId: this.props.projectId , textTitle: "",textContent: "",links: [],videoMedia:"" };
+        const body = {projectId: this.props.projectId , textTitle: "",textContent: "",links: [],videoMedia:"",imageMedia:null};
         post("/api/storycards", body).then((story)=>
         {
             console.log("hey i added a new story");
             this.props.onSubmit && this.props.onSubmit(story);
-            
         });
         
     }
@@ -49,4 +48,5 @@ class NewInputStory extends Component {
         )
     }
 }
+
 export default NewInputStory;
