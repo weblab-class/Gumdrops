@@ -1,3 +1,12 @@
-.storyCard-container {
+.StoryCard-container {
     width: 100%;
+    /* border: var (--darkgrey) 1px solid; */
+    background-color: var(--primary--dim);
+    border-radius: var(--m) var(--m) 0 0;
+    margin-top: var(--m);
+}
+
+.StoryCard-storytext {
+    font-size: 20px;
+    margin: var(--xs);
 }

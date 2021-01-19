@@ -24,7 +24,9 @@
   background: var(--white);
   transition: color 0.1s, background 0.1s;
 }
-
+.NewPostInput-story{
+  resize: both;
+}
 .NewPostInput-button:hover {
   color: var(--white);
   background-color: var(--primary);

@@ -8,7 +8,7 @@ import { get} from "../../utilities";
 import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
 import EditStoryCard from "./EditStoryCard.js";
-//import EditStoryCard from "EditStoryCard.js"
+import LinkBlock from "./LinkBlock";
 /**
  * Proptypes 
  * @param {Object } storyObj : sends story object
@@ -52,13 +52,18 @@ class StoryCard extends Component{
     render(){ 
         let output = null;
         if(!this.props.edit){
-            output = (<p>{this.state.storytext}</p>)
+            output = (
+                <>
+                <p>{this.state.storytext}</p>
+                
+                </>
+                )
         } else{
             
             if(!this.state.editing){
                 output = (
                     <>
-                    <p>{this.state.storytext}</p>
+                    <p className= "StoryCard-storytext">{this.state.storytext}</p>
                     <button 
                     type = "submit"
                     className = "NewPostInput-button u-pointer"
@@ -67,6 +72,7 @@ class StoryCard extends Component{
 
                     >Edit
                     </button>
+                    
                 </>
                 )
             }
@@ -89,8 +95,9 @@ class StoryCard extends Component{
             }
         }
         return(
-            <div className = "u-flex storyCard-container">
+            <div className = "u-flex StoryCard-container">
                 {output}
+                <LinkBlock linkArr = {this.props.storyObj.links}/>
             </div>
         )
     }
