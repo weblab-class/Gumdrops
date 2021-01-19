@@ -136,7 +136,7 @@ router.get("/storycards",(req,res)=>{
 router.post("/storycards",(req,res)=>{
   const storycard = new StoryCard(req.body);
   storycard.save().then((storycard)=>res.send(storycard));
-})
+});
 
 //Deletes all StoryCards document that matches the body. 
 //Sends back an object { deletedCount: #of objects deleted }
@@ -147,14 +147,36 @@ router.post("/delstorycard",(req,res)=>{
     console.log(result.deletedCount);
     res.send({deletedCount: result.deletedCount});
   }).catch((err)=>console.log(err));
-})
+});
 
 router.post("/editstorycard",(req,res)=>{
   let filter = {"_id" : req.body._id};
+  console.log(req.body.changes);
+  if(req.body.changes.imageMedia){
+    let bufferedImg = Buffer.from(req.body.changes.imageMedia);
+    StoryCard.updateOne(filter,{"imageMedia":bufferedImg}).then((result)=>{
+      res.send(result);
+      console.log(result);
+      }).catch((err)=>console.log("there was an errorr alarm"));
+  } else {
   StoryCard.updateOne(filter,req.body.changes).then((result)=>{
     res.send(result);
+    console.log(result);
     }).catch((err)=>console.log("there was an errorr alarm"));
-})
+  }
+});
+
+router.get("/story-image",(req,res)=>{
+  console.log("Finding story with id: "+req.query._id);
+  StoryCard.findOne({"_id" : req.query._id}).then((storyCard)=>{
+    // console.log("Sending image: "+storyCard.imageMedia);
+    if((storyCard.imageMedia !== null) && storyCard.imageMedia){
+      let unbufferedImg = storyCard.imageMedia.toString();
+      // console.log("Recovered image string "+unbufferedImg.substr(0,200));
+      res.send({image:unbufferedImg});
+    }
+  }).catch((err)=>console.log("there was an errorr alarm"+err));
+});
 
 router.get("/chat", (req, res) => {
   console.log(req.query);

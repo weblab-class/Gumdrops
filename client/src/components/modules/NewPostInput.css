@@ -31,3 +31,23 @@
   color: var(--white);
   background-color: var(--primary);
 }
+
+.NewPostInput-storyImage{
+  width: 75%;
+  border-radius: var(--xs);
+  padding: var(--s);
+  position: relative;
+  left:50%;
+  transform: translate(-50%);
+}
+
+.NewPostInput-storyButton {
+  border-radius: var(--xs);
+  position: relative;
+  left:50%;
+  transform: translate(-50%);
+}
+
+.NewPostInput-container {
+  width: 100%;
+}

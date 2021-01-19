@@ -27,5 +27,12 @@
 }
 
 .StoryCard-imageBlockContainer {
+    height: 100%;
     width: 30%;
+}
+
+.StoryCard-center {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }
