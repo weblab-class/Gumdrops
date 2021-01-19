@@ -34,7 +34,9 @@ class Profile extends Component {
         get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
         this.handleInit();
         //The below command was used to trigger LinkPreview API
-        //post('/api/info');
+        //It is temporary placeholder.
+        let linkArray = ["https://gumdrops.herokuapp.com/","https://www.youtube.com/watch?v=fn3KWM1kuAw"];
+        post('/api/link',{links:linkArray}).then((data)=>console.log(data));
     }
 
     render() {

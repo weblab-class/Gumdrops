@@ -336,7 +336,7 @@ router.post("/thumbnail",(req,res)=>{
 //{ links: [String] }
 //Note: We have to use POST to send an array to back-end
 router.post("/link", (req,res) => {
-
+  linker.tryLinkPreview(req.body.links).then(result=>res.send(result));
 })
 
 // anything else falls to this "not found" case

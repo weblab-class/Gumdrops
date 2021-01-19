@@ -1,7 +1,17 @@
-//const link = require('link-preview-js');
+const link = require('link-preview-js');
 
-function tryLinkPreview() {
-    //link.getLinkPreview('https://andrejgajdos.com/how-to-create-a-link-preview/').then((data) => console.log(data));
+async function tryLinkPreview(linkArray) {
+    let result = [];
+    try {
+        for(var i=0; i <linkArray.length; i++){
+          let processedLink =  await link.getLinkPreview(linkArray[i]);
+          result.push(processedLink);
+        }
+        console.log(result);
+        return result;
+    } catch(e) {
+        console.log(e);
+    }
 }
 
 module.exports = {
