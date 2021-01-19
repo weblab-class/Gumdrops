@@ -49,7 +49,8 @@ class Projects extends Component {
                             <ProjectDisplay 
                                 userId={this.props.userId} 
                                 projectName={project.name} 
-                                projectId={project._id} 
+                                projectId={project._id}
+                                showRole={true}
                                 key={project._id} 
                             />
                         ))}

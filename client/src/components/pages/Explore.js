@@ -60,7 +60,8 @@ class Explore extends Component {
                                 <ProjectDisplay 
                                     userId={this.props.userId} 
                                     projectName={project.name} 
-                                    projectId={project._id} 
+                                    projectId={project._id}
+                                    showRole={false}
                                     key={project._id} 
                                 />
                             ))}
@@ -71,7 +72,8 @@ class Explore extends Component {
                                 <ProjectDisplay 
                                     userId={this.props.userId} 
                                     projectName={project.name} 
-                                    projectId={project._id} 
+                                    projectId={project._id}
+                                    showRole={false}
                                     key={project._id} 
                                 />
                             ))}
@@ -82,7 +84,8 @@ class Explore extends Component {
                                 <ProjectDisplay 
                                     userId={this.props.userId} 
                                     projectName={project.name} 
-                                    projectId={project._id} 
+                                    projectId={project._id}
+                                    showRole={false}
                                     key={project._id} 
                                 />
                             ))} 
