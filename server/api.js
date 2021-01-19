@@ -167,7 +167,7 @@ router.get("/story-image",(req,res)=>{
   console.log("Finding story with id: "+req.query._id);
   StoryCard.findOne({"_id" : req.query._id}).then((storyCard)=>{
     // console.log("Sending image: "+storyCard.imageMedia);
-    if(storyCard.imageMedia !== null){
+    if((storyCard.imageMedia !== null) && storyCard.imageMedia){
       let unbufferedImg = storyCard.imageMedia.toString();
       // console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({image:unbufferedImg});
