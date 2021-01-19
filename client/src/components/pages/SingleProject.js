@@ -108,6 +108,7 @@ class SingleProject extends Component{
             <>
             <div className="u-flex project-container"> 
                 <section className="projectDocumentation-container">
+                    <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
                     {storiesList}
                     <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
                 </section>

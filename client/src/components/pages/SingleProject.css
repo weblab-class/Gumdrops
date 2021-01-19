@@ -1,6 +1,8 @@
 .projectDocumentation-container{
-    border: 1px solid gray;
+    margin-right: var(--m);
     width: 70%;
+    overflow-y: auto;
+    height: 80vh;
 }
 
 .project-container {
@@ -9,4 +11,9 @@
 
 .projectJournal-container {
     width: 30%;
+}
+
+.projectDocumentation-headerTitle {
+    color: var(--pink);
+    text-shadow: -1px -1px 0 var(--primary);
 }
