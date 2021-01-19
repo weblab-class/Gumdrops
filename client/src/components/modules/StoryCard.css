@@ -1,22 +1,31 @@
 .StoryCard-container {
-    height: auto;
+    height: auto; /*scales to documents inside*/
     /* border: var (--darkgrey) 1px solid; */
     background-color: var(--primary--dim);
     border-radius: var(--m);
-    margin: var(--l);
-    flex-direction: column;
+    margin: var(--l); 
+    flex-direction: row;
+    padding: var(--s);
+
 }
 
 .StoryCard-storytext {
     font-size: 20px;
     margin: var(--m);
-    
 }
 
-.StoryCard-submitButton { /*add-on to NewPostInput-button*/
-    justify-self: flex-start;
+.StoryCard-editButton { /*add-on to NewPostInput-button*/
 }
 
 .StoryCard-linkBlockContainer {
+    width: 20%;
     order: 1;
+}
+
+.StoryCard-textBlockContainer {
+    width: 50%;
+}
+
+.StoryCard-imageBlockContainer {
+    width: 30%;
 }

@@ -54,49 +54,50 @@ class StoryCard extends Component{
         let output = null;
         if(!this.props.edit){ //not allowed to edit 
             output = (
-                <>
-                <p>{this.state.storytext}</p>
-                
-                </>
+                <section className="StoryCard-textBlockContainer">
+                    <p>{this.state.storytext}</p>
+                </section>
                 )
         } else{
 
             if(!this.state.editing){ //not editing right now
                 output = (
-                    <>
+                <section className="StoryCard-textBlockContainer">
                     <p className= "StoryCard-storytext">{this.state.storytext}</p>
                     <button 
-                    type = "submit"
-                    className = "NewPostInput-button StoryCard-submitButton u-pointer"
-                    value = "Submit"
-                    onClick={this.clickedEditing}
-                    >Edit
+                        type = "submit"
+                        className = "NewPostInput-button StoryCard-editButton u-pointer"
+                        value = "Submit"
+                        onClick={this.clickedEditing}
+                        >Edit
                     </button>
                     
-                </>
+                </section>
                 )
             }
             else{ //is currently editing
                 output = (
-                <>
+                <section className="StoryCard-textBlockContainer">
                     <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
                     <EditStoryCard onEdit = {this.editStory} storyObj = {this.props.storyObj}/>
                     <button 
-                    type = "submit"
-                    className = "NewPostInput-button u-pointer"
-                    value = "Submit"
-                    onClick={this.clickedEditing}
-                    >Cancel
+                        type = "submit"
+                        className = "NewPostInput-button u-pointer"
+                        value = "Submit"
+                        onClick={this.clickedEditing}
+                        >Cancel
                     </button>
-                </>
+                </section>
                 )   
             }
         }
         return(
             <div className = "u-flex StoryCard-container">
-                <section>
-                    {output}
+                <section className="StoryCard-imageBlockContainer">
+                    <h3 className="u-textCenter">Insert Card Image here:</h3>
+                    {/*placeholder for images*/}
                 </section>
+                {output}
                 <section className="StoryCard-linkBlockContainer">
                     <LinkBlock linkArr = {this.props.storyObj.links}/>
                 </section>
