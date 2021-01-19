@@ -69,7 +69,11 @@ class Projects extends Component {
         return(
             <div>
                 <h1>This is your project dashboard page. Try creating a new Project!</h1>
+                <section className="u-flex Projects-container">
+                    <CreateProjectDisplay/>
+                </section>
             </div>
+            
         );
     }
 }
