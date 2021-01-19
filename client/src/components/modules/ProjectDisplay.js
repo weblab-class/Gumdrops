@@ -39,7 +39,7 @@ class ProjectDisplay extends Component {
 
     render() {
         console.log("ProjectDisplay was called.");
-        if (this.props.showRole) {
+        if (this.props.showRole && (this.state.role !== null)) {
             return (
                 <div className="ProjectDisplay-container">
                     <Link to={`/project/${this.props.projectId}`}>
