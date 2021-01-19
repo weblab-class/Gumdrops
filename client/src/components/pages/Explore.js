@@ -28,9 +28,9 @@ class Explore extends Component {
     organize = (projects, categories) => {
         projects.forEach((project)=>console.log(project.name));
         const dict = {
-            "Music" : projects.slice(0, 2),
-            "Math" : projects.slice(2, 5),
-            "Science" : projects.slice(5, projects.length),
+            "#Music" : projects.slice(0, 2),
+            "#Math" : projects.slice(2, 5),
+            "#Science" : projects.slice(5, projects.length),
         };
         dict[categories[0]].forEach((project)=>console.log("Project: "+project.name));
         console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
@@ -45,7 +45,7 @@ class Explore extends Component {
         if(this.state.projects) {
             console.log("Log 3: "+this.state.projects)
             const projectList = [...this.state.projects];
-            const categoryList = ["Music", "Math", "Science"];
+            const categoryList = ["#Music", "#Math", "#Science"];
             const organizedLists = this.organize(projectList, categoryList);
             //projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
             const projects1 = organizedLists[categoryList[0]];
@@ -53,43 +53,43 @@ class Explore extends Component {
             const projects3 = organizedLists[categoryList[2]];
             return(
                 <div>
-                    <marquee><h1>Alas! You have found the explore page!</h1></marquee>
-                        <div><hr></hr>{categoryList[0]}<hr></hr></div>
-                        <section className="u-flex Explore-container">
-                            {projects1.map((project) => (
-                                <ProjectDisplay 
-                                    userId={this.props.userId} 
-                                    projectName={project.name} 
-                                    projectId={project._id}
-                                    showRole={false}
-                                    key={project._id} 
-                                />
-                            ))}
-                        </section>
-                        <div><hr></hr>{categoryList[1]}<hr></hr></div>
-                            <section className="u-flex Explore-container">
-                            {projects2.map((project) => (
-                                <ProjectDisplay 
-                                    userId={this.props.userId} 
-                                    projectName={project.name} 
-                                    projectId={project._id}
-                                    showRole={false}
-                                    key={project._id} 
-                                />
-                            ))}
-                        </section>
-                        <div><hr></hr>{categoryList[2]}<hr></hr></div>
-                        <section className="u-flex Explore-container">
-                            {projects3.map((project) => (
-                                <ProjectDisplay 
-                                    userId={this.props.userId} 
-                                    projectName={project.name} 
-                                    projectId={project._id}
-                                    showRole={false}
-                                    key={project._id} 
-                                />
-                            ))} 
-                        </section>
+                    <marquee><h1>Look at all these projects organized by tags!!!</h1></marquee>
+                    <div className="Explore-tagAqua">{categoryList[0]}</div>
+                    <section className="u-flex Explore-container">
+                        {projects1.map((project) => (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id}
+                                showRole={false}
+                                key={project._id} 
+                            />
+                        ))}
+                    </section>
+                    <div className="Explore-tagPink">{categoryList[1]}</div>
+                    <section className="u-flex Explore-container">
+                        {projects2.map((project) => (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id}
+                                showRole={false}
+                                key={project._id} 
+                            />
+                        ))}
+                    </section>
+                    <div className="Explore-tagPrimary">{categoryList[2]}</div>
+                    <section className="u-flex Explore-container">
+                        {projects3.map((project) => (
+                            <ProjectDisplay 
+                                userId={this.props.userId} 
+                                projectName={project.name} 
+                                projectId={project._id}
+                                showRole={false}
+                                key={project._id} 
+                            />
+                        ))} 
+                    </section>
                 </div>
             );
         }

@@ -1,3 +1,7 @@
 .Projects-container {
     flex-wrap: wrap;
 }
+
+.Projects-title {
+    margin-left: var(--l);
+}

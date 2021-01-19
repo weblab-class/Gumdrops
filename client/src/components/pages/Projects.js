@@ -43,7 +43,7 @@ class Projects extends Component {
             projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
             return (
                 <div>
-                <h1> This is what you came for</h1>
+                <h1 className="Projects-title"> My Projects</h1>
                     <section className="u-flex Projects-container">
                         {projectList.map((project)=> (
                             <ProjectDisplay 
