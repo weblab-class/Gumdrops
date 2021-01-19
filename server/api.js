@@ -17,6 +17,7 @@ const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
+const ObjectId = require('mongodb').ObjectId; 
 // import authentication library
 const auth = require("./auth");
 
@@ -52,6 +53,17 @@ router.get("/user", (req, res) => {
     res.send(user);
   });
 }); 
+
+//Updates the user document to contain an additional project. Expects an object of:
+// { userId: String, projectId: String}
+router.post("/user_add_project",(req,res)=>{
+  var targetId = new ObjectId(req.body.userId); //have to convert to ObjectId for MongoDB's search to work
+  console.log("User add project got userId as "+req.body.userId+" and projectId as "+req.body.projectId);
+  let query = {"_id": targetId};
+  User.updateOne(query,{ $push: {
+    projectIds: req.body.projectId,
+  }}).then(result=>res.status(200).send({}));
+});
 
 //Return the Project object corresponding to a specific projectID. Expects an object of:
 // { projectId: String }

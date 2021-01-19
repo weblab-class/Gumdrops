@@ -74,7 +74,11 @@ class CreateProject extends Component {
       };
       post("/api/project",projectObj).then(projectid=>{
         console.log(projectid);
-        if(this.state.thumbnail!==null){
+        post("/api/user_add_project",{ //adds projectId to user's projectIds array
+        userId: this.props.userId,
+        projectId: projectid,
+        });
+        if(this.state.thumbnail!==null){ //proceeds to try add thumbnail to database
         let thumbnailObj = {
           projectId : projectid,
           image: this.state.thumbnail,
