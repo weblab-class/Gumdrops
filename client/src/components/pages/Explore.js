@@ -28,9 +28,9 @@ class Explore extends Component {
     organize = (projects, categories) => {
         projects.forEach((project)=>console.log(project.name));
         const dict = {
-            "#Music" : projects.slice(0, 2),
-            "#Math" : projects.slice(2, 5),
-            "#Science" : projects.slice(5, projects.length),
+            "#Music" : projects.slice(0, 3),
+            "#Math" : projects.slice(3, 4),
+            "#Science" : projects.slice(4, projects.length),
         };
         dict[categories[0]].forEach((project)=>console.log("Project: "+project.name));
         console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
