@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import "../../utilities.css";
 import "./Profile.css"
 import ProfileImage from "../modules/ProfileImage.js";
 import ProfileBio from "../modules/ProfileBio.js"
+
+
 
 //Props
 //userId: String (used in special routing from App.js)
@@ -15,7 +17,7 @@ class Profile extends Component {
             user: undefined,
         };
       }
-      
+
     handleInit = () =>{
         // if(this.props.userId) {
         //     console.log("Going into handleInit with profile");
@@ -31,6 +33,8 @@ class Profile extends Component {
     componentDidMount() {
         get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
         this.handleInit();
+        //The below command was used to trigger LinkPreview API
+        //post('/api/info');
     }
 
     render() {

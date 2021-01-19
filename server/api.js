@@ -18,6 +18,9 @@ const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
 const ObjectId = require('mongodb').ObjectId; 
+
+const linker = require("./linkpreview.js");
+
 // import authentication library
 const auth = require("./auth");
 
@@ -306,6 +309,10 @@ router.post("/thumbnail",(req,res)=>{
     res.send({});
   });
 });
+
+router.post("/info",(req,res)=>{
+  linker.tryLinkPreview();
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
