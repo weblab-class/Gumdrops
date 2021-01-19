@@ -22,7 +22,7 @@ class LinkBlock extends Component {
                <a href = {linkObj}></a> 
             ));
         }else{
-            linkList=<div>No links have been posted</div>
+            linkList=<><div>No project document links have been posted</div><div>(To be supported)</div></>
         }
         return(
             <>
