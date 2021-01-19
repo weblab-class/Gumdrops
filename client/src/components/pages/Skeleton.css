@@ -1,7 +1,18 @@
 /* Fill me in :) */
 
-
-.mainPage-Description{
+.Skeleton-mainPage-Description{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60%;
     padding-left: var(--xl);
     padding-right: var(--xl);
+    font-size: xx-large;
+}
+
+.Skeleton-title {
+    color: var(--aqua);
+    text-shadow: -2px -2px 0 var(--pink), 2px -2px 0 var(--pink), -2px 2px 0 var(--pink), 2px 2px 0 var(--pink);
+    font-size: 56px;
+    font-weight: bold;
 }

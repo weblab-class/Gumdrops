@@ -18,10 +18,10 @@ class Skeleton extends Component {
     return (
       <>
       <div className="u-flexColumn">
-        <section className="u-textCenter ">
+        <section className="u-textCenter Skeleton-title">
           <h1>For all your project needs</h1>
         </section>
-        <section className="u-textCenter mainPage-Description">
+        <section className="u-textCenter Skeleton-mainPage-Description">
           <p>From brainstorming new ideas to designing your next project wiki, Gumdrops make it easy for you to document your project and collaborate with others.</p>
         </section>
       </div>

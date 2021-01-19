@@ -31,7 +31,7 @@
     color: var(--primary--dim);
     font-size: var(--l);
     opacity: 0.6;
-    text-decoration: underline overline var(--primary--dim);
+    text-decoration: underline var(--aqua);
   }
   
   .NavBar-link:hover {
