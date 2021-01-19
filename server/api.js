@@ -58,7 +58,6 @@ router.get("/user", (req, res) => {
 // { userId: String, projectId: String}
 router.post("/user_add_project",(req,res)=>{
   var targetId = new ObjectId(req.body.userId); //have to convert to ObjectId for MongoDB's search to work
-  console.log("User add project got userId as "+req.body.userId+" and projectId as "+req.body.projectId);
   let query = {"_id": targetId};
   User.updateOne(query,{ $push: {
     projectIds: req.body.projectId,

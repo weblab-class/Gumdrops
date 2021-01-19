@@ -64,7 +64,7 @@ class CreateProject extends Component {
       collabArray = collabArray.map((value)=>{
         return({
         userId: value.slice(1),
-        role: "@team_member",}); //hard-coded to member for now
+        role: "team_member",}); //hard-coded to member for now
       });
       console.log(collabArray);
       let projectObj = {
@@ -100,6 +100,7 @@ class CreateProject extends Component {
             thumbnail: null, 
           });
         }
+        window.location.replace("/project/"+projectid);
       });
 
     }

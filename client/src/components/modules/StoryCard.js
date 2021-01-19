@@ -12,7 +12,8 @@ import LinkBlock from "./LinkBlock";
 /**
  * Proptypes 
  * @param {Object } storyObj : sends story object
- * @param {string}  userId 
+ * @param {String}  userId 
+ * @param {Boolean} edit determines if current user can edit
  */
 class StoryCard extends Component{
     constructor(props){
@@ -51,7 +52,7 @@ class StoryCard extends Component{
     
     render(){ 
         let output = null;
-        if(!this.props.edit){
+        if(!this.props.edit){ //not allowed to edit 
             output = (
                 <>
                 <p>{this.state.storytext}</p>
@@ -59,27 +60,25 @@ class StoryCard extends Component{
                 </>
                 )
         } else{
-            
-            if(!this.state.editing){
+
+            if(!this.state.editing){ //not editing right now
                 output = (
                     <>
                     <p className= "StoryCard-storytext">{this.state.storytext}</p>
                     <button 
                     type = "submit"
-                    className = "NewPostInput-button u-pointer"
+                    className = "NewPostInput-button StoryCard-submitButton u-pointer"
                     value = "Submit"
                     onClick={this.clickedEditing}
-
                     >Edit
                     </button>
                     
                 </>
                 )
             }
-            else{
+            else{ //is currently editing
                 output = (
                 <>
-
                     <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
                     <EditStoryCard onEdit = {this.editStory} storyObj = {this.props.storyObj}/>
                     <button 
@@ -89,15 +88,19 @@ class StoryCard extends Component{
                     onClick={this.clickedEditing}
                     >Cancel
                     </button>
-                    
                 </>
                 )   
             }
         }
         return(
             <div className = "u-flex StoryCard-container">
-                {output}
-                <LinkBlock linkArr = {this.props.storyObj.links}/>
+                <section>
+                    {output}
+                </section>
+                <section className="StoryCard-linkBlockContainer">
+                    <LinkBlock linkArr = {this.props.storyObj.links}/>
+                </section>
+               
             </div>
         )
     }

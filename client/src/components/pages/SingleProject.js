@@ -90,8 +90,6 @@ class SingleProject extends Component{
         if(hasStories){
             storiesList = this.state.stories.map((storyObj)=>
             (
-                
-                
                 <StoryCard
                     storyObj = {storyObj}
                     key = {storyObj._id}
