@@ -34,11 +34,7 @@ class Projects extends Component {
         //this.handleInit();
     }
     render() {
-        if(this.state.projects){
-            console.log("Type of projects "+typeof(this.state.projects));
-            console.log("Project: "+this.state.projects[0].name);
-            console.log("ProjectId: "+this.state.projects[0]._id);
-            console.log("UserId: "+this.props.userId);
+        if(this.state.projects && this.state.projects[0]){
             const projectList = [...this.state.projects];
             projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
             return (
