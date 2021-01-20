@@ -17,8 +17,6 @@ import "./SingleProject.css";
  * projectId : String, identifying what project it is
  * userId: String, identifying id of current user (undefined if not)
  * @param {string} projectId of the project 
- * @param {string} project_name
- * @param {string} collaborators
  * @param {string} userId
  * 
  */
@@ -28,27 +26,39 @@ class SingleProject extends Component{
         super(props);
         this.state = {
             stories: [],
-            edit: true
-
+            edit: false,
         }
         
+    }
+
+    checkCanEdit=()=>{
+        const body = {
+            userId : this.props.userId,
+            projectId : this.props.projectId
+        };
+        get("/api/isUserCollaborator",body).then((bool)=>{
+            this.setState({
+                edit: bool,
+            });
+        });
     }
     
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
-        
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
-                this.setState({stories: this.state.stories.concat([storyObj]),
-                });
+                this.setState((prevstate) => ({
+                    stories: prevstate.stories.concat([storyObj]),
+                }));
             });
         });
     }
     //called when "SingleProject" mounts
     componentDidMount(){
-            document.title = "Single Project";
-            this.loadStoryCards();
+        document.title = "Single Project";
+        this.loadStoryCards();
+        this.checkCanEdit();
     }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
