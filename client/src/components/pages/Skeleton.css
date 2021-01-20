@@ -1,4 +1,5 @@
 /* Fill me in :) */
+html {background-color: var(--grey)};
 
 .Skeleton-mainPage-Description{
     position: relative;
@@ -11,8 +12,8 @@
 }
 
 .Skeleton-title {
-    color: var(--aqua);
-    text-shadow: -2px -2px 0 var(--pink), 2px -2px 0 var(--pink), -2px 2px 0 var(--pink), 2px 2px 0 var(--pink);
+    color: var(--primary--dim);
+    text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);
     font-size: 56px;
     font-weight: bold;
 }

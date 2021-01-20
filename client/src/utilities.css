@@ -19,14 +19,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
-  --primary: #BB8CEB;
-  --primary--dim: #CAFFEF;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
+  --primary: rgb(230, 94, 90);
+  --primary--dim: rgb(247, 161, 162);
+  --darkgrey: rgb(0, 0, 0); /*black*/
+  --medgrey: rgb(222, 221, 213);
+  --grey: rgb(240, 242, 236);
   --white: #fff;
-  --pink: #EA85DA;
-  --aqua: #00D1FF;
+  --pink: #EA85DA; /*not part of the palette*/
+  --aqua: rgb(1, 182, 216);
+  --green: rgb(105, 182, 73);
+  --yellow: rgb(252, 242, 134);
   --xxs: 2px;
   --xs: 4px;
   --s: 8px;
