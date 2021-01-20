@@ -5,7 +5,6 @@ async function tryImgCompress(inputImg) {
         let img = await jimp.read(inputImg);
         img.resize(512, jimp.AUTO);
         img.quality(60);
-        img.write("./output.jpeg");
         let outBuffer = await img.getBufferAsync(jimp.AUTO);
         return outBuffer;
     } catch(e) {
