@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
 import "./SingleProject.css";
+import DeleteProject from "../modules/DeleteProject.js";
 
 //this would be used to render what you see w
 //when you open a project 
@@ -17,8 +18,6 @@ import "./SingleProject.css";
  * projectId : String, identifying what project it is
  * userId: String, identifying id of current user (undefined if not)
  * @param {string} projectId of the project 
- * @param {string} project_name
- * @param {string} collaborators
  * @param {string} userId
  * 
  */
@@ -28,31 +27,45 @@ class SingleProject extends Component{
         super(props);
         this.state = {
             stories: [],
-            edit: true
+            edit: false
 
         }//in case i forget change back to false 
-        
+
+       
+    }
+
+    checkCanEdit=()=>{
+        const body = {
+            userId : this.props.userId,
+            projectId : this.props.projectId
+        };
+        get("/api/isUserCollaborator",body).then((bool)=>{
+            this.setState({
+                edit: bool,
+            });
+        });
     }
     
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
-        
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
-                this.setState({stories: this.state.stories.concat([storyObj]),
-                });
+                this.setState((prevstate) => ({
+                    stories: prevstate.stories.concat([storyObj]),
+                }));
             });
         });
     }
     //called when "SingleProject" mounts
     componentDidMount(){
-            document.title = "Single Project";
-            this.loadStoryCards();
+        document.title = "Single Project";
+        this.loadStoryCards();
+        this.checkCanEdit();
     }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
-        console.log("i added a new story")
+        console.log("i added a new story");
         this.setState({
             stories: this.state.stories.concat([storyObj]),
         });
@@ -112,6 +125,7 @@ class SingleProject extends Component{
                     <h4>Loading may take some time..</h4>
                     {storiesList}
                     <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
+                    <DeleteProject projectId={this.props.projectId}/>
                 </section>
                 <section className="projectJournal-container">
                     <Journal userId ={this.props.userId} projectId={this.props.projectId}/>

@@ -64,7 +64,7 @@ router.post("/user_add_project",(req,res)=>{
   let query = {"_id": targetId};
   User.updateOne(query,{ $push: {
     projectIds: req.body.projectId,
-  }}).then(result=>res.status(200).send({}));
+  }}).then(result=>res.send({})).catch(e=>console.log(e));
 });
 
 //Return the Project object corresponding to a specific projectID. Expects an object of:
@@ -92,32 +92,44 @@ router.post("/project",(req,res)=>{
     .catch(error=>console.log(error));
 })
 
+//Deletes a project from the Project collection. Expects an object of:
+// { projectId: String }
+//Deletes corresponding Project document, Thumbnail, StoryCards, Messages, and entry in User document
+router.post("/delproject",(req,res)=>{
+  let projectIdObject = new ObjectId(req.body.projectId);
+  Project.deleteOne({"_id":projectIdObject})
+    .then((event)=>console.log("Deleted "+event.deletedCount+" project"));
+  ProjectThumbnail.deleteOne({"projectId":req.body.projectId})
+    .then((event)=>console.log("Deleted "+event.deletedCount+" thumbnail"));
+  StoryCard.deleteMany({"projectId":req.body.projectId})
+    .then((event)=>console.log("Deleted "+event.deletedCount+" storyCard(s)"));
+  Message.deleteMany({"recipient._id":req.body.projectId})
+    .then((event)=>console.log("Deleted "+event.deletedCount+" message(s)"));
+  User.updateMany({"projectIds":req.body.projectId},{$pull:{"projectIds":req.body.projectId}})
+    .then((event)=>console.log(event.nModified));
+  res.send({});
+});
+
 
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
 router.get("/projects",(req,res)=>{
-  User.findById(req.query.userid).then( async (user)=>
-  {
-    try{
-      let arrayLength = user.projectIds.length;
-      let outProjects = [];
-      for (var i = 0; i < arrayLength; i++) {
-        console.log("User is in "+user.projectIds[i]+'\n');
-        let project = await Project.findById(user.projectIds[i]);
-        outProjects.push(project);
-        console.log("Found project "+project.name+"\n");
-      }
-      res.send({projects:outProjects});
-    } catch(e) {
-      res.status(400).json({message:e.message});
-    }
-  });
+
+  //New Method directly queries the Project collections for the right userid
+  console.log("Finding projects for "+req.query.userid);
+  Project.find({"collaborators.userId": req.query.userid})
+    .then((outProjects)=>{
+      res.send({projects: outProjects});
+    })
+    .catch(error=>{
+      console.log(error);
+    });
 });
 
 //Retrieve all the projects in the database
 //Expects no input
 router.get("/explore",(req,res)=> {
-  Project.find().then((projects)=>res.send(projects))
+  Project.find({}).then((projects)=>res.send(projects));
 });
 
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
@@ -298,13 +310,10 @@ router.post("/profile-bio",(req,res)=>{
 //Get a project thumbnail image from the database. Expects an object with following field:
 //{ projectId: String }
 router.get("/thumbnail",(req,res)=>{
-  console.log("Received get thumbnail request");
-  console.log("Trying to match thumbnail with id "+req.query.projectId);
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
       if(returnImage){ //if not null
       let unbufferedImg = returnImage.image.toString();
-      console.log("Recovered thumbnail string "+unbufferedImg.substr(0,20));
       res.send({
         image: unbufferedImg
       });
@@ -317,7 +326,6 @@ router.get("/thumbnail",(req,res)=>{
 
 //Post a thumbnail to the database. Expects an object with:
 //{ projectId: String, image: String (need to be in base64!), imageName : String }
-
 router.post("/thumbnail",(req,res)=>{
   console.log("Received save thumbnail request");
   let bufferedImg = Buffer.from(req.body.image);
@@ -330,6 +338,24 @@ router.post("/thumbnail",(req,res)=>{
     console.log("Thumbnail saved successfully.");
     res.send({});
   });
+});
+
+//Check if a user is a collaborator in a project. Expects an object with the following fields:
+//{ userId: String, projectId: String }
+router.get("/isUserCollaborator", (req,res)=>{
+  console.log("Trying to find project with id: "+req.query.projectId);
+  let canEdit = false;
+  Project.findById(req.query.projectId)
+    .then((projectObj)=>{
+      console.log("Found project: "+projectObj.name);
+      projectObj.collaborators.forEach((collaber)=>{
+        if(collaber.userId===req.query.userId) {
+          canEdit = true;
+        }
+      });
+      res.send(canEdit);
+    })
+    .catch((err)=>console.log(err));
 });
 
 //Retrieves information about an array of URL links (e.g. "https://www.google.com") Expects an object of:

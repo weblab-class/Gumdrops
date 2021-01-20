@@ -19,8 +19,10 @@ class NavBar extends Component {
         return(
         <nav className="NavBar-container">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
-            <img className="NavBar-mainImg" src={Logo}/>
-            <div className="NavBar-linkContainer u-inlineBlock">
+            <div className="NavBar-imageContainer u-inlineBlock">
+                <img className="NavBar-mainImg" src={Logo}/>
+            </div>
+            <div className="NavBar-linkContainer">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
                 {this.props.userId ? (

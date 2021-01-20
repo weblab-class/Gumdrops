@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import NavBar from "./NavBar.js";
 import Profile from "./pages/Profile.js";
 import "../utilities.css";
+import "./pages/Skeleton.css";
 import Projects from "./pages/Projects.js";
 import Explore from "./pages/Explore.js";
 import StoryCard from "./modules/StoryCard.js";

@@ -58,7 +58,7 @@ class CreateProject extends Component {
 
     handleSubmit = () => {
       if(this.state.projectName !== "") {
-      let collabArray; //handling split of collaborators
+      let collabArray = []; //handling split of collaborators
       if(this.state.collaborators!=="") {
         collabArray = this.state.collaborators.split(" ");
       }
@@ -82,20 +82,29 @@ class CreateProject extends Component {
         teamId: this.state.teamId,
         tags: tagsArray,
       };
-      //proceed to post to new project
-      post("/api/project",projectObj).then(projectid=>{ 
-        console.log(projectid);
-        post("/api/user_add_project",{ //adds projectId to user's projectIds array
-        userId: this.props.userId,
-        projectId: projectid,
+
+      //async function to post to new project
+      let postProject = async () => {
+        let projectid = await post("/api/project",projectObj);
+        console.log("New project with id "+ projectid);
+        let promise1 = post("/api/user_add_project",{ //adds projectId to user's projectIds array
+                          userId: this.props.userId,
+                          projectId: projectid,
+                        });
+        let promise2 = new Promise((resolve,reject) => {
+          if(this.state.thumbnail){
+            console.log("Tries to add thumbnail to database");
+            let thumbnailObj = {
+              projectId : projectid,
+              image: this.state.thumbnail,
+            }
+            //proceeds to upload thumbnail
+            post("/api/thumbnail",thumbnailObj).then(resolve("done"));
+          } else {
+            resolve("done");
+          }
         });
-        if(this.state.thumbnail!==null){ //proceeds to try add thumbnail to database
-        let thumbnailObj = {
-          projectId : projectid,
-          image: this.state.thumbnail,
-        }
-        //proceeds to upload thumbnail, if it exists
-        post("/api/thumbnail",thumbnailObj).then((res)=>{
+        Promise.all([promise1, promise2]).then((values) => {
           this.setState({ //resets the fields
             projectName: "", 
             collaborators: "", 
@@ -103,19 +112,10 @@ class CreateProject extends Component {
             tags: "",
             thumbnail: null, 
           });
+          window.location.replace("/project/"+projectid); //redirect to new project page
         });
-        } else {
-          //nothing more to do
-          this.setState({ //resets the fields
-            projectName: "", 
-            collaborators: "", 
-            teamId: "", 
-            tags: "",
-            thumbnail: null, 
-          });
-        }
-        window.location.replace("/project/"+projectid);
-      });
+      }
+      postProject();
       }
     }
 

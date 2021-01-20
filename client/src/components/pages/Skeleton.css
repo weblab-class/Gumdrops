@@ -1,6 +1,21 @@
 /* Fill me in :) */
+html {background-color: var(--grey)};
 
-.Skeleton-mainPage-Description{
+.Skeleton-title { /*For some reason, the line above ignores the next ruleset or whatever its called*/
+    /* color: var(--primary--dim);
+    text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);
+    font-size: 56px;
+    font-weight: bold; */
+}
+
+.Skeleton-title {
+    color: var(--primary--dim);
+    text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);
+    font-size: 56px;
+    font-weight: bold;
+}
+
+.Skeleton-mainPage-Description {
     position: relative;
     left: 50%;
     transform: translate(-50%);
@@ -8,11 +23,4 @@
     padding-left: var(--xl);
     padding-right: var(--xl);
     font-size: xx-large;
-}
-
-.Skeleton-title {
-    color: var(--aqua);
-    text-shadow: -2px -2px 0 var(--pink), 2px -2px 0 var(--pink), -2px 2px 0 var(--pink), 2px 2px 0 var(--pink);
-    font-size: 56px;
-    font-weight: bold;
 }

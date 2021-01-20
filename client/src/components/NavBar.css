@@ -1,5 +1,5 @@
 .NavBar-container {
-    padding: var(--m) var(--l);
+    /* padding: var(--m) var(--l); */
     background-color: var(--primary);
   }
   
@@ -14,24 +14,34 @@
     margin-right: var(--s);
   } */
 
+  .NavBar-imageContainer {
+    height: 100%;
+    width: 15%;
+    margin-left: 2.5%;
+  }
+
   .NavBar-mainImg {
-    width: 8em;
+    width: 100%;
     height: auto;
     vertical-align: middle;
   }
 
   .NavBar-linkContainer {
-    margin-left: var(--s);
+    width: 82.5%;
+    margin: 0;
     vertical-align: middle;
-    /*margin-top: var(--m);*/
+    display: inline-flex;
+    justify-content: space-evenly;
   }
 
   .NavBar-link,
   .NavBar-link:visited {
-    color: var(--primary--dim);
+    color: var(--grey);
     font-size: var(--l);
     opacity: 0.6;
-    text-decoration: underline var(--aqua);
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
   }
   
   .NavBar-link:hover {
@@ -41,6 +51,7 @@
   .NavBar-login {
     opacity: 1;
     margin-left: var(--m);
+    background-color: var(--grey);
   }
   
   .NavBar-link + .NavBar-link {
