@@ -41,7 +41,9 @@ class StoryCard extends Component{
     //changes state of editing 
     clickedEditing=(event)=>{
         event.preventDefault();
-        this.setState({editing: !this.state.editing});
+        this.setState((prevstate) => ({
+            editing: !prevstate.editing,
+        }));
     }
     
     //this would eventually allow to edit stories
