@@ -60,15 +60,20 @@ class Projects extends Component {
             );
         }
         console.log("At Projects.js, the userId props is "+this.props.userId);
-        if(this.props.userId==undefined){
+        if(this.props.userId){
             return(
-            <div>
-                <h2>Hello! Please log in to see your projects</h2>
-            </div>);
+                <div>
+                    <h1>This is your project dashboard page. Try creating a new Project!</h1>
+                    <section className="u-flex Projects-container">
+                        <CreateProjectDisplay/>
+                    </section>
+                </div>
+                
+            );
         }
         return(
             <div>
-                <h1>This is your project dashboard page. Try creating a new Project!</h1>
+                <h2>Hello! Please log in to see your projects</h2>
             </div>
         );
     }

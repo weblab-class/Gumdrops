@@ -26,7 +26,7 @@ class CreateProject extends Component {
     //The following are callback functions that input fields use to 
     //store their value in the CreateProject's state.
     projectNameOnChange = (event) => {
-      this.setState({
+      this.setState({ 
         projectName: event.target.value,
       });
     }
@@ -57,13 +57,12 @@ class CreateProject extends Component {
     }
 
     handleSubmit = () => {
+      if(this.state.projectName !== "") {
       let collabArray; //handling split of collaborators
-      if(this.state.collaborators==="") {
-        collabArray = ["@"+this.props.userId];
-      } else {
+      if(this.state.collaborators!=="") {
         collabArray = this.state.collaborators.split(" ");
-        collabArray.push(this.props.userId);
       }
+      collabArray.push("@"+this.props.userId);
       collabArray = collabArray.map((value)=>{
         return({
         userId: value.slice(1),
@@ -117,14 +116,14 @@ class CreateProject extends Component {
         }
         window.location.replace("/project/"+projectid);
       });
-
+      }
     }
 
     render() {
       return (
           <div className="u-flexColumn CreateProject-container">
             <section className="CreateProject-inputContainer">
-              <h3 className="u-textCenter">Project Name:</h3>
+              <h3 className="u-textCenter">Project Name (Required):</h3>
               <NewProjectInput onChange={event => this.projectNameOnChange(event)} value={this.state.projectName}/>
             </section>
             <section className="CreateProject-inputContainer">

@@ -30,6 +30,7 @@ class LinkBlock extends Component {
     }
     render(){
         let linkList = null;
+<<<<<<< HEAD
         let isthereLink = this.props.linkArr.length; 
         if(this.props.editing){
                 
@@ -47,6 +48,15 @@ class LinkBlock extends Component {
             }else{
                 linkList=<p>No links</p>
             }
+=======
+        let isthereLink = this.props.linkArr.length;
+        if(isthereLink){
+            this.props.linkArr.map((linkObj)=>(
+               <a href = {linkObj}></a> 
+            ));
+        }else{
+            linkList=<><div>No project document links have been posted</div><div>(To be supported)</div></>
+>>>>>>> 5f047491d8153220b49b69515f3df2681486816e
         }
         return(
             <div className = "u-flex">

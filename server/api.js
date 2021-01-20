@@ -18,6 +18,9 @@ const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
 const ObjectId = require('mongodb').ObjectId; 
+
+const linker = require("./linkpreview.js");
+
 // import authentication library
 const auth = require("./auth");
 
@@ -328,6 +331,13 @@ router.post("/thumbnail",(req,res)=>{
     res.send({});
   });
 });
+
+//Retrieves information about an array of URL links (e.g. "https://www.google.com") Expects an object of:
+//{ links: [String] }
+//Note: We have to use POST to send an array to back-end
+router.post("/link", (req,res) => {
+  linker.tryLinkPreview(req.body.links).then(result=>res.send(result));
+})
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
