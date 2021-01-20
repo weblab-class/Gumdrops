@@ -25,7 +25,7 @@
   --medgrey: rgb(222, 221, 213);
   --grey: rgb(240, 242, 236);
   --white: #fff;
-  --pink: #EA85DA; /*not part of the palette*/
+  --pink: rgb(230, 94, 90); /*copy of primary*/
   --aqua: rgb(1, 182, 216);
   --green: rgb(105, 182, 73);
   --yellow: rgb(252, 242, 134);
