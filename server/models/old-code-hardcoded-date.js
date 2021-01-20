@@ -56,3 +56,42 @@ User.findById(req.query.userid).then( async (user)=>
     res.status(400).json({message:e.message});
   }
 }); */
+
+//An old copy of the submit project functions in CreateProject.js's handleSubmit function
+//Now replaced with async/await capabilities
+     /* post("/api/project",projectObj).then(projectid=>{ 
+        console.log(projectid);
+        post("/api/user_add_project",{ //adds projectId to user's projectIds array
+          userId: this.props.userId,
+          projectId: projectid,
+        }).then(event=>{ //wait for both project operations to finish
+          if(!this.state.thumbnail){ //thumbnail empty
+            this.setState({ //resets the fields
+              projectName: "", 
+              collaborators: "", 
+              teamId: "", 
+              tags: "",
+              thumbnail: null, 
+            });
+            window.location.replace("/project/"+projectid); //redirect to new project page
+          } else {
+            //otherwise, proceeds to try add thumbnail to database
+            console.log("Tries to add thumbnail to database");
+            let thumbnailObj = {
+              projectId : projectid,
+              image: this.state.thumbnail,
+            }
+            //proceeds to upload thumbnail
+            post("/api/thumbnail",thumbnailObj).then((res)=>{
+              this.setState({ //resets the fields
+                projectName: "", 
+                collaborators: "", 
+                teamId: "", 
+                tags: "",
+                thumbnail: null, 
+              });
+              window.location.replace("/project/"+projectid); //redirect to new project page
+            });
+          }
+        });
+      });*/

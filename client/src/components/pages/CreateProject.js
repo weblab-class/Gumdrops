@@ -83,43 +83,39 @@ class CreateProject extends Component {
         tags: tagsArray,
       };
 
-      //proceed to post to new project
-      post("/api/project",projectObj).then(projectid=>{ 
-        console.log(projectid);
-        post("/api/user_add_project",{ //adds projectId to user's projectIds array
-          userId: this.props.userId,
-          projectId: projectid,
-        }).then(event=>{ //wait for both project operations to finish
-          if(!this.state.thumbnail){ //thumbnail empty
-            this.setState({ //resets the fields
-              projectName: "", 
-              collaborators: "", 
-              teamId: "", 
-              tags: "",
-              thumbnail: null, 
-            });
-            window.location.replace("/project/"+projectid); //redirect to new project page
-          } else {
-            //otherwise, proceeds to try add thumbnail to database
+      //async function to post to new project
+      let postProject = async () => {
+        let projectid = await post("/api/project",projectObj);
+        console.log("New project with id "+ projectid);
+        let promise1 = post("/api/user_add_project",{ //adds projectId to user's projectIds array
+                          userId: this.props.userId,
+                          projectId: projectid,
+                        });
+        let promise2 = new Promise((resolve,reject) => {
+          if(this.state.thumbnail){
             console.log("Tries to add thumbnail to database");
             let thumbnailObj = {
               projectId : projectid,
               image: this.state.thumbnail,
             }
             //proceeds to upload thumbnail
-            post("/api/thumbnail",thumbnailObj).then((res)=>{
-              this.setState({ //resets the fields
-                projectName: "", 
-                collaborators: "", 
-                teamId: "", 
-                tags: "",
-                thumbnail: null, 
-              });
-              window.location.replace("/project/"+projectid); //redirect to new project page
-            });
+            post("/api/thumbnail",thumbnailObj).then(resolve("done"));
+          } else {
+            resolve("done");
           }
         });
-      });
+        Promise.all([promise1, promise2]).then((values) => {
+          this.setState({ //resets the fields
+            projectName: "", 
+            collaborators: "", 
+            teamId: "", 
+            tags: "",
+            thumbnail: null, 
+          });
+          window.location.replace("/project/"+projectid); //redirect to new project page
+        });
+      }
+      postProject();
       }
     }
 
