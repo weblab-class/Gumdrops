@@ -35,7 +35,7 @@ class StoryCard extends Component{
                 });
             }
         });
-        console.log("State: "+this.state.image)
+        // console.log("State: "+this.state.image)
     }
 
     //changes state of editing 

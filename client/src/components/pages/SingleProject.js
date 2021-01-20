@@ -126,7 +126,7 @@ class SingleProject extends Component{
                     <DeleteProject projectId={this.props.projectId}/>
                 </section>
                 <section className="projectJournal-container">
-                    <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
+                    <Journal userId ={this.props.userId} projectId={this.props.projectId} canSend={this.state.edit}/>
                 </section>
             </div>
 
