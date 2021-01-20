@@ -8,7 +8,7 @@ import { get} from "../../utilities";
 import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
 import EditStoryCard from "./EditStoryCard.js";
-import LinkBlock from "./LinkBlock";
+import LinkBlock from "./LinkBlock.js";
 /**
  * Proptypes 
  * @param {Object} storyObj : sends story object
@@ -53,7 +53,6 @@ class StoryCard extends Component{
             
             this.setState({
                 storytext:changesObj.textContent,
-                editing: !this.state.editing,
             });
             this.props.onEdit && this.props.onEdit(body);   
         });
@@ -166,9 +165,9 @@ class StoryCard extends Component{
                 <section className="StoryCard-imageBlockContainer" />
                 {output}
                 <section className="StoryCard-linkBlockContainer">
-                    {/* <LinkBlock edit= {this.props.edit} 
+                    <LinkBlock  onEdit={this.editStory}
                     editing ={this.state.editing} 
-                    linkArr = {this.props.storyObj.links}/> */}
+                    linkArr = {this.props.storyObj.links}/>
                 </section>
             </div>
         );

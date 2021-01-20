@@ -1,6 +1,8 @@
 import React, { Component} from "react";
 import { render } from "react-dom"
 import "../../utilities.css"
+import {post} from "../../utilities";
+import InputBox from "./InputBox.js";
 
 /**
  * Link Block formats all the links
@@ -23,46 +25,44 @@ class LinkBlock extends Component {
         })
     }
     editLink=(newLink)=>{
-        
+        this.setState({
+            links: this.state.links.concat([newLink]),
+        })
+        this.props.onEdit && this.props.onEdit({links:this.state.links});
     }
     componentDidMount(){
-        this.getLinks();
+        this.setLinks();
     }
     render(){
         let linkList = null;
-<<<<<<< HEAD
+        let button = <div></div>
         let isthereLink = this.props.linkArr.length; 
         if(this.props.editing){
-                
-                
-
-                
+                console.log("editing ");
+                button = <InputBox
+                defaultText ="Enter Link"
+                onSubmit ={this.editLink}
+                type = "url"
+                buttonMessage = "Add Link"
+                />
             }
-        else{ 
-        let linkList = null;
-        let isthereLink = this.props.linkArr.length;  
-            if(isthereLink){
-                this.props.linkArr.map((linkObj)=>(
-                <a href = {linkObj}></a> 
-                ));
-            }else{
-                linkList=<p>No links</p>
-            }
-=======
-        let isthereLink = this.props.linkArr.length;
         if(isthereLink){
-            this.props.linkArr.map((linkObj)=>(
-               <a href = {linkObj}></a> 
-            ));
+
+            post("/api/link",this.state.links).then((linkPrev)=>{
+                linklist = linkprev;
+            })
+            return(
+                <div className = "u-flex ">
+                    {linkList}
+                    {button}
+                </div>
+            )
         }else{
-            linkList=<><div>No project document links have been posted</div><div>(To be supported)</div></>
->>>>>>> 5f047491d8153220b49b69515f3df2681486816e
+            return(
+            linkList=<p>No links</p>
+            )
         }
-        return(
-            <div className = "u-flex">
-                {linkList}
-            </div>
-        )
+        
     }
 }
-export default LinkBlock
+export default LinkBlock;
