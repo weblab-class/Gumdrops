@@ -37,6 +37,7 @@ class Profile extends Component {
         //It is temporary placeholder.
         let linkArray = ["https://gumdrops.herokuapp.com/","https://www.youtube.com/watch?v=fn3KWM1kuAw"];
         post('/api/link',{links:linkArray}).then((data)=>console.log(data));
+        post('/api/delproject',{projectId:"6007a80f9efb054e58a26af0"});
     }
 
     render() {
