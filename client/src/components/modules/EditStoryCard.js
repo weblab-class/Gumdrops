@@ -2,8 +2,7 @@ import React, {Component } from "react";
 import { render } from "react-dom"
 import "./NewPostInput.css";
 import {post} from "../../utilities";
-import "../../utilities.css"
- 
+import "../../utilities.css";
 /**
  * Edit Story Card allows editing of a specific story card
  * 
@@ -73,7 +72,6 @@ class EditStoryCard extends Component {
         if(this.state.selectedFile==null) { /*do nothing*/ } 
         else {
             event.preventDefault();
-            console.log("Tries to submit");
             //let base64_img = this.state.selectedFile.toString('base64');
             //console.log("Base 64 conversion of image file: "+base64_img.substr(0,200));
             let changes = {imageMedia:this.state.selectedFile};

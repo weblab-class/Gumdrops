@@ -65,7 +65,6 @@ class StoryCard extends Component{
         let body = {_id: this.props.storyObj._id, changes:changesObj}
         console.log(body);
         post("/api/editstorycard",body).then((story) =>{
-            console.log(story.imageMedia);
             
             this.setState({
                 image:changesObj.imageMedia,

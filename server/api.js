@@ -18,8 +18,8 @@ const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
 const ObjectId = require('mongodb').ObjectId; 
-
 const linker = require("./linkpreview.js");
+const compress = require("./compress-img.js");
 
 // import authentication library
 const auth = require("./auth");
@@ -163,13 +163,17 @@ router.post("/delstorycard",(req,res)=>{
 
 router.post("/editstorycard",(req,res)=>{
   let filter = {"_id" : req.body._id};
-  console.log(req.body.changes);
+  //console.log(req.body.changes);
   if(req.body.changes.imageMedia){
-    let bufferedImg = Buffer.from(req.body.changes.imageMedia);
-    StoryCard.updateOne(filter,{"imageMedia":bufferedImg}).then((result)=>{
-      res.send(result);
-      console.log(result);
-      }).catch((err)=>console.log("there was an errorr alarm"));
+    let urlArray = req.body.changes.imageMedia.split(',');
+    let buffer = Buffer.from(urlArray[1], 'base64');
+    compress.tryImgCompress(buffer).then((smolImg)=>{
+      console.log("operation completed");
+      console.log(smolImg);
+      StoryCard.updateOne(filter,{"imageMedia":smolImg,"imageHeader":urlArray[0]}).then((result)=>{
+        res.send(result);
+        }).catch((err)=>console.log("there was an errorr alarm"));
+    });
   } else {
   StoryCard.updateOne(filter,req.body.changes).then((result)=>{
     res.send(result);
@@ -183,8 +187,13 @@ router.get("/story-image",(req,res)=>{
   StoryCard.findOne({"_id" : req.query._id}).then((storyCard)=>{
     // console.log("Sending image: "+storyCard.imageMedia);
     if((storyCard.imageMedia !== null) && storyCard.imageMedia){
-      let unbufferedImg = storyCard.imageMedia.toString();
-      // console.log("Recovered image string "+unbufferedImg.substr(0,200));
+      let unbufferedImg;
+      if(storyCard.imageHeader && storyCard.imageHeader!=="") {
+        unbufferedImg = storyCard.imageHeader + "," + storyCard.imageMedia.toString('base64'); //recreate URL-encoded image
+      } else {
+        unbufferedImg = storyCard.imageMedia.toString(); //for backwards compatibility with earlier images
+      }
+      console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({image:unbufferedImg});
     }
   }).catch((err)=>console.log("there was an errorr alarm"+err));
@@ -313,7 +322,13 @@ router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
       if(returnImage){ //if not null
-      let unbufferedImg = returnImage.image.toString();
+      let unbufferedImg;
+      if(returnImage.imageHeader) {
+        unbufferedImg = returnImage.imageHeader + "," + returnImage.image.toString('base64'); //recreate URL-encoded image
+      } else {
+        unbufferedImg = returnImage.image.toString(); //for backwards compatibility with earlier images
+      }
+      console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({
         image: unbufferedImg
       });
@@ -328,16 +343,22 @@ router.get("/thumbnail",(req,res)=>{
 //{ projectId: String, image: String (need to be in base64!), imageName : String }
 router.post("/thumbnail",(req,res)=>{
   console.log("Received save thumbnail request");
-  let bufferedImg = Buffer.from(req.body.image);
-  const image = new ProjectThumbnail({
-    projectId: req.body.projectId,
-    image: bufferedImg,
-    imageName: req.body.imageName,
+  let urlArray = req.body.image.split(',');
+  let buffer = Buffer.from(urlArray[1], 'base64');
+  compress.tryImgCompress(buffer).then((smolImg)=>{
+    console.log("operation completed");
+    const image = new ProjectThumbnail({
+      projectId: req.body.projectId,
+      image: smolImg,
+      imageName: req.body.imageName,
+      imageHeader: urlArray[0], 
+    });
+    image.save().then(()=>{
+      console.log("Thumbnail saved successfully.");
+      res.send({});
+    });
   });
-  image.save().then(()=>{
-    console.log("Thumbnail saved successfully.");
-    res.send({});
-  });
+
 });
 
 //Check if a user is a collaborator in a project. Expects an object with the following fields:
