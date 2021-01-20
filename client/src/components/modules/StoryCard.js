@@ -115,70 +115,60 @@ class StoryCard extends Component{
                 )   
             }
         }
-        if(this.props.edit){
-            if(this.state.image) {
-                return(
-                    <div className = "u-flex StoryCard-container">
-                        <section className="StoryCard-imageBlockContainer">
-                            <img 
-                                style={{height: "75", width: "75%", objectFit: "contain"}}
-                                src={this.state.image}
-                                className="StoryCard-center"
-                            />
-                            <EditStoryCard 
-                                onEdit = {this.editImage} 
-                                storyObj = {this.props.storyObj} 
-                                editImage={true}
-                            />
-                        </section>
-                        {output}
-                        <section className="StoryCard-linkBlockContainer">
-                            <LinkBlock linkArr = {this.props.storyObj.links}/>
-                        </section>
-                    </div>
-                );
-            } else{
-                return(
-                    <div className = "u-flex StoryCard-container">
-                        <section className="StoryCard-imageBlockContainer">
-                            <h3 className="u-textCenter">Add an Image</h3>
-                            <EditStoryCard 
-                                onEdit = {this.editImage} 
-                                storyObj = {this.props.storyObj} 
-                                editImage={true}
-                            />
-                        </section>
-                        {output}
-                        <section className="StoryCard-linkBlockContainer">
-                            <LinkBlock linkArr = {this.props.storyObj.links}/>
-                        </section>
-                    </div>
-                );
-            }
-        }
-        if(this.state.image){
-            return(
-                <div className = "u-flex StoryCard-container">
-                    <section className="StoryCard-imageBlockContainer">
-                        <img 
-                            style={{height: "75%", width: "75%", objectFit: "contain"}}
-                            src={this.state.image}
-                            className="StoryCard-center"
-                        />
-                    </section>
-                    {output}
-                    <section className="StoryCard-linkBlockContainer">
-                        <LinkBlock linkArr = {this.props.storyObj.links}/>
-                    </section>
-                </div>
-            );
-        }
+        // if(this.props.edit){
+        //     if(this.state.image) {
+        //         return(
+        //             <div className = "u-flex StoryCard-container">
+        //                 <section className="StoryCard-imageBlockContainer">
+        //                     <img 
+        //                         style={{height: "75", width: "75%", objectFit: "contain"}}
+        //                         src={this.state.image}
+        //                         className="StoryCard-center"
+        //                     />
+        //                     <EditStoryCard 
+        //                         onEdit = {this.editImage} 
+        //                         storyObj = {this.props.storyObj} 
+        //                         editImage={true}
+        //                     />
+        //                 </section>
+        //             </div>
+        //         );
+        //     } else{
+        //         return(
+        //             <div className = "u-flex StoryCard-container">
+        //                 <section className="StoryCard-imageBlockContainer">
+        //                     <h3 className="u-textCenter">Add an Image</h3>
+        //                     <EditStoryCard 
+        //                         onEdit = {this.editImage} 
+        //                         storyObj = {this.props.storyObj} 
+        //                         editImage={true}
+        //                     />
+        //                 </section>
+        //             </div>
+        //         );
+        //     }
+        // }
+        // if(this.state.image){
+        //     return(
+        //         <div className = "u-flex StoryCard-container">
+        //             <section className="StoryCard-imageBlockContainer">
+        //                 <img 
+        //                     style={{height: "75%", width: "75%", objectFit: "contain"}}
+        //                     src={this.state.image}
+        //                     className="StoryCard-center"
+        //                 />
+        //             </section>
+        //         </div>
+        //     );
+        // }
         return(
             <div className = "u-flex StoryCard-container">
                 <section className="StoryCard-imageBlockContainer" />
                 {output}
                 <section className="StoryCard-linkBlockContainer">
-                    <LinkBlock linkArr = {this.props.storyObj.links}/>
+                    {/* <LinkBlock edit= {this.props.edit} 
+                    editing ={this.state.editing} 
+                    linkArr = {this.props.storyObj.links}/> */}
                 </section>
             </div>
         );
