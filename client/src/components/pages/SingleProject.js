@@ -28,7 +28,7 @@ class SingleProject extends Component{
         super(props);
         this.state = {
             stories: [],
-            edit: true
+            edit: false
 
         }
         
