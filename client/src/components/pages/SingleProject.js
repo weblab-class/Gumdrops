@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
 import "./SingleProject.css";
+import DeleteProject from "../modules/DeleteProject.js";
 
 //this would be used to render what you see w
 //when you open a project 
@@ -62,7 +63,7 @@ class SingleProject extends Component{
     }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
-        console.log("i added a new story")
+        console.log("i added a new story");
         this.setState({
             stories: this.state.stories.concat([storyObj]),
         });
@@ -122,6 +123,7 @@ class SingleProject extends Component{
                     <h4>Loading may take some time..</h4>
                     {storiesList}
                     <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
+                    <DeleteProject projectId={this.props.projectId}/>
                 </section>
                 <section className="projectJournal-container">
                     <Journal userId ={this.props.userId} projectId={this.props.projectId}/>
