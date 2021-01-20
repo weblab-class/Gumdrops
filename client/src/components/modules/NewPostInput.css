@@ -3,6 +3,7 @@
   font-family: "Open Sans";
   font-size: 14px;
   padding: var(--s) var(--m);
+  background-color: var(--grey);
 }
 
 .NewPostInput-input {
@@ -21,7 +22,7 @@
   color: var(--primary);
   border: var(--primary) 1px solid;
   border-radius: 0 var(--xs) var(--xs) 0;
-  background: var(--white);
+  background: var(--grey);
   transition: color 0.1s, background 0.1s;
 }
 .NewPostInput-story{
