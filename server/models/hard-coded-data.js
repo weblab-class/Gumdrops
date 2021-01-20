@@ -36,3 +36,23 @@ const newStoryCard = {
 post("/api/storycards",newStoryCard);
 //in handleLogout()
 get("/api/storycards",{projectId:"6002597bb45b7733b322e9ad"}).then((storycards)=>console.log(storycards));
+
+
+//An old copy of the get("/projects") route:
+/*
+User.findById(req.query.userid).then( async (user)=>
+{
+  try{
+    let arrayLength = user.projectIds.length;
+    let outProjects = [];
+    for (var i = 0; i < arrayLength; i++) {
+      console.log("User is in "+user.projectIds[i]+'\n');
+      let project = await Project.findById(user.projectIds[i]);
+      outProjects.push(project);
+      console.log("Found project "+project.name+"\n");
+    }
+    res.send({projects:outProjects});
+  } catch(e) {
+    res.status(400).json({message:e.message});
+  }
+}); */

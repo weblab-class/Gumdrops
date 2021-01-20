@@ -96,28 +96,22 @@ router.post("/project",(req,res)=>{
 //Retrieve all the projects associated with a specific UserId: Expects an object of:
 //{ userid : String}
 router.get("/projects",(req,res)=>{
-  User.findById(req.query.userid).then( async (user)=>
-  {
-    try{
-      let arrayLength = user.projectIds.length;
-      let outProjects = [];
-      for (var i = 0; i < arrayLength; i++) {
-        console.log("User is in "+user.projectIds[i]+'\n');
-        let project = await Project.findById(user.projectIds[i]);
-        outProjects.push(project);
-        console.log("Found project "+project.name+"\n");
-      }
-      res.send({projects:outProjects});
-    } catch(e) {
-      res.status(400).json({message:e.message});
-    }
-  });
+
+  //New Method directly queries the Project collections for the right userid
+  console.log("Finding projects for "+req.query.userid);
+  Project.find({"collaborators.userId": req.query.userid})
+    .then((outProjects)=>{
+      res.send({projects: outProjects});
+    })
+    .catch(error=>{
+      console.log(error);
+    });
 });
 
 //Retrieve all the projects in the database
 //Expects no input
 router.get("/explore",(req,res)=> {
-  Project.find().then((projects)=>res.send(projects))
+  Project.find({}).then((projects)=>res.send(projects));
 });
 
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
