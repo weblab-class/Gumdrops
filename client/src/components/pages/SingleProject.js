@@ -53,7 +53,6 @@ class SingleProject extends Component{
             });
         });
     }
-    
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
@@ -124,7 +123,7 @@ class SingleProject extends Component{
         } else{
             storiesList = <div>No Stories!</div>
         }
-      //  console.log(this.state.stories[0]._id)
+        //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
         return(
             <>
