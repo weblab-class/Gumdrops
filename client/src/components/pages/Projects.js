@@ -9,6 +9,8 @@ import "./Projects.css";
 //userId : String (passed down from App.js)
 
 class Projects extends Component {
+    _isMounted = false;
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -16,23 +18,25 @@ class Projects extends Component {
         };
     }
 
-    handleInit = () =>{
+    componentDidMount(){
+        this._isMounted = true;
         if(this.props.userId) {
             console.log("Going into handleInit with user");
             get("/api/projects",{ userid:this.props.userId })
             .then((projectObj)=>{
-                this.setState({
-                    projects: projectObj.projects,
-                })
+                if(this._isMounted){
+                    this.setState({
+                        projects: projectObj.projects,
+                    });
+                };
             }).then(console.log("Projects: "+this.state.projects))
-        }   
+        }
     }
-    componentDidMount(){
-        this.handleInit();
+
+    componentWillUnmount(){
+        this._isMounted = false;
     }
-    componentDidUpdate() {
-        //this.handleInit();
-    }
+
     render() {
         if(this.state.projects && this.state.projects[0]){
             const projectList = [...this.state.projects];

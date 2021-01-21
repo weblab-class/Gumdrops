@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import JournalMessage from "./JournalMessage.js";
 import { /*DeleteJournalMessage,*/ NewJournalMessage } from "./NewPostInput.js";
-
 import "./JournalMessages.css";
 
 /**
@@ -40,17 +39,31 @@ class JournalMessages extends Component {
     return `${mm}/${dd}/${yyyy}`;
   }
 
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    if(this.messagesEnd){
+      this.messagesEnd.scrollIntoView({behavior:"smooth"});
+    }
+  }
+
   render() {
     let renderOutput = [];
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
       lastTimeStamp = this.convert(this.props.data.messages[0].timestamp.substr(0,10));
-      renderOutput.push(<><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></>); //header for first date
+      renderOutput.push(<div key={lastTimeStamp}><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></div>); //header for first date
     }
     for(var i=0; i<this.props.data.messages.length;i++){
       let currTimeStamp = this.convert(this.props.data.messages[i].timestamp.substr(0,10));
       if (currTimeStamp!==lastTimeStamp){
-        renderOutput.push(<><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></>);
+        renderOutput.push(<div key={currTimeStamp}><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></div>);
         lastTimeStamp = currTimeStamp;
       }
       renderOutput.push(
@@ -64,6 +77,10 @@ class JournalMessages extends Component {
             <h3 className="u-textCenter">Team Journal</h3>
             <div className="JournalMessages-historyContainer">
               {renderOutput}
+              <div 
+                style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}
+              />
             </div>
           </div>
           <div className="JournalMessages-newContainer">
@@ -78,6 +95,10 @@ class JournalMessages extends Component {
         <h3 className="u-textCenter">Team Journal</h3>
         <div className="JournalMessages-historyContainer">
           {renderOutput}
+          <div 
+                style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}
+              />
         </div>
       </div>
     );

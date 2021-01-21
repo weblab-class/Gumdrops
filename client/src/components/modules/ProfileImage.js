@@ -24,9 +24,11 @@ class ProfileImage extends Component {
             console.log("Going into handleInit with profile image");
             get("/api/image",{ userId : this.props.userId })
             .then((pic)=>{
-                this.setState({
-                    image : pic.image,
-                })
+                if(this._isMounted){
+                    this.setState({
+                        image : pic.image,
+                    });
+                };
             });
         }   
 

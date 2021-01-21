@@ -24,25 +24,21 @@ class Explore extends Component {
     }
 
     makeCategories= (projects) => {
-        let categories = {};
         let categoriesProjects = {};
         projects.forEach((project) => {
             project.tags.forEach((tag) => {
-                if(!(tag in categories)){
-                    categories[tag] = 1;
+                if(!(tag in categoriesProjects)){
                     categoriesProjects[tag] = [project];
                 } else {
-                    categories[tag] += 1;
                     categoriesProjects[tag].push(project);
                 }
             });
         });
         let categoriesArray = [];
-        for (const [key, value] of Object.entries(categories)) {
+        for (const [key, value] of Object.entries(categoriesProjects)) {
             categoriesArray.push({
                 tag : key,
-                count : value,
-                projects : categoriesProjects[key],
+                projects : value,
             });
         }
         return categoriesArray;
@@ -52,20 +48,21 @@ class Explore extends Component {
         let output = [];
         let colors = ["Aqua", "Green", "Yellow"];
         let i=0;
+        let j=0;
         categories.sort(function(a, b) {
-            return b.count - a.count;
+            return b.projects.length - a.projects.length;
         });
         categories.forEach((catObj)=>{
-            output.push(<div className={`Explore-tag${colors[i]}`}>{catObj.tag}</div>)
+            output.push(<div className={`Explore-tag${colors[i]}`} key={catObj.tag}>{catObj.tag}</div>)
             output.push(
-                <section className="u-flex Explore-container">
+                <section className="u-flex Explore-container" key={`${j}`}>
                     {catObj.projects.map((project)=>(
                         <ProjectDisplay 
                             userId={this.props.userId} 
                             projectName={project.name} 
                             projectId={project._id}
                             showRole={false}
-                            key={project._id} 
+                            key={project._id +`${j}`} 
                         />
                     ))}
                 </section>
@@ -75,6 +72,7 @@ class Explore extends Component {
             } else {
                 i+=1;
             };
+            j++;
         });
         return output;
     }

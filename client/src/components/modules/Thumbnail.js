@@ -11,6 +11,8 @@ import "./Thumbnail.css";
  */
 
 class Thumbnail extends Component {
+    _isMounted = false;
+
     constructor(props) {
       super(props);
       this.state = {
@@ -19,12 +21,19 @@ class Thumbnail extends Component {
     }
 
     componentDidMount() {
+      this._isMounted = true;
       let query = {projectId: this.props.projectId};
       get("/api/thumbnail",query).then(result=>{
+        if(this._isMounted){
           this.setState({
               image: result.image,
-          })
+          });
+        };
       });
+    }
+
+    componentWillUnmount() {
+      this._isMounted = false;
     }
 
     render() {
