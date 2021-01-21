@@ -7,7 +7,8 @@ import "./JournalMessage.css";
  *
  * Proptypes
  * @param {MessageObject} message
- */
+ * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
+ */ 
 class JournalMessage extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +44,56 @@ class JournalMessage extends Component {
     } else {
       readableTime += " PM";
     }
+
+    let outputArray;
+    if(this.props.message.content && this.props.userRoles) {
+      let text = this.props.message.content;
+      outputArray = [];
+      while(text!=="") {
+        let nextAt = text.indexOf("@");
+        if(nextAt === -1) {
+            outputArray.push(text);
+            break;
+        } else {
+          if(nextAt !== 0){ 
+            outputArray.push(text.substring(0,nextAt));
+          }
+          text = text.substring(nextAt);
+          let userFound = false;
+          for (const [key, value] of Object.entries(this.props.userRoles)) {
+            if(text.startsWith(key)){
+              console.log("I found username "+key);
+              outputArray.push(key);
+              text = text.substring(key.length);
+              userFound = true;
+              break;
+            }
+          }
+          if(!userFound) { //did not find anything
+            outputArray.push("@");
+            text = text.substring(1);
+          }
+        }
+        }
+    } else {
+      outputArray = this.props.message.content;
+    }
     return (
       <div className={"u-flex u-flex-alignCenter JournalMessage-container"}>
         <span className="JournalMessage-sender u-bold">{this.props.message.sender.name}</span>
         <span className="JournalMessage-time">{readableTime}</span>
-        <span className="JournalMessage-content">{this.props.message.content}</span>
+        <span className="JournalMessage-content">
+          {
+            this.props.userRoles ?
+            outputArray.map((value)=>{
+              if(value in this.props.userRoles){
+                  return <span style={this.props.userRoles[value][2]}><a href={"/profile/"+this.props.userRoles[value][1]}>{value}</a></span>;
+              } else {
+                  return <span>{value}</span>;
+              }
+            })
+            : this.props.message.content
+          }</span>
       </div>
     );
   }

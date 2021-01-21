@@ -26,6 +26,7 @@ import "./JournalMessages.css";
  * Proptypes
  * @param {ChatData} data
  * @param {Boolean} canSend
+ * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  */
 class JournalMessages extends Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class JournalMessages extends Component {
       }
       renderOutput.push(
       <JournalMessage message={this.props.data.messages[i]} 
+        userRoles={this.props.userRoles}
         key={"JournalMessage_"+this.props.data.messages[i].timestamp}/>);
     }
     if(this.props.canSend){
