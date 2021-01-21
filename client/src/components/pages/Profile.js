@@ -11,6 +11,8 @@ import ProfileBio from "../modules/ProfileBio.js"
 //userId: String (used in special routing from App.js)
 //viewerId: String (identifies the person viewing the profile)
 class Profile extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -27,8 +29,19 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
+        this._isMounted = true;
+        get(`/api/user`, { userid: this.props.userId }).then((user) => {
+            if(this._isMounted){
+                this.setState({
+                    user: user 
+                });
+            };
+        });
         console.log("Preparing profile for user "+this.props.userId)
+    }
+
+    componentWillUnmount(){
+        this._isMounted = false;
     }
 
     render() {

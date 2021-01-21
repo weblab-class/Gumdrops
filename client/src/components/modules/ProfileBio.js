@@ -25,9 +25,11 @@ class ProfileBio extends Component {
             console.log("Going into handleInit with profile bio");
             get("/api/profile-bio",{ userId:this.props.userId })
             .then((bio)=>{
-                this.setState({
-                    bio: bio.content,
-                })
+                if(this._isMounted){
+                    this.setState({
+                        bio: bio.content,
+                    });
+                };
             });
         }   
 
@@ -41,7 +43,7 @@ class ProfileBio extends Component {
     }
 
     componentWillUnmount() {
-        this._isMounted = true;
+        this._isMounted = false;
     }
 
     render() {

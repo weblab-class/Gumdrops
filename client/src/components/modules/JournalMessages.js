@@ -58,12 +58,12 @@ class JournalMessages extends Component {
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
       lastTimeStamp = this.convert(this.props.data.messages[0].timestamp.substr(0,10));
-      renderOutput.push(<><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></>); //header for first date
+      renderOutput.push(<div key={lastTimeStamp}><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></div>); //header for first date
     }
     for(var i=0; i<this.props.data.messages.length;i++){
       let currTimeStamp = this.convert(this.props.data.messages[i].timestamp.substr(0,10));
       if (currTimeStamp!==lastTimeStamp){
-        renderOutput.push(<><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></>);
+        renderOutput.push(<div key={currTimeStamp}><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></div>);
         lastTimeStamp = currTimeStamp;
       }
       renderOutput.push(

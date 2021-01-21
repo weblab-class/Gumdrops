@@ -12,6 +12,8 @@ import Thumbnail from "./Thumbnail.js";
 //showRole : Boolean
 
 class ProjectDisplay extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,13 +22,14 @@ class ProjectDisplay extends Component {
     }
 
     componentDidMount(){
+        this._isMounted = true;
         if (this.props.showRole) {
             get("/api/project", {projectId:this.props.projectId}).then((projectObj)=>{
                 console.log("Project found: "+ projectObj.name)
                 let users = projectObj.collaborators;
                 users.forEach((user)=> {
                     console.log("Currently looking at user: "+user.userId);
-                    if(user.userId === this.props.userId) {
+                    if((user.userId === this.props.userId) && this._isMounted) {
                         console.log("Collaborator found with role: "+user.role);
                         this.setState({
                             role: user.role,
@@ -35,6 +38,10 @@ class ProjectDisplay extends Component {
                 });
             }).then(console.log("User Role: "+this.state.role))
         };
+    }
+
+    componentWillUnmount(){
+        this._isMounted = false;
     }
 
     render() {

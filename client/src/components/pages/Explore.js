@@ -48,20 +48,21 @@ class Explore extends Component {
         let output = [];
         let colors = ["Aqua", "Green", "Yellow"];
         let i=0;
+        let j=0;
         categories.sort(function(a, b) {
             return b.projects.length - a.projects.length;
         });
         categories.forEach((catObj)=>{
-            output.push(<div className={`Explore-tag${colors[i]}`}>{catObj.tag}</div>)
+            output.push(<div className={`Explore-tag${colors[i]}`} key={catObj.tag}>{catObj.tag}</div>)
             output.push(
-                <section className="u-flex Explore-container">
+                <section className="u-flex Explore-container" key={`${j}`}>
                     {catObj.projects.map((project)=>(
                         <ProjectDisplay 
                             userId={this.props.userId} 
                             projectName={project.name} 
                             projectId={project._id}
                             showRole={false}
-                            key={project._id} 
+                            key={project._id +`${j}`} 
                         />
                     ))}
                 </section>
@@ -71,6 +72,7 @@ class Explore extends Component {
             } else {
                 i+=1;
             };
+            j++;
         });
         return output;
     }
