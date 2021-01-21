@@ -29,3 +29,9 @@
 .Explore-tagPrimary {
     background-color: var(--yellow);
 }
+
+.Explore-search {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
