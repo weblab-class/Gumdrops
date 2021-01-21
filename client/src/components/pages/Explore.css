@@ -2,7 +2,7 @@
     flex-wrap: wrap;
 }
 
-.Explore-tagAqua, .Explore-tagPink, .Explore-tagPrimary{
+.Explore-tagAqua, .Explore-tagGreen, .Explore-tagYellow{
     border: var(--darkgrey) 1px solid;
     border-radius: var(--m);
     transition: box-shadow 0.1s;
