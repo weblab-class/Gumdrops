@@ -22,7 +22,7 @@ import DeleteProject from "../modules/DeleteProject.js";
  * 
  */
 class SingleProject extends Component{
-    
+    _isMounted = false;
     constructor(props){
         super(props);
         this.state = {
@@ -36,9 +36,11 @@ class SingleProject extends Component{
         get("/api/user-roles",{projectId:this.props.projectId}).then(result=>{
             console.log("user-role API call is completed");
             console.log(result);
-            this.setState({
-                userRoles: result,
-            });
+            if(this._isMounted){
+                this.setState({
+                    userRoles: result,
+                });
+            ;}
         });
     }
     checkCanEdit=()=>{
@@ -47,36 +49,48 @@ class SingleProject extends Component{
             projectId : this.props.projectId
         };
         get("/api/isUserCollaborator",body).then((bool)=>{
-            this.setState({
-                edit: bool,
-            });
+            if(this._isMounted){
+                this.setState({
+                    edit: bool,
+                });
+            };
         });
     }
-    
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
-                this.setState((prevstate) => ({
-                    stories: prevstate.stories.concat([storyObj]),
-                }));
+                if(this._isMounted){
+                    this.setState((prevstate) => ({
+                        stories: prevstate.stories.concat([storyObj]),
+                    }));
+                };
             });
         });
     }
     //called when "SingleProject" mounts
     componentDidMount(){
+        this._isMounted = true;
         document.title = "Single Project";
         this.loadStoryCards();
         this.checkCanEdit();
         this.retrieveUserRoleInfo();
     }
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
+    componentDidUpdate(){
+        this.checkCanEdit();
+    }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
         console.log("i added a new story");
-        this.setState({
-            stories: this.state.stories.concat([storyObj]),
-        });
+        if(this._isMounted){
+            this.setState({
+                stories: this.state.stories.concat([storyObj]),
+            });
+        };
     }
     //automatically deletes story when clicked
     deleteNewStory = (storyObj)=>{
@@ -88,9 +102,11 @@ class SingleProject extends Component{
                 break;
             }
         }
-        this.setState({
-            stories: tempArray,
-        });
+        if(this._isMounted){
+            this.setState({
+                stories: tempArray,
+            });
+        };
     }
     editLinks = (linkObj)=>{
         let tempArray = [...this.state.stories];
@@ -115,9 +131,11 @@ class SingleProject extends Component{
                 break;
             }
         }
-        this.setState({
-            stories:tempArray,
-        })
+        if(this._isMounted){
+            this.setState({
+                stories:tempArray,
+            });
+        };
     }
     render(){
         let storiesList = null;
@@ -139,7 +157,7 @@ class SingleProject extends Component{
         } else{
             storiesList = <div>No Stories!</div>
         }
-      //  console.log(this.state.stories[0]._id)
+        //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
         return(
             <>

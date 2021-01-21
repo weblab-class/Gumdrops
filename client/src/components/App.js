@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
-import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
-import NavBar from "./NavBar.js";
-import Profile from "./pages/Profile.js";
-import "../utilities.css";
-import "./pages/Skeleton.css";
-import Projects from "./pages/Projects.js";
-import Explore from "./pages/Explore.js";
-import StoryCard from "./modules/StoryCard.js";
 import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
+import NavBar from "./NavBar.js";
+import NotFound from "./pages/NotFound.js";
+import Skeleton from "./pages/Skeleton.js";
+import Profile from "./pages/Profile.js";
+import Projects from "./pages/Projects.js";
+import Explore from "./pages/Explore.js";
 import SingleProject from "./pages/SingleProject.js";
 import CreateProject from "./pages/CreateProject.js";
+import Rewards from "./pages/Rewards.js";
+import "../utilities.css";
+import "./pages/Skeleton.css";
 /**
  * Define the "App" component as a class.
  */
@@ -65,8 +65,8 @@ class App extends Component {
           <Explore path="/explore" userId={this.state.userId}/>
           <Projects path="/projects" userId={this.state.userId}/>
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
-          <StoryCard path ="/test1" />
           <CreateProject path="/createproject" userId={this.state.userId}/>
+          <Rewards path="/rewards" userId={this.state.userId}/>
           <NotFound default />
         </Router>
       </>

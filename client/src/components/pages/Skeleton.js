@@ -16,7 +16,6 @@ class Skeleton extends Component {
 
   render() {
     return (
-      <>
       <div className="u-flexColumn">
         <section className="u-textCenter Skeleton-title">
           <h1>For all your project needs</h1>
@@ -25,7 +24,6 @@ class Skeleton extends Component {
           <p>From brainstorming new ideas to designing your next project wiki, Gumdrops make it easy for you to document your project and collaborate with others.</p>
         </section>
       </div>
-      </>
     );
   }
 }
