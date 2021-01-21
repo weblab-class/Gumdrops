@@ -63,12 +63,12 @@ class Profile extends Component {
                     </>
                 );
             }
-            let myStyle = {color:"red",backgroundColor:"lightyellow",fontWeight:"bold",fontSize:"5em"};
+            // let myStyle = {color:"red",backgroundColor:"lightyellow",fontWeight:"bold",fontSize:"5em"};
             if(this.props.userId===this.props.viewerId) {
                 return(
                     <>
                         <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
-                        <p style={myStyle}>This is a sample text</p>
+                        {/* <p style={myStyle}>This is a sample text</p> */}
                         <hr></hr>
                         <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                         <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
