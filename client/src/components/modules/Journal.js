@@ -6,15 +6,12 @@ import { get } from "../../utilities";
 
 import "./Journal.css";
 
-const ALL_CHAT = {
-    _id: "ALL_CHAT",
-    name: "ALL CHAT",
-};
-
 // Props
 // userId: String (id of current logged in user)
 // projectId: String (id of the project it corresponds to)
 // canSend: Boolean (dictates whether user can send messages in the journal)
+// userRoles: Object (where key is userName and value is an Array of [userName,userId,roleStyle])
+
 class Journal extends Component {
   /**
    * @typedef UserObject
@@ -68,7 +65,7 @@ class Journal extends Component {
             // there's nothing to load. (Also prevents data races with socket event)
             if(this.props.userId) {
                 this.setState({
-                    activeUsers: [ALL_CHAT].concat(data.activeUsers),
+                    activeUsers: data.activeUsers,
                 });
             };
         })
@@ -85,7 +82,7 @@ class Journal extends Component {
 
         socket.on("activeUsers", (data) => {
             this.setState({
-                activeUsers: [ALL_CHAT].concat(data.activeUsers),
+                activeUsers: data.activeUsers,
             });
         });
     }
@@ -115,7 +112,7 @@ class Journal extends Component {
                         />
                     </div> */}
                     <div className="Journal-chatContainer">
-                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend}/>
+                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend} userRoles={this.props.userRoles}/>
                     </div>
                 </div>
             </>

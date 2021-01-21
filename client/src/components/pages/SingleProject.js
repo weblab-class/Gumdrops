@@ -27,11 +27,21 @@ class SingleProject extends Component{
         super(props);
         this.state = {
             stories: [],
+            userRoles: undefined,
             edit: false,
         }
         
     }
-
+    retrieveUserRoleInfo = () => {
+        console.log("Going into user-roles API call");
+        get("/api/user-roles",{projectId:this.props.projectId}).then(result=>{
+            console.log("user-role API call is completed");
+            console.log(result);
+            this.setState({
+                userRoles: result,
+            });
+        });
+    }
     checkCanEdit=()=>{
         const body = {
             userId : this.props.userId,
@@ -60,6 +70,7 @@ class SingleProject extends Component{
         document.title = "Single Project";
         this.loadStoryCards();
         this.checkCanEdit();
+        this.retrieveUserRoleInfo();
     }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
@@ -126,7 +137,7 @@ class SingleProject extends Component{
                     <DeleteProject projectId={this.props.projectId}/>
                 </section>
                 <section className="projectJournal-container">
-                    <Journal userId ={this.props.userId} projectId={this.props.projectId} canSend={this.state.edit}/>
+                    <Journal userId ={this.props.userId} projectId={this.props.projectId} userRoles={this.state.userRoles} canSend={this.state.edit}/>
                 </section>
             </div>
 

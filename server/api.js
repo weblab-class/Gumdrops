@@ -70,6 +70,38 @@ router.post("/user_add_project",(req,res)=>{
   }}).then(result=>res.send({})).catch(e=>console.log(e));
 });
 
+//Returns the user names of all collaborators on a project and their appropriate role styling. Expects an object of:
+// { projectId: String }
+//Returns an array of { userName : [roleName,userId,roleStyling] } objects.
+router.get("/user-roles", async (req,res)=>{
+  console.log("Going into /user-roles");
+  try {
+    let myProject = await Project.findById(req.query.projectId);
+    //console.log(myProject);
+    let outUsers= {};
+    let outRoles= {};
+
+    for(var i=0; i < myProject.collaborators.length;i++){
+      let userObj =  await User.findById(myProject.collaborators[i].userId);
+      let userArray = [myProject.collaborators[i].role,myProject.collaborators[i].userId]; //associate username with role & userId
+      //console.log("Looking for "+myProject.collaborators[i].role);
+      if(!(myProject.collaborators[i].role in outRoles)) { //role not queried before
+        let roleObj = await Role.findOne({roleName: myProject.collaborators[i].role});
+        userArray.push(roleObj.styling);
+        outRoles[roleObj.roleName] = roleObj.styling;
+      } else {
+        userArray.push(outRoles[myProject.collaborators[i].role]);
+      }
+      outUsers["@"+userObj.name] = userArray;
+    }
+    //console.log(outUsers);
+    res.send(outUsers);
+  } catch(e) {
+    console.log(e);
+  }
+});
+
+
 //Return the Project object corresponding to a specific projectID. Expects an object of:
 // { projectId: String }
 router.get("/project",(req,res)=>{
@@ -204,7 +236,7 @@ router.post("/editstorycard",(req,res)=>{
 });
 
 router.get("/story-image",(req,res)=>{
-  console.log("Finding story with id: "+req.query._id);
+  //console.log("Finding story with id: "+req.query._id);
   StoryCard.findOne({"_id" : req.query._id}).then((storyCard)=>{
     // console.log("Sending image: "+storyCard.imageMedia);
     if((storyCard.imageMedia !== null) && storyCard.imageMedia){
@@ -214,7 +246,7 @@ router.get("/story-image",(req,res)=>{
       } else {
         unbufferedImg = storyCard.imageMedia.toString(); //for backwards compatibility with earlier images
       }
-      console.log("Recovered image string "+unbufferedImg.substr(0,200));
+      //console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({image:unbufferedImg});
     }
   }).catch((err)=>console.log("there was an errorr alarm"+err));
@@ -286,11 +318,11 @@ router.post("/image",(req,res)=>{
 //{ userId: String }
 router.get("/image",(req,res)=>{
   console.log("Received get profile image request");
-  console.log("Trying to match image with id "+req.query.userId);
+  //console.log("Trying to match image with id "+req.query.userId);
   ProfileImage.findOne({"userId": req.query.userId})
     .then((returnImage)=> {
       let unbufferedImg = returnImage.image.toString();
-      console.log("Recovered image string "+unbufferedImg.substr(0,200));
+      //console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({
         image: unbufferedImg
       });
@@ -332,7 +364,7 @@ router.get("/thumbnail",(req,res)=>{
       } else {
         unbufferedImg = returnImage.image.toString(); //for backwards compatibility with earlier images
       }
-      console.log("Recovered image string "+unbufferedImg.substr(0,200));
+      //console.log("Recovered image string "+unbufferedImg.substr(0,200));
       res.send({
         image: unbufferedImg
       });
