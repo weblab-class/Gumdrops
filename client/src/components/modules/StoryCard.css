@@ -55,3 +55,7 @@
 .StoryCard-linkinputContainer{
     max-width:100%;
 }
+.StoryCard-textAreaContainer{
+    resize:both;
+    overflow: auto;
+}

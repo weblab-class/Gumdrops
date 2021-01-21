@@ -27,18 +27,9 @@ class SingleProject extends Component{
         super(props);
         this.state = {
             stories: [],
-<<<<<<< HEAD
-            edit: true
-
-        }//in case i forget change back to false 
-
-       
-=======
             userRoles: undefined,
             edit: false,
         }
-        
->>>>>>> 2f91e660f2df1882d4ef21c939cf15f79c5fa5b5
     }
     retrieveUserRoleInfo = () => {
         console.log("Going into user-roles API call");

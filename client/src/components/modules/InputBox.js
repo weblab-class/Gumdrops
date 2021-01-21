@@ -35,7 +35,7 @@ class InputBox extends Component{
     }
     render(){
         return(
-            <div className="u-flex StoryCard-linkinputContainer">
+            <div className="u-flex StoryCard-linkinputC">
                 <input
                 type= {this.props.type}
                 placeholder={this.props.defaultText}

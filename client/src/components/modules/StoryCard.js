@@ -9,6 +9,8 @@ import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
 import EditStoryCard from "./EditStoryCard.js";
 import LinkBlock from "./LinkBlock.js";
+import SingleText from "./SingleText.js";
+
 /**
  * Proptypes 
  * @param {Object} storyObj : sends story object
@@ -19,7 +21,7 @@ class StoryCard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            storytext: "",
+            storytext: this.props.storyObj.textContent,
             image: undefined,
             editing: false
         };
@@ -27,8 +29,7 @@ class StoryCard extends Component{
     }
     //runs when storycard mounts
     componentDidMount(){
-        this.setState({storytext : this.props.storyObj.textContent,
-            links:this.props.storyObj.links});
+        
         
         get("/api/story-image", {_id:this.props.storyObj._id}).then((pic)=>{
             if(pic !== null) {
@@ -99,18 +100,21 @@ class StoryCard extends Component{
     }
     
     render(){ 
-        let output = null;
+        
+        let button = <></>;
+        let text = (<SingleText
+             defaultText = "EnterStory"
+            prevStory = {this.state.storytext}
+            isEditing = {this.state.editing}
+         onSumbit = {this.editStory}/>)
+        //  <section className="StoryCard-textBlockContainer">
+        //         </section>
         if(!this.props.edit){ //not allowed to edit 
-            output = (
-                <section className="StoryCard-textBlockContainer">
-                    <p>{this.state.storytext}</p>
-                </section>
-                )
+            
         } else{
             if(!this.state.editing){ //not editing right now
-                output = (
-                <section className="StoryCard-textBlockContainer">
-                    <p className= "StoryCard-storytext">{this.state.storytext}</p>
+                button = (
+                    <>
                     <button 
                         type = "submit"
                         className = "NewPostInput-button StoryCard-editButton u-pointer"
@@ -118,18 +122,13 @@ class StoryCard extends Component{
                         onClick={this.clickedEditing}
                         >Edit
                     </button>
-                </section>
+                    </>
                 )
             }
             else{ //is currently editing
-                output = (
-                <section className="StoryCard-textBlockContainer">
+                button = (
+                <>
                     <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
-                    <EditStoryCard 
-                        onEdit = {this.editStory} 
-                        storyObj = {this.props.storyObj}
-                        editImage={false}
-                    />
                     <button 
                         type = "submit"
                         className = "NewPostInput-button u-pointer"
@@ -137,66 +136,75 @@ class StoryCard extends Component{
                         onClick={this.clickedEditing}
                         >Cancel
                     </button>
-                </section>
+                </>
                 )   
             }
         }
-        // if(this.props.edit){
-        //     if(this.state.image) {
-        //         return(
-        //             <div className = "u-flex StoryCard-container">
-        //                 <section className="StoryCard-imageBlockContainer">
-        //                     <img 
-        //                         style={{height: "75", width: "75%", objectFit: "contain"}}
-        //                         src={this.state.image}
-        //                         className="StoryCard-center"
-        //                     />
-        //                     <EditStoryCard 
-        //                         onEdit = {this.editImage} 
-        //                         storyObj = {this.props.storyObj} 
-        //                         editImage={true}
-        //                     />
-        //                 </section>
-        //             </div>
-        //         );
-        //     } else{
-        //         return(
-        //             <div className = "u-flex StoryCard-container">
-        //                 <section className="StoryCard-imageBlockContainer">
-        //                     <h3 className="u-textCenter">Add an Image</h3>
-        //                     <EditStoryCard 
-        //                         onEdit = {this.editImage} 
-        //                         storyObj = {this.props.storyObj} 
-        //                         editImage={true}
-        //                     />
-        //                 </section>
-        //             </div>
-        //         );
-        //     }
-        // }
-        // if(this.state.image){
-        //     return(
-        //         <div className = "u-flex StoryCard-container">
-        //             <section className="StoryCard-imageBlockContainer">
-        //                 <img 
-        //                     style={{height: "75%", width: "75%", objectFit: "contain"}}
-        //                     src={this.state.image}
-        //                     className="StoryCard-center"
-        //                 />
-        //             </section>
-        //         </div>
-        //     );
-        // }
-        return(
-            <div className = "u-flex StoryCard-container">
+        let fullBox = (
+            <>
                 <section className="StoryCard-imageBlockContainer" />
-                {output}
+                {text}
+                {button}
                 <section className="StoryCard-linkBlockContainer">
                     <LinkBlock  onEdit={this.editLink}
                     editing ={this.state.editing} 
                     linkArr = {this.props.storyObj.links}
                     onDel = {this.deleteLink}/>
                 </section>
+            </>
+        )
+        if(this.props.edit){
+            if(this.state.image) {
+                return(
+                    <div className = "u-flex StoryCard-container">
+                        <section className="StoryCard-imageBlockContainer">
+                            <img 
+                                style={{height: "75", width: "75%", objectFit: "contain"}}
+                                src={this.state.image}
+                                className="StoryCard-center"
+                            />
+                            <EditStoryCard 
+                                onEdit = {this.editImage} 
+                                storyObj = {this.props.storyObj} 
+                                editImage={true}
+                            />
+                        </section>
+                        {fullBox}
+                    </div>
+                );
+            } else{
+                return(
+                    <div className = "u-flex StoryCard-container">
+                        <section className="StoryCard-imageBlockContainer">
+                            <h3 className="u-textCenter">Add an Image</h3>
+                            <EditStoryCard 
+                                onEdit = {this.editImage} 
+                                storyObj = {this.props.storyObj} 
+                                editImage={true}
+                            />
+                        </section>
+                        {fullBox}
+                    </div>
+                );
+            }
+        }
+        if(this.state.image){
+            return(
+                <div className = "u-flex StoryCard-container">
+                    <section className="StoryCard-imageBlockContainer">
+                        <img 
+                            style={{height: "75%", width: "75%", objectFit: "contain"}}
+                            src={this.state.image}
+                            className="StoryCard-center"
+                        />
+                    </section>
+                    {fullBox}
+                </div>
+            );
+        }
+        return(
+            <div className = "u-flex StoryCard-container">
+                {fullBox}
             </div>
         );
     }

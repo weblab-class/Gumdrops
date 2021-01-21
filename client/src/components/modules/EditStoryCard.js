@@ -78,30 +78,6 @@ class EditStoryCard extends Component {
             this.props.onEdit && this.props.onEdit(changes);
         }
     };
-
-    //handles typing 
-    handleChange = (event)=>{
-        this.setState({
-            content: event.target.value
-        });
-    }
-    //handles saving changes
-    handleSave = (event)=>{
-        event.preventDefault();
-        const changes = {textContent:this.state.content};
-        this.props.onEdit && this.props.onEdit(changes);
-    }
-    //initializes stats
-    initState = (storyObj)=>{
-        this.setState({
-            content:this.props.storyObj.textContent,
-        });
-    }
-    // this is run when EditStoryCard mount
-    componentDidMount(){
-        this.initState(this.props.storyObj);
-    }
-    
     render(){
         if(this.props.editImage){
             return (
@@ -125,17 +101,6 @@ class EditStoryCard extends Component {
                 </div>
             );
         }
-        return(
-            <div className ="u-flex">
-                <input 
-                type = "text"
-                placeholder="enter story"
-                value = {this.state.content}
-                onChange = {this.handleChange}
-                className = "NewPostInput-story"
-                />
-            </div> 
-        )
     }
 }
 export default EditStoryCard
