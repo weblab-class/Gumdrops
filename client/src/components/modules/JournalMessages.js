@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import JournalMessage from "./JournalMessage.js";
 import { /*DeleteJournalMessage,*/ NewJournalMessage } from "./NewPostInput.js";
-
 import "./JournalMessages.css";
 
 /**
@@ -40,6 +39,20 @@ class JournalMessages extends Component {
     return `${mm}/${dd}/${yyyy}`;
   }
 
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom = () => {
+    if(this.messagesEnd){
+      this.messagesEnd.scrollIntoView({behavior:"smooth"});
+    }
+  }
+
   render() {
     let renderOutput = [];
     let lastTimeStamp;
@@ -64,6 +77,10 @@ class JournalMessages extends Component {
             <h3 className="u-textCenter">Team Journal</h3>
             <div className="JournalMessages-historyContainer">
               {renderOutput}
+              <div 
+                style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}
+              />
             </div>
           </div>
           <div className="JournalMessages-newContainer">
@@ -78,6 +95,10 @@ class JournalMessages extends Component {
         <h3 className="u-textCenter">Team Journal</h3>
         <div className="JournalMessages-historyContainer">
           {renderOutput}
+          <div 
+                style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}
+              />
         </div>
       </div>
     );
