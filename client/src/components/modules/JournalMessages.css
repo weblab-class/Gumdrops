@@ -7,6 +7,15 @@
     border-radius: 10% 10% 0 0;
     border: 3px solid var(--pink);
 }
+
+.JournalMessages-containerCantSend {
+    position: absolute;
+    height: 80vh;
+    width: 100%;
+    background-color: var(--primary--dim);
+    border-radius: 10%;
+    border: 3px solid var(--pink);
+}
   
 .JournalMessages-newContainer {
     width: 100%;

@@ -11,6 +11,7 @@ const StoryCardSchema = new mongoose.Schema({
     links: [String],
     videoMedia: String,
     imageMedia: Buffer,
+    imageHeader: String, //used to recreate image original URL-encoded data
 });
 
 module.exports = mongoose.model("storycard",StoryCardSchema);

@@ -15,24 +15,20 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: undefined,
+            editing: false,
         };
       }
 
-    handleInit = () =>{
-        // if(this.props.userId) {
-        //     console.log("Going into handleInit with profile");
-        //     get("/api/profile",{ userid:this.props.userId })
-        //     .then((profile)=>{
-        //         this.setState({
-        //             profile: profile,
-        //         })
-        //     });
-        // }   
-        console.log("Preparing profile for user "+this.props.userId)
+    clickedEditing=(event)=>{
+        event.preventDefault();
+        this.setState((prevstate) => ({
+            editing: !prevstate.editing,
+        }));
     }
+
     componentDidMount() {
         get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
-        this.handleInit();
+        console.log("Preparing profile for user "+this.props.userId)
         //The below command was used to trigger LinkPreview API
         //It is temporary placeholder.
         let linkArray = ["https://gumdrops.herokuapp.com/","https://www.youtube.com/watch?v=fn3KWM1kuAw"];
@@ -42,12 +38,36 @@ class Profile extends Component {
 
     render() {
         if(this.state.user) {
+            if(this.state.editing) {
+                return(
+                    <>
+                        <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                        <hr></hr>
+                        <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
+                        <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
+                        <button 
+                        type = "submit"
+                        className = "Profile-edit u-pointer"
+                        value = "Submit"
+                        onClick={this.clickedEditing}
+                        >Done
+                    </button>
+                    </>
+                );
+            }
             return(
                 <>
                     <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
                     <hr></hr>
-                    <ProfileImage userId={this.props.userId}/>
-                    <ProfileBio userId={this.props.userId}/>
+                    <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
+                    <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
+                    <button 
+                        type = "submit"
+                        className = "Profile-edit u-pointer"
+                        value = "Submit"
+                        onClick={this.clickedEditing}
+                        >Edit
+                    </button>
                 </>
             );
         }

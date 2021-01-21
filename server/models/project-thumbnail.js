@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const ProjectThumbnailSchema = new mongoose.Schema({
   projectId : String,
   image: Buffer,
+  imageHeader: String,
 });
 
 // compile model from schema

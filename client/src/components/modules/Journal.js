@@ -14,7 +14,7 @@ const ALL_CHAT = {
 // Props
 // userId: String (id of current logged in user)
 // projectId: String (id of the project it corresponds to)
-
+// canSend: Boolean (dictates whether user can send messages in the journal)
 class Journal extends Component {
   /**
    * @typedef UserObject
@@ -115,7 +115,7 @@ class Journal extends Component {
                         />
                     </div> */}
                     <div className="Journal-chatContainer">
-                        <JournalMessages data={this.state.activeChat} />{/*senderId={this.props.userId}*/}
+                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend}/>
                     </div>
                 </div>
             </>

@@ -1,4 +1,4 @@
-.Profile-imageInputContainer, .Profile-image, .Profile-bioContainer {
+.Profile-imageInputContainer, .Profile-image, .Profile-bioContainer, .Profile-edit {
     margin-top: var(--m);
     position: relative;
     left: 50%;
@@ -29,3 +29,20 @@
     margin-top: 0;
     margin-bottom: 1em;
 }
+
+.Profile-edit {
+    font-family: "Open Sans";
+    font-size: 14px;
+    padding: var(--s) var(--m);
+    background-color: var(--grey);
+    border-radius: var(--xs);
+    color: var(--primary);
+    border: var(--primary) 1px solid;
+    background: var(--grey);
+    transition: color 0.1s, background 0.1s;
+}
+
+.Profile-edit:hover {
+    color: var(--white);
+    background-color: var(--primary);
+  }

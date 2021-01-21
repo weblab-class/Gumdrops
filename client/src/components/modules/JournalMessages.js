@@ -26,6 +26,7 @@ import "./JournalMessages.css";
  *
  * Proptypes
  * @param {ChatData} data
+ * @param {Boolean} canSend
  */
 class JournalMessages extends Component {
   constructor(props) {
@@ -56,24 +57,29 @@ class JournalMessages extends Component {
       <JournalMessage message={this.props.data.messages[i]} 
         key={"JournalMessage_"+this.props.data.messages[i].timestamp}/>);
     }
-    return (
-      <>
-        <div className="u-flexColumn JournalMessages-container">
-          <h3 className="u-textCenter">Team Journal</h3>
-          {/*<div className="JournalMessages-historyContainer">
-            {this.props.data.messages.map((m, i) => (
-              <JournalMessage message={m} key={i} />
-            ))}
-            </div>*/}
-          <div className="JournalMessages-historyContainer">
-            {renderOutput}
+    if(this.props.canSend){
+      return (
+        <>
+          <div className="u-flexColumn JournalMessages-container">
+            <h3 className="u-textCenter">Team Journal</h3>
+            <div className="JournalMessages-historyContainer">
+              {renderOutput}
+            </div>
           </div>
+          <div className="JournalMessages-newContainer">
+            <NewJournalMessage recipient={this.props.data.recipient} />
+            {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
+          </div>
+      </>
+      );
+    }
+    return (
+      <div className="u-flexColumn JournalMessages-containerCantSend">
+        <h3 className="u-textCenter">Team Journal</h3>
+        <div className="JournalMessages-historyContainer">
+          {renderOutput}
         </div>
-      <div className="JournalMessages-newContainer">
-        <NewJournalMessage recipient={this.props.data.recipient} />
-        {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
       </div>
-    </>
     );
   }
 }

@@ -7,7 +7,7 @@ async function tryLinkPreview(linkArray) {
           let processedLink =  await link.getLinkPreview(linkArray[i]);
           result.push(processedLink);
         }
-        console.log(result);
+        //console.log(result);
         return result;
     } catch(e) {
         console.log(e);

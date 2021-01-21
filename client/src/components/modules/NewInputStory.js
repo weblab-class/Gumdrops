@@ -27,7 +27,7 @@ class NewInputStory extends Component {
     handleAdd = (event) => {
         event.preventDefault();
         
-        const body = {projectId: this.props.projectId , textTitle: "",textContent: "",links: [],videoMedia:"",imageMedia:null};
+        const body = {projectId: this.props.projectId , textTitle: "",textContent: "",links: [],videoMedia:"",imageMedia:null,imageHeader:""};
         post("/api/storycards", body).then((story)=>
         {
             console.log("hey i added a new story");

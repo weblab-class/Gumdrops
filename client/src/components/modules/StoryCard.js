@@ -38,13 +38,15 @@ class StoryCard extends Component{
                 });
             }
         });
-        console.log("State: "+this.state.image)
+        // console.log("State: "+this.state.image)
     }
 
     //changes state of editing 
     clickedEditing=(event)=>{
         event.preventDefault();
-        this.setState({editing: !this.state.editing});
+        this.setState((prevstate) => ({
+            editing: !prevstate.editing,
+        }));
     }
     //extra steps needed for handling link nad posting 
     editLink = (addLink)=>{
@@ -79,7 +81,6 @@ class StoryCard extends Component{
         let body = {_id: this.props.storyObj._id, changes:changesObj}
         console.log(body);
         post("/api/editstorycard",body).then((story) =>{
-            console.log(story.imageMedia);
             
             this.setState({
                 image:changesObj.imageMedia,

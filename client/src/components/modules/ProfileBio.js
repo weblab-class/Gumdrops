@@ -7,9 +7,9 @@ import "../pages/Profile.css"
 
 //Props
 //userId: String (passed down from Profile.js)
-
+//editing: Boolean (if user is currently editing their profile)
 class ProfileBio extends Component {
-_isMounted = false;
+    _isMounted = false;
 
     constructor(props) {
         super(props);
@@ -46,17 +46,24 @@ _isMounted = false;
 
     render() {
         if (this.state.bio) {
-            console.log("Bio: "+this.state.bio);
+            if (this.props.editing) {
+                return(
+                    <>
+                        <div className="Profile-sectionContainer">
+                            <h2 className="u-textCenter h2">Bio:</h2>
+                            <p className="u-textCenter">{this.state.bio}</p>
+                        </div>
+                        <div className="Profile-bioContainer">
+                            <NewBio userId={this.props.userId}/>
+                        </div>
+                    </>
+                );
+            }
             return(
-                <>
-                    <div className="Profile-sectionContainer">
-                        <h2 className="u-textCenter h2">Bio:</h2>
-                        <p className="u-textCenter">{this.state.bio}</p>
-                    </div>
-                    <div className="Profile-bioContainer">
-                        <NewBio userId={this.props.userId}/>
-                    </div>
-                </>
+                <div className="Profile-sectionContainer">
+                    <h2 className="u-textCenter h2">Bio:</h2>
+                    <p className="u-textCenter">{this.state.bio}</p>
+                </div>
             );
         }
         return (
