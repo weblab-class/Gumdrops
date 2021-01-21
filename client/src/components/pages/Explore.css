@@ -2,7 +2,7 @@
     flex-wrap: wrap;
 }
 
-.Explore-tagAqua, .Explore-tagPink, .Explore-tagPrimary{
+.Explore-tagAqua, .Explore-tagGreen, .Explore-tagYellow{
     border: var(--darkgrey) 1px solid;
     border-radius: var(--m);
     transition: box-shadow 0.1s;
@@ -22,10 +22,16 @@
     background-color: var(--aqua);
 }
 
-.Explore-tagPink {
+.Explore-tagGreen {
     background-color: var(--green);
 }
 
-.Explore-tagPrimary {
+.Explore-tagYellow {
     background-color: var(--yellow);
+}
+
+.Explore-search {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }

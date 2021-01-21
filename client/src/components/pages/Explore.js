@@ -14,7 +14,6 @@ class Explore extends Component {
     }
 
     handleInit = () => {
-        console.log("Log 1: "+this.state.projects)
         console.log("Going into handleInit for explore");
         get("/api/explore",{})
         .then((projects)=>{
@@ -22,19 +21,62 @@ class Explore extends Component {
                 projects: projects,
             })
         }).then(console.log("Projects: "+this.state.projects))
-        console.log("Log 2: "+this.state.projects)
     }
 
-    organize = (projects, categories) => {
-        projects.forEach((project)=>console.log(project.name));
-        const dict = {
-            "#Music" : projects.slice(0, 2),
-            "#Math" : projects.slice(2, 3),
-            "#Science" : projects.slice(3, projects.length),
-        };
-        dict[categories[0]].forEach((project)=>console.log("Project: "+project.name));
-        console.log("Projects split into Music: "+dict[categories[0]]+", Math: "+dict[categories[1]]+", and Science: "+dict[categories[2]])
-        return(dict);
+    makeCategories= (projects) => {
+        let categories = {};
+        let categoriesProjects = {};
+        projects.forEach((project) => {
+            project.tags.forEach((tag) => {
+                if(!(tag in categories)){
+                    categories[tag] = 1;
+                    categoriesProjects[tag] = [project];
+                } else {
+                    categories[tag] += 1;
+                    categoriesProjects[tag].push(project);
+                }
+            });
+        });
+        let categoriesArray = [];
+        for (const [key, value] of Object.entries(categories)) {
+            categoriesArray.push({
+                tag : key,
+                count : value,
+                projects : categoriesProjects[key],
+            });
+        }
+        return categoriesArray;
+    }
+
+    generateOutput = (categories) => {
+        let output = [];
+        let colors = ["Aqua", "Green", "Yellow"];
+        let i=0;
+        categories.sort(function(a, b) {
+            return b.count - a.count;
+        });
+        categories.forEach((catObj)=>{
+            output.push(<div className={`Explore-tag${colors[i]}`}>{catObj.tag}</div>)
+            output.push(
+                <section className="u-flex Explore-container">
+                    {catObj.projects.map((project)=>(
+                        <ProjectDisplay 
+                            userId={this.props.userId} 
+                            projectName={project.name} 
+                            projectId={project._id}
+                            showRole={false}
+                            key={project._id} 
+                        />
+                    ))}
+                </section>
+            );
+            if(i===2){
+                i=0;
+            } else {
+                i+=1;
+            };
+        });
+        return output;
     }
 
     componentDidMount(){
@@ -43,53 +85,12 @@ class Explore extends Component {
 
     render() {
         if(this.state.projects) {
-            console.log("Log 3: "+this.state.projects)
-            const projectList = [...this.state.projects];
-            const categoryList = ["#Music", "#Math", "#Science"];
-            const organizedLists = this.organize(projectList, categoryList);
-            //projectList.forEach((projects, i) => console.log("Project " + i + ": " + projects.name));
-            const projects1 = organizedLists[categoryList[0]];
-            const projects2 = organizedLists[categoryList[1]];
-            const projects3 = organizedLists[categoryList[2]];
+            const categoriesList = this.makeCategories([...this.state.projects]);
+            const output = this.generateOutput(categoriesList);
             return(
                 <div>
-                    <marquee><h1>Look at all these projects organized by tags!!!</h1></marquee>
-                    <div className="Explore-tagAqua">{categoryList[0]}</div>
-                    <section className="u-flex Explore-container">
-                        {projects1.map((project) => (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id}
-                                showRole={false}
-                                key={project._id} 
-                            />
-                        ))}
-                    </section>
-                    <div className="Explore-tagPink">{categoryList[1]}</div>
-                    <section className="u-flex Explore-container">
-                        {projects2.map((project) => (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id}
-                                showRole={false}
-                                key={project._id} 
-                            />
-                        ))}
-                    </section>
-                    <div className="Explore-tagPrimary">{categoryList[2]}</div>
-                    <section className="u-flex Explore-container">
-                        {projects3.map((project) => (
-                            <ProjectDisplay 
-                                userId={this.props.userId} 
-                                projectName={project.name} 
-                                projectId={project._id}
-                                showRole={false}
-                                key={project._id} 
-                            />
-                        ))} 
-                    </section>
+                    <h1 className="Explore-search u-textCenter">Search bar goes here</h1>
+                    {output}
                 </div>
             );
         }

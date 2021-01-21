@@ -135,7 +135,7 @@ class CreateProject extends Component {
               <NewProjectInput onChange={event => this.teamIdOnChange(event)} value={this.state.teamId}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">Relevant Project Tags: (#fun-project, #magnetism)</h4> 
+              <h4 className="u-textCenter">Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
               <NewProjectInput onChange={event => this.projectTagsOnChange(event)} value={this.state.tags}/>
             </section>
             <section className="CreateProject-inputContainer">
