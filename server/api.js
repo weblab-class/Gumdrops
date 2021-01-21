@@ -18,6 +18,9 @@ const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
 const ObjectId = require('mongodb').ObjectId; 
+const Role = require('./models/role.js');
+
+//import external libraries specific to Gumdrops
 const linker = require("./linkpreview.js");
 const compress = require("./compress-img.js");
 
@@ -132,6 +135,24 @@ router.get("/explore",(req,res)=> {
   Project.find({}).then((projects)=>res.send(projects));
 });
 
+
+//Retrieves the styling of a role in the database. Expects an object of:
+// { roleName: String }
+router.get("/role",(req,res)=>{
+  let query = { "roleName": this.query.roleName };
+  Role.find(query).then((roleObj)=>{
+    res.send(roleObj);
+  });
+});
+
+//Creates a new Role entry in the database. Expects an object of:
+// { roleName: String, styling: Object } 
+//The styling Object should be a satisfable for React CSS "style" attribute.
+router.post("/role",(req,res)=>{
+  let newrole = new Role(req.body);
+  newrole.save();
+});
+
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
 // { projectId: String }
 router.get("/storycards",(req,res)=>{
@@ -202,23 +223,6 @@ router.get("/story-image",(req,res)=>{
 router.get("/chat", (req, res) => {
   console.log(req.query);
   Message.find(req.query).then((messages)=>res.send(messages));
-  /*
-  //Original version of get /chat
-  let query;
-  if (req.query.recipient_id === "ALL_CHAT") {
-    // get any message sent by anybody to ALL_CHAT
-    query = { "recipient._id": "ALL_CHAT" };
-  } else {
-    // get messages that are from me->you OR you->me
-    query = {
-      $or: [
-        { "sender._id": req.user._id, "recipient._id": req.query.recipient_id },
-        { "sender._id": req.query.recipient_id, "recipient._id": req.user._id },
-      ],
-    };
-  }
-
-  Message.find(query).then((messages) => res.send(messages));*/
 });
 
 router.post("/message", auth.ensureLoggedIn, (req, res) => {

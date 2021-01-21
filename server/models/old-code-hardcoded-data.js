@@ -95,3 +95,13 @@ User.findById(req.query.userid).then( async (user)=>
           }
         });
       });*/
+
+
+//The following was run in Profile.js componentDidMount() as tests/placeholders
+      //The below command was used to trigger LinkPreview API
+      //It is temporary placeholder.
+      //let linkArray = ["https://gumdrops.herokuapp.com/","https://www.youtube.com/watch?v=fn3KWM1kuAw"];
+      //post('/api/link',{links:linkArray}).then((data)=>console.log(data));
+      //let myStyle = {color:"red",backgroundColor:"lightyellow",fontWeight:"bold",fontSize:"5em"};
+      //let newRole = { roleName: "dragonator",styling: myStyle};
+      //post("/api/role",newRole);

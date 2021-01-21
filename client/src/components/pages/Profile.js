@@ -29,11 +29,6 @@ class Profile extends Component {
     componentDidMount() {
         get(`/api/user`, { userid: this.props.userId }).then((user) => this.setState({ user: user }));
         console.log("Preparing profile for user "+this.props.userId)
-        //The below command was used to trigger LinkPreview API
-        //It is temporary placeholder.
-        let linkArray = ["https://gumdrops.herokuapp.com/","https://www.youtube.com/watch?v=fn3KWM1kuAw"];
-        post('/api/link',{links:linkArray}).then((data)=>console.log(data));
-        post('/api/delproject',{projectId:"6007a80f9efb054e58a26af0"});
     }
 
     render() {
@@ -55,9 +50,11 @@ class Profile extends Component {
                     </>
                 );
             }
+            let myStyle = {color:"red",backgroundColor:"lightyellow",fontWeight:"bold",fontSize:"5em"};
             return(
                 <>
                     <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                    <p style={myStyle}>This is a sample text</p>
                     <hr></hr>
                     <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                     <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
