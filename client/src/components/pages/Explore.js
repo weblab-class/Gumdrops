@@ -50,7 +50,7 @@ class Explore extends Component {
 
     generateOutput = (categories) => {
         let output = [];
-        let colors = ["Aqua", "Pink", "Primary"];
+        let colors = ["Aqua", "Green", "Yellow"];
         let i=0;
         categories.sort(function(a, b) {
             return b.count - a.count;
