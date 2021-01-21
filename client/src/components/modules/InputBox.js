@@ -26,7 +26,12 @@ class InputBox extends Component{
     //called when the user hit the button
     handleSubmit = (event)=>{
         event.preventDefault();
-        this.props.onSubmit && this.props.onSubmit(this.state.value)
+        console.log("sent from input box")
+        console.log(this.state.value)
+        this.props.onSubmit && this.props.onSubmit(this.state.value);
+        this.setState({
+            value: "",
+        });
     }
     render(){
         return(
@@ -36,7 +41,7 @@ class InputBox extends Component{
                 placeholder={this.props.defaultText}
                 value={this.state.value}
                 onChange={this.handleChange}
-                className="NewPostInput-input"
+                className="u-flex"
                 />
                 <button
                 type="submit"

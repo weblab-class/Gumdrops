@@ -21,13 +21,16 @@ class StoryCard extends Component{
         this.state = {
             storytext: "",
             image: undefined,
+            links:[],
             editing: false
         };
         
     }
     //runs when storycard mounts
     componentDidMount(){
-        this.setState({storytext : this.props.storyObj.textContent},)
+        this.setState({storytext : this.props.storyObj.textContent,
+            links:this.props.storyObj.links});
+        
         get("/api/story-image", {_id:this.props.storyObj._id}).then((pic)=>{
             if(pic !== null) {
                 this.setState({
@@ -43,10 +46,24 @@ class StoryCard extends Component{
         event.preventDefault();
         this.setState({editing: !this.state.editing});
     }
-    
+    //extra steps needed for handling link nad posting 
+    editLink = (addLink)=>{
+        let newLinkList = this.state.links.concat([addLink]);
+        let body = {_id: this.props.storyObj._id, changes:{links:newLinkList}};
+        console.log("we receive on story card")
+        console.log(body);
+        post("/api/editstorycard",body).then((story)=>{
+            console.log(story);
+            this.setState({
+                links: newLinkList,
+            })
+        })
+    }
     //this would eventually allow to edit stories
     editStory =(changesObj)=>{
+        
         let body = {_id: this.props.storyObj._id, changes:changesObj}
+        console.log("received in Story card");
         console.log(body);
         post("/api/editstorycard",body).then((story) =>{
             console.log(story);
@@ -165,9 +182,9 @@ class StoryCard extends Component{
                 <section className="StoryCard-imageBlockContainer" />
                 {output}
                 <section className="StoryCard-linkBlockContainer">
-                    <LinkBlock  onEdit={this.editStory}
+                    <LinkBlock  onEdit={this.editLink}
                     editing ={this.state.editing} 
-                    linkArr = {this.props.storyObj.links}/>
+                    linkArr = {this.state.links}/>
                 </section>
             </div>
         );

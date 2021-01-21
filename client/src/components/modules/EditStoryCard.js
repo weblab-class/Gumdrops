@@ -135,13 +135,7 @@ class EditStoryCard extends Component {
                 value = {this.state.content}
                 onChange = {this.handleChange}
                 className = "NewPostInput-story"
-                /><button 
-                type = "submit"
-                className = "NewPostInput-button u-pointer "
-                value = "Submit"
-                onClick={this.handleSave}
-                >Save
-                </button>
+                />
             </div> 
         )
     }
