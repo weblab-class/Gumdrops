@@ -21,7 +21,6 @@ class StoryCard extends Component{
         this.state = {
             storytext: "",
             image: undefined,
-            links:[],
             editing: false
         };
         
@@ -50,15 +49,25 @@ class StoryCard extends Component{
     }
     //extra steps needed for handling link nad posting 
     editLink = (addLink)=>{
-        let newLinkList = this.state.links.concat([addLink]);
+        let newLinkList = this.props.storyObj.links.concat([addLink]);
         let body = {_id: this.props.storyObj._id, changes:{links:newLinkList}};
         console.log("we receive on story card")
         console.log(body);
         post("/api/editstorycard",body).then((story)=>{
             console.log(story);
-            this.setState({
-                links: newLinkList,
-            })
+
+            this.props.onAddLink && this.props.onAddLink(body);
+        })
+    }
+    //extra steps to delete link
+    deleteLink=(linkObj)=>{
+        let body = {_id: this.props.storyObj._id, changes:{links:linkObj}};
+        console.log("we receive on story card")
+        console.log(body);
+        post("/api/editstorycard",body).then((story)=>{
+            console.log(story);
+
+            this.props.onAddLink && this.props.onAddLink(body);
         })
     }
     //this would eventually allow to edit stories
@@ -185,7 +194,8 @@ class StoryCard extends Component{
                 <section className="StoryCard-linkBlockContainer">
                     <LinkBlock  onEdit={this.editLink}
                     editing ={this.state.editing} 
-                    linkArr = {this.state.links}/>
+                    linkArr = {this.props.storyObj.links}
+                    onDel = {this.deleteLink}/>
                 </section>
             </div>
         );

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "../../utilities.css";
-
+import "./StoryCard.css"
 /**
  * Input Box and Save Box 
  * 
@@ -35,7 +35,7 @@ class InputBox extends Component{
     }
     render(){
         return(
-            <div className="u-flex">
+            <div className="u-flex StoryCard-linkinputContainer">
                 <input
                 type= {this.props.type}
                 placeholder={this.props.defaultText}

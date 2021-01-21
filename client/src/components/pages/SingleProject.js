@@ -84,6 +84,21 @@ class SingleProject extends Component{
             stories: tempArray,
         });
     }
+    editLinks = (linkObj)=>{
+        let tempArray = [...this.state.stories];
+        for(let i=0; i<this.state.stories.length;i++){
+            if(this.state.stories[i]._id == linkObj._id){
+                tempArray[i].links = linkObj.changes.links;
+                break;
+            }
+        }
+        console.log("made changes in story card")
+        
+        this.setState({
+            stories:tempArray,
+        })
+        console.log(tempArray)
+    }
     editStory = (storyObj) => {
         let tempArray = [...this.state.stories];
         for(let i=0; i<this.state.stories.length;i++){
@@ -110,6 +125,7 @@ class SingleProject extends Component{
                     edit = {this.state.edit}
                     delete = {this.deleteNewStory}
                     onEdit = {this.editStory}
+                    onAddLink = {this.editLinks}
                 />
             ));
         } else{

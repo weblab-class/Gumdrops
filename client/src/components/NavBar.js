@@ -16,6 +16,7 @@ class NavBar extends Component {
       }
     render() {
         console.log(this.props.userId);
+        
         return(
         <nav className="NavBar-container">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 

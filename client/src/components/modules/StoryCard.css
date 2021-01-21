@@ -32,8 +32,26 @@
     width: 30%;
 }
 
+.StoryCard-iconContainer{
+    max-width: 70%
+}
 .StoryCard-center {
     position: relative;
     left: 50%;
     transform: translate(-50%);
+}
+.StoryCard-imagebuttonContainer{
+    max-width: 20% ;
+    max-height: 20%;
+    background:none;
+    padding:0;
+    border:none;
+    
+}
+.StoryCard-ximgContainer{
+    max-width:  100%;
+    max-height: auto;
+}
+.StoryCard-linkinputContainer{
+    max-width:100%;
 }
