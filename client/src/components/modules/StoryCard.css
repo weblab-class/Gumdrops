@@ -12,7 +12,7 @@
     margin: var(--m);
 }
 .StoryCard-editButton { /*add-on to NewPostInput-button*/
-    margin-top: var(--s);
+    margin-top: var(--m);
     width: 25%;
     border-radius: var(--xs);
     display:block;
@@ -69,7 +69,8 @@
 }
 .StoryCard-textAreaContainer{
     font-family: 'Lato',sans-serif;
-    width: 80%;
+    width: 90%;
+    max-width: 95%;
     overflow: auto;
     padding: 10px;
     line-height: 1.5;
