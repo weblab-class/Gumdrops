@@ -11,6 +11,7 @@ import Explore from "./pages/Explore.js";
 import SingleProject from "./pages/SingleProject.js";
 import CreateProject from "./pages/CreateProject.js";
 import Rewards from "./pages/Rewards.js";
+import Cursor from "./modules/Cursor.js";
 import "../utilities.css";
 import "./pages/Skeleton.css";
 /**
@@ -49,8 +50,6 @@ class App extends Component {
 
   };
 
-  
-  
   render() {
     return (
       <>
@@ -58,6 +57,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
         />
+        <Cursor />
         <Router>
           <Skeleton
             path="/"
