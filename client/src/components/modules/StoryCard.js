@@ -8,7 +8,9 @@ import { get} from "../../utilities";
 import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
 import EditStoryCard from "./EditStoryCard.js";
-import LinkBlock from "./LinkBlock";
+import LinkBlock from "./LinkBlock.js";
+import SingleText from "./SingleText.js";
+
 /**
  * Proptypes 
  * @param {Object} storyObj : sends story object
@@ -19,7 +21,7 @@ class StoryCard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            storytext: "",
+            storytext: this.props.storyObj.textContent,
             image: undefined,
             editing: false
         };
@@ -27,7 +29,8 @@ class StoryCard extends Component{
     }
     //runs when storycard mounts
     componentDidMount(){
-        this.setState({storytext : this.props.storyObj.textContent},)
+        
+        
         get("/api/story-image", {_id:this.props.storyObj._id}).then((pic)=>{
             if(pic !== null) {
                 this.setState({
@@ -45,17 +48,40 @@ class StoryCard extends Component{
             editing: !prevstate.editing,
         }));
     }
-    
+    //extra steps needed for handling link nad posting 
+    editLink = (addLink)=>{
+        let newLinkList = this.props.storyObj.links.concat([addLink]);
+        let body = {_id: this.props.storyObj._id, changes:{links:newLinkList}};
+        console.log("we receive on story card")
+        console.log(body);
+        post("/api/editstorycard",body).then((story)=>{
+            console.log(story);
+
+            this.props.onAddLink && this.props.onAddLink(body);
+        })
+    }
+    //extra steps to delete link
+    deleteLink=(linkObj)=>{
+        let body = {_id: this.props.storyObj._id, changes:{links:linkObj}};
+        console.log("we receive on story card")
+        console.log(body);
+        post("/api/editstorycard",body).then((story)=>{
+            console.log(story);
+
+            this.props.onAddLink && this.props.onAddLink(body);
+        })
+    }
     //this would eventually allow to edit stories
     editStory =(changesObj)=>{
+        
         let body = {_id: this.props.storyObj._id, changes:changesObj}
+        console.log("received in Story card");
         console.log(body);
         post("/api/editstorycard",body).then((story) =>{
             console.log(story);
             
             this.setState({
                 storytext:changesObj.textContent,
-                editing: !this.state.editing,
             });
             this.props.onEdit && this.props.onEdit(body);   
         });
@@ -74,18 +100,21 @@ class StoryCard extends Component{
     }
     
     render(){ 
-        let output = null;
+        
+        let button = <></>;
+        let text = (<SingleText
+             defaultText = "EnterStory"
+            prevStory = {this.state.storytext}
+            isEditing = {this.state.editing}
+         onSumbit = {this.editStory}/>)
+        //  <section className="StoryCard-textBlockContainer">
+        //         </section>
         if(!this.props.edit){ //not allowed to edit 
-            output = (
-                <section className="StoryCard-textBlockContainer">
-                    <p>{this.state.storytext}</p>
-                </section>
-                )
+            
         } else{
             if(!this.state.editing){ //not editing right now
-                output = (
-                <section className="StoryCard-textBlockContainer">
-                    <p className= "StoryCard-storytext">{this.state.storytext}</p>
+                button = (
+                    <>
                     <button 
                         type = "submit"
                         className = "NewPostInput-button StoryCard-editButton u-pointer"
@@ -93,18 +122,13 @@ class StoryCard extends Component{
                         onClick={this.clickedEditing}
                         >Edit
                     </button>
-                </section>
+                    </>
                 )
             }
             else{ //is currently editing
-                output = (
-                <section className="StoryCard-textBlockContainer">
+                button = (
+                <>
                     <DeleteStoryCard onDelete={this.props.delete} storyObj = {this.props.storyObj}/>
-                    <EditStoryCard 
-                        onEdit = {this.editStory} 
-                        storyObj = {this.props.storyObj}
-                        editImage={false}
-                    />
                     <button 
                         type = "submit"
                         className = "NewPostInput-button u-pointer"
@@ -112,10 +136,23 @@ class StoryCard extends Component{
                         onClick={this.clickedEditing}
                         >Cancel
                     </button>
-                </section>
+                </>
                 )   
             }
         }
+        let fullBox = (
+            <>
+                <section className="StoryCard-imageBlockContainer" />
+                {text}
+                {button}
+                <section className="StoryCard-linkBlockContainer">
+                    <LinkBlock  onEdit={this.editLink}
+                    editing ={this.state.editing} 
+                    linkArr = {this.props.storyObj.links}
+                    onDel = {this.deleteLink}/>
+                </section>
+            </>
+        )
         if(this.props.edit){
             if(this.state.image) {
                 return(
@@ -132,10 +169,7 @@ class StoryCard extends Component{
                                 editImage={true}
                             />
                         </section>
-                        {output}
-                        <section className="StoryCard-linkBlockContainer">
-                            <LinkBlock linkArr = {this.props.storyObj.links}/>
-                        </section>
+                        {fullBox}
                     </div>
                 );
             } else{
@@ -149,10 +183,7 @@ class StoryCard extends Component{
                                 editImage={true}
                             />
                         </section>
-                        {output}
-                        <section className="StoryCard-linkBlockContainer">
-                            <LinkBlock linkArr = {this.props.storyObj.links}/>
-                        </section>
+                        {fullBox}
                     </div>
                 );
             }
@@ -167,20 +198,13 @@ class StoryCard extends Component{
                             className="StoryCard-center"
                         />
                     </section>
-                    {output}
-                    <section className="StoryCard-linkBlockContainer">
-                        <LinkBlock linkArr = {this.props.storyObj.links}/>
-                    </section>
+                    {fullBox}
                 </div>
             );
         }
         return(
             <div className = "u-flex StoryCard-container">
-                <section className="StoryCard-imageBlockContainer" />
-                {output}
-                <section className="StoryCard-linkBlockContainer">
-                    <LinkBlock linkArr = {this.props.storyObj.links}/>
-                </section>
+                {fullBox}
             </div>
         );
     }

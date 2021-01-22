@@ -16,6 +16,7 @@ class NavBar extends Component {
       }
     render() {
         console.log(this.props.userId);
+        
         return(
         <nav className="NavBar-container">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
@@ -29,6 +30,7 @@ class NavBar extends Component {
                     <>
                         <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
                         <Link to="/projects" className="NavBar-link">My Projects</Link>
+                        <Link to="/rewards" className="NavBar-link">Rewards</Link>
                     </>
                 ) : (<span></span>)}
                 {this.props.userId ? (

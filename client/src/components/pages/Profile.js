@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities";
-import "../../utilities.css";
-import "./Profile.css"
 import ProfileImage from "../modules/ProfileImage.js";
 import ProfileBio from "../modules/ProfileBio.js"
-
-
+import "../../utilities.css";
+import "./Profile.css"
 
 //Props
 //userId: String (used in special routing from App.js)
@@ -63,12 +61,10 @@ class Profile extends Component {
                     </>
                 );
             }
-            let myStyle = {color:"red",backgroundColor:"lightyellow",fontWeight:"bold",fontSize:"5em"};
             if(this.props.userId===this.props.viewerId) {
                 return(
                     <>
                         <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
-                        <p style={myStyle}>This is a sample text</p>
                         <hr></hr>
                         <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                         <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
