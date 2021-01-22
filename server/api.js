@@ -215,7 +215,10 @@ router.post("/delstorycard",(req,res)=>{
 });
 
 router.post("/editstorycard",(req,res)=>{
-  let filter = {"_id" : req.body._id};
+  console.log("Trying edit storycard with id "+req.body._id);
+  let filter = {"_id" : new ObjectId(req.body._id)};
+  console.log(filter);
+  console.log(req.body.changes);
   //console.log(req.body.changes);
   if(req.body.changes.imageMedia){
     let urlArray = req.body.changes.imageMedia.split(',');
@@ -228,9 +231,8 @@ router.post("/editstorycard",(req,res)=>{
         }).catch((err)=>console.log("there was an errorr alarm"));
     });
   } else {
-  StoryCard.updateOne(filter,req.body.changes).then((result)=>{
+  StoryCard.updateOne(filter,{$set: {textContent: req.body.changes}}).then((result)=>{
     res.send(result);
-    console.log(result);
     }).catch((err)=>console.log("there was an errorr alarm"));
   }
 });

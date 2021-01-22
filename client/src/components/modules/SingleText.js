@@ -9,7 +9,7 @@ import "./StoryCard.css"
  * @param {string} defaultText placeHolder Text
  * @param {String} prevStory: already existing story
  * @param {boolean} isEditing: tells the user if you are editing
- * @param {()=>} function: onSubmit
+ * @param {function} onSubmit
  * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  */
 class SingleText extends Component{
@@ -28,7 +28,6 @@ class SingleText extends Component{
     //called when the user hit the button
     handleSubmit = (event)=>{
         event.preventDefault();
-        // console.log("sent from input box")
         // console.log(this.state.tempvalue)
         this.props.onSubmit && this.props.onSubmit(this.state.tempvalue);
     }

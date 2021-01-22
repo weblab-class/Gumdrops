@@ -72,7 +72,6 @@ class StoryCard extends Component{
         console.log("received in Story card");
         // console.log(body);
         post("/api/editstorycard",body).then((story) =>{
-            // console.log(story);
             this.setState({
                 storytext:changesObj.textContent,
             });
@@ -99,7 +98,7 @@ class StoryCard extends Component{
                 defaultText = "EnterStory"
                 prevStory = {this.state.storytext}
                 isEditing = {this.state.editing}
-                onSumbit = {this.editStory}
+                onSubmit = {(value)=>this.editStory(value)}
                 userRoles = {this.props.userRoles}
             />
         );

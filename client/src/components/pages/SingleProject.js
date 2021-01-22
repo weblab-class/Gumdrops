@@ -32,10 +32,7 @@ class SingleProject extends Component{
         }
     }
     retrieveUserRoleInfo = () => {
-        console.log("Going into user-roles API call");
         get("/api/user-roles",{projectId:this.props.projectId}).then(result=>{
-            console.log("user-role API call is completed");
-            console.log(result);
             if(this._isMounted){
                 this.setState({
                     userRoles: result,
