@@ -34,7 +34,11 @@
     width: 30%;
 }
 .StoryCard-iconContainer{
-    max-width: 70%
+    text-decoration: underline;
+    color: black;
+    font-size: small;
+    font-weight: bold;
+    width: 100%;
 }
 .StoryCard-center {
     position: relative;
@@ -58,11 +62,11 @@
     background:none;
     padding:0;
     border:none;
-    
 }
 .StoryCard-ximgContainer{
     max-width:  100%;
     max-height: auto;
+    border-radius: 50%;
 }
 .StoryCard-linkinputContainer{
     max-width:100%;
@@ -79,4 +83,14 @@
 }
 .StoryCard-margin{
     margin-top: var(--xs);
+}
+.StoryCard-linkInputBox{
+    width: 75%;
+}
+.StoryCard-linkInputButton{
+    width: 25%;
+}
+p {
+    margin: 0;
+    color: black;
 }

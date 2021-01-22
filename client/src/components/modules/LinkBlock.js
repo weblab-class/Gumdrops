@@ -74,18 +74,24 @@ class LinkBlock extends Component {
         let button = <></>;
         let isthereLink = this.state.linksData.length!==0; 
         if(this.props.editing){
-            console.log("editing ");
-            button = <InputBox
-            defaultText ="Enter Link"
-            onSubmit ={this.addLink}
-            type = "url"
-            buttonMessage = "Add Link"
-            />
+            console.log("editing");
+            button = (
+                <InputBox
+                    defaultText ="Enter Link"
+                    onSubmit ={this.addLink}
+                    type = "url"
+                    buttonMessage = "Add Link"
+                />
+            );
         }
         if(isthereLink){
-            linkList = this.state.linksData.map((linkObj,i)=>
-            (   
-                <SingleLink onDelete = {this.deleteLink} editing = {this.props.editing} key ={linkObj.url} linkObj = {linkObj} />
+            linkList = this.state.linksData.map((linkObj,i)=>(   
+                <SingleLink 
+                    onDelete = {this.deleteLink} 
+                    editing = {this.props.editing} 
+                    key ={linkObj.url} 
+                    linkObj = {linkObj}
+                />
             ));
             return(
                 <>

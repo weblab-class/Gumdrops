@@ -35,17 +35,17 @@ class InputBox extends Component{
     }
     render(){
         return(
-            <div className="u-flex StoryCard-linkinputC">
+            <div className="u-flex StoryCard-linkinputContainer">
                 <input
                 type= {this.props.type}
                 placeholder={this.props.defaultText}
                 value={this.state.value}
                 onChange={this.handleChange}
-                className="u-flex"
+                className="u-flex StoryCard-linkInputBox"
                 />
                 <button
                 type="submit"
-                className="u-flex"
+                className="u-flex StoryCard-linkInputButton"
                 value="Submit"
                 onClick={this.handleSubmit}
                 >
