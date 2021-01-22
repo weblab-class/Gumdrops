@@ -402,11 +402,9 @@ router.post("/thumbnail",(req,res)=>{
 //Check if a user is a collaborator in a project. Expects an object with the following fields:
 //{ userId: String, projectId: String }
 router.get("/isUserCollaborator", (req,res)=>{
-  console.log("Trying to find project with id: "+req.query.projectId);
   let canEdit = false;
   Project.findById(req.query.projectId)
     .then((projectObj)=>{
-      console.log("Found project: "+projectObj.name);
       projectObj.collaborators.forEach((collaber)=>{
         if(collaber.userId===req.query.userId) {
           canEdit = true;
