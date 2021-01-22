@@ -7,12 +7,10 @@
     flex-direction: row;
     padding: var(--s);
 }
-
 .StoryCard-storytext {
     font-size: 20px;
     margin: var(--m);
 }
-
 .StoryCard-editButton { /*add-on to NewPostInput-button*/
     margin-top: var(--s);
     width: 25%;
@@ -22,23 +20,19 @@
     left: 50%;
     transform: translate(-50%);
 }
-
 .StoryCard-linkBlockContainer {
     width: 20%;
     order: 1;
 }
-
 .StoryCard-textBlockContainer {
     font-size: 1.2em;
     margin: var(--m);
     width: 50%;
 }
-
 .StoryCard-imageBlockContainer {
     margin: var(--s);
     width: 30%;
 }
-
 .StoryCard-iconContainer{
     max-width: 70%
 }
@@ -82,5 +76,7 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
-
+}
+.StoryCard-margin{
+    margin-top: var(--xs);
 }

@@ -51,7 +51,7 @@ class SingleText extends Component{
                 />
                 <button
                 type="submit"
-                className="u-flex"
+                className="u-flex StoryCard-margin"
                 value="Submit"
                 onClick={this.handleSubmit}
                 >

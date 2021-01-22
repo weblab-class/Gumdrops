@@ -28,7 +28,7 @@ class SingleProject extends Component{
         this.state = {
             stories: [],
             userRoles: undefined,
-            edit: false,
+            edit: undefined,
         }
     }
     retrieveUserRoleInfo = () => {
@@ -48,13 +48,15 @@ class SingleProject extends Component{
             userId : this.props.userId,
             projectId : this.props.projectId
         };
-        get("/api/isUserCollaborator",body).then((bool)=>{
-            if(this._isMounted && (this.state.edit!==bool)){
-                this.setState({
-                    edit: bool,
-                });
-            };
-        });
+        if(!this.state.edit){
+            get("/api/isUserCollaborator",body).then((bool)=>{
+                if(this._isMounted && (this.state.edit!==bool)){
+                    this.setState({
+                        edit: bool,
+                    });
+                };
+            });
+        };
     }
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
