@@ -16,6 +16,7 @@ import SingleText from "./SingleText.js";
  * @param {Object} storyObj : sends story object
  * @param {String} userId 
  * @param {Boolean} edit determines if current user can edit
+ * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  */
 class StoryCard extends Component{
     constructor(props){
@@ -89,7 +90,7 @@ class StoryCard extends Component{
             this.props.onEdit && this.props.onEdit(body);   
         });
     }
-    
+
     render(){ 
         let button = <></>;
         let picture = <></>;
@@ -99,6 +100,7 @@ class StoryCard extends Component{
                 prevStory = {this.state.storytext}
                 isEditing = {this.state.editing}
                 onSumbit = {this.editStory}
+                userRoles = {this.props.userRoles}
             />
         );
         if(!this.props.edit){ //not allowed to edit 
@@ -180,6 +182,7 @@ class StoryCard extends Component{
                 );   
             }
         }
+
         return(
             <div className = "u-flex StoryCard-container">
                 {picture}
