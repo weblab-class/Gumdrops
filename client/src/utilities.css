@@ -39,6 +39,10 @@
   --xxxl: 40px;
 }
 
+html {
+  cursor: url("/home/grayhimakar/Gumdrops/blue_cursor_resized.png"), auto;
+}
+
 body {
   margin: 0;
   padding: 0;

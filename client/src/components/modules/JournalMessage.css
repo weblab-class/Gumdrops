@@ -23,6 +23,8 @@
     padding: var(--s);
     /* background: var(--medgrey);
     border-radius: var(--l); */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
   
 .JournalMessage-mine .JournalMessage-content {
