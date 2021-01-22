@@ -88,9 +88,8 @@ class JournalMessage extends Component {
             outputArray.map((value, i)=>{
               if(value in this.props.userRoles){
                   return <span>
-                            <a style={this.props.userRoles[value][2]} href={"/profile/"+this.props.userRoles[value][1]}>{value}</a>
+                            <a style={this.props.userRoles[value][2]} key={i} href={"/profile/"+this.props.userRoles[value][1]}>{value}</a>
                         </span>;
-                  return <a style={this.props.userRoles[value][2]} key={i} href={"/profile/"+this.props.userRoles[value][1]}>{value}</a>;
               } else {
                   return <span key={i}>{value}</span>;
               }

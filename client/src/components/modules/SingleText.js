@@ -9,7 +9,8 @@ import "./StoryCard.css"
  * @param {string} defaultText placeHolder Text
  * @param {String} prevStory: already existing story
  * @param {boolean} isEditing: tells the user if you are editing
- * @param {()=>} function: onSubmit 
+ * @param {()=>} function: onSubmit
+ * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  */
 class SingleText extends Component{
     constructor(props){
@@ -37,7 +38,8 @@ class SingleText extends Component{
     }
 
     render(){
-        let story =(<> {this.state.tempvalue}</>);
+        let story = <>{this.state.tempvalue}</>;
+        let outputArray;
         if(this.props.isEditing){
             story =(
                 <>
@@ -59,12 +61,52 @@ class SingleText extends Component{
                 </button>
             </>
             )
+        } else if(this.props.userRoles) {
+          let text = this.state.tempvalue;
+          outputArray = [];
+          while(text!=="") {
+            let nextAt = text.indexOf("@");
+            if(nextAt === -1) {
+                outputArray.push(text);
+                break;
+            } else {
+              if(nextAt !== 0){ 
+                outputArray.push(text.substring(0,nextAt));
+              }
+              text = text.substring(nextAt);
+              let userFound = false;
+              for (const [key, value] of Object.entries(this.props.userRoles)) {
+                if(text.startsWith(key)){
+                  // console.log("I found username "+key);
+                  outputArray.push(key);
+                  text = text.substring(key.length);
+                  userFound = true;
+                  break;
+                }
+              }
+              if(!userFound) { //did not find anything
+                outputArray.push("@");
+                text = text.substring(1);
+              }
+            }
+            }
         }
         return(
             <>
-            {story}
+            { (!this.props.isEditing && this.props.userRoles) ?
+            outputArray.map((value, i)=>{
+                if(value in this.props.userRoles){
+                    return <span>
+                            <a style={this.props.userRoles[value][2]} key={i} href={"/profile/"+this.props.userRoles[value][1]}>{value}</a>
+                        </span>;
+                } else {
+                    return <span key={i}>{value}</span>;
+                }
+            })
+            : story
+            }
             </>
-        )
+        );
     }
 }
 export default SingleText;

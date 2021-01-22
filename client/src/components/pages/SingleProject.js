@@ -144,6 +144,7 @@ class SingleProject extends Component{
             storiesList = this.state.stories.map((storyObj)=>
             (
                 <StoryCard
+                    userRoles = {this.state.userRoles}
                     storyObj = {storyObj}
                     key = {storyObj._id}
                     userId = {this.props.userId}
