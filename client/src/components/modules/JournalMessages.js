@@ -1,23 +1,7 @@
 import React, { Component } from "react";
 import JournalMessage from "./JournalMessage.js";
-import { /*DeleteJournalMessage,*/ NewJournalMessage } from "./NewPostInput.js";
+import { NewJournalMessage } from "./NewPostInput.js";
 import "./JournalMessages.css";
-
-/**
- * @typedef UserObject
- * @property {string} _id
- * @property {string} name
- */
-/**
- * @typedef MessageObject
- * @property {UserObject} sender
- * @property {string} content
- */
-/**
- * @typedef ChatData
- * @property {MessageObject[]} messages
- * @property {UserObject} recipient
- */
 
 /**
  * Renders main chat window including previous messages,
@@ -27,6 +11,7 @@ import "./JournalMessages.css";
  * @param {ChatData} data
  * @param {Boolean} canSend
  * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
+ * @param {String} userId
  */
 class JournalMessages extends Component {
   constructor(props) {
@@ -68,9 +53,13 @@ class JournalMessages extends Component {
         lastTimeStamp = currTimeStamp;
       }
       renderOutput.push(
-      <JournalMessage message={this.props.data.messages[i]} 
-        userRoles={this.props.userRoles}
-        key={"JournalMessage_"+this.props.data.messages[i].timestamp}/>);
+        <JournalMessage 
+          message={this.props.data.messages[i]} 
+          userRoles={this.props.userRoles}
+          userId={this.props.userId}
+          key={"JournalMessage_"+this.props.data.messages[i].timestamp}
+        />
+      );
     }
     if(this.props.canSend){
       return (
@@ -87,9 +76,8 @@ class JournalMessages extends Component {
           </div>
           <div className="JournalMessages-newContainer">
             <NewJournalMessage recipient={this.props.data.recipient} />
-            {/* <DeleteJournalMessage sender={this.props.senderId}/> */}
           </div>
-      </>
+        </>
       );
     }
     return (
@@ -98,9 +86,9 @@ class JournalMessages extends Component {
         <div className="JournalMessages-historyContainer">
           {renderOutput}
           <div 
-                style={{ float:"left", clear: "both" }}
-                ref={(el) => { this.messagesEnd = el; }}
-              />
+            style={{ float:"left", clear: "both" }}
+            ref={(el) => { this.messagesEnd = el; }}
+          />
         </div>
       </div>
     );

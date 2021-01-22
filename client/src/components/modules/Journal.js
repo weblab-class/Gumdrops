@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import JournalChats from "./JournalChats.js";
 import JournalMessages from "./JournalMessages.js";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
@@ -13,22 +12,6 @@ import "./Journal.css";
 // userRoles: Object (where key is userName and value is an Array of [userName,userId,roleStyle])
 
 class Journal extends Component {
-  /**
-   * @typedef UserObject
-   * @property {string} _id
-   * @property {string} name
-   */
-  /**
-   * @typedef MessageObject
-   * @property {UserObject} sender
-   * @property {string} content
-   */
-  /**
-   * @typedef ChatData
-   * @property {MessageObject[]} messages
-   * @property {UserObject} recipient
-   */
-
     constructor(props) {
         super(props);
         const mainJournal = {
@@ -80,6 +63,16 @@ class Journal extends Component {
             }));
         });
 
+        socket.on("deletedMessage", (deleted) => {
+            console.log("Received update notice");
+            this.setState((prevstate) => ({
+                activeChat: {
+                    recipient: prevstate.activeChat.recipient,
+                    messages: prevstate.activeChat.messages.filter((message) => message._id !== deleted._id),
+                },
+            }));
+        });
+
         socket.on("activeUsers", (data) => {
             this.setState({
                 activeUsers: data.activeUsers,
@@ -112,7 +105,7 @@ class Journal extends Component {
                         />
                     </div> */}
                     <div className="Journal-chatContainer">
-                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend} userRoles={this.props.userRoles}/>
+                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend} userRoles={this.props.userRoles} userId={this.props.userId}/>
                     </div>
                 </div>
             </>

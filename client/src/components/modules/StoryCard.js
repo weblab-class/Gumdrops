@@ -2,14 +2,14 @@
 //this is where you work on your projects 
 import React, {Component} from "react";
 import { render } from "react-dom";
-import "./NewPostInput.css";
 import { post } from "../../utilities";
 import { get} from "../../utilities";
-import "./StoryCard.css";
 import DeleteStoryCard from "./DeleteStoryCard.js";
 import EditStoryCard from "./EditStoryCard.js";
 import LinkBlock from "./LinkBlock.js";
 import SingleText from "./SingleText.js";
+import "./NewPostInput.css";
+import "./StoryCard.css";
 
 /**
  * Proptypes 

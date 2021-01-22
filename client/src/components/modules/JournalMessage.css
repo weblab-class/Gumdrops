@@ -29,3 +29,24 @@
     background: var(--primary--dim);
     color: var(--white);
 }
+
+.JournalMessage-delete {
+    font-family: "Open Sans";
+    font-size: 14px;
+    padding: var(--s), var(--m);
+    text-align: center;
+    background-color: var(--grey);
+    color: var(--primary);
+    border: var(--primary) 1px solid;
+    background: var(--grey);
+    transition: color 0.1s, background 0.1s;
+    margin-left: var(--s);
+    width: fit-content;
+    border-radius: var(--xs);
+    display:inline-block;
+}
+
+.JournalMessage-delete:hover {
+    color: var(--white);
+    background-color: var(--primary);
+}

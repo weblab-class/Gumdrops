@@ -289,11 +289,21 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
 });
 
-
-// ATTEMPT AT DELETE BUTTON
-// router.post("/deleteMessage", (req, res) => {
-//   Message.deleteOne({"userId": `${req.user._id}`})
-// })
+//Delete a message from the database. Expects and object with:
+//{message: Object, recipient_id: String}
+router.post("/deleteMessage", (req, res) => {
+  let collaborators = [];
+  Project.findById(req.body.recipient_id).then((projectObj)=>{
+    projectObj.collaborators.forEach((element) => {
+      collaborators.push(element.userId);
+      let socketObj = socketManager.getSocketFromUserID(element.userId);
+      if(socketObj){ //if user is connected
+        socketObj.emit("deletedMessage",req.body.message);
+      }
+    });
+  })
+  .then(Message.deleteOne({"_id": `${req.body.message._id}`})).catch((err)=>console.log(err));
+});
 
 router.get("/activeUsers", (req, res) => {
   res.send({ activeUsers: socketManager.getAllConnectedUsers() });
