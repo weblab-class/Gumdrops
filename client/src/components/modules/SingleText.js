@@ -35,7 +35,6 @@ class SingleText extends Component{
         // console.log(this.state.tempvalue);
         // console.log(this.props.prevStory);
     }
-
     render(){
         let story = <>{this.state.tempvalue}</>;
         let outputArray;
