@@ -69,10 +69,7 @@ class StoryCard extends Component{
     //this would eventually allow to edit stories
     editStory =(changesObj)=>{
         let body = {_id: this.props.storyObj._id, changes:changesObj}
-        console.log("received in Story card");
-        // console.log(body);
         post("/api/editstorycard",body).then((story) =>{
-            // console.log(story);
             this.setState({
                 storytext:changesObj.textContent,
             });
@@ -99,7 +96,7 @@ class StoryCard extends Component{
                 defaultText = "EnterStory"
                 prevStory = {this.state.storytext}
                 isEditing = {this.state.editing}
-                onSumbit = {this.editStory}
+                onSubmit = {(value)=>this.editStory(value)}
                 userRoles = {this.props.userRoles}
             />
         );

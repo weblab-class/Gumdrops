@@ -25,12 +25,9 @@ class ProjectDisplay extends Component {
         this._isMounted = true;
         if (this.props.showRole) {
             get("/api/project", {projectId:this.props.projectId}).then((projectObj)=>{
-                console.log("Project found: "+ projectObj.name)
                 let users = projectObj.collaborators;
                 users.forEach((user)=> {
-                    console.log("Currently looking at user: "+user.userId);
                     if((user.userId === this.props.userId) && this._isMounted) {
-                        console.log("Collaborator found with role: "+user.role);
                         this.setState({
                             role: user.role,
                         })
