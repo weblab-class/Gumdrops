@@ -45,12 +45,16 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* transform: translateZ(-50%); */
 }
 .StoryCard-centerEditing {
     position: relative;
     left: 50%;
     transform: translate(-50%);
+}
+.StoryCard-centerLinks {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
 .StoryCard-imagebuttonContainer{
     max-width: 20% ;

@@ -1,10 +1,11 @@
 import React, { Component} from "react";
-import { render } from "react-dom"
-import "../../utilities.css"
+import { render } from "react-dom";
 import {post} from "../../utilities";
 import InputBox from "./InputBox.js";
 import { Link } from "@reach/router";
 import SingleLink from "./SingleLink.js";
+import "../../utilities.css";
+import "./StoryCard.css";
 
 /**
  * Link Block formats all the links
@@ -69,9 +70,9 @@ class LinkBlock extends Component {
         this.setLinks();
     }
     render(){
-        let linkList = "No Links";
+        let linkList = <div className="u-textCenter StoryCard-centerLinks">No links</div>;
         let button = <></>;
-        let isthereLink = this.state.linksData!==0; 
+        let isthereLink = this.state.linksData.length!==0; 
         if(this.props.editing){
             console.log("editing ");
             button = <InputBox
@@ -87,18 +88,23 @@ class LinkBlock extends Component {
                 <SingleLink onDelete = {this.deleteLink} editing = {this.props.editing} key ={linkObj.url} linkObj = {linkObj} />
             ));
             return(
-                <div>
+                <>
                     {linkList}
                     {button}
-                </div>
+                </>
             )
         }
         else{
-                if(this.props.editing) linkList = ""
-            return(
-                <div>Add a link</div>
-           )
+            if(this.props.editing){
+                linkList = "";
+            }
         }
+        return(
+            <>
+                {linkList}
+                {button}
+            </>
+        );
     }
 }
 export default LinkBlock;
