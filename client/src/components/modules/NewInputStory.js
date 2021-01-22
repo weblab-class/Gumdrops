@@ -33,7 +33,6 @@ class NewInputStory extends Component {
             console.log("hey i added a new story");
             this.props.onSubmit && this.props.onSubmit(story);
         });
-        
     }
     render(){
         return(

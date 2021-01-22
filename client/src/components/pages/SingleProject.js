@@ -49,7 +49,7 @@ class SingleProject extends Component{
             projectId : this.props.projectId
         };
         get("/api/isUserCollaborator",body).then((bool)=>{
-            if(this._isMounted){
+            if(this._isMounted && (this.state.edit!==bool)){
                 this.setState({
                     edit: bool,
                 });
@@ -117,7 +117,6 @@ class SingleProject extends Component{
             }
         }
         console.log("made changes in story card")
-        
         this.setState({
             stories:tempArray,
         })

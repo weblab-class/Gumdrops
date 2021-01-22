@@ -15,7 +15,13 @@
 }
 
 .StoryCard-editButton { /*add-on to NewPostInput-button*/
+    margin-top: var(--s);
+    width: 25%;
     border-radius: var(--xs);
+    display:block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .StoryCard-linkBlockContainer {
@@ -28,7 +34,6 @@
 }
 
 .StoryCard-imageBlockContainer {
-    height: 100%;
     width: 30%;
 }
 
@@ -36,6 +41,13 @@
     max-width: 70%
 }
 .StoryCard-center {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* transform: translateZ(-50%); */
+}
+.StoryCard-centerEditing {
     position: relative;
     left: 50%;
     transform: translate(-50%);

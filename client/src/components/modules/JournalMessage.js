@@ -62,7 +62,7 @@ class JournalMessage extends Component {
           let userFound = false;
           for (const [key, value] of Object.entries(this.props.userRoles)) {
             if(text.startsWith(key)){
-              console.log("I found username "+key);
+              // console.log("I found username "+key);
               outputArray.push(key);
               text = text.substring(key.length);
               userFound = true;

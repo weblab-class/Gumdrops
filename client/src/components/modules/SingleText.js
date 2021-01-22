@@ -27,13 +27,13 @@ class SingleText extends Component{
     //called when the user hit the button
     handleSubmit = (event)=>{
         event.preventDefault();
-        console.log("sent from input box")
-        console.log(this.state.tempvalue)
+        // console.log("sent from input box")
+        // console.log(this.state.tempvalue)
         this.props.onSubmit && this.props.onSubmit(this.state.tempvalue);
     }
     componentDidMount(){
-        console.log(this.state.tempvalue);
-        console.log(this.props.prevStory);
+        // console.log(this.state.tempvalue);
+        // console.log(this.props.prevStory);
     }
 
     render(){

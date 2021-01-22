@@ -22,7 +22,6 @@ class LinkBlock extends Component {
         }
     }
     setLinks=()=>{
-        
         if(this.props.linkArr.length!==0){
             post("/api/link",{links:this.props.linkArr}).then((newLinks)=>{
                 this.setState({
@@ -32,7 +31,6 @@ class LinkBlock extends Component {
         }
     }
     addLink=(newLink)=>{
-        
         let tempArray = [...this.props.linkArr];
         if(!(tempArray.includes(newLink))){
             post("/api/link",{links: [newLink]}).then((newData)=>{
@@ -45,7 +43,7 @@ class LinkBlock extends Component {
             }); 
         }
         else{
-        console.log("already exists") 
+            console.log("already exists") 
         }  
     }
     deleteLink=(removedLink)=>{
@@ -72,7 +70,7 @@ class LinkBlock extends Component {
     }
     render(){
         let linkList = "No Links";
-        let button = "";
+        let button = <></>;
         let isthereLink = this.state.linksData!==0; 
         if(this.props.editing){
             console.log("editing ");
@@ -83,7 +81,6 @@ class LinkBlock extends Component {
             buttonMessage = "Add Link"
             />
         }
-
         if(isthereLink){
             linkList = this.state.linksData.map((linkObj,i)=>
             (   
@@ -99,10 +96,7 @@ class LinkBlock extends Component {
         else{
                 if(this.props.editing) linkList = ""
             return(
-                <div>
-                    {linkList}
-                    {button}
-                </div>
+                <div>Add a link</div>
            )
         }
     }
