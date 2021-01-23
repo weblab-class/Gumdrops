@@ -35,8 +35,7 @@
   --subtextcolor: gray;
 
   /*Main group*/
-  --main-background2: var(--grey);
-  --navbar-container2: linear-gradient(to right top, #65dfc9,#6cdbeb);
+  --main-background: var(--grey);
   --navbar-container: var(--primary);
   --navbar-header: var(--textcolor);
 
@@ -80,7 +79,7 @@
 
 html {
   cursor: url("./components/modules/blue_cursor_resized.png"), auto;
-  background: var(--main-background2);
+  background: var(--main-background);
 }
 
 body {

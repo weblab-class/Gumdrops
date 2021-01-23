@@ -14,6 +14,7 @@ import Rewards from "./pages/Rewards.js";
 import Cursor from "./modules/Cursor.js";
 import "../utilities.css";
 import "./pages/Skeleton.css";
+import ThemeApplier from "./modules/ThemeApplier.js";
 /**
  * Define the "App" component as a class.
  */
@@ -51,12 +52,17 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.userId);
     return (
       <>
         <NavBar userId={this.state.userId} 
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
         />
+        { this.state.userId ?
+          <ThemeApplier /> :
+          null
+        }
         {/*<Cursor />*/}
         <Router>
           <Skeleton
