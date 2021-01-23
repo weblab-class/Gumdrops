@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import { socket } from "../client-socket.js";
-import { get, post } from "../utilities";
+import { get, post, applyThemeFromLocalStorage, loadDefaultTheme } from "../utilities.js";
 import NavBar from "./NavBar.js";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
@@ -14,7 +14,7 @@ import Rewards from "./pages/Rewards.js";
 import Cursor from "./modules/Cursor.js";
 import "../utilities.css";
 import "./pages/Skeleton.css";
-import ThemeApplier from "./modules/ThemeApplier.js";
+import ThemeManager from "./modules/ThemeManager.js";
 /**
  * Define the "App" component as a class.
  */
@@ -43,26 +43,26 @@ class App extends Component {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
+    localStorage.setItem("loggedin","true");
+    applyThemeFromLocalStorage();
   };
 
   handleLogout = () => {
     this.setState({ userId: undefined });
     post("/api/logout").then(()=> window.location.replace("/"));
-
+    localStorage.setItem("loggedin","false");
+    loadDefaultTheme();
+    applyThemeFromLocalStorage();
   };
 
   render() {
-    console.log(this.state.userId);
     return (
       <>
         <NavBar userId={this.state.userId} 
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
         />
-        { this.state.userId ?
-          <ThemeApplier /> :
-          null
-        }
+        <ThemeManager />
         {/*<Cursor />*/}
         <Router>
           <Skeleton
