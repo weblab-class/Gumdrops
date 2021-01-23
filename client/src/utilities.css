@@ -26,24 +26,34 @@
   --darkgrey: rgb(0, 0, 0); /*black*/
   --medgrey: rgb(222, 221, 213);
   --grey: rgb(240, 242, 236);
+  --darkergrey: lightgrey;
   --white: #fff;
-  --pink: rgb(230, 94, 90); /*copy of primary*/
   --aqua: rgb(1, 182, 216);
   --green: rgb(105, 182, 73);
   --yellow: rgb(252, 242, 134);
+  --textcolor: black;
+  --subtextcolor: gray;
 
   /*Main group*/
   --main-background2: var(--grey);
   --navbar-container2: linear-gradient(to right top, #65dfc9,#6cdbeb);
   --navbar-container: var(--primary);
-  --navbar-header: black;
+  --navbar-header: var(--textcolor);
 
   /*Project Page*/
   --projectpage-headerTitle: var(--primary); 
   --projectpage-headerTitleShadow: var(--primary--dim);
   --storycard-background: var(--primary--dim);
-  --storycard-textColor: black;
+  --storycard-textColor: var(--textcolor);
 
+  /*CreateProject Page*/
+  --createproject-textfield-background: var(--primary--dim);
+  --createprojectdisplay-background: var(--darkergrey);
+
+  /*Journal*/
+  --journal-container-background: var(--primary--dim);
+  --journal-container-border: var(--primary);
+  --journal-message-time-text: var(--subtextcolor);
 
   /*Buttons*/
   --button-background: var(--grey); /*same as main-background for transparency*/
@@ -57,8 +67,6 @@
   --explorepage-tagOne: var(--aqua);
   --explorepage-tagTwo: var(--green);
   --explorepage-tagThree: var(--yellow);
-
-
 
   --xxs: 2px;
   --xs: 4px;

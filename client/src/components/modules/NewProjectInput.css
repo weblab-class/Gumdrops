@@ -6,7 +6,7 @@
   font-size: 14px;
   padding: var(--s) var(--m);
   width: 40%;
-  background-color: var(--primary--dim);
+  background-color: var(--createproject-textfield-background);
 }
 
 .NewProjectInput-input:focus-within {
