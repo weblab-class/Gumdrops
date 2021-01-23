@@ -17,6 +17,7 @@ const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
+const RewardData = require("./modles/reward");
 const ObjectId = require('mongodb').ObjectId; 
 const Role = require('./models/role.js');
 
@@ -50,6 +51,21 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
+//intialised reward if this the first time to login
+router.post("/initreward",(req,res)=>{
+  const DataExists = RewardData.findOne({"userId": req.body.userId})
+  if(!DataExists){
+    const NewData = new RewardData({
+    views: 0, 
+    projects: 0,
+    rewards:[],
+    userId: req.body.userId,
+    streak:0,
+    likes: 0, 
+    });
+    DataExists.save();
+  }
+})
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
