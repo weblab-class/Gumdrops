@@ -12,7 +12,7 @@
     border-radius: var(--m) var(--m) 0 0;
 }
 
-.ProjectDisplay-text {
+.ProjectDisplay-textContainer {
     width: 100%;
     height: 25%;
     background-color: var(--primary);
@@ -21,4 +21,11 @@
     border-left: 1px solid lightgreen;
     border-right: 1px solid lightgreen;
     border-bottom: 1px solid lightgreen;
+}
+
+.ProjectDisplay-text {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: large;
 }
