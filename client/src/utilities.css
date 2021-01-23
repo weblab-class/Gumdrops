@@ -40,7 +40,7 @@
 }
 
 html {
-  cursor: url("/home/grayhimakar/Gumdrops/blue_cursor_resized.png"), auto;
+  cursor: url("./components/modules/blue_cursor_resized.png"), auto;
 }
 
 body {
