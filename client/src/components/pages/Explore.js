@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
+import { NewPostInput } from "../modules/NewPostInput.js";
 import "./Explore.css";
 
 //Props
@@ -21,6 +22,11 @@ class Explore extends Component {
                 projects: projects,
             })
         }).then(console.log("Projects: "+this.state.projects))
+    }
+
+    search = (value) => {
+        console.log("Searching for: "+value);
+        //write search logic
     }
 
     makeCategories= (projects) => {
@@ -86,10 +92,15 @@ class Explore extends Component {
             const categoriesList = this.makeCategories([...this.state.projects]);
             const output = this.generateOutput(categoriesList);
             return(
-                <div>
-                    <h1 className="Explore-search u-textCenter">Search bar goes here</h1>
+                <>
+                    <div className="Explore-search">
+                        <NewPostInput 
+                            defaultText="Search (Try searching for a project by name OR try searching by tag (e.g., #math))" 
+                            onSubmit={this.search}
+                        />
+                    </div>
                     {output}
-                </div>
+                </>
             );
         }
         return <h1>Loading Page!</h1>

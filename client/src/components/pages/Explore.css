@@ -31,6 +31,8 @@
 }
 
 .Explore-search {
+    width: 90%;
+    margin: var(--l) 0;
     position: relative;
     left: 50%;
     transform: translate(-50%);
