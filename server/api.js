@@ -302,7 +302,7 @@ router.post("/deleteMessage", (req, res) => {
       }
     });
   })
-  .then(Message.deleteOne({"_id": `${req.body.message._id}`})).catch((err)=>console.log(err));
+  .then(Message.findByIdAndDelete(req.body.message._id).catch((err)=>console.log(err))).catch((err)=>console.log(err));
 });
 
 router.get("/activeUsers", (req, res) => {

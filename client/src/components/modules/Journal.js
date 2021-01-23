@@ -12,6 +12,8 @@ import "./Journal.css";
 // userRoles: Object (where key is userName and value is an Array of [userName,userId,roleStyle])
 
 class Journal extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         const mainJournal = {
@@ -40,6 +42,7 @@ class Journal extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadMessageHistory(this.state.activeChat.recipient);
         console.log("In Journal.js, my current projectId is "+this.state.activeChat.recipient._id);
 
@@ -55,22 +58,26 @@ class Journal extends Component {
 
         socket.on("message", (data) => {
             console.log("Received update notice");
-            this.setState((prevstate) => ({
-                activeChat: {
-                    recipient: prevstate.activeChat.recipient,
-                    messages: prevstate.activeChat.messages.concat(data),
-                },
-            }));
+            if(this._isMounted){
+                this.setState((prevstate) => ({
+                    activeChat: {
+                        recipient: prevstate.activeChat.recipient,
+                        messages: prevstate.activeChat.messages.concat(data),
+                    },
+                }));
+            };
         });
 
         socket.on("deletedMessage", (deleted) => {
             console.log("Received update notice");
-            this.setState((prevstate) => ({
-                activeChat: {
-                    recipient: prevstate.activeChat.recipient,
-                    messages: prevstate.activeChat.messages.filter((message) => message._id !== deleted._id),
-                },
-            }));
+            if(this._isMounted){
+                this.setState((prevstate) => ({
+                    activeChat: {
+                        recipient: prevstate.activeChat.recipient,
+                        messages: prevstate.activeChat.messages.filter((message) => message._id !== deleted._id),
+                    },
+                }));
+            };
         });
 
         socket.on("activeUsers", (data) => {
@@ -89,6 +96,10 @@ class Journal extends Component {
             },
         });
     };
+
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
 
     render() {
         if (!this.props.userId) return <div>Log in before using Journal</div>; //will never happen
