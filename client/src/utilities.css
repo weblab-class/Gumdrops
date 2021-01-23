@@ -19,16 +19,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
+
+  /*Pre-defined color sets*/
   --primary: rgb(230, 94, 90);
   --primary--dim: rgb(247, 161, 162);
   --darkgrey: rgb(0, 0, 0); /*black*/
   --medgrey: rgb(222, 221, 213);
   --grey: rgb(240, 242, 236);
+  --darkergrey: lightgrey;
   --white: #fff;
-  --pink: rgb(230, 94, 90); /*copy of primary*/
   --aqua: rgb(1, 182, 216);
   --green: rgb(105, 182, 73);
   --yellow: rgb(252, 242, 134);
+  --textcolor: black;
+  --subtextcolor: gray;
+
+  /*Main group*/
+  --main-background: var(--grey);
+  --navbar-container: var(--primary);
+  --navbar-header: var(--textcolor);
+
+  /*Project Page*/
+  --projectpage-headerTitle: var(--primary); 
+  --projectpage-headerTitleShadow: var(--primary--dim);
+  --storycard-background: var(--primary--dim);
+  --storycard-textColor: var(--textcolor);
+
+  /*CreateProject Page*/
+  --createproject-textfield-background: var(--primary--dim);
+  --createprojectdisplay-background: var(--darkergrey);
+
+  /*Journal*/
+  --journal-container-background: var(--primary--dim);
+  --journal-container-border: var(--primary);
+  --journal-message-time-text: var(--subtextcolor);
+
+  /*Buttons*/
+  --button-background: var(--grey); /*same as main-background for transparency*/
+  --button-text_border: var(--primary); /*for both the text and the border*/
+  --button-background-hover: var(--primary); /*box fill color when mouse is hovered over it*/
+  --button-text-hover: var(--white); /*text color when mouse is hovered over it*/
+
+  /*Explore Page Tags*/
+  /*This tag scheme repeats for every 3 additional unique project tags that we have*/
+  --explorepage-tagBorder: var(--white);
+  --explorepage-tagOne: var(--aqua);
+  --explorepage-tagTwo: var(--green);
+  --explorepage-tagThree: var(--yellow);
+
   --xxs: 2px;
   --xs: 4px;
   --s: 8px;
@@ -41,6 +79,7 @@
 
 html {
   cursor: url("./components/modules/blue_cursor_resized.png"), auto;
+  background: var(--main-background);
 }
 
 body {

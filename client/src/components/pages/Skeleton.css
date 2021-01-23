@@ -1,13 +1,3 @@
-/* Fill me in :) */
-html {background-color: var(--grey)};
-
-.Skeleton-title { /*For some reason, the line above ignores the next ruleset or whatever its called*/
-    /* color: var(--primary--dim);
-    text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);
-    font-size: 56px;
-    font-weight: bold; */
-}
-
 .Skeleton-title {
     color: var(--primary--dim);
     text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);

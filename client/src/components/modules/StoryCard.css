@@ -1,7 +1,7 @@
 .StoryCard-container {
     height: auto; /*scales to documents inside*/
     /* border: var (--darkgrey) 1px solid; */
-    background-color: var(--primary--dim);
+    background-color: var(--storycard-background);
     border-radius: var(--m);
     margin: var(--l); 
     flex-direction: row;
@@ -28,6 +28,7 @@
     font-size: 1.2em;
     margin: var(--m);
     width: 50%;
+    color: var(--storycard-textColor);
 }
 .StoryCard-imageBlockContainer {
     margin: var(--s);
@@ -93,5 +94,5 @@
 }
 p {
     margin: 0;
-    color: black;
+    color: var(--storycard-textColor);
 }

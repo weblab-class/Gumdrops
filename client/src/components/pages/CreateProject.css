@@ -2,7 +2,6 @@
     line-height: 20%;
     padding: var(--l);
     justify-content: center;
-    border: 1px solid lightblue;
     margin-top: var(--m);
 }
 
@@ -15,15 +14,15 @@
     font-family: "Lato",sans-serif;
     font-size: 14px;
     padding: var(--s) var(--m);
-    color: var(--primary);
-    border: var(--primary) 1px solid;
+    color: var(--button-text_border);
+    border: var(--button-text_border) 1px solid;
     border-radius: var(--s);
-    background: var(--white);
+    background: var(--button-background);
     transition: color 0.1s, background 0.1s;
 }
 
 .CreateProject-button:hover {
-    color: var(--white);
-    background-color: var(--primary);
+    color: var(--button-text-hover);
+    background-color: var(--button-background-hover);
 }
   

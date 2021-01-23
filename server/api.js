@@ -20,6 +20,7 @@ const ProfileBio = require("./models/profile-bio");
 const RewardData = require("./modles/reward");
 const ObjectId = require('mongodb').ObjectId; 
 const Role = require('./models/role.js');
+const Theme = require("./models/theme.js");
 
 //import external libraries specific to Gumdrops
 const linker = require("./linkpreview.js");
@@ -201,6 +202,31 @@ router.post("/role",(req,res)=>{
   newrole.save();
 });
 
+//Retrieves the Theme object for a user. Expects an object of:
+// { userId: String }
+//Sends back empty object if no entry found.
+router.get("/theme",(req,res)=>{
+  let query = { "userId" : req.query.userId };
+  Theme.findOne(query).then((themeObj)=>{
+    if(themeObj) { //if entry exists
+      res.send(themeObj.themeData);
+    } else {
+      res.send({});
+    }
+  })
+})
+
+//Saves the Theme object for a user. Expects an object of:
+// { userId: String, themeData: Object }
+router.post("/theme",(req,res)=>{
+  console.log(req.body.themeData);
+  let themeObject = new Theme({
+    userId: req.body.userId,
+    themeData: req.body.themeData,
+  });
+  themeObject.save().then(()=>res.send({})); //sends back empty object to indicate completion.
+})
+
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:
 // { projectId: String }
 router.get("/storycards",(req,res)=>{
@@ -318,7 +344,7 @@ router.post("/deleteMessage", (req, res) => {
       }
     });
   })
-  .then(Message.deleteOne({"_id": `${req.body.message._id}`})).catch((err)=>console.log(err));
+  .then(Message.findByIdAndDelete(req.body.message._id).catch((err)=>console.log(err))).catch((err)=>console.log(err));
 });
 
 router.get("/activeUsers", (req, res) => {

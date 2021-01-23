@@ -42,7 +42,7 @@ class JournalMessage extends Component {
     event.preventDefault();
     // console.log("Calling api to delete message: "+this.props.message.content);
     const body = { message: this.props.message, recipient_id: this.props.message.recipient._id };
-    post("/api/deleteMessage", body).then();
+    post("/api/deleteMessage", body).then("Deleted "+this.props.message.content);
   }
 
   componentDidMount() {

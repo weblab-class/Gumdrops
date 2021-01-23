@@ -9,7 +9,7 @@
 }
 
 .JournalMessage-time {
-    color: gray;
+    color: var(--subtextcolor);
     margin-right: var(--xs);
     font-size:0.8em;
     order:1;
@@ -26,10 +26,10 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
-  
+
+/*This doesn't seem to do anything.. -Harry*/
 .JournalMessage-mine .JournalMessage-content {
-    background: var(--primary--dim);
-    color: var(--white);
+    background: var(--journal-container-background);
 }
 
 .JournalMessage-delete {
@@ -37,10 +37,10 @@
     font-size: 14px;
     padding: var(--s), var(--m);
     text-align: center;
-    background-color: var(--grey);
-    color: var(--primary);
-    border: var(--primary) 1px solid;
-    background: var(--grey);
+    background-color: var(--button-background);
+    color: var(--button-text_border);
+    border: var(--button-text_border) 1px solid;
+    background: var(--button-background);
     transition: color 0.1s, background 0.1s;
     margin-left: var(--s);
     width: fit-content;
@@ -49,6 +49,6 @@
 }
 
 .JournalMessage-delete:hover {
-    color: var(--white);
-    background-color: var(--primary);
+    color: var(--button-text-hover);
+    background-color: var(--button-background-hover);
 }

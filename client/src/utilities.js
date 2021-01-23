@@ -69,3 +69,40 @@ export function fileToBuffer(data) {
   let bufferedObj = Buffer.from(base64,'base64');
   return bufferedObj;
 }
+
+//If it exists, load the theme data from HTML Local Storage and applies it to the root CSS
+export function applyThemeFromLocalStorage() {
+  console.log("apply from local storage");
+  if(localStorage.hasOwnProperty("currTheme")) {
+      let themeObj = JSON.parse(localStorage.getItem("currTheme"));
+      console.log(themeObj);
+      for (const [key, value] of Object.entries(themeObj)) {
+          //console.log(`${key}: ${value}`);
+          document.documentElement.style.setProperty(key, value);
+        }
+  } else {
+      //do nothing
+  }
+}
+
+//Overrides the current theme data (if any) in LocalStorage
+//Note: This does not change the actual CSS settings being applied.
+export function loadDefaultTheme() {
+  console.log("Applying default");
+  //default theme is from :root in utilities.css
+  let defaultTheme = {
+      "--primary": "rgb(230, 94, 90)",
+      "--primary--dim": "rgb(247, 161, 162)",
+      "--darkgrey": "rgb(0, 0, 0)",
+      "--medgrey": "rgb(222, 221, 213)",
+      "--grey": "rgb(240, 242, 236)",
+      "--darkergrey": "lightgrey",
+      "--white": "#fff",
+      "--aqua": "rgb(1, 182, 216)",
+      "--green": "rgb(105, 182, 73)",
+      "--yellow": "rgb(252, 242, 134)",
+      "--textcolor": "black",
+      "--subtextcolor": "gray",
+  };
+  localStorage.setItem("currTheme",JSON.stringify(defaultTheme));
+}
