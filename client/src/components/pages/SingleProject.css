@@ -14,6 +14,6 @@
 }
 
 .projectDocumentation-headerTitle {
-    color: var(--pink);
-    text-shadow: -1px -1px 0 var(--primary);
+    color: var(--projectpage-headerTitle);
+    text-shadow: -1px -1px 0 var(--projectpage-headerTitleShadow);
 }

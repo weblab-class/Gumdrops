@@ -1,6 +1,7 @@
 .NavBar-container {
     /* padding: var(--m) var(--l); */
-    background-color: var(--primary);
+    /*background-color: var(--primary);*/
+    background: var(--navbar-container);
   }
   
   /* .NavBar-title {  //deprecated
@@ -36,7 +37,7 @@
 
   .NavBar-link,
   .NavBar-link:visited {
-    color: var(--grey);
+    color: var(--navbar-header);
     font-size: var(--l);
     opacity: 0.6;
     text-decoration: underline;
@@ -51,7 +52,6 @@
   .NavBar-login {
     opacity: 1;
     margin-left: var(--m);
-    background-color: var(--grey);
   }
   
   .NavBar-link + .NavBar-link {

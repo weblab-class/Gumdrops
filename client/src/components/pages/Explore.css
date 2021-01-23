@@ -19,15 +19,15 @@
 }
 
 .Explore-tagAqua {
-    background-color: var(--aqua);
+    background-color: var(--explorepage-tagOne);
 }
 
 .Explore-tagGreen {
-    background-color: var(--green);
+    background-color: var(--explorepage-tagTwo);
 }
 
 .Explore-tagYellow {
-    background-color: var(--yellow);
+    background-color: var(--explorepage-tagThree);
 }
 
 .Explore-search {

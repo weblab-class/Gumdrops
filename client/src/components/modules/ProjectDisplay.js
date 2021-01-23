@@ -47,9 +47,9 @@ class ProjectDisplay extends Component {
             return (
                 <div className="ProjectDisplay-container">
                     <Link to={`/project/${this.props.projectId}`}>
-                        <div className="ProjectDisplay-image">
+                    <div className="ProjectDisplay-image">
                             <Thumbnail projectId={this.props.projectId} />
-                        </div>
+                    </div>
                         <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
                             <div>{this.props.projectName}</div>
                             <div>{"@"+this.state.role}</div>
@@ -61,9 +61,9 @@ class ProjectDisplay extends Component {
         return (
             <div className="ProjectDisplay-container">
                 <Link to={`/project/${this.props.projectId}`}>
-                    <div className="ProjectDisplay-image">
+                <div className="ProjectDisplay-image">
                         <Thumbnail projectId={this.props.projectId} />
-                    </div>
+                </div>
                     <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
                         <div className="ProjectDisplay-text">{this.props.projectName}</div>
                     </div>

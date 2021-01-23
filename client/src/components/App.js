@@ -57,7 +57,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
         />
-        <Cursor />
+        {/*<Cursor />*/}
         <Router>
           <Skeleton
             path="/"

@@ -19,6 +19,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
+
+  /*Pre-defined color sets*/
   --primary: rgb(230, 94, 90);
   --primary--dim: rgb(247, 161, 162);
   --darkgrey: rgb(0, 0, 0); /*black*/
@@ -29,6 +31,35 @@
   --aqua: rgb(1, 182, 216);
   --green: rgb(105, 182, 73);
   --yellow: rgb(252, 242, 134);
+
+  /*Main group*/
+  --main-background2: var(--grey);
+  --navbar-container2: linear-gradient(to right top, #65dfc9,#6cdbeb);
+  --navbar-container: var(--primary);
+  --navbar-header: black;
+
+  /*Project Page*/
+  --projectpage-headerTitle: var(--primary); 
+  --projectpage-headerTitleShadow: var(--primary--dim);
+  --storycard-background: var(--primary--dim);
+  --storycard-textColor: black;
+
+
+  /*Buttons*/
+  --button-background: var(--grey); /*same as main-background for transparency*/
+  --button-text_border: var(--primary); /*for both the text and the border*/
+  --button-background-hover: var(--primary); /*box fill color when mouse is hovered over it*/
+  --button-text-hover: var(--white); /*text color when mouse is hovered over it*/
+
+  /*Explore Page Tags*/
+  /*This tag scheme repeats for every 3 additional unique project tags that we have*/
+  --explorepage-tagBorder: var(--white);
+  --explorepage-tagOne: var(--aqua);
+  --explorepage-tagTwo: var(--green);
+  --explorepage-tagThree: var(--yellow);
+
+
+
   --xxs: 2px;
   --xs: 4px;
   --s: 8px;
@@ -41,6 +72,7 @@
 
 html {
   cursor: url("./components/modules/blue_cursor_resized.png"), auto;
+  background: var(--main-background2);
 }
 
 body {
