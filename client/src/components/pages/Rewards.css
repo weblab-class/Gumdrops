@@ -1,0 +1,36 @@
+.Rewards-achievementsContainer{
+    height: 50%;
+}
+
+.Rewards-proUnlockContainer{
+    width: 50%;
+    height: 50%;
+}
+
+.Rewards-achievement{
+    width:10%;
+}
+
+.Rewards-progress{
+    width: 20%;
+}
+
+.Rewards-unlockables{
+    width: 20%;
+}
+
+.Rewards-center{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+img{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
+
+h4 + h4{
+    margin: 0;
+}
