@@ -1,20 +1,14 @@
 .Rewards-achievementsContainer{
-    width: 100%;
     height: 50%;
 }
 
-.Rewards-proUnlockContainer{
-    width: 100%;
+.Rewards-unlockContainer{
     height: 50%;
 }
 
 .Rewards-achievement{
     width: fit-content;
 }
-
-/* .Rewards-progress{
-    width: 20%;
-} */
 
 .Rewards-unlockables{
     width: fit-content;
@@ -28,7 +22,3 @@
     height: 50%;
     border-radius: 50%;
 }
-
-/* h4 + h4{
-    margin: 0;
-} */

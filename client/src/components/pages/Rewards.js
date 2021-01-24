@@ -25,18 +25,12 @@ class Rewards extends Component {
             <h4 className="u-textCenter">20/100 Page Views</h4>
           </div>
         </div>
-        {/* <div className="Rewards-proUnlockContainer u-inlineBlock">
-          <h1>Progress</h1>
-          <div className="Rewards-progress">
-            <img className="Rewards-centerImg" src={Img}/>
-            <h4 className="u-textCenter">20/100 Page Views</h4>
-          </div>
-        </div> */}
-        <div className="Rewards-proUnlockContainer u-inlineBlock">
+        <div className="Rewards-unlockContainer u-inlineBlock">
           <h1>Unlockables</h1>
           <div className="Rewards-unlockables">
             <img className="Rewards-centerImg" src={Img}/>
             <h3 className="u-textCenter">Space Banner</h3>
+            <h4 className="u-textCenter">5/10 Projects</h4>
           </div>
         </div>
       </>
