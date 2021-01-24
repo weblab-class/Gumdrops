@@ -68,10 +68,18 @@ class ProfileBio extends Component {
                 </div>
             );
         }
+        if(this.props.editing){
+            return (
+                <div className="Profile-bioContainer">
+                    <h2 className="u-textCenter new-h2">Bio:</h2>
+                    <NewBio userId={this.props.userId}/>
+                </div>
+            );
+        }
         return (
             <div className="Profile-bioContainer">
-                <h2 className="u-textCenter new-h2">Bio:</h2>
-                <NewBio userId={this.props.userId}/>
+                <h2 className="u-textCenter h2">Bio:</h2>
+                <p className="u-textCenter">No bio added yet</p>
             </div>
         );
     }

@@ -76,10 +76,18 @@ class ProfileImage extends Component {
                 </div>
             );
         }
+        if(this.props.editing){
+            return (
+                <div className="Profile-imageInputContainer">
+                    <h2 className="u-textCenter new-h2">Profile Pic:</h2>
+                    <NewProfileImageInput userId={this.props.userId}/>
+                </div>
+            );
+        }
         return (
             <div className="Profile-imageInputContainer">
-                <h2 className="u-textCenter new-h2">Profile Pic:</h2>
-                <NewProfileImageInput userId={this.props.userId}/>
+                <h2 className="u-textCenter h2">Profile Pic:</h2>
+                <p className="u-textCenter">No picture added yet</p>
             </div>
         );
     }
