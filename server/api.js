@@ -53,33 +53,43 @@ router.post("/initsocket", (req, res) => {
 });
 
 //intialised reward if this the first time to login
-router.post("/initreward",(req,res)=>{
-  const DataExists = RewardData.findOne({"userId": req.body.userId})
-  if(!DataExists){
-    const NewData = new RewardData({
-    views: 0, 
-    projects: 0,
-    rewards:[],
-    userId: req.body.userId,
-    streak:0,
-    likes: 0, 
-    });
-    DataExists.save().then((value)=>{
-      res.send(value);
-    });
+router.post("/initreward",async(req,res)=>{
+  console.log(req.body.userId);
+  try{
+    const DataExists = await RewardData.findOne({"userId": req.body.userId})
+    console.log(DataExists)
+    if(!DataExists){
+      const NewData = new RewardData({
+      views: 0, 
+      projects: 0,
+      rewards:[],
+      userId: req.body.userId,
+      streak:0,
+      likes: 0, 
+      });
+      NewData.save().then((value)=>{
+        res.send(value);
+      });
+    }
+    else{res.send(DataExists)};
+    }
+  catch(e){
+    console.log("major error");
   }
-  res.send({});
 })
 //updates the shchema when a change is made 
 router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
-  RewardData.updateOne(filter,{$inc:req.query.changes}).then((data)=>{
+  console.log(filter)
+  console.log("ths are the changes that i pushed ")
+  console.log(req.body.changes);
+  RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
     res.send(data);
-  })
+  }).catch(console.log("major error"))
 })
 router.get("/reward",(req,res)=>{
   RewardData.findOne({"userId": req.body.userId}).then((data)=>{
-    res.send(data);
+    res.send({});
   })
 })
 // |------------------------------|
