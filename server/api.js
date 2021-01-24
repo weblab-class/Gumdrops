@@ -200,15 +200,17 @@ router.get("/theme",(req,res)=>{
   })
 })
 
-//Saves the Theme object for a user. Expects an object of:
+//Saves the Theme object for a user (or updates it if exists). Expects an object of:
 // { userId: String, themeData: Object }
 router.post("/theme",(req,res)=>{
   console.log(req.body.themeData);
-  let themeObject = new Theme({
+  let filter = { userId: req.body.userId};
+  let themeObj = {
     userId: req.body.userId,
     themeData: req.body.themeData,
-  });
-  themeObject.save().then(()=>res.send({})); //sends back empty object to indicate completion.
+  };
+  Theme.updateOne(filter,{$set:themeObj},{upsert:true}).then(()=>res.send({}));
+  //themeObject.save().then(()=>res.send({})); //sends back empty object to indicate completion.
 })
 
 //Retrieve all story cards corresponding to a specific projectId. Expects an object of:

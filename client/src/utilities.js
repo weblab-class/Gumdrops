@@ -72,7 +72,6 @@ export function fileToBuffer(data) {
 
 //If it exists, load the theme data from HTML Local Storage and applies it to the root CSS
 export function applyThemeFromLocalStorage() {
-  console.log("apply from local storage");
   if(localStorage.hasOwnProperty("currTheme")) {
       let themeObj = JSON.parse(localStorage.getItem("currTheme"));
       console.log(themeObj);
@@ -106,3 +105,5 @@ export function loadDefaultTheme() {
   };
   localStorage.setItem("currTheme",JSON.stringify(defaultTheme));
 }
+
+//
