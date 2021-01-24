@@ -2,13 +2,11 @@ const mongoose = require("mongoose");
 
 const RewardDataSchema = new mongoose.Schema({
 
-  views: Integer, 
-  projects: Integer,
-  rewards:[],
+  views: Number, 
+  projects: Number,
+  rewards:[String],
   userId: String,
-  streak:Integer,
-  likes: Integer,
-
-
+  streak: Number,
+  likes: Number,
 });
 module.exports = mongoose.model("reward", RewardDataSchema);

@@ -17,7 +17,7 @@ const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
-const RewardData = require("./modles/reward");
+const RewardData = require("./models/reward");
 const ObjectId = require('mongodb').ObjectId; 
 const Role = require('./models/role.js');
 const Theme = require("./models/theme.js");
@@ -66,6 +66,19 @@ router.post("/initreward",(req,res)=>{
     });
     DataExists.save();
   }
+  res.send({});
+})
+//updates the shchema when a change is made 
+router.post("/rewardinc",(req,res)=>{
+  let filter = {"userId": req.body.userId};
+  RewardData.updateOne(filter,{$inc:req.query.changes}).then((data)=>{
+    res.send(data);
+  })
+})
+router.get("/reward",(req,res)=>{
+  RewardData.findOne({"userId": req.body.userId}).then((data)=>{
+    res.send(data);
+  })
 })
 // |------------------------------|
 // | write your API methods below!|
