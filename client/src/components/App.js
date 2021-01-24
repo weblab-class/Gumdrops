@@ -37,23 +37,46 @@ class App extends Component {
     });
   }
 
+  //Retrieves user theme, and if exists, apply it
+  loadUserTheme = (userId) => {
+    get("/api/theme",{ userId: userId}).then((themeObj)=>{
+      //load theme, if it exists
+      console.log(themeObj);
+      if(themeObj!=={}) {
+          localStorage.setItem("currTheme", JSON.stringify(themeObj));
+          applyThemeFromLocalStorage();
+      }
+    });
+  }
+
+  //Attempts to save user theme settings from LocalStorage, if it exists
+  saveUserTheme = (userId) => {
+    if(localStorage.hasOwnProperty("currTheme")){
+      let currTheme = localStorage.getItem("currTheme");
+      let postBody = { userId: userId, themeData: JSON.parse(currTheme)};
+      post("/api/theme",postBody).then(result=>console.log("Save theme completed"));
+    }
+  }
+
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
+      this.loadUserTheme(user._id);
     });
     localStorage.setItem("loggedin","true");
-    applyThemeFromLocalStorage();
+    applyThemeFromLocalStorage(); //run to make sure we apply theme early-on.
   };
 
   handleLogout = () => {
     this.setState({ userId: undefined });
-    post("/api/logout").then(()=> window.location.replace("/"));
+    this.saveUserTheme(this.state.userId);
     localStorage.setItem("loggedin","false");
     loadDefaultTheme();
     applyThemeFromLocalStorage();
+    post("/api/logout").then(()=> window.location.replace("/"));
   };
 
   render() {
@@ -63,7 +86,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
         />
-        <ThemeManager />
+        <ThemeManager userId={this.state.userId}/>
         {/*<Cursor />*/}
         <Router>
           <Skeleton
