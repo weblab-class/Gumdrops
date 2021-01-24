@@ -38,6 +38,8 @@
   --main-background: var(--grey);
   --navbar-container: var(--primary);
   --navbar-header: var(--textcolor);
+  --cursor-image: url(./public/blue_cursor.png);
+  --cursor-pointer: url(./public/dragon.gif);
 
   /*Project Page*/
   --projectpage-headerTitle: var(--primary); 
@@ -77,8 +79,12 @@
   --xxxl: 40px;
 }
 
+a {
+  cursor: var(--cursor-pointer), pointer;
+}
+
 html {
-  cursor: url("./components/modules/blue_cursor_resized.png"), auto;
+  cursor: var(--cursor-image), default; /*second entry is the keyword fallback if first entry do not exist*/
   background: var(--main-background) no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
@@ -92,6 +98,7 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 300;
 }
+
 
 .cursor {
   width: 3rem;
@@ -141,13 +148,13 @@ form {
 }
 
 .u-pointer {
-  cursor: pointer;
+  cursor: var(--cursor-pointer), default; /*is overriden by <a> styling*/
 }
 
 .u-link {
   color: var(--primary);
   text-decoration: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer), default; /*is overriden by <a> styling*/
 }
 
 .u-link:hover {

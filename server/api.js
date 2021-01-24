@@ -423,7 +423,8 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
-      if(returnImage){ //if not null
+      console.log(returnImage);
+      if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {
         unbufferedImg = returnImage.imageHeader + "," + returnImage.image.toString('base64'); //recreate URL-encoded image
