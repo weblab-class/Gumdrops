@@ -18,6 +18,6 @@ input[type="file"].NewProjectInput-input{
   border-radius: var(--s);
   display: block;
   margin: 0 auto;
-  background-color: var(--main-background);
+  background-color: var(--grey);
 }
 

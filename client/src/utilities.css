@@ -79,7 +79,11 @@
 
 html {
   cursor: url("./components/modules/blue_cursor_resized.png"), auto;
-  background: var(--main-background);
+  background: var(--main-background) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 body {

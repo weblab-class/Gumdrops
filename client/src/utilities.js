@@ -74,7 +74,6 @@ export function fileToBuffer(data) {
 export function applyThemeFromLocalStorage() {
   if(localStorage.hasOwnProperty("currTheme")) {
       let themeObj = JSON.parse(localStorage.getItem("currTheme"));
-      console.log(themeObj);
       for (const [key, value] of Object.entries(themeObj)) {
           //console.log(`${key}: ${value}`);
           document.documentElement.style.setProperty(key, value);
@@ -106,4 +105,3 @@ export function loadDefaultTheme() {
   localStorage.setItem("currTheme",JSON.stringify(defaultTheme));
 }
 
-//

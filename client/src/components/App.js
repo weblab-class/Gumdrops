@@ -50,11 +50,16 @@ class App extends Component {
   }
 
   //Attempts to save user theme settings from LocalStorage, if it exists
-  saveUserTheme = (userId) => {
-    if(localStorage.hasOwnProperty("currTheme")){
-      let currTheme = localStorage.getItem("currTheme");
-      let postBody = { userId: userId, themeData: JSON.parse(currTheme)};
-      post("/api/theme",postBody).then(result=>console.log("Save theme completed"));
+  saveUserTheme = async (userId) => {
+    try{
+      if(localStorage.hasOwnProperty("currTheme")){
+        let currTheme = localStorage.getItem("currTheme");
+        let postBody = { userId: userId, themeData: JSON.parse(currTheme)};
+        let result = await post("/api/theme",postBody);
+        return result;
+      }
+    } catch(e) {
+      console.log(e);
     }
   }
 
@@ -71,12 +76,14 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined });
-    this.saveUserTheme(this.state.userId);
-    localStorage.setItem("loggedin","false");
-    loadDefaultTheme();
-    applyThemeFromLocalStorage();
-    post("/api/logout").then(()=> window.location.replace("/"));
+    this.saveUserTheme(this.state.userId).then((result)=>{
+      localStorage.setItem("loggedin","false");
+      loadDefaultTheme();
+      applyThemeFromLocalStorage();
+      this.setState({ userId: undefined });
+      post("/api/logout").then(()=> window.location.replace("/"));
+  });
+    
   };
 
   render() {
