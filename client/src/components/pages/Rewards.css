@@ -1,9 +1,11 @@
 .Rewards-achievementsContainer{
-    height: 50%;
+    width: 25vw;
+    height: 40vh;
 }
 
 .Rewards-unlockContainer{
-    height: 50%;
+    width: 25vw;
+    height: 40vh;
 }
 
 .Rewards-achievement{
@@ -18,7 +20,7 @@
     position: relative;
     left: 50%;
     transform: translate(-50%);
-    width: 50%;
-    height: 50%;
+    max-width: 10vw;
+    max-height: 10vh;
     border-radius: 50%;
 }
