@@ -20,21 +20,21 @@ class Rewards extends Component {
         <div className="Rewards-achievementsContainer">
           <h1>Achievements</h1>
           <div className="Rewards-achievement">
-            <img className="Rewards-center" src={Img}/>
+            <img className="Rewards-centerImg" src={Img}/>
             <h4 className="u-textCenter">Web Lab Master</h4>
           </div>
         </div>
         <div className="Rewards-proUnlockContainer u-inlineBlock">
           <h1>Progress</h1>
           <div className="Rewards-progress">
-            <img className="Rewards-center" src={Img}/>
+            <img className="Rewards-centerImg" src={Img}/>
             <h4 className="u-textCenter">20/100 Page Views</h4>
           </div>
         </div>
         <div className="Rewards-proUnlockContainer u-inlineBlock">
           <h1>Unlockables</h1>
           <div className="Rewards-unlockables">
-            <img className="Rewards-center" src={Img}/>
+            <img className="Rewards-centerImg" src={Img}/>
             <h4 className="u-textCenter">Space Banner</h4>
           </div>
         </div>
