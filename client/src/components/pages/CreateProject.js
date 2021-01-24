@@ -17,7 +17,7 @@ class CreateProject extends Component {
       this.state = {
           projectName: "", //String
           collaborators: "", //String
-          teamId: "", //String
+          roles: "", //String
           tags: "", //String
           thumbnail: null, //File object
       };
@@ -37,9 +37,9 @@ class CreateProject extends Component {
       });
     }
 
-    teamIdOnChange = (event) => {
+    rolesOnChange = (event) => {
       this.setState({
-        teamId: event.target.value,
+        roles: event.target.value,
       });
     }
 
@@ -58,64 +58,77 @@ class CreateProject extends Component {
 
     handleSubmit = () => {
       if(this.state.projectName !== "") {
-      let collabArray = []; //handling split of collaborators
-      if(this.state.collaborators!=="") {
-        collabArray = this.state.collaborators.split(" ");
-      }
-      collabArray.push("@"+this.props.userId);
-      collabArray = collabArray.map((value)=>{
-        return({
-        userId: value.slice(1),
-        role: "team_member",}); //hard-coded to member for now
-      });
-
-      let tagsArray; //handling split of tags
-      if(this.state.tags==="") {
-        tagsArray = ["#no-tag"];
-      } else {
-        tagsArray = this.state.tags.split(" ");
-      }
-      console.log(tagsArray);
-      let projectObj = {
-        name : this.state.projectName,
-        collaborators: collabArray,
-        teamId: this.state.teamId,
-        tags: tagsArray,
-      };
-
-      //async function to post to new project
-      let postProject = async () => {
-        let projectid = await post("/api/project",projectObj);
-        console.log("New project with id "+ projectid);
-        let promise1 = post("/api/user_add_project",{ //adds projectId to user's projectIds array
-                          userId: this.props.userId,
-                          projectId: projectid,
-                        });
-        let promise2 = new Promise((resolve,reject) => {
-          if(this.state.thumbnail){
-            console.log("Tries to add thumbnail to database");
-            let thumbnailObj = {
-              projectId : projectid,
-              image: this.state.thumbnail,
-            }
-            //proceeds to upload thumbnail
-            post("/api/thumbnail",thumbnailObj).then(resolve("done"));
-          } else {
-            resolve("done");
-          }
-        });
-        Promise.all([promise1, promise2]).then((values) => {
-          this.setState({ //resets the fields
-            projectName: "", 
-            collaborators: "", 
-            teamId: "", 
-            tags: "",
-            thumbnail: null, 
+        let collabArray = ["@"+this.props.userId,]; //handling split of collaborators
+        if(this.state.collaborators!=="") {
+          collabArray = collabArray.concat(this.state.collaborators.split(" "));
+        }
+        let rolesArray = []; //handling split of roles
+        if(this.state.roles!=="") {
+          rolesArray = this.state.roles.split(" ");
+          console.log(collabArray);
+          collabArray = collabArray.map((value, i)=>{
+            return({
+              userName: value.slice(1),
+              role: rolesArray[i].slice(1),
+            });
+          })
+          console.log(collabArray);
+        } else {
+          collabArray = collabArray.map((value)=>{
+            return({
+            userName: value.slice(1),
+            role: "team_member",
+            }); //hard-coded to member for now
           });
-          window.location.replace("/project/"+projectid); //redirect to new project page
-        });
-      }
-      postProject();
+        }
+
+        let tagsArray; //handling split of tags
+        if(this.state.tags==="") {
+          tagsArray = ["#no-tag"];
+        } else {
+          tagsArray = this.state.tags.split(" ");
+        }
+        console.log(tagsArray);
+
+        let projectObj = { //Create project object
+          name : this.state.projectName,
+          collaborators: collabArray,
+          tags: tagsArray,
+        };
+
+        //async function to post to new project
+        let postProject = async () => {
+          let projectid = await post("/api/project",projectObj);
+          console.log("New project with id "+ projectid);
+          let promise1 = post("/api/user_add_project",{ //adds projectId to user's projectIds array
+            userId: this.props.userId,
+            projectId: projectid,
+          });
+          let promise2 = new Promise((resolve,reject) => {
+            if(this.state.thumbnail){
+              console.log("Tries to add thumbnail to database");
+              let thumbnailObj = {
+                projectId : projectid,
+                image: this.state.thumbnail,
+              }
+              //proceeds to upload thumbnail
+              post("/api/thumbnail",thumbnailObj).then(resolve("done"));
+            } else {
+              resolve("done");
+            }
+          });
+          Promise.all([promise1, promise2]).then((values) => {
+            this.setState({ //resets the fields
+              projectName: "", 
+              collaborators: "", 
+              roles: "", 
+              tags: "",
+              thumbnail: null, 
+            });
+            window.location.replace("/project/"+projectid); //redirect to new project page
+          });
+        }
+        postProject();
       }
     }
 
@@ -127,12 +140,15 @@ class CreateProject extends Component {
               <NewProjectInput onChange={event => this.projectNameOnChange(event)} value={this.state.projectName}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">Who are your collaborators? (e.g., "@DVILL17 @Juan")</h4>
+              <h4 className="u-textCenter">Who are your collaborators? (e.g., "@DVILL_17 @Juan")</h4>
               <NewProjectInput onChange={event => this.collabOnChange(event)} value={this.state.collaborators}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">What is your team ID?</h4> 
-              <NewProjectInput onChange={event => this.teamIdOnChange(event)} value={this.state.teamId}/>
+              <h4 className="u-textCenter">What are your team's roles?</h4>
+              <h4 className="u-textCenter">Choose from leo-der, researcher, content-creator, developer, desiigner</h4>
+              <h4 className="u-textCenter">(start with yourself and continue in the order that you used in the last question)</h4>
+              <h4 className="u-textCenter">(e.g., "@leo-der @researcher @developer")</h4>
+              <NewProjectInput onChange={event => this.rolesOnChange(event)} value={this.state.roles}/>
             </section>
             <section className="CreateProject-inputContainer">
               <h4 className="u-textCenter">Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
