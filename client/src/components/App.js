@@ -54,9 +54,10 @@ class App extends Component {
   loadReward = (userId)=>{
     post("/api/initreward",{userId: userId}).then((value)=>{
     console.log("initialized reward")
+    console.log(value)
   })
   }
-  
+
   //Attempts to save user theme settings from LocalStorage, if it exists
   saveUserTheme = async (userId) => {
     try{

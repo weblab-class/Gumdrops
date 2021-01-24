@@ -64,7 +64,9 @@ router.post("/initreward",(req,res)=>{
     streak:0,
     likes: 0, 
     });
-    DataExists.save();
+    DataExists.save().then((value)=>{
+      res.send(value);
+    });
   }
   res.send({});
 })

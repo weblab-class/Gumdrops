@@ -60,9 +60,10 @@ class LinkBlock extends Component {
                 
                 });
                 this.props.onDel && this.props.onDel(tempArray);
+                console.log(tempArray);
                 break;
             }
-            console.log(tempArray);
+            
         }
         
     }
