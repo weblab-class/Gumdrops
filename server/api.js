@@ -288,8 +288,9 @@ router.post("/editstorycard",(req,res)=>{
         }).catch((err)=>console.log("there was an errorr alarm"));
     });
   } else {
-  StoryCard.updateOne(filter,{$set: {textContent: req.body.changes}}).then((result)=>{
+  StoryCard.updateOne(filter,{$set: req.body.changes}).then((result)=>{
     res.send(result);
+    console.log("this has been updatd properly")
     }).catch((err)=>console.log("there was an errorr alarm"));
   }
 });

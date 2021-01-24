@@ -49,6 +49,14 @@ class App extends Component {
     });
   }
 
+  //intialized rewards if this the first time login
+  //it could also be used to retrieve not yet 
+  loadReward = (userId)=>{
+    post("/api/initreward",{userId: userId}).then((value)=>{
+    console.log("initialized reward")
+  })
+  }
+  
   //Attempts to save user theme settings from LocalStorage, if it exists
   saveUserTheme = (userId) => {
     if(localStorage.hasOwnProperty("currTheme")){
