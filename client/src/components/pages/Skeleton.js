@@ -11,17 +11,15 @@ class Skeleton extends Component {
   }
 
   componentDidMount() {
-    // remember -- api calls go here!
   }
 
   render() {
+      // remember -- api calls go here!
     return (
-      <div className="u-flexColumn">
-        <section className="u-textCenter Skeleton-title">
-          <h1>For all your project needs</h1>
-        </section>
+      <div className="Skeleton-mainPage-container u-flexColumn">
         <section className="u-textCenter Skeleton-mainPage-Description">
-          <p>From brainstorming new ideas to designing your next project wiki, Gumdrops make it easy for you to document your project and collaborate with others.</p>
+          <h1 className="Skeleton-title">For all your project needs</h1>
+          <p className="Skeleton-mainPage-text">From brainstorming new ideas to designing your next project wiki, Gumdrops make it easy for you to document your project and collaborate with others.</p>
         </section>
       </div>
     );

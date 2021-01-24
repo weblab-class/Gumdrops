@@ -18,12 +18,12 @@ class NavBar extends Component {
         console.log(this.props.userId);
         
         return(
-        <nav className="NavBar-container">
+        <nav className="NavBar-container u-flex">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
             <div className="NavBar-imageContainer u-inlineBlock">
                 <img className="NavBar-mainImg" src={Logo}/>
             </div>
-            <div className="NavBar-linkContainer">
+            <section className="NavBar-linkContainer">
                 <Link to="/" className="NavBar-link">Home</Link>
                 <Link to="/explore" className="NavBar-link">Explore</Link>
                 {this.props.userId ? (
@@ -33,6 +33,8 @@ class NavBar extends Component {
                         <Link to="/rewards" className="NavBar-link">Rewards</Link>
                     </>
                 ) : (<span></span>)}
+            </section>
+            <section className="NavBar-loginContainer">
                 {this.props.userId ? (
                     <GoogleLogout
                         clientId={GOOGLE_CLIENT_ID}
@@ -50,7 +52,7 @@ class NavBar extends Component {
                         className="u-link NavBar-login"
                     />
                 )}
-            </div>
+            </section>
         </nav>);
     }
 }

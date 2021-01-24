@@ -229,7 +229,6 @@ router.get("/theme",(req,res)=>{
 //Saves the Theme object for a user (or updates it if exists). Expects an object of:
 // { userId: String, themeData: Object }
 router.post("/theme",(req,res)=>{
-  console.log(req.body.themeData);
   let filter = { userId: req.body.userId};
   let themeObj = {
     userId: req.body.userId,

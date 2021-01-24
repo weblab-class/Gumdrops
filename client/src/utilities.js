@@ -86,7 +86,6 @@ export function applyThemeFromLocalStorage() {
 //Overrides the current theme data (if any) in LocalStorage
 //Note: This does not change the actual CSS settings being applied.
 export function loadDefaultTheme() {
-  console.log("Applying default");
   //default theme is from :root in utilities.css
   let defaultTheme = {
       "--primary": "rgb(230, 94, 90)",
