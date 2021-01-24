@@ -3,6 +3,8 @@ import "../../utilities.css";
 import { applyThemeFromLocalStorage  } from "../../utilities.js";
 import penguins from "../../public/penguin-group.jpg";
 import retro from "../../public/retroBackground.png";
+import brush from "../../public/brush.jpg";
+
 /**
  * ThemeApplier applies a custom theming to the website. 
  * Only called when user is logged in.
@@ -30,17 +32,16 @@ class ThemeManager extends Component{
     }
 
 
-    pushRetroTheme = () => {
-        let retroObj = {
-            "--navbar-container": "lightpink",
-            "--textcolor":"black",
+    pushBrushTheme = () => {
+        let brushObj = {
+            "--projectpage-background": "linear-gradient( rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.55)), url("+brush+")",
         }
-        localStorage.setItem("currTheme",JSON.stringify(retroObj)); //required to save objects in LocalStorage
+        localStorage.setItem("currTheme",JSON.stringify(brushObj)); //required to save objects in LocalStorage
         applyThemeFromLocalStorage();
     }
     
     render(){
-        this.pushRetroTheme();
+        this.pushBrushTheme();
         if(localStorage.getItem("loggedin")==="true") {
             applyThemeFromLocalStorage(); //makes sure theme setting is persistant after refresh
         }
