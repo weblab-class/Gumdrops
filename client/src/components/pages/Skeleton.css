@@ -1,16 +1,34 @@
 .Skeleton-title {
-    color: var(--primary--dim);
-    text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);
-    font-size: 56px;
+    color: var(--mainpage-title);
+    /*text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);*/
+    font-size: 2.5vw;
     font-weight: bold;
 }
 
 .Skeleton-mainPage-Description {
+    background: linear-gradient(to bottom right, rgba(100,100,100,0.2), rgba(100,100,100,0.4));    
     position: relative;
     left: 50%;
     transform: translate(-50%);
     width: 60%;
+    margin-top: var(--l);
     padding-left: var(--xl);
     padding-right: var(--xl);
-    font-size: xx-large;
+    padding-bottom: var(--xl);
+    border: 5px solid white;
+}
+
+.Skeleton-mainPage-text {
+    background-color: palevioletred;
+    color: white;
+    font-size: 2vw;
+}
+
+
+.Skeleton-mainPage-container {
+    background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), var(--mainpage-background) center 0% fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    
 }

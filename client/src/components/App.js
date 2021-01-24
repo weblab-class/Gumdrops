@@ -16,6 +16,7 @@ import "../utilities.css";
 import "./pages/Skeleton.css";
 import ThemeManager from "./modules/ThemeManager.js";
 import user from "../../../server/models/user.js";
+
 /**
  * Define the "App" component as a class.
  */

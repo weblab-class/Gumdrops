@@ -36,6 +36,8 @@
 
   /*Main group*/
   --main-background: var(--grey);
+  --mainpage-title: white;
+  --mainpage-background: url(./public/retroBackground.png);
   --navbar-container: var(--primary);
   --navbar-header: var(--textcolor);
   --cursor-image: url(./public/blue_cursor.png);
@@ -85,7 +87,7 @@ a {
 
 html {
   cursor: var(--cursor-image), default; /*second entry is the keyword fallback if first entry do not exist*/
-  background: var(--main-background) no-repeat center center fixed;
+  background: var(--main-background); /* used to change background everywhere */
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
