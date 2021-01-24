@@ -3,6 +3,7 @@ import { get, post } from "../../utilities.js";
 import ProjectDisplay from "../modules/ProjectDisplay.js";
 import { NewPostInput } from "../modules/NewPostInput.js";
 import Fuse from "fuse.js";
+// import "typeahead.js";
 import "./Explore.css";
 
 //Props
@@ -21,6 +22,8 @@ class Explore extends Component {
 
     handleInit = () => {
         console.log("Going into handleInit for explore");
+        // let projectNames = [];
+        // Bloodhound = require("typeahead.js/dist/bloodhound.min.js")
         get("/api/explore",{})
         .then((projects)=>{
             if(this._isMounted){
@@ -28,7 +31,29 @@ class Explore extends Component {
                     projects: projects,
                 })
             };
-        }).then(console.log("Projects: "+this.state.projects))
+        })/*.then(()=>{
+            this.state.projects.forEach((project)=>{
+                projectNames.push(project.name);
+            });
+        });
+
+        // constructs the suggestion engine
+        let projects = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: projectNames
+        });
+        
+        $('#bloodhound .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        },
+        {
+            name: 'projects',
+            source: projects
+        });
+        */
     }
 
     search = (value) => {
@@ -130,10 +155,11 @@ class Explore extends Component {
             }
             return(
                 <>
-                    <div className="Explore-search">
+                    <div className="Explore-search" /*id="bloodhound"*/>
                         <NewPostInput 
                             defaultText="Search (You can search by project name or tag)"//(Try searching for a project by name OR try searching by tag (e.g., #math))" 
                             onSubmit={this.search}
+                            /*className="typeahead"*/
                         />
                     </div>
                     {output}

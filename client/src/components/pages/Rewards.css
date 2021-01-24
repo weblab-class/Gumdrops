@@ -1,36 +1,26 @@
 .Rewards-achievementsContainer{
-    height: 50%;
+    width: 25vw;
+    height: 40vh;
 }
 
-.Rewards-proUnlockContainer{
-    width: 50%;
-    height: 50%;
+.Rewards-unlockContainer{
+    width: 25vw;
+    height: 40vh;
 }
 
 .Rewards-achievement{
-    width:10%;
-}
-
-.Rewards-progress{
-    width: 20%;
+    width: fit-content;
 }
 
 .Rewards-unlockables{
-    width: 20%;
+    width: fit-content;
 }
 
-.Rewards-center{
+.Rewards-centerImg{
     position: relative;
     left: 50%;
     transform: translate(-50%);
-}
-
-img{
-    width: 50%;
-    height: 50%;
+    max-width: 10vw;
+    max-height: 10vh;
     border-radius: 50%;
-}
-
-h4 + h4{
-    margin: 0;
 }

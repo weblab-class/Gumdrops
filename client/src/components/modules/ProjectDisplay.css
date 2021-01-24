@@ -1,8 +1,8 @@
 .ProjectDisplay-container {
-    width: 190px;
+    width: 210px;
     height: 140px;
     margin-left: var(--l);
-    margin-bottom: 59px; /* 140px*.25 + var(--l) */
+    margin-bottom: 66px; /* 140px*.25 + var(--l) */
 }
 
 .ProjectDisplay-image {
@@ -15,7 +15,7 @@
 
 .ProjectDisplay-textContainer {
     width: 100%;
-    height: 25%;
+    height: 30%;
     background-color: var(--primary);
     color: var(--white);
     border-radius: 0 0 var(--m) var(--m);

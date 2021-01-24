@@ -141,21 +141,47 @@ router.get("/project",(req,res)=>{
 });
   
 //Stores a new Project document. Expects an object of:
-// { name: String, collaborators: [{userId:String,role:String}], teamId:String}
-router.post("/project",(req,res)=>{
-  let newproject = new Project({
-    name : req.body.name,
-    collaborators: req.body.collaborators,
-    teamId: req.body.teamId,
-    tags: req.body.tags,
-  });
-  newproject.save()
-    .then(result=>{
-      console.log("The newly saved projectId is "+result._id);
-      res.send(result._id);
-    })
-    .catch(error=>console.log(error));
-})
+// { name: String, collaborators: [{userName:String,role:String}], tags:[String]}
+router.post("/project", async (req,res)=>{
+  try{
+    getCollabors = async () => {
+      try{
+        console.log(req.body.collaborators)
+        let collabors = [];
+        for(let i=0; i<req.body.collaborators.length; i++){
+          if(i===0){
+            collabors.push({
+              userId: req.body.collaborators[i].userName,
+              role: req.body.collaborators[i].role,
+            });
+          } else{
+            let userObj = await User.findOne({"name": req.body.collaborators[i].userName});
+            collabors.push({
+              userId: userObj._id,
+              role: req.body.collaborators[i].role,
+            });
+          }
+        };
+        return collabors;
+      } catch(e){
+        console.log(e);
+      }
+    }
+    let collabors = await getCollabors();
+    let newproject = new Project({
+      name : req.body.name,
+      collaborators: collabors,
+      tags: req.body.tags,
+    });
+    newproject.save()
+      .then((result)=>{
+        console.log("The newly saved projectId is "+result._id);
+        res.send(result._id);
+      });
+  } catch(e) {
+    console.log(e)
+  };
+});
 
 //Deletes a project from the Project collection. Expects an object of:
 // { projectId: String }
@@ -427,7 +453,8 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
-      if(returnImage){ //if not null
+      console.log(returnImage);
+      if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {
         unbufferedImg = returnImage.imageHeader + "," + returnImage.image.toString('base64'); //recreate URL-encoded image

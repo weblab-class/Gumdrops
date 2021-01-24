@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import "../../utilities.css";
 import { applyThemeFromLocalStorage  } from "../../utilities.js";
+import penguins from "../../public/penguin-group.jpg";
 /**
  * ThemeApplier applies a custom theming to the website. 
  * Only called when user is logged in.
@@ -13,14 +14,15 @@ class ThemeManager extends Component{
         super(props);
     }
     componentDidMount() {
-
+    //this.pushGlassTheme();
     }
 
     pushGlassTheme = () => {
         console.log("Glass theme pushed");
         let glassObj = {
             "--navbar-container": "linear-gradient(to right top, #65dfc9,#6cdbeb)",
-            "--textcolor":"black",
+            "--textcolor":"grey",
+            "--main-background": "url("+penguins+")",
         };
         localStorage.setItem("currTheme",JSON.stringify(glassObj)); //required to save objects in LocalStorage
         applyThemeFromLocalStorage();
