@@ -115,10 +115,12 @@ class Explore extends Component {
             let categoriesList;
             let output;
             if(this.state.searching){
-                console.log("Displaying search projects");
-                this.state.searchProjects.forEach((project)=>console.log(project));
-                categoriesList = this.makeCategories([...this.state.searchProjects]);
-                output = <p className="u-textCenter">Sorry, no results were found from your search</p>
+                if(this.state.searchProjects.length === 0){
+                    output = <p className="u-textCenter">Sorry, no results were found from your search</p>;
+                } else {
+                    categoriesList = this.makeCategories([...this.state.searchProjects]);
+                    output = this.generateOutput(categoriesList);
+                }
             } else{
                 categoriesList = this.makeCategories([...this.state.projects]);
                 categoriesList.sort(function(a, b) {
