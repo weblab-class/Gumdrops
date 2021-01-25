@@ -83,13 +83,11 @@ router.post("/initreward",async(req,res)=>{
 //updates the shchema when a change is made 
 router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
-  console.log(filter)
-  console.log("ths are the changes that i pushed ")
-  console.log(req.body.changes);
   RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
     res.send(data);
   }).catch(console.log("major error"))
 })
+
 router.get("/reward",(req,res)=>{
   RewardData.findOne({"userId": req.query.userId}).then((data)=>{
     res.send(data);
@@ -114,6 +112,13 @@ router.post("/user_add_project",(req,res)=>{
     projectIds: req.body.projectId,
   }}).then(result=>res.send({})).catch(e=>console.log(e));
 });
+//increases views or likes
+router.post("/projectinc",(req,res)=>{
+  let filter = {"_id" : new ObjectId(req.body._id)};
+  Project.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
+    res.send(data);
+  }).catch(console.log("major error"))
+})
 //returns all of the users of a project 
 router.get("/users-ids",async(req,res)=>{
   console.log("attempting to retrieve user Ids");
@@ -124,9 +129,7 @@ router.get("/users-ids",async(req,res)=>{
       idArr = idArr.concat(myProject.collaborators[i].userId);
 
     }
-    console.log(myProject)
-    console.log("we found this collabs")
-    console.log(idArr);
+    
     res.send(idArr);
   }
   catch(e){
