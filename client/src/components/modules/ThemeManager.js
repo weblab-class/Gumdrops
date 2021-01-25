@@ -41,7 +41,7 @@ class ThemeManager extends Component{
     }
     
     render(){
-        this.pushBrushTheme();
+        //this.pushBrushTheme();
         if(localStorage.getItem("loggedin")==="true") {
             applyThemeFromLocalStorage(); //makes sure theme setting is persistant after refresh
         }
