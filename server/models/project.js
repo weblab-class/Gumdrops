@@ -15,6 +15,7 @@ const ProjectSchema = new mongoose.Schema({
     }
   ],
   tags: [String], //stored WITH the # sign
+  numJournalTags: Number, //number of Tags counted in Journal
 },
 {
   timestamps: true,

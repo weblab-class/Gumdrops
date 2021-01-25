@@ -12,6 +12,9 @@ import { post } from "../../utilities";
  * @param {Boolean} canSend
  * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  * @param {String} userId
+ * @param {function} isTagCountingDone Boolean function that returns whether tag counting has been done in this cycle
+ * @param {function} incTagValue increments the instance variable in Journal.js by a value (representing number of tags in msg)
+ * @param {function} stopTagCount used to switch tag counting status in Journal once last JournalMessage is done counting
  */
 class JournalMessages extends Component {
   constructor(props) {
@@ -59,14 +62,30 @@ class JournalMessages extends Component {
         renderOutput.push(<div key={currTimeStamp}><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></div>);
         lastTimeStamp = currTimeStamp;
       }
-      renderOutput.push(
-        <JournalMessage 
-          message={this.props.data.messages[i]} 
-          userRoles={this.props.userRoles}
-          userId={this.props.userId}
-          key={"JournalMessage_"+this.props.data.messages[i].timestamp}
-        />
-      );
+      if(i==this.props.data.messages.length-1) { //is last entry
+        renderOutput.push(
+          <JournalMessage 
+            message={this.props.data.messages[i]} 
+            userRoles={this.props.userRoles}
+            userId={this.props.userId}
+            key={"JournalMessage_"+this.props.data.messages[i].timestamp}
+            isTagCountingDone = {this.props.isTagCountingDone}
+            incTagValue={this.props.incTagValue}
+            stopTagCount={this.props.stopTagCount} //provide function to stop tag counting
+          />
+        );
+      } else {
+        renderOutput.push(
+          <JournalMessage 
+            message={this.props.data.messages[i]} 
+            userRoles={this.props.userRoles}
+            userId={this.props.userId}
+            key={"JournalMessage_"+this.props.data.messages[i].timestamp}
+            isTagCountingDone = {this.props.isTagCountingDone}
+            incTagValue={this.props.incTagValue}
+          />
+        );
+      }
     }
     if(this.props.canSend){
       return (
