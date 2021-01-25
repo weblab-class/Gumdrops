@@ -99,11 +99,13 @@ class App extends Component {
   };
 
   render() {
+    let modeValue = getComputedStyle(document.documentElement).getPropertyValue("--mode"); //signify whenever website is in Dark or Light mode 
     return (
       <>
         <NavBar userId={this.state.userId} 
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
+            modeValue = {modeValue}
         />
         <ThemeManager userId={this.state.userId}/>
         {/*<Cursor />*/}

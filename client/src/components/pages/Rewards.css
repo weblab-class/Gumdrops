@@ -29,4 +29,5 @@
 
 .Rewards-title{
     margin-left: var(--m);
+    color: var(--textcolor);
 }

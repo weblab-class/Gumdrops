@@ -52,7 +52,7 @@ class ProfileImage extends Component {
                 return(
                     <>
                         <div className="Profile-sectionContainer">
-                            <h2 className="u-textCenter h2">Profile Pic:</h2>
+                            <h2 className="u-textCenter h2 Profile-subHeading">Profile Pic:</h2>
                             <img 
                                 style={{height: "15%", width: "15%", objectFit: "contain"}} 
                                 src={this.state.image}
@@ -67,7 +67,7 @@ class ProfileImage extends Component {
             }
             return(
                 <div className="Profile-sectionContainer">
-                    <h2 className="u-textCenter h2">Profile Pic:</h2>
+                    <h2 className="u-textCenter h2 Profile-subHeading">Profile Pic:</h2>
                     <img 
                         style={{height: "15%", width: "15%", objectFit: "contain"}} 
                         src={this.state.image}

@@ -45,4 +45,12 @@
 .Profile-edit:hover {
     color: var(--button-text-hover);
     background-color: var(--button-background-hover);
-  }
+}
+
+.Profile-welcome {
+    color: var(--textcolor);
+}
+
+.Profile-subHeading {
+    color: var(--subtextcolor);
+}

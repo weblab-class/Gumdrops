@@ -47,7 +47,7 @@ class Profile extends Component {
             if(this.state.editing) {
                 return(
                     <>
-                        <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                        <h2 className="u-textCenter Profile-welcome">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
                         <hr></hr>
                         <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                         <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
@@ -64,7 +64,7 @@ class Profile extends Component {
             if(this.props.userId===this.props.viewerId) {
                 return(
                     <>
-                        <h2 className="u-textCenter">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                        <h2 className="u-textCenter Profile-welcome">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
                         <hr></hr>
                         <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                         <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
