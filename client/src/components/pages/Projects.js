@@ -68,6 +68,7 @@ class Projects extends Component {
                                 projectId={project._id}
                                 showRole={true}
                                 key={project._id} 
+                                isExplore={false}
                             />
                         ))}
                         <CreateProjectDisplay />

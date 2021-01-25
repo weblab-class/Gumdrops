@@ -10,6 +10,7 @@ import Thumbnail from "./Thumbnail.js";
 //projectId : String (passed down from Projects.js/Explore.js)
 //projectName : String (passed down from Projects.js/Explore.js)
 //showRole : Boolean
+//isExplore : Boolean (signifies whether project should get Explore-specific styling)
 
 class ProjectDisplay extends Component {
     _isMounted = false;
@@ -44,20 +45,50 @@ class ProjectDisplay extends Component {
     render() {
         console.log("ProjectDisplay was called.");
         if (this.props.showRole && (this.state.role !== null)) {
-            return (
+            if(this.props.isExplore){
+                return ( //different className for -image and -textContainer
                 <div className="ProjectDisplay-container">
                     <Link to={`/project/${this.props.projectId}`}>
-                    <div className="ProjectDisplay-image">
+                    <div className="ProjectDisplay-Explore-image">
                             <Thumbnail projectId={this.props.projectId} />
                     </div>
-                        <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
+                        <div className="ProjectDisplay-Explore-textContainer u-inlineBlock u-textCenter">
                             <div>{this.props.projectName}</div>
                             <div>{"@"+this.state.role}</div>
                         </div>
                     </Link>
                 </div>
-            );
+                );
+            } else {
+                return (
+                    <div className="ProjectDisplay-container">
+                        <Link to={`/project/${this.props.projectId}`}>
+                        <div className="ProjectDisplay-image">
+                                <Thumbnail projectId={this.props.projectId} />
+                        </div>
+                            <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
+                                <div>{this.props.projectName}</div>
+                                <div>{"@"+this.state.role}</div>
+                            </div>
+                        </Link>
+                    </div>
+                );
+            }
         };
+        if(this.props.isExplore){
+            return (
+                <div className="ProjectDisplay-container">
+                <Link to={`/project/${this.props.projectId}`}>
+                <div className="ProjectDisplay-Explore-image">
+                        <Thumbnail projectId={this.props.projectId} />
+                </div>
+                    <div className="ProjectDisplay-Explore-textContainer u-inlineBlock u-textCenter">
+                        <div className="ProjectDisplay-text">{this.props.projectName}</div>
+                    </div>
+                </Link>
+            </div>
+            );
+        }
         return (
             <div className="ProjectDisplay-container">
                 <Link to={`/project/${this.props.projectId}`}>

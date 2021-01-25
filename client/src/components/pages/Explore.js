@@ -112,6 +112,7 @@ class Explore extends Component {
                             projectId={project._id}
                             showRole={false}
                             key={project._id +`${j}`} 
+                            isExplore={true}
                         />
                     ))}
                 </section>

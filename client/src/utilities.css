@@ -39,10 +39,6 @@
   --mainpage-title: white;
   --mainpage-background: url(./public/retroBackground.png);
   --background-image: var(--grey);
-  --projectdisplay-bottom-container: rgb(161, 62, 95);
-  --exploredisplay-bottom-container: rgb(31, 193, 199);
-  --projectdisplay-image-container:rgb(247, 201, 201);
-  --exploredisplay-image-container:rgba(121, 229, 233, 0.795);
   --navbar-container: lightpink;
   --navbar-bottom-border: rgb(224, 145, 171);
   --navbar-header: var(--textcolor);
@@ -50,6 +46,10 @@
   --cursor-pointer: url(./public/dragon.gif);
 
   /*Project Page*/
+  --projectdisplay-bottom-container: rgb(161, 62, 95);
+  --projectdisplay-image-container:rgb(247, 201, 201);
+  --exploredisplay-bottom-container: rgb(31, 193, 199);
+  --exploredisplay-image-container:rgba(121, 229, 233, 0.795);
   --projectpage-headerTitle: var(--primary); 
   --projectpage-headerTitleShadow: var(--primary--dim);
   --storycard-background: var(--primary--dim);
