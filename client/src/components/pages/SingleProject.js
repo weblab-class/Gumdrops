@@ -59,10 +59,17 @@ class SingleProject extends Component{
     //this will update the view count 
     addViews= (bool)=>{
         if(!bool){
-        let body = {userId: this.props.userId, changes:{views:1}}
-        post("/api/rewardinc",body).then((newData)=>{
-            console.log("succesful")
-        });
+            get("/api/users-ids",{projectId: this.props.projectId}).then((idArr)=>{
+                console.log(idArr);
+                let tempArr = idArr;
+                for( let i = 0; i, i<tempArr.length; i++){
+                    let body = {userId: tempArr[i], changes:{views:1}}
+                    console.log(body);
+                    post("/api/rewardinc",body).then((newData)=>{
+                    console.log("succesful")
+                    });
+                }
+            })
         }
     }
     //i want the api to filter by project id and return stories state

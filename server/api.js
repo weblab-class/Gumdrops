@@ -114,7 +114,25 @@ router.post("/user_add_project",(req,res)=>{
     projectIds: req.body.projectId,
   }}).then(result=>res.send({})).catch(e=>console.log(e));
 });
+//returns all of the users of a project 
+router.get("/users-ids",async(req,res)=>{
+  console.log("attempting to retrieve user Ids");
+  try{
+    let myProject = await Project.findById(req.query.projectId);
+    let idArr = [];
+    for(let i = 0 ; i < myProject.collaborators.length; i++){
+      idArr = idArr.concat(myProject.collaborators[i].userId);
 
+    }
+    console.log(myProject)
+    console.log("we found this collabs")
+    console.log(idArr);
+    res.send(idArr);
+  }
+  catch(e){
+    console.log("error in retrieving Ids")
+  }
+})
 //Returns the user names of all collaborators on a project and their appropriate role styling. Expects an object of:
 // { projectId: String }
 //Returns an array of { userName : [roleName,userId,roleStyling] } objects.
@@ -187,6 +205,7 @@ router.post("/project", async (req,res)=>{
       name : req.body.name,
       collaborators: collabors,
       tags: req.body.tags,
+      views: 0,
     });
     newproject.save()
       .then((result)=>{
