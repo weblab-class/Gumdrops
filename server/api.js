@@ -90,7 +90,7 @@ router.post("/rewardinc",(req,res)=>{
   }).catch(console.log("major error"))
 })
 router.get("/reward",(req,res)=>{
-  RewardData.findOne({"userId": req.body.userId}).then((data)=>{
+  RewardData.findOne({"userId": req.query.userId}).then((data)=>{
     res.send(data);
   })
 })
