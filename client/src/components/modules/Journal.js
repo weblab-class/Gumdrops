@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import JournalMessages from "./JournalMessages.js";
 import { socket } from "../../client-socket.js";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 
 import "./Journal.css";
 
@@ -16,6 +16,8 @@ class Journal extends Component {
 
     constructor(props) {
         super(props);
+        this.tagCount = 0;
+        this.isTagCountingDone = false;
         const mainJournal = {
             _id: this.props.projectId,
             name: "MainJournal",
@@ -27,6 +29,21 @@ class Journal extends Component {
                 messages: [],
             },
         };
+    }
+
+    stopTagCount = () => {
+        console.log("stopTagCount triggered");
+        if(this.tagCount > 0 && !this.isTagCountingDone) { //triggered only when count is non-zero and isTagCountingDone is false before.
+            this.isTagCountingDone = true;
+            console.log("Final result is "+this.tagCount);
+            post("/api/project-journal-tags",{ projectId: this.props.projectId, numJournalTags: this.tagCount})
+                .then((result)=>console.log("Journal Tag data saved"));
+        }
+    }
+
+    incTagValue = (value) => { //receives value from JournalMessage to increment tagCount by 
+        console.log("tag value incremented by "+value);
+        this.tagCount += value;
     }
 
     loadMessageHistory(recipient) {
@@ -46,6 +63,7 @@ class Journal extends Component {
         this.loadMessageHistory(this.state.activeChat.recipient);
         console.log("In Journal.js, my current projectId is "+this.state.activeChat.recipient._id);
 
+        /*
         get("/api/activeUsers").then((data) => {
             // If user is logged in, we load their chats. If they are not logged in,
             // there's nothing to load. (Also prevents data races with socket event)
@@ -54,7 +72,7 @@ class Journal extends Component {
                     activeUsers: data.activeUsers,
                 });
             };
-        })
+        })*/
 
         socket.on("message", (data) => {
             console.log("Received update notice");
@@ -79,14 +97,15 @@ class Journal extends Component {
                 }));
             };
         });
-
+        /*
         socket.on("activeUsers", (data) => {
             this.setState({
                 activeUsers: data.activeUsers,
             });
-        });
+        });*/
     }
 
+    /*
     setActiveUser = (user) => {
         this.loadMessageHistory(user);
         this.setState({
@@ -95,13 +114,14 @@ class Journal extends Component {
                 messages: [],
             },
         });
-    };
+    }; */
 
     componentWillUnmount(){
         this._isMounted = false;
     }
 
     render() {
+        console.log("Journal is re-rendering");
         // if (!this.props.userId) return <div>Log in before using Journal</div>;
         return (
             <>
@@ -115,7 +135,15 @@ class Journal extends Component {
                         />
                     </div> */}
                     <div className="Journal-chatContainer">
-                        <JournalMessages data={this.state.activeChat} canSend={this.props.canSend} userRoles={this.props.userRoles} userId={this.props.userId}/>
+                        <JournalMessages 
+                            data={this.state.activeChat} 
+                            canSend={this.props.canSend} 
+                            userRoles={this.props.userRoles} 
+                            userId={this.props.userId}
+                            isTagCountingDone = {this.isTagCountingDone}
+                            incTagValue = {(value)=>this.incTagValue(value)}
+                            stopTagCount = {()=>this.stopTagCount()}
+                        />
                     </div>
                 </div>
             </>

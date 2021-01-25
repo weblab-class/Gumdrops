@@ -80,7 +80,18 @@ router.post("/initreward",async(req,res)=>{
     console.log("major error");
   }
 })
-//updates the shchema when a change is made 
+
+//sets the number of tags in a Project whenever Journal was loaded. Expects an object of:
+// { projectId: String, numJournalTags: Number }
+router.post("/project-journal-tags",(req,res)=>{
+  let filter = { "_id": new ObjectId(req.body.projectId)};
+  Project.updateOne(filter,{ $set:{ numJournalTags: req.body.numJournalTags}}).then((data)=>{
+    res.send({});
+  }).catch(e=>{console.log(e)});
+})
+
+
+//updates the schema when a change is made 
 router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
   RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
@@ -209,6 +220,7 @@ router.post("/project", async (req,res)=>{
       collaborators: collabors,
       tags: req.body.tags,
       views: 0,
+      numJournalTags: 0,
     });
     newproject.save()
       .then((result)=>{
@@ -489,7 +501,6 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
-      console.log(returnImage);
       if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {

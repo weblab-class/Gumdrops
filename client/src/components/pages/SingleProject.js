@@ -64,7 +64,6 @@ class SingleProject extends Component{
                 let tempArr = idArr;
                 for( let i = 0; i, i<tempArr.length; i++){
                     let body = {userId: tempArr[i], changes:{views:1}}
-                    console.log(body);
                     post("/api/rewardinc",body).then((newData)=>{
                     
                     });
