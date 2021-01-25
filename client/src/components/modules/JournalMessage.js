@@ -9,6 +9,9 @@ import "./JournalMessage.css";
  * @param {MessageObject} message
  * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  * @param {String} userId
+ * @param {Boolean} isTagCountingDone Boolean function that returns whether tag counting has been done in this cycle
+ * @param {function} incTagValue used to increase tag count by value counted in this JournalMessage
+ * @param {function} stopTagCount only available to select JournalMessage that is at the end of the list
  */ 
 class JournalMessage extends Component {
   _isMounted = false;
@@ -77,6 +80,7 @@ class JournalMessage extends Component {
     }
 
     let outputArray;
+    let tagCounter = 0;
     if(this.props.message.content && this.props.userRoles) {
       let text = this.props.message.content;
       outputArray = [];
@@ -93,6 +97,7 @@ class JournalMessage extends Component {
           let userFound = false;
           for (const [key, value] of Object.entries(this.props.userRoles)) {
             if(text.startsWith(key)){
+              tagCounter += 1; //increment tagCounter
               // console.log("I found username "+key);
               outputArray.push(key);
               text = text.substring(key.length);
@@ -108,6 +113,13 @@ class JournalMessage extends Component {
         }
     } else {
       outputArray = this.props.message.content;
+    }
+
+    if(!this.props.isTagCountingDone) {
+      this.props.incTagValue(tagCounter);
+      if(this.props.stopTagCount) {
+        this.props.stopTagCount(); //tell Journal to stop counting.
+      }
     }
 
     let button = <></>;

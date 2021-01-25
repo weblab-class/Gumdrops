@@ -77,23 +77,32 @@ router.post("/initreward",async(req,res)=>{
     else{res.send(DataExists)};
     }
   catch(e){
-    console.log("major error");
+    console.log(e);
   }
 })
-//updates the shchema when a change is made 
+
+//sets the number of tags in a Project whenever Journal was loaded. Expects an object of:
+// { projectId: String, numJournalTags: Number }
+router.post("/project-journal-tags",(req,res)=>{
+  let filter = { "_id": new ObjectId(req.body.projectId)};
+  Project.updateOne(filter,{ $set:{ numJournalTags: req.body.numJournalTags}}).then((data)=>{
+    res.send({});
+  }).catch(e=>{console.log(e)});
+})
+
+
+//updates the schema when a change is made 
 router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
-  console.log(filter)
-  console.log("ths are the changes that i pushed ")
-  console.log(req.body.changes);
   RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
-    res.send(data);
-  }).catch(console.log("major error"))
+    res.send({});
+  }).catch((e)=>console.log(e));
 })
+
 router.get("/reward",(req,res)=>{
   RewardData.findOne({"userId": req.query.userId}).then((data)=>{
     res.send(data);
-  })
+  });
 })
 // |------------------------------|
 // | write your API methods below!|
@@ -114,12 +123,34 @@ router.post("/user_add_project",(req,res)=>{
     projectIds: req.body.projectId,
   }}).then(result=>res.send({})).catch(e=>console.log(e));
 });
+//increases views or likes
+router.post("/projectinc",(req,res)=>{
+  let filter = {"_id" : new ObjectId(req.body.projectId)};
+  Project.updateOne(filter,{$inc : req.body.changes}).then((data)=>{
+    res.send({});
+  }).catch((e)=>console.log(e));
+})
 
+//returns all of the users of a project 
+router.get("/users-ids",async(req,res)=>{
+  try{
+    let myProject = await Project.findById(req.query.projectId);
+    let idArr = [];
+    for(let i = 0 ; i < myProject.collaborators.length; i++){
+      idArr = idArr.concat([myProject.collaborators[i].userId]);
+
+    }
+    
+    res.send(idArr);
+  }
+  catch(e){
+    console.log("error in retrieving Ids")
+  }
+})
 //Returns the user names of all collaborators on a project and their appropriate role styling. Expects an object of:
 // { projectId: String }
 //Returns an array of { userName : [roleName,userId,roleStyling] } objects.
 router.get("/user-roles", async (req,res)=>{
-  console.log("Going into /user-roles");
   try {
     let myProject = await Project.findById(req.query.projectId);
     //console.log(myProject);
@@ -161,7 +192,6 @@ router.post("/project", async (req,res)=>{
   try{
     getCollabors = async () => {
       try{
-        console.log(req.body.collaborators)
         let collabors = [];
         for(let i=0; i<req.body.collaborators.length; i++){
           if(i===0){
@@ -187,6 +217,8 @@ router.post("/project", async (req,res)=>{
       name : req.body.name,
       collaborators: collabors,
       tags: req.body.tags,
+      views: 0,
+      numJournalTags: 0,
     });
     newproject.save()
       .then((result)=>{
@@ -222,7 +254,6 @@ router.post("/delproject",(req,res)=>{
 router.get("/projects",(req,res)=>{
 
   //New Method directly queries the Project collections for the right userid
-  console.log("Finding projects for "+req.query.userid);
   Project.find({"collaborators.userId": req.query.userid})
     .then((outProjects)=>{
       res.send({projects: outProjects});
@@ -312,17 +343,12 @@ router.post("/delstorycard",(req,res)=>{
 });
 
 router.post("/editstorycard",(req,res)=>{
-  console.log("Trying edit storycard with id "+req.body._id);
   let filter = {"_id" : new ObjectId(req.body._id)};
-  console.log(filter);
-  console.log(req.body.changes);
   //console.log(req.body.changes);
   if(req.body.changes.imageMedia){
     let urlArray = req.body.changes.imageMedia.split(',');
     let buffer = Buffer.from(urlArray[1], 'base64');
     compress.tryImgCompress(buffer).then((smolImg)=>{
-      console.log("operation completed");
-      console.log(smolImg);
       StoryCard.updateOne(filter,{"imageMedia":smolImg,"imageHeader":urlArray[0]}).then((result)=>{
         res.send(result);
         }).catch((err)=>console.log("there was an errorr alarm"));
@@ -330,7 +356,7 @@ router.post("/editstorycard",(req,res)=>{
   } else {
   StoryCard.updateOne(filter,{$set: req.body.changes}).then((result)=>{
     res.send(result);
-    console.log("this has been updatd properly")
+    console.log("this has been updated properly")
     }).catch((err)=>console.log("there was an errorr alarm"));
   }
 });
@@ -353,7 +379,6 @@ router.get("/story-image",(req,res)=>{
 });
 
 router.get("/chat", (req, res) => {
-  console.log(req.query);
   Message.find(req.query).then((messages)=>res.send(messages));
 });
 
@@ -374,8 +399,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   let collaborators = [];
 
   Project.findById(req.body.recipient._id).then((projectObj)=>{
-    console.log("I retrieved the project you wanted");
-    console.log(projectObj.collaborators);
     projectObj.collaborators.forEach(element => {
       collaborators.push(element.userId);
       let socketObj = socketManager.getSocketFromUserID(element.userId);
@@ -383,7 +406,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
         socketObj.emit("message",message);
       }
     });
-    console.log(collaborators);
   });
 });
 
@@ -467,7 +489,6 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
-      console.log(returnImage);
       if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {

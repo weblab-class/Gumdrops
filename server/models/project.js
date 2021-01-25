@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const ProjectSchema = new mongoose.Schema({
   name: String,
+  views: Number,
   collaborators: [
     {
       userId : String,
@@ -14,6 +15,7 @@ const ProjectSchema = new mongoose.Schema({
     }
   ],
   tags: [String], //stored WITH the # sign
+  numJournalTags: Number, //number of Tags counted in Journal
 },
 {
   timestamps: true,
