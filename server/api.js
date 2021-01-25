@@ -77,7 +77,7 @@ router.post("/initreward",async(req,res)=>{
     else{res.send(DataExists)};
     }
   catch(e){
-    console.log("major error");
+    console.log(e);
   }
 })
 
@@ -96,13 +96,13 @@ router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
   RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
     res.send({});
-  }).catch(console.log("major error0"))
+  }).catch((e)=>console.log(e));
 })
 
 router.get("/reward",(req,res)=>{
   RewardData.findOne({"userId": req.query.userId}).then((data)=>{
     res.send(data);
-  })
+  });
 })
 // |------------------------------|
 // | write your API methods below!|
@@ -126,7 +126,6 @@ router.post("/user_add_project",(req,res)=>{
 //increases views or likes
 router.post("/projectinc",(req,res)=>{
   let filter = {"_id" : new ObjectId(req.body.projectId)};
-  console.log(filter);
   Project.updateOne(filter,{$inc : req.body.changes}).then((data)=>{
     res.send({});
   }).catch((e)=>console.log(e));
@@ -134,7 +133,6 @@ router.post("/projectinc",(req,res)=>{
 
 //returns all of the users of a project 
 router.get("/users-ids",async(req,res)=>{
-  console.log("attempting to retrieve user Ids");
   try{
     let myProject = await Project.findById(req.query.projectId);
     let idArr = [];
@@ -153,7 +151,6 @@ router.get("/users-ids",async(req,res)=>{
 // { projectId: String }
 //Returns an array of { userName : [roleName,userId,roleStyling] } objects.
 router.get("/user-roles", async (req,res)=>{
-  console.log("Going into /user-roles");
   try {
     let myProject = await Project.findById(req.query.projectId);
     //console.log(myProject);
@@ -195,7 +192,6 @@ router.post("/project", async (req,res)=>{
   try{
     getCollabors = async () => {
       try{
-        console.log(req.body.collaborators)
         let collabors = [];
         for(let i=0; i<req.body.collaborators.length; i++){
           if(i===0){
@@ -258,7 +254,6 @@ router.post("/delproject",(req,res)=>{
 router.get("/projects",(req,res)=>{
 
   //New Method directly queries the Project collections for the right userid
-  console.log("Finding projects for "+req.query.userid);
   Project.find({"collaborators.userId": req.query.userid})
     .then((outProjects)=>{
       res.send({projects: outProjects});
@@ -348,17 +343,12 @@ router.post("/delstorycard",(req,res)=>{
 });
 
 router.post("/editstorycard",(req,res)=>{
-  console.log("Trying edit storycard with id "+req.body._id);
   let filter = {"_id" : new ObjectId(req.body._id)};
-  console.log(filter);
-  console.log(req.body.changes);
   //console.log(req.body.changes);
   if(req.body.changes.imageMedia){
     let urlArray = req.body.changes.imageMedia.split(',');
     let buffer = Buffer.from(urlArray[1], 'base64');
     compress.tryImgCompress(buffer).then((smolImg)=>{
-      console.log("operation completed");
-      console.log(smolImg);
       StoryCard.updateOne(filter,{"imageMedia":smolImg,"imageHeader":urlArray[0]}).then((result)=>{
         res.send(result);
         }).catch((err)=>console.log("there was an errorr alarm"));
@@ -366,7 +356,7 @@ router.post("/editstorycard",(req,res)=>{
   } else {
   StoryCard.updateOne(filter,{$set: req.body.changes}).then((result)=>{
     res.send(result);
-    console.log("this has been updatd properly")
+    console.log("this has been updated properly")
     }).catch((err)=>console.log("there was an errorr alarm"));
   }
 });
@@ -389,7 +379,6 @@ router.get("/story-image",(req,res)=>{
 });
 
 router.get("/chat", (req, res) => {
-  console.log(req.query);
   Message.find(req.query).then((messages)=>res.send(messages));
 });
 
@@ -410,8 +399,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   let collaborators = [];
 
   Project.findById(req.body.recipient._id).then((projectObj)=>{
-    console.log("I retrieved the project you wanted");
-    console.log(projectObj.collaborators);
     projectObj.collaborators.forEach(element => {
       collaborators.push(element.userId);
       let socketObj = socketManager.getSocketFromUserID(element.userId);
@@ -419,7 +406,6 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
         socketObj.emit("message",message);
       }
     });
-    console.log(collaborators);
   });
 });
 

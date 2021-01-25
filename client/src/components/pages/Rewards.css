@@ -22,8 +22,8 @@
     position: relative;
     left: 50%;
     transform: translate(-50%);
-    max-width: 10vw;
-    max-height: 10vh;
+    max-width: 20vw;
+    max-height: 20vh;
     border-radius: 50%;
 }
 
