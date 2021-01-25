@@ -130,43 +130,52 @@ class Rewards extends Component {
     });
   }
 
-  calculateProgress= (title, type) => {
-    const progress = this.state.data[type];
-    if(type==="journal"){
+  calculateProgress= async (title, type) => {
+    if(type==="tag"){ // THERES AN ERROR HERE
+      let progress = 0;
+      let dataObj = await get("/api/projects", {userid: this.props.userId})
+      dataObj.projects.forEach((projectObj)=>{
+        if(projectObj.numJournalTags){
+          progress += projectObj.numJournalTags;
+        }
+      });
       if(progress >= 5){
         return "Complete!";
       } else return`${progress}/5 Journal Entries`;
-    }
-    if(type==="storycard"){
-      if(progress >= 10){
-        return "Complete!";
-      } else return`${progress}/10 Story Cards`;
-    }
-    if(type==="tag"){
-      if(progress >= 10){
-        return "Complete!";
-      } else return`${progress}/10 People Tagged`;
-    }
-    if(type==="views"){
-      if(progress >= 25){
-        return "Complete!";
-      } else return`${progress}/25 Page Views`;
-    }
-    if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Space Banner"
-      if(title==="Baby Gummy"){
-        if(progress >= 1){
+    } else{
+      const progress = this.state.data[type];
+      if(type==="journal"){
+        if(progress >= 5){
           return "Complete!";
-        } else return`${progress}/1 Project`;
+        } else return`${progress}/5 Journal Entries`;
       }
-      if(title==="Space Banner"){
+      if(type==="storycard"){
         if(progress >= 10){
           return "Complete!";
-        } else return`${progress}/10 Projects`;
+        } else return`${progress}/10 Story Cards`;
+      }
+      if(type==="views"){
+        if(progress >= 25){
+          return "Complete!";
+        } else return`${progress}/25 Page Views`;
+      }
+      if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Space Banner"
+        if(title==="Baby Gummy"){
+          if(progress >= 1){
+            return "Complete!";
+          } else return`${progress}/1 Project`;
+        }
+        if(title==="Space Banner"){
+          if(progress >= 10){
+            return "Complete!";
+          } else return`${progress}/10 Projects`;
+        }
       }
     }
   }
 
   render() {
+    console.log("progress for tag: "+this.state.unlockables[2].progress);
     if(this.props.userId){
       if(this.state.data){
         return (
