@@ -176,7 +176,7 @@ class Rewards extends Component {
     });
   }
 
-  calculateProgress= (title, type) => {
+  calculateProgress = (title, type) => {
     const progress = this.state.data[type];
     if(type==="journal"){
       if(progress >= 5){

@@ -17,6 +17,7 @@ today = mm + '/' + dd + '/' + yyyy;
  * @param {string} defaultText is the placeholder text
  * @param {string} storyId optional prop, used for comments
  * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
+ * @param {String} size is optional prop, used to make input inline
  */
 class NewPostInput extends Component {
   constructor(props) {
@@ -44,25 +45,47 @@ class NewPostInput extends Component {
   };
 
   render() {
-    return (
-      <div className="u-flex">
-        <input
-          type="text"
-          placeholder={this.props.defaultText}
-          value={this.state.value}
-          onChange={this.handleChange}
-          className="NewPostInput-input"
-        />
-        <button
-          type="submit"
-          className="NewPostInput-button u-pointer"
-          value="Submit"
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
-    );
+    if(this.props.size){
+      return (
+        <span className="u-flex" style={{width: this.props.size, margin: "0"}}>
+          <input
+            type="text"
+            placeholder={this.props.defaultText}
+            value={this.state.value}
+            onChange={this.handleChange}
+            className="NewPostInput-input"
+          />
+          <button
+            type="submit"
+            className="NewPostInput-button u-pointer"
+            value="Submit"
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </button>
+        </span>
+      );
+    } else{
+      return (
+        <div className="u-flex">
+          <input
+            type="text"
+            placeholder={this.props.defaultText}
+            value={this.state.value}
+            onChange={this.handleChange}
+            className="NewPostInput-input"
+          />
+          <button
+            type="submit"
+            className="NewPostInput-button u-pointer"
+            value="Submit"
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
+      );
+    }
   }
 }
 
