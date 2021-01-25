@@ -9,14 +9,14 @@
     /* background-image: ; */
     height: 100%;
     width: 100%;
-    background-color: var(--primary--dim);
+    background-color: var(--projectdisplay-image-container);
     border-radius: var(--m) var(--m) 0 0;
 }
 
 .ProjectDisplay-textContainer {
     width: 100%;
     height: 30%;
-    background-color: var(--primary);
+    background-color: var(--projectdisplay-bottom-container);
     color: var(--white);
     border-radius: 0 0 var(--m) var(--m);
     border-left: 1px solid lightgreen;

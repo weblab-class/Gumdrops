@@ -32,6 +32,33 @@ class ThemeManager extends Component{
     }
 
 
+    pushDarkMode = () => {
+        let darkObj = {
+            "--navbar-container":"#2C2F33",
+            "--navbar-bottom-border":"#23272A",
+            "--textcolor":"#FFFFFF",
+            "--main-background":"#2C2F33",
+            "--primary":"#53585f",
+            "--primary--dim":"#3b3f44",
+
+        }
+        localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
+        applyThemeFromLocalStorage();
+    }
+
+    pushCustomMode = () => {
+        let customObj = {
+            "--navbar-container":"#2C2F33",
+            "--navbar-bottom-border":"#23272A",
+            "--textcolor":"#FFFFFF",
+            "--main-background":"#2C2F33",
+            "--primary":"#53585f",
+            "--primary--dim":"#3b3f44",
+        }
+        localStorage.setItem("currTheme",JSON.stringify(customObj)); //required to save objects in LocalStorage
+        applyThemeFromLocalStorage();
+    }
+
     pushBrushTheme = () => {
         let brushObj = {
             "--projectpage-background": "linear-gradient( rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.55)), url("+brush+")",
@@ -41,6 +68,7 @@ class ThemeManager extends Component{
     }
     
     render(){
+        //this.pushDarkMode();
         //this.pushBrushTheme();
         if(localStorage.getItem("loggedin")==="true") {
             applyThemeFromLocalStorage(); //makes sure theme setting is persistant after refresh
