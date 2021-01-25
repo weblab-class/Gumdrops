@@ -464,7 +464,6 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
-      console.log(returnImage);
       if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {

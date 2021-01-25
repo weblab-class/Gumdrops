@@ -6,7 +6,11 @@
 }
 
 .project-container {
+    background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), var(--projectpage-background) center 0% fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: var(--m);
+    height: 85vh;
 }
 
 .projectJournal-container {

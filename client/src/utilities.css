@@ -38,7 +38,8 @@
   --main-background: var(--grey);
   --mainpage-title: white;
   --mainpage-background: url(./public/retroBackground.png);
-  --navbar-container: var(--primary);
+  --projectpage-background: var(--main-background);
+  --navbar-container: lightpink;
   --navbar-header: var(--textcolor);
   --cursor-image: url(./public/blue_cursor.png);
   --cursor-pointer: url(./public/dragon.gif);

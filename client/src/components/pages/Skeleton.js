@@ -14,7 +14,7 @@ class Skeleton extends Component {
   }
 
   render() {
-      // remember -- api calls go here!
+    // remember -- api calls go here!
     return (
       <div className="Skeleton-mainPage-container u-flexColumn">
         <section className="u-textCenter Skeleton-mainPage-Description">
