@@ -7,7 +7,7 @@ import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
 import "./SingleProject.css";
 import DeleteProject from "../modules/DeleteProject.js";
-
+import SampleStoryCard from "../modules/SampleStoryCard.js";
 //this would be used to render what you see w
 //when you open a project 
 //
@@ -27,7 +27,7 @@ class SingleProject extends Component{
         super(props);
         this.viewCounted = false;
         this.state = {
-            stories: [],
+            stories: undefined,
             userRoles: undefined,
             edit: undefined,
         }
@@ -84,16 +84,20 @@ class SingleProject extends Component{
 
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {
+        let tempArr = [];
         get("/api/storycards",{projectId: this.props.projectId}).then((storyObjs)=>{
             let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
                 if(this._isMounted){
-                    this.setState((prevstate) => ({
-                        stories: prevstate.stories.concat([storyObj]),
-                    }));
+                    
+                    tempArr = tempArr.concat([storyObj]);
                 };
             });
+            this.setState({
+                stories: tempArr,
+            });
         });
+        
     }
     //called when "SingleProject" mounts
     componentDidMount(){
@@ -172,10 +176,16 @@ class SingleProject extends Component{
         };
     }
     render(){
-        let storiesList = null;
+        let storiesList = <div>Loading...</div>;
         let stringId = null;
-        const hasStories = this.state.stories.length !== 0;
-        if(hasStories){
+        let addStoryButton= "";
+        let deleteProjectButton = "";
+        const hasStories = this.state.stories;
+        if(hasStories && this.state.edit){
+            addStoryButton = <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
+            deleteProjectButton = <DeleteProject projectId={this.props.projectId}/>;
+        }
+        if(hasStories && this.state.stories.length!==0){
             storiesList = this.state.stories.map((storyObj)=>
             (
                 <StoryCard
@@ -189,8 +199,10 @@ class SingleProject extends Component{
                     onAddLink = {this.editLinks}
                 />
             ));
-        } else{
-            storiesList = <div>No Stories!</div>
+        } else if( hasStories && this.state.stories.length===0){
+            storiesList = (
+                <SampleStoryCard/>
+            )
         }
         //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
@@ -201,8 +213,8 @@ class SingleProject extends Component{
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
                     <h4>Loading may take some time..</h4>
                     {storiesList}
-                    <NewInputStory projectId = {this.props.projectId} onSubmit = {this.addNewStory}/> 
-                    <DeleteProject projectId={this.props.projectId}/>
+                    {addStoryButton}
+                    {deleteProjectButton}
                 </section>
                 <section className="projectJournal-container">
                     <Journal userId ={this.props.userId} projectId={this.props.projectId} userRoles={this.state.userRoles} canSend={this.state.edit}/>
