@@ -42,7 +42,7 @@ class Rewards extends Component {
         {
           imageSource: Img,
           title: "Role @Dragonator",
-          type: "tags" // #/10 People Tagged
+          type: "tag" // #/10 People Tagged
         },
       ],
       data: undefined,
@@ -74,7 +74,7 @@ class Rewards extends Component {
         return "Complete!";
       } else return`${progress}/10 Story Cards`;
     }
-    if(type==="tags"){
+    if(type==="tag"){
       if(progress >= 10){
         return "Complete!";
       } else return`${progress}/10 People Tagged`;
