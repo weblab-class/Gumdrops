@@ -126,6 +126,14 @@ class Explore extends Component {
         return output;
     }
 
+    clickedBack = () => {
+        if(this._isMounted){
+            this.setState({
+                searching: false,
+            });
+        }
+    }
+
     componentDidMount(){
         this._isMounted = true;
         this.handleInit();
@@ -139,6 +147,7 @@ class Explore extends Component {
         if(this.state.projects) {
             let categoriesList;
             let output;
+            let button;
             if(this.state.searching){
                 if(this.state.searchProjects.length === 0){
                     output = <p className="u-textCenter">Sorry, no results were found from your search</p>;
@@ -146,6 +155,18 @@ class Explore extends Component {
                     categoriesList = this.makeCategories([...this.state.searchProjects]);
                     output = this.generateOutput(categoriesList);
                 }
+                button = (
+                    <span>
+                        <button
+                            type="submit"
+                            className="Explore-button u-pointer"
+                            value="Submit"
+                            onClick={this.clickedBack}
+                        >
+                            Back
+                        </button>
+                    </span>
+                );
             } else{
                 categoriesList = this.makeCategories([...this.state.projects]);
                 categoriesList.sort(function(a, b) {
@@ -153,14 +174,36 @@ class Explore extends Component {
                 });
                 output = this.generateOutput(categoriesList);
             }
+            if(button){
+                return(
+                    <>
+                        <div className="Explore-search" /*id="bloodhound"*/>
+                            {button}
+                            <span>
+                                <div className="Explore-searchInput u-inlineBlock">
+                                    <NewPostInput 
+                                        defaultText="Search (You can search by project name or tag)"//(Try searching for a project by name OR try searching by tag (e.g., #math))" 
+                                        onSubmit={this.search}
+                                        size="100%"
+                                        /*className="typeahead"*/
+                                    />
+                                </div>
+                            </span>
+                        </div>
+                        {output}
+                    </>
+                );
+            }
             return(
                 <>
                     <div className="Explore-search" /*id="bloodhound"*/>
-                        <NewPostInput 
-                            defaultText="Search (You can search by project name or tag)"//(Try searching for a project by name OR try searching by tag (e.g., #math))" 
-                            onSubmit={this.search}
-                            /*className="typeahead"*/
-                        />
+                        <span className="Explore-searchInput">
+                            <NewPostInput 
+                                defaultText="Search (You can search by project name or tag)"//(Try searching for a project by name OR try searching by tag (e.g., #math))" 
+                                onSubmit={this.search}
+                                /*className="typeahead"*/
+                            />
+                        </span>
                     </div>
                     {output}
                 </>
