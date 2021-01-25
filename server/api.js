@@ -129,8 +129,9 @@ router.post("/projectinc",(req,res)=>{
   console.log(filter);
   Project.updateOne(filter,{$inc : req.body.changes}).then((data)=>{
     res.send({});
-  }).catch(console.log("major error1"));
+  }).catch((e)=>console.log(e));
 })
+
 //returns all of the users of a project 
 router.get("/users-ids",async(req,res)=>{
   console.log("attempting to retrieve user Ids");
