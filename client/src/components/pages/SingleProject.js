@@ -25,6 +25,7 @@ class SingleProject extends Component{
     _isMounted = false;
     constructor(props){
         super(props);
+        this.viewCounted = false;
         this.state = {
             stories: [],
             userRoles: undefined,
@@ -57,7 +58,7 @@ class SingleProject extends Component{
         }
     }
     //this will update the view count 
-    addViews= (bool)=>{
+    addViews = (bool)=>{
         if(!bool){
             get("/api/users-ids",{projectId: this.props.projectId}).then((idArr)=>{
                 
@@ -69,10 +70,16 @@ class SingleProject extends Component{
                     });
                 }
             })
-            let body2= {projectId:this.props.projectId,changes:{views:1}};
-            post("/api/projectinc",body2).then((sent)=>{
-                console.log("succes")
-            })
+            if(!this.viewCounted){
+                console.log("View counted");
+                let body2= {projectId:this.props.projectId,changes:{views:1}};
+                post("/api/projectinc",body2).then((sent)=>{
+                    console.log("succes")
+                });
+                this.viewCounted = true;
+            }
+
+
         }
     }
 
