@@ -43,63 +43,42 @@ class ProjectDisplay extends Component {
     }
 
     render() {
+        let imageClassName="";
+        let textClassName="";
+        if(this.props.isExplore) {
+            imageClassName = "ProjectDisplay-Explore-image";
+            textClassName = "ProjectDisplay-Explore-textContainer u-inlineBlock u-textCenter";
+        } else {
+            imageClassName = "ProjectDisplay-image";
+            textClassName = "ProjectDisplay-textContainer u-inlineBlock u-textCenter";
+        }
         console.log("ProjectDisplay was called.");
         if (this.props.showRole && (this.state.role !== null)) {
-            if(this.props.isExplore){
-                return ( //different className for -image and -textContainer
-                <div className="ProjectDisplay-container">
-                    <Link to={`/project/${this.props.projectId}`}>
-                    <div className="ProjectDisplay-Explore-image">
-                            <Thumbnail projectId={this.props.projectId} />
-                    </div>
-                        <div className="ProjectDisplay-Explore-textContainer u-inlineBlock u-textCenter">
-                            <div>{this.props.projectName}</div>
-                            <div>{"@"+this.state.role}</div>
-                        </div>
-                    </Link>
-                </div>
-                );
-            } else {
-                return (
-                    <div className="ProjectDisplay-container">
-                        <Link to={`/project/${this.props.projectId}`}>
-                        <div className="ProjectDisplay-image">
-                                <Thumbnail projectId={this.props.projectId} />
-                        </div>
-                            <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
-                                <div>{this.props.projectName}</div>
-                                <div>{"@"+this.state.role}</div>
-                            </div>
-                        </Link>
-                    </div>
-                );
-            }
-        };
-        if(this.props.isExplore){
-            return (
-                <div className="ProjectDisplay-container">
+            return ( //different className for -image and -textContainer
+            <div className="ProjectDisplay-container">
                 <Link to={`/project/${this.props.projectId}`}>
-                <div className="ProjectDisplay-Explore-image">
+                <div className={imageClassName}>
                         <Thumbnail projectId={this.props.projectId} />
                 </div>
-                    <div className="ProjectDisplay-Explore-textContainer u-inlineBlock u-textCenter">
-                        <div className="ProjectDisplay-text">{this.props.projectName}</div>
+                    <div className={textClassName}>
+                        <div>{this.props.projectName}</div>
+                        <div>{"@"+this.state.role}</div>
                     </div>
                 </Link>
             </div>
             );
-        }
+        };
         return (
             <div className="ProjectDisplay-container">
-                <Link to={`/project/${this.props.projectId}`}>
-                <div className="ProjectDisplay-image">
-                        <Thumbnail projectId={this.props.projectId} />
-                </div>
-                    <div className="ProjectDisplay-textContainer u-inlineBlock u-textCenter">
-                        <div className="ProjectDisplay-text">{this.props.projectName}</div>
-                    </div>
-                </Link>
+            <Link to={`/project/${this.props.projectId}`}>
+            <div className={imageClassName}>
+                    <Thumbnail projectId={this.props.projectId} />
             </div>
+                <div className={textClassName}>
+                    <div className="ProjectDisplay-text">{this.props.projectName}</div>
+                </div>
+            </Link>
+        </div>
         );
     }
 }
