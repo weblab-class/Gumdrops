@@ -14,6 +14,8 @@ import Role from "../../public/cute_penguin.png";
 //Props
 //userId: String
 class Rewards extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -72,16 +74,60 @@ class Rewards extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
     if(this.props.userId){
       get("/api/reward", {userId: this.props.userId}).then((data)=>{
-        for (const [key, val] of Object.entries(data)) {
-          console.log(`${key}: ${val}`)
-        }
-        this.setState({
-          data: data,
+        let progress = 0;
+        get("/api/projects", {userid: this.props.userId}).then((dataObj)=>{
+          dataObj.projects.forEach((projectObj)=>{
+            if(projectObj.numJournalTags){
+              progress += projectObj.numJournalTags;
+            }
+          });
+          let newData = {...data};
+          newData.tag = progress;
+          console.log(newData)
+          if(this._isMounted){
+            this.setState({
+              data: newData,
+            });
+            console.log(this.state.data);
+            this.handleInit();
+          }
         });
-        this.handleInit();
       });
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  componentDidUpdate() {
+    if(!this.state.data){
+      if(this.props.userId){
+        get("/api/reward", {userId: this.props.userId}).then((data)=>{
+          let progress = 0;
+          get("/api/projects", {userid: this.props.userId}).then((dataObj)=>{
+            dataObj.projects.forEach((projectObj)=>{
+              if(projectObj.numJournalTags){
+                progress += projectObj.numJournalTags;
+              }
+            });
+            let newData = {...data};
+            newData.tag = progress;
+            console.log(newData)
+            if(this._isMounted){
+              this.setState({
+                data: newData,
+              });
+              console.log(this.state.data);
+              this.handleInit();
+            }
+          });
+        });
+      }
     }
   }
 
@@ -142,15 +188,15 @@ class Rewards extends Component {
         return "Complete!";
       } else return`${progress}/10 Story Cards`;
     }
-    if(type==="tag"){
-      if(progress >= 10){
-        return "Complete!";
-      } else return`${progress}/10 People Tagged`;
-    }
     if(type==="views"){
       if(progress >= 25){
         return "Complete!";
       } else return`${progress}/25 Page Views`;
+    }
+    if(type==="tag"){
+      if(progress >= 5){
+        return "Complete!";
+      } else return`${progress}/5 People Tagged`;
     }
     if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Space Banner"
       if(title==="Baby Gummy"){
@@ -167,6 +213,7 @@ class Rewards extends Component {
   }
 
   render() {
+    console.log("progress for tag: "+this.state.unlockables[2].progress);
     if(this.props.userId){
       if(this.state.data){
         return (
