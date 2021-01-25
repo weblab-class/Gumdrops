@@ -38,7 +38,7 @@
   --main-background: var(--grey);
   --mainpage-title: white;
   --mainpage-background: url(./public/retroBackground.png);
-  --projectpage-background: var(--main-background);
+  --projectpage-background: linear-gradient( rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.55)), url(./public/brush.jpg);
   --navbar-container: lightpink;
   --navbar-header: var(--textcolor);
   --cursor-image: url(./public/blue_cursor.png);
