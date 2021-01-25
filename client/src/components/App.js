@@ -50,6 +50,16 @@ class App extends Component {
     });
   }
 
+  //intialized rewards if this the first time login
+  //it could also be used to retrieve not yet 
+  loadReward = (Id)=>{
+    console.log("requested reward from database")
+    post("/api/initreward",{userId: Id}).then((value)=>{
+    console.log("initialized reward")
+    console.log(value)
+  })
+  }
+
   //Attempts to save user theme settings from LocalStorage, if it exists
   saveUserTheme = async (userId) => {
     try{
@@ -71,6 +81,7 @@ class App extends Component {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
       this.loadUserTheme(user._id);
+      this.loadReward(user._id);
     });
     localStorage.setItem("loggedin","true");
     applyThemeFromLocalStorage(); //run to make sure we apply theme early-on.

@@ -52,8 +52,17 @@ class SingleProject extends Component{
                         edit: bool,
                     });
                 };
+                this.addViews(bool);
             });
-        };
+        }
+    }
+    //this will update the view count 
+    addViews= (bool)=>{
+        if(!bool){
+        let body = {userId: this.props.userId, changes:{views:1}}
+        post("/api/rewardinc",body).then((newData)=>{
+            console.log("succesful")
+        });}
     }
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {

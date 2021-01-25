@@ -17,6 +17,7 @@ const Project = require("./models/project");
 const StoryCard = require("./models/storycards");
 const ProjectThumbnail = require("./models/project-thumbnail.js");
 const ProfileBio = require("./models/profile-bio");
+const RewardData = require("./models/reward");
 const ObjectId = require('mongodb').ObjectId; 
 const Role = require('./models/role.js');
 const Theme = require("./models/theme.js");
@@ -51,6 +52,46 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
+//intialised reward if this the first time to login
+router.post("/initreward",async(req,res)=>{
+  console.log(req.body.userId);
+  try{
+    const DataExists = await RewardData.findOne({"userId": req.body.userId})
+    console.log(DataExists)
+    if(!DataExists){
+      const NewData = new RewardData({
+      views: 0, 
+      projects: 0,
+      rewards:[],
+      userId: req.body.userId,
+      streak:0,
+      likes: 0, 
+      });
+      NewData.save().then((value)=>{
+        res.send(value);
+      });
+    }
+    else{res.send(DataExists)};
+    }
+  catch(e){
+    console.log("major error");
+  }
+})
+//updates the shchema when a change is made 
+router.post("/rewardinc",(req,res)=>{
+  let filter = {"userId": req.body.userId};
+  console.log(filter)
+  console.log("ths are the changes that i pushed ")
+  console.log(req.body.changes);
+  RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
+    res.send(data);
+  }).catch(console.log("major error"))
+})
+router.get("/reward",(req,res)=>{
+  RewardData.findOne({"userId": req.body.userId}).then((data)=>{
+    res.send({});
+  })
+})
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
@@ -284,8 +325,9 @@ router.post("/editstorycard",(req,res)=>{
         }).catch((err)=>console.log("there was an errorr alarm"));
     });
   } else {
-  StoryCard.updateOne(filter,{$set: {textContent: req.body.changes}}).then((result)=>{
+  StoryCard.updateOne(filter,{$set: req.body.changes}).then((result)=>{
     res.send(result);
+    console.log("this has been updatd properly")
     }).catch((err)=>console.log("there was an errorr alarm"));
   }
 });
