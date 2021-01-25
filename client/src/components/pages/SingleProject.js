@@ -62,7 +62,8 @@ class SingleProject extends Component{
         let body = {userId: this.props.userId, changes:{views:1}}
         post("/api/rewardinc",body).then((newData)=>{
             console.log("succesful")
-        });}
+        });
+        }
     }
     //i want the api to filter by project id and return stories state
     loadStoryCards= () => {

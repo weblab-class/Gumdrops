@@ -66,6 +66,8 @@ router.post("/initreward",async(req,res)=>{
       userId: req.body.userId,
       streak:0,
       likes: 0, 
+      journal: 0,
+      storycard:0,
       });
       NewData.save().then((value)=>{
         res.send(value);
@@ -89,7 +91,7 @@ router.post("/rewardinc",(req,res)=>{
 })
 router.get("/reward",(req,res)=>{
   RewardData.findOne({"userId": req.body.userId}).then((data)=>{
-    res.send({});
+    res.send(data);
   })
 })
 // |------------------------------|
@@ -464,6 +466,7 @@ router.post("/profile-bio",(req,res)=>{
 router.get("/thumbnail",(req,res)=>{
   ProjectThumbnail.findOne(req.query)
     .then((returnImage)=> {
+      console.log(returnImage);
       if(returnImage!==null){ //if not null
       let unbufferedImg;
       if(returnImage.imageHeader) {

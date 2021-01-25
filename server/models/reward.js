@@ -8,5 +8,8 @@ const RewardDataSchema = new mongoose.Schema({
   userId: String,
   streak: Number,
   likes: Number,
+  journal: Number,
+  storycard: Number,
+  
 });
 module.exports = mongoose.model("reward", RewardDataSchema);
