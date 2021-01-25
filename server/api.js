@@ -84,8 +84,8 @@ router.post("/initreward",async(req,res)=>{
 router.post("/rewardinc",(req,res)=>{
   let filter = {"userId": req.body.userId};
   RewardData.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
-    res.send(data);
-  }).catch(console.log("major error"))
+    res.send({});
+  }).catch(console.log("major error0"))
 })
 
 router.get("/reward",(req,res)=>{
@@ -114,10 +114,11 @@ router.post("/user_add_project",(req,res)=>{
 });
 //increases views or likes
 router.post("/projectinc",(req,res)=>{
-  let filter = {"_id" : new ObjectId(req.body._id)};
-  Project.updateOne(filter,{$inc: req.body.changes}).then((data)=>{
-    res.send(data);
-  }).catch(console.log("major error"))
+  let filter = {"_id" : new ObjectId(req.body.projectId)};
+  console.log(filter);
+  Project.updateOne(filter,{$inc : req.body.changes}).then((data)=>{
+    res.send({});
+  }).catch(console.log("major error1"))
 })
 //returns all of the users of a project 
 router.get("/users-ids",async(req,res)=>{
@@ -126,7 +127,7 @@ router.get("/users-ids",async(req,res)=>{
     let myProject = await Project.findById(req.query.projectId);
     let idArr = [];
     for(let i = 0 ; i < myProject.collaborators.length; i++){
-      idArr = idArr.concat(myProject.collaborators[i].userId);
+      idArr = idArr.concat([myProject.collaborators[i].userId]);
 
     }
     
