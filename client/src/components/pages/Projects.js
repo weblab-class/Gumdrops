@@ -37,6 +37,22 @@ class Projects extends Component {
         this._isMounted = false;
     }
 
+    componentDidUpdate() {
+        if(!this.state.projects){
+            if(this.props.userId) {
+                console.log("Going into handleInit with user");
+                get("/api/projects",{ userid:this.props.userId })
+                .then((projectObj)=>{
+                    if(this._isMounted){
+                        this.setState({
+                            projects: projectObj.projects,
+                        });
+                    };
+                }).then(console.log("Projects: "+this.state.projects))
+            }
+        }
+    }
+
     render() {
         if(this.state.projects && this.state.projects[0]){
             const projectList = [...this.state.projects];
