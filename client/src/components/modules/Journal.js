@@ -102,8 +102,7 @@ class Journal extends Component {
     }
 
     render() {
-        if (!this.props.userId) return <div>Log in before using Journal</div>; //will never happen
-
+        // if (!this.props.userId) return <div>Log in before using Journal</div>;
         return (
             <>
                 <div className="u-flex u-relative Journal-container">
