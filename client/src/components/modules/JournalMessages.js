@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import JournalMessage from "./JournalMessage.js";
 import { NewJournalMessage } from "./NewPostInput.js";
 import "./JournalMessages.css";
-
+import { post } from "../../utilities";
 /**
  * Renders main chat window including previous messages,
  * who is being chatted with, and the new message input.
@@ -32,7 +32,14 @@ class JournalMessages extends Component {
   componentDidUpdate() {
     this.scrollToBottom();
   }
-
+  addJournal= (count)=>{
+    
+    let body = {userId: this.props.userId, changes:{journal:count}}
+    post("/api/rewardinc",body).then((newData)=>{
+        console.log("succesful")
+    });
+    
+}
   scrollToBottom = () => {
     if(this.messagesEnd){
       this.messagesEnd.scrollIntoView({behavior:"smooth"});
@@ -75,7 +82,7 @@ class JournalMessages extends Component {
             </div>
           </div>
           <div className="JournalMessages-newContainer">
-            <NewJournalMessage recipient={this.props.data.recipient} />
+            <NewJournalMessage updateMessage = {this.addJournal} recipient={this.props.data.recipient} />
           </div>
         </>
       );

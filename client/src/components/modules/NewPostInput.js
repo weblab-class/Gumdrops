@@ -121,8 +121,9 @@ class NewJournalMessage extends Component {
   sendMessage = (value) => {
     const body = { recipient: this.props.recipient, content: value }
     post("/api/message", body);
+    this.props.updateMessage && this.props.updateMessage(1);
   };
-
+  
   render() {
     return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
   }
