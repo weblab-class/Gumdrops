@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { get } from "../../utilities.js";
 import "./Rewards.css"
 import "../../utilities.css";
-import Img from "../../public/ximage.png";
+import Img from "../../public/question_mark.png";
+import BabyGummy from "../../public/LilDrop.png";
+import SocialButterfly from "../../public/Butterfly.jpg";
+import WebLabMaster from "../../public/WebLab.png";
+import SpaceBanner from "../../public/space.png";
+import ColorTheme from "../../public/colors.png";
+import Role from "../../public/cute_penguin.png";
+
 
 //Props
 //userId: String
@@ -15,37 +22,52 @@ class Rewards extends Component {
         {
           imageSource: Img,
           title: "Baby Gummy",
-          type: "projects" // #/1 Projects
+          type: "projects", // #/1 Projects
+          progress: undefined
         },
         {
           imageSource: Img,
           title: "Social Butterfly",
-          type: "journal" // #/5 Journal Entries
+          type: "journal", // #/5 Journal Entries
+          progress: undefined
         },
         {
           imageSource: Img,
           title: "Web Lab Master",
-          type: "views" // #/25 Page Views
+          type: "views", // #/25 Page Views
+          progress: undefined
         },
       ],
       unlockables: [
         {
           imageSource: Img,
           title: "Space Banner",
-          type: "projects" // #/10 Projects
+          type: "projects", // #/10 Projects
+          progress: undefined
         },
         {
           imageSource: Img,
           title: "Color Theme",
-          type: "storycard" // #/10 Story Cards
+          type: "storycard", // #/10 Story Cards
+          progress: undefined
         },
         {
           imageSource: Img,
-          title: "Role @Dragonator",
-          type: "tag" // #/10 People Tagged
+          title: "Role @Penguin_Overlord",
+          type: "tag", // #/10 People Tagged
+          progress: undefined
         },
       ],
       data: undefined,
+      images: {
+        Default: Img,
+        projects1: BabyGummy,
+        journal: SocialButterfly,
+        views: WebLabMaster,
+        projects2: SpaceBanner,
+        storycard: ColorTheme,
+        tag: Role
+      }
     };
   }
 
@@ -58,8 +80,54 @@ class Rewards extends Component {
         this.setState({
           data: data,
         });
+        this.handleInit();
       });
     }
+  }
+
+  handleInit = () => {
+    let updatedAchievements = [...this.state.achievements];
+    let updatedUnlockables =  [...this.state.unlockables];
+    this.state.achievements.forEach((reward, i)=>{
+      let achievement = {...reward};
+      achievement.progress = this.calculateProgress(reward.title, reward.type);
+      updatedAchievements[i] = achievement;
+    });
+    this.state.unlockables.forEach((reward, i)=>{
+      let unlockable = {...reward};
+      unlockable.progress = this.calculateProgress(reward.title, reward.type);
+      updatedUnlockables[i] = unlockable;
+    });
+    updatedAchievements.forEach((reward, i)=>{
+      let achievement = {...reward};
+      if(achievement.progress==="Complete!"){
+        if(reward.title==="Baby Gummy"){
+          achievement.imageSource = this.state.images.projects1;
+        } else{
+          achievement.imageSource = this.state.images[reward.type];
+        }
+      } else{
+        achievement.title = "Locked!";
+      }
+      updatedAchievements[i] = achievement;
+    });
+    updatedUnlockables.forEach((reward, i)=>{
+      let unlockable = {...reward};
+      if(unlockable.progress==="Complete!"){
+        if(reward.title==="Space Banner"){
+          unlockable.imageSource = this.state.images.projects2;
+        } else{
+          unlockable.imageSource = this.state.images[reward.type];
+        }
+      } else{
+        unlockable.title = "Locked!";
+      }
+      updatedUnlockables[i] = unlockable;
+    });
+    this.setState({
+      achievements: updatedAchievements,
+      unlockables: updatedUnlockables
+    });
   }
 
   calculateProgress= (title, type) => {
@@ -109,19 +177,31 @@ class Rewards extends Component {
                   <div className="Rewards-achievement u-inlineBlock" key={i}>
                     <img className="Rewards-centerImg" src={reward.imageSource}/>
                     <h3 className="u-textCenter">{reward.title}</h3>
-                    <h4 className="u-textCenter">{this.calculateProgress(reward.title, reward.type)}</h4>
+                    <h4 className="u-textCenter">{reward.progress}</h4>
                   </div>
                 ))}
             </div>
             <div>
               <h1 className="Rewards-title">Unlockables</h1>
-                {this.state.unlockables.map((reward, i)=>(
-                  <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                    <img className="Rewards-centerImg" src={reward.imageSource}/>
-                    <h3 className="u-textCenter">{reward.title}</h3>
-                    <h4 className="u-textCenter">{this.calculateProgress(reward.title, reward.type)}</h4>
-                  </div>
-                ))}
+                {this.state.unlockables.map(function(reward, i){ // ,i might cause problems (if it does, replace key with reward.title instead)
+                  if(reward.progress==="Complete!"){ //This is where you change the render of unlockables that are unlocked
+                    return (
+                      <div className="Rewards-unlockables u-inlineBlock" key={i}>
+                        <img className="Rewards-centerImg" src={reward.imageSource}/>
+                        <h3 className="u-textCenter">{reward.title}</h3>
+                        <h4 className="u-textCenter">{reward.progress}</h4>
+                      </div>
+                    );
+                  } else{
+                    return (
+                      <div className="Rewards-unlockables u-inlineBlock" key={i}>
+                        <img className="Rewards-centerImg" src={reward.imageSource}/>
+                        <h3 className="u-textCenter">{reward.title}</h3>
+                        <h4 className="u-textCenter">{reward.progress}</h4>
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </>
         );
