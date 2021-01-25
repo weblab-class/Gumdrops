@@ -10,6 +10,6 @@ const RewardDataSchema = new mongoose.Schema({
   likes: Number,
   journal: Number,
   storycard: Number,
-  
+  tag:Number,
 });
 module.exports = mongoose.model("reward", RewardDataSchema);

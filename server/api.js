@@ -68,6 +68,7 @@ router.post("/initreward",async(req,res)=>{
       likes: 0, 
       journal: 0,
       storycard:0,
+      tag:0,
       });
       NewData.save().then((value)=>{
         res.send(value);

@@ -92,6 +92,13 @@ class SingleProject extends Component{
     componentDidUpdate(){
         this.checkCanEdit();
     }
+    addStorycard= (quant)=>{
+        let body = {userId: this.props.userId, changes:{storycard:quant}}
+        post("/api/rewardinc",body).then((newData)=>{
+            console.log("succesful")
+        });
+        
+    }
     //automatically adds a story when clicked
     addNewStory = (storyObj) =>{
         console.log("i added a new story");
@@ -100,6 +107,7 @@ class SingleProject extends Component{
                 stories: this.state.stories.concat([storyObj]),
             });
         };
+        this.addStorycard(1);
     }
     //automatically deletes story when clicked
     deleteNewStory = (storyObj)=>{
@@ -116,6 +124,7 @@ class SingleProject extends Component{
                 stories: tempArray,
             });
         };
+        this.addStorycard(-1);
     }
     editLinks = (linkObj)=>{
         let tempArray = [...this.state.stories];
