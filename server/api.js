@@ -177,6 +177,11 @@ router.get("/user-roles", async (req,res)=>{
   }
 });
 
+//Returns all the user role stylings in the database. Expects an object of:
+// {}
+router.get("/all-user-roles", (req,res)=>{
+  Role.find().then((result)=>{res.send(result)}).catch((e)=>{console.log(e)});
+});
 
 //Return the Project object corresponding to a specific projectID. Expects an object of:
 // { projectId: String }

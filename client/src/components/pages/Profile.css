@@ -45,4 +45,23 @@
 .Profile-edit:hover {
     color: var(--button-text-hover);
     background-color: var(--button-background-hover);
-  }
+}
+
+.Profile-rolesTitle {
+    margin: 0, 1em;
+}
+
+.Profile-roles {
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.Profile-role {
+    margin-left: var(--s);
+}
+
+.Profile-roleEnd {
+    margin: 0 var(--s);
+}

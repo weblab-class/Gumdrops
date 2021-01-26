@@ -38,7 +38,7 @@ class SingleProject extends Component{
                 this.setState({
                     userRoles: result,
                 });
-            ;}
+            }
         });
     }
     checkCanEdit=()=>{
