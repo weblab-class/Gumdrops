@@ -32,6 +32,7 @@ class SingleProject extends Component{
             stories: undefined,
             userRoles: undefined,
             edit: undefined,
+            isStoryTelling: false,
         }
     }
     retrieveUserRoleInfo = () => {
@@ -208,18 +209,31 @@ class SingleProject extends Component{
         }
         //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
+        let storyTelling;
+        if(!this.state.isStoryTelling && this.state.stories) {
+            console.log("Got into story telling");
+            storyTelling = (<DivCreator/>);
+        } else {
+            storyTelling = (<></>);
+        }
+        console.log("storyTelling is"+storyTelling);
         return(
             <>
-            <div className="u-flex project-container"> 
+            <div className="u-flex project-container">
+                {storyTelling}
                 <section className="projectDocumentation-container">
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
                     {storiesList}
-                    {addStoryButton}
-                    {deleteProjectButton}
+                    <article className="projectButtons-container">
+                        {addStoryButton}
+                        {deleteProjectButton}
+                    </article> 
                 </section>
                 <section className="projectJournal-container">
                     <Journal userId ={this.props.userId} projectId={this.props.projectId} userRoles={this.state.userRoles} canSend={this.state.edit}/>
                 </section>
+                
+
             </div>
 
             </>

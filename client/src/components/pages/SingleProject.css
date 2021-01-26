@@ -1,8 +1,19 @@
 .projectDocumentation-container{
     margin-right: var(--m);
-    width: 70%;
+    width: 69%;
     overflow-y: auto;
     height: 80vh;
+}
+
+.projectDocumentation-headerTitle {
+    color: var(--projectpage-headerTitle);
+    text-shadow: -1px -1px 0 var(--projectpage-headerTitleShadow);
+}
+
+.projectPresentation-container { /*used within DivCreator (temporary!)*/
+    width: 100%;
+    height: 50vh;
+    border: 1px solid grey;
 }
 
 .project-container {
@@ -10,30 +21,42 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: var(--m);
-    height: 85vh;
+    min-height: 84.7vh; /*so it just covers the screen*/
+    height: auto;
+    flex-wrap: wrap;
+    border: 1px solid black;
 }
 
 .project-buttonNew {
+    height: 4.5vh;
+    width: 8vw;
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
+    margin-right: var(--xl);
+    /*
     position: absolute;
     bottom: 0.5vh;
-    left: 11vw;
+    left: 11vw;*/
 }
 
 .project-buttonDelete {
+    height: 4.5vh;
+    width: 8vw;
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
+    /*
     position: absolute;
     bottom: 0.5vh;
     left: 3vw;
+    */
 }
 
 .projectJournal-container {
     width: 30%;
 }
 
-.projectDocumentation-headerTitle {
-    color: var(--projectpage-headerTitle);
-    text-shadow: -1px -1px 0 var(--projectpage-headerTitleShadow);
+
+.projectButtons-container {
+    margin-left: var(--l);
+    margin-top: var(--s);
 }

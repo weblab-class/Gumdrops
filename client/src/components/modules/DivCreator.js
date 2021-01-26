@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../utilities.css";
+import "../pages/SingleProject.css";
 
 /**
  * DivCreator is a temporary component created to aid Juan in developing the TypeWriter Effect
@@ -8,9 +9,7 @@ import "../../utilities.css";
  * 
  */
 
-class Thumbnail extends Component {
-
-
+class DivCreator extends Component {
     constructor(props) {
       super(props);
     }
@@ -21,11 +20,12 @@ class Thumbnail extends Component {
 
     render() {
       return (
-          <div>
-            
-          </div>
+          <section className="projectPresentation-container">
+            <h3>This is going to be space reserved for the typewriting effect. I will  make it triggered by button click later</h3>
+          </section>
+
       );
     }
   }
 
-export default Thumbnail;
+export default DivCreator;

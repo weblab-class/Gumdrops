@@ -32,17 +32,14 @@ class Journal extends Component {
     }
 
     stopTagCount = () => {
-        console.log("stopTagCount triggered");
         if(this.tagCount > 0 && !this.isTagCountingDone) { //triggered only when count is non-zero and isTagCountingDone is false before.
             this.isTagCountingDone = true;
-            console.log("Final result is "+this.tagCount);
             post("/api/project-journal-tags",{ projectId: this.props.projectId, numJournalTags: this.tagCount})
                 .then((result)=>console.log("Journal Tag data saved"));
         }
     }
 
     incTagValue = (value) => { //receives value from JournalMessage to increment tagCount by 
-        console.log("tag value incremented by "+value);
         this.tagCount += value;
     }
 
