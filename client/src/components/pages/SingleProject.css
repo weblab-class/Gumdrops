@@ -37,7 +37,6 @@
 
 .project-buttonNew {
     height: 4.5vh;
-    width: 8vw;
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
     margin-right: var(--xl);
@@ -51,7 +50,7 @@
 }
 
 .project-buttonPresent {
-    height: 4.5vh;
+    /* height: 4.5vh; */
     width: 8vw;
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
