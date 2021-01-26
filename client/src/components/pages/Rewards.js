@@ -232,6 +232,7 @@ class Rewards extends Component {
             </div>
             <div>
               <h1 className="Rewards-title">Unlockables</h1>
+                <h4 className="Rewards-subtitle">Spice up your Gumdrops experience with these togglable effects (try clicking on them!).</h4>
                 {this.state.unlockables.map(function(reward, i){ // ,i might cause problems (if it does, replace key with reward.title instead)
                   if(reward.progress==="Complete!"){ //This is where you change the render of unlockables that are unlocked
                     return (

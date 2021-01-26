@@ -39,6 +39,11 @@
     color: var(--textcolor);
 }
 
+.Rewards-subtitle{
+    margin-left: var(--m);
+    color: var(--textcolor);
+}
+
 .Rewards-subText {
     color: var(--rewards-subtext);
 }
