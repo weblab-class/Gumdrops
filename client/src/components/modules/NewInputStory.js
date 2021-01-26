@@ -2,7 +2,9 @@
 import React, {Component, useCallback} from "react";
 import {render} from "react-dom";
 import {post} from "../../utilities.js";
+import "../../utilities.css";
 import "./NewPostInput.css";
+import "../pages/SingleProject.css";
 
 /**
  * New Post is a parent component for all input components
@@ -36,15 +38,15 @@ class NewInputStory extends Component {
     }
     render(){
         return(
-        <button 
-        type = "submit"
-        className=  "New PostInput-button u-point"
-        value = "Submit"
-        onClick = {this.handleAdd}
-        >
-            Add New Story!!
-        </button>
-        )
+            <button 
+                type = "submit"
+                className=  "NewPostInput-button project-buttonNew u-point"
+                value = "Submit"
+                onClick = {this.handleAdd}
+            >
+                Add New Story!!
+            </button>
+        );
     }
 }
 

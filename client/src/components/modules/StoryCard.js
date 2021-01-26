@@ -111,6 +111,12 @@ class StoryCard extends Component{
                         />
                     </section>
                 );
+            } else{
+                picture = (
+                    <section className="StoryCard-imageBlockContainer">
+                        <div className="u-textCenter StoryCard-centerImage">No image</div>
+                    </section>
+                );
             }
         } else{
             if(!this.state.editing){ //not editing right now
@@ -124,11 +130,17 @@ class StoryCard extends Component{
                             />
                         </section>
                     );
+                } else{
+                    picture = (
+                        <section className="StoryCard-imageBlockContainer">
+                            <div className="u-textCenter StoryCard-centerImage">No image</div>
+                        </section>
+                    );
                 }
                 button = (
                     <button 
                         type = "submit"
-                        className = "NewPostInput-button StoryCard-editButton u-pointer"
+                        className = "NewPostInput-button StoryCard-editButton2 u-pointer"
                         value = "Submit"
                         onClick={this.clickedEditing}
                     >Edit
@@ -166,7 +178,7 @@ class StoryCard extends Component{
                     );
                 }
                 button = (
-                    <>
+                    <div className="StoryCard-buttonsContiner">
                         <DeleteStoryCard onDelete={this.props.delete} storyObj={this.props.storyObj}/>
                         <button 
                             type = "submit"
@@ -175,11 +187,10 @@ class StoryCard extends Component{
                             onClick = {this.clickedEditing}
                         >Cancel
                         </button>
-                    </>
+                    </div>
                 );   
             }
         }
-
         return(
             <div className = "u-flex StoryCard-container">
                 {picture}

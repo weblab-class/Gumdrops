@@ -1,6 +1,8 @@
 import React, {Component} from "react";
-import "./NewPostInput.css";
 import {post} from "../../utilities";
+import "../../utilities.css";
+import "./StoryCard.css";
+import "./NewPostInput.css";
 
 /**
  * Delete Story Card will allow for the deletion of story
@@ -28,15 +30,15 @@ import {post} from "../../utilities";
     
     render(){
         return(
-        <button 
-        type = "submit"
-        className=  "New PostInput-button u-point"
-        value = "Submit"
-        onClick = {this.handleDelete}
-        >
-            DeleteMe
-        </button>
-        )
+            <button 
+                type = "submit"
+                className=  "NewPostInput-button StoryCard-editButton u-point"
+                value = "Submit"
+                onClick = {this.handleDelete}
+            >
+                Delete Card
+            </button>
+        );
     }
  }
  export default DeleteStoryCard;
