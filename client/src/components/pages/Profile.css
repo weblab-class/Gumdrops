@@ -65,3 +65,11 @@
 .Profile-roleEnd {
     margin: 0 var(--s);
 }
+
+.Profile-welcome {
+    color: var(--textcolor);
+}
+
+.Profile-subHeading {
+    color: var(--subtextcolor);
+}

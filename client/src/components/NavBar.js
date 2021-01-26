@@ -9,6 +9,7 @@ const GOOGLE_CLIENT_ID = "645405290237-qdttkk69k3hubem22c5bm8cf356qr2vg.apps.goo
 
 //Props
 //userId: String
+//modeValue: String signifies whether website is in Dark or Light mode
 
 class NavBar extends Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class NavBar extends Component {
       }
     render() {
         console.log(this.props.userId);
-        
         return(
         <nav className="NavBar-container u-flex">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
@@ -42,6 +42,7 @@ class NavBar extends Component {
                         onLogoutSuccess={this.props.handleLogout}
                         onFailure={(err) => console.log(err)}
                         className="u-link NavBar-login"
+                        theme={this.props.modeValue}
                     />
                     ) : (
                     <GoogleLogin
@@ -50,6 +51,7 @@ class NavBar extends Component {
                         onSuccess={this.props.handleLogin}
                         onFailure={(err) => console.log(err)}
                         className="u-link NavBar-login"
+                        theme={this.props.modeValue}
                     />
                 )}
             </section>

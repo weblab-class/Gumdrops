@@ -52,7 +52,7 @@ class ProfileBio extends Component {
                 return(
                     <>
                         <div className="Profile-sectionContainer">
-                            <h2 className="u-textCenter new-h2">Bio:</h2>
+                            <h2 className="u-textCenter new-h2 Profile-subHeading">Bio:</h2>
                             <p className="u-textCenter">{this.state.bio}</p>
                         </div>
                         <div className="Profile-bioContainer">
@@ -63,7 +63,7 @@ class ProfileBio extends Component {
             }
             return(
                 <div className="Profile-sectionContainer">
-                    <h2 className="u-textCenter new-h2">Bio:</h2>
+                    <h2 className="u-textCenter new-h2 Profile-subHeading">Bio:</h2>
                     <p className="u-textCenter">{this.state.bio}</p>
                 </div>
             );
@@ -71,7 +71,7 @@ class ProfileBio extends Component {
         if(this.props.editing){
             return (
                 <div className="Profile-bioContainer">
-                    <h2 className="u-textCenter new-h2">Bio:</h2>
+                    <h2 className="u-textCenter new-h2 Profile-subHeading">Bio:</h2>
                     <NewBio userId={this.props.userId}/>
                 </div>
             );

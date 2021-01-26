@@ -35,6 +35,7 @@
   --subtextcolor: gray;
 
   /*Main group*/
+  --mode: "light";
   --main-background: var(--grey);
   --mainpage-title: white;
   --mainpage-background: url(./public/retroBackground.png);
@@ -42,9 +43,9 @@
   --navbar-container: lightpink;
   --navbar-bottom-border: rgb(224, 145, 171);
   --navbar-header: var(--textcolor);
-  --cursor-image: url(./public/blue_cursor.png);
-  --cursor-pointer: url(./public/dragon.gif);
-
+  --cursor-image: default;
+  --cursor-pointer: url(./public/gloveCursor.png);
+  
   /*Project Page*/
   --projectdisplay-bottom-container: rgb(161, 62, 95);
   --projectdisplay-image-container:rgb(247, 201, 201);

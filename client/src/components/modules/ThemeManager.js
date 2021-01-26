@@ -2,9 +2,9 @@ import React, { Component} from "react";
 import "../../utilities.css";
 import { applyThemeFromLocalStorage  } from "../../utilities.js";
 import penguins from "../../public/penguin-group.jpg";
-import retro from "../../public/retroBackground.png";
 import brush from "../../public/brush.jpg";
-
+import gift from "../../public/gift.gif";
+import penguin from "../../public/penguin-bounce.gif";
 /**
  * ThemeApplier applies a custom theming to the website. 
  * Only called when user is logged in.
@@ -36,26 +36,22 @@ class ThemeManager extends Component{
         let darkObj = {
             "--navbar-container":"#2C2F33",
             "--navbar-bottom-border":"#23272A",
-            "--textcolor":"#FFFFFF",
+            "--textcolor":"rgba(255,255,255,0.8)",
             "--main-background":"#2C2F33",
             "--primary":"#53585f",
             "--primary--dim":"#3b3f44",
-
+            "--mode":"dark",
         }
         localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
         applyThemeFromLocalStorage();
     }
 
-    pushCustomMode = () => {
-        let customObj = {
-            "--navbar-container":"#2C2F33",
-            "--navbar-bottom-border":"#23272A",
-            "--textcolor":"#FFFFFF",
-            "--main-background":"#2C2F33",
-            "--primary":"#53585f",
-            "--primary--dim":"#3b3f44",
+    pushPenguinCursor = () => {
+        let penguinObj = {
+            "--cursor-image":"url("+gift+")",
+            "--cursor-pointer":"url("+penguin+")",
         }
-        localStorage.setItem("currTheme",JSON.stringify(customObj)); //required to save objects in LocalStorage
+        localStorage.setItem("currTheme",JSON.stringify(penguinObj)); //required to save objects in LocalStorage
         applyThemeFromLocalStorage();
     }
 
@@ -68,6 +64,7 @@ class ThemeManager extends Component{
     }
     
     render(){
+        //this.pushPenguinCursor();
         //this.pushDarkMode();
         //this.pushBrushTheme();
         if(localStorage.getItem("loggedin")==="true") {

@@ -4,4 +4,5 @@
 
 .Projects-title {
     margin-left: var(--l);
+    color: var(--textcolor);
 }
