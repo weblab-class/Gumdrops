@@ -2,7 +2,7 @@
     position: absolute;
     bottom: 32px;
     height: calc(80vh - 32px);
-    width: 100%;
+    width: calc(100% - 6px);
     background-color: var(--journal-container-background);
     border-radius: 10% 10% 0 0;
     border: 3px solid var(--journal-container-border);
