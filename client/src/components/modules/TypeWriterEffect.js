@@ -23,6 +23,9 @@ import "./StoryCard.css";
             letterindex:0,
          };
     }
+    componentDidMount(){
+        this.timeoutID = this.timer();
+    }
     timer = ()=>setTimeout(()=>{
         console.log("timeoutran");
         this.setState((prev)=>({

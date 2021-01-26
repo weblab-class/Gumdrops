@@ -11,6 +11,7 @@ import DivCreator from "../modules/DivCreator.js";
 import "./SingleProject.css";
 import "../../utilities.css";
 import "../modules/NewPostInput.css";
+import SingleDisplay from "../modules/SingleDisplay";
 //this would be used to render what you see w
 //when you open a project 
 //
@@ -225,7 +226,7 @@ class SingleProject extends Component{
         let storyTelling;
         if(this.state.isStoryTelling && this.state.stories) {
             console.log("Got into story telling");
-            storyTelling = (<DivCreator/>);
+            storyTelling = (<SingleDisplay stories = {this.state.stories}/>);
         } else {
             storyTelling = (<></>);
         }
