@@ -120,7 +120,7 @@ class Profile extends Component {
             if(this.state.roles !== []){
                 roles = (
                     <>
-                        <h2 className="u-textCenter Profile-rolesTitle">Roles:</h2>
+                        <h2 className="u-textCenter Profile-rolesTitle Profile-subHeading">Roles:</h2>
                         <div className="Profile-roles">
                             {this.generateRoles()}
                         </div>
@@ -129,7 +129,7 @@ class Profile extends Component {
             } else{
                 roles = (
                     <>
-                        <h2 className="u-textCenter Profile-rolesTitle">Roles:</h2>
+                        <h2 className="u-textCenter Profile-rolesTitle Profile-subHeading">Roles:</h2>
                         <p className="u-textCenter">No roles yet</p>
                     </>
                 );
