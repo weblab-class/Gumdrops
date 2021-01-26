@@ -14,12 +14,16 @@
 }
 .StoryCard-editButton { /*add-on to NewPostInput-button*/
     margin-top: var(--m);
-    width: 25%;
     border-radius: var(--xs);
+}
+.StoryCard-editButton2 {
     display:block;
     position: relative;
     left: 50%;
     transform: translate(-50%);
+    margin-top: var(--m);
+    border-radius: var(--xs);
+
 }
 .StoryCard-linkBlockContainer {
     width: 20%;
@@ -71,6 +75,7 @@
     border-radius: 50%;
 }
 .StoryCard-linkinputContainer{
+    margin-top: var(--xs);
     max-width:100%;
 }
 .StoryCard-textAreaContainer{
@@ -92,6 +97,30 @@
 }
 .StoryCard-linkInputButton{
     width: 25%;
+    padding: var(--xs);
+}
+.StoryCard-button{
+    display: inline-block;
+    border-radius: var(--xs);
+    padding: var(--xs) var(--m);
+}
+.StoryCard-buttonsContiner{
+    width: fit-content;
+    display:block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+.StoryCard-centerImage{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.StoryCard-editButton + .StoryCard-editButton{
+    margin-left: var(--m);
 }
 p {
     margin: 0;

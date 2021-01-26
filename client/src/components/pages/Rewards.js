@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { get } from "../../utilities.js";
+import { get, handleUnlock } from "../../utilities.js";
 import "./Rewards.css"
 import "../../utilities.css";
 import Img from "../../public/question_mark.png";
 import BabyGummy from "../../public/LilDrop.png";
 import SocialButterfly from "../../public/Butterfly.jpg";
 import WebLabMaster from "../../public/WebLab.png";
-import SpaceBanner from "../../public/space.png";
-import ColorTheme from "../../public/colors.png";
+import BrushBackground from "../../public/brush.jpg";
+import DarkMode from "../../public/colors.png";
 import Role from "../../public/cute_penguin.png";
 
 
@@ -18,7 +18,6 @@ class Rewards extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       achievements: [
         {
@@ -43,21 +42,24 @@ class Rewards extends Component {
       unlockables: [
         {
           imageSource: Img,
-          title: "Space Banner",
+          title: "Brush Background",
           type: "projects", // #/10 Projects
-          progress: undefined
+          progress: undefined,
+          alt: "Unleash the creative side of your project page"
         },
         {
           imageSource: Img,
-          title: "Color Theme",
+          title: "Dark Mode",
           type: "storycard", // #/10 Story Cards
-          progress: undefined
+          progress: undefined,
+          alt: "For the energy-conservationists"
         },
         {
           imageSource: Img,
-          title: "Role @Penguin_Overlord",
+          title: "Surprise Penguin",
           type: "tag", // #/10 People Tagged
-          progress: undefined
+          progress: undefined,
+          alt: "A little something to keep you company throughout the day"
         },
       ],
       data: undefined,
@@ -66,8 +68,8 @@ class Rewards extends Component {
         projects1: BabyGummy,
         journal: SocialButterfly,
         views: WebLabMaster,
-        projects2: SpaceBanner,
-        storycard: ColorTheme,
+        projects2: BrushBackground,
+        storycard: DarkMode,
         tag: Role
       }
     };
@@ -160,7 +162,7 @@ class Rewards extends Component {
     updatedUnlockables.forEach((reward, i)=>{
       let unlockable = {...reward};
       if(unlockable.progress==="Complete!"){
-        if(reward.title==="Space Banner"){
+        if(reward.title==="Brush Background"){
           unlockable.imageSource = this.state.images.projects2;
         } else{
           unlockable.imageSource = this.state.images[reward.type];
@@ -198,13 +200,13 @@ class Rewards extends Component {
         return "Complete!";
       } else return`${progress}/5 People Tagged`;
     }
-    if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Space Banner"
+    if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Brush Background"
       if(title==="Baby Gummy"){
         if(progress >= 1){
           return "Complete!";
         } else return`${progress}/1 Project`;
       }
-      if(title==="Space Banner"){
+      if(title==="Brush Background"){
         if(progress >= 10){
           return "Complete!";
         } else return`${progress}/10 Projects`;
@@ -223,28 +225,38 @@ class Rewards extends Component {
                 {this.state.achievements.map((reward, i)=>(
                   <div className="Rewards-achievement u-inlineBlock" key={i}>
                     <img className="Rewards-centerImg" src={reward.imageSource}/>
-                    <h3 className="u-textCenter">{reward.title}</h3>
-                    <h4 className="u-textCenter">{reward.progress}</h4>
+                    <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                    <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                   </div>
                 ))}
             </div>
             <div>
               <h1 className="Rewards-title">Unlockables</h1>
+                <h4 className="Rewards-subtitle">Spice up your Gumdrops experience with these togglable effects (try clicking on them!).</h4>
                 {this.state.unlockables.map(function(reward, i){ // ,i might cause problems (if it does, replace key with reward.title instead)
                   if(reward.progress==="Complete!"){ //This is where you change the render of unlockables that are unlocked
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img className="Rewards-centerImg" src={reward.imageSource}/>
-                        <h3 className="u-textCenter">{reward.title}</h3>
-                        <h4 className="u-textCenter">{reward.progress}</h4>
+                        <button 
+                          className="Rewards-centerImg"
+                          value="Submit"
+                          type="button" 
+                          onClick={()=>handleUnlock(reward.title)}
+                          style={{"background":"url("+reward.imageSource+") 40% center fixed",
+                                  "backgroundSize":"cover"}}
+                          title={reward.alt}
+                        >
+                        </button>
+                        <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                        <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
                     );
                   } else{
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img className="Rewards-centerImg" src={reward.imageSource}/>
-                        <h3 className="u-textCenter">{reward.title}</h3>
-                        <h4 className="u-textCenter">{reward.progress}</h4>
+                        <img src={reward.imageSource} className="Rewards-centerImg" title={reward.alt}/> 
+                        <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                        <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
                     );
                   }

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "../../utilities.css";
 import "./StoryCard.css"
+import "./NewPostInput.css";
 /**
  * Input Box and Save Box 
  * 
@@ -37,17 +38,17 @@ class InputBox extends Component{
         return(
             <div className="u-flex StoryCard-linkinputContainer">
                 <input
-                type= {this.props.type}
-                placeholder={this.props.defaultText}
-                value={this.state.value}
-                onChange={this.handleChange}
-                className="u-flex StoryCard-linkInputBox"
+                    type= {this.props.type}
+                    placeholder={this.props.defaultText}
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    className="u-flex StoryCard-linkInputBox NewPostInput-input"
                 />
                 <button
-                type="submit"
-                className="u-flex StoryCard-linkInputButton"
-                value="Submit"
-                onClick={this.handleSubmit}
+                    type="submit"
+                    className="u-flex StoryCard-linkInputButton NewPostInput-button"
+                    value="Submit"
+                    onClick={this.handleSubmit}
                 >
                 {this.props.buttonMessage}
                 </button>

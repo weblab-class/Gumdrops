@@ -5,9 +5,10 @@ import { get, post } from "../../utilities";
 import { Link } from "@reach/router";
 import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
-import "./SingleProject.css";
 import DeleteProject from "../modules/DeleteProject.js";
 import SampleStoryCard from "../modules/SampleStoryCard.js";
+import "./SingleProject.css";
+import "../../utilities.css";
 //this would be used to render what you see w
 //when you open a project 
 //

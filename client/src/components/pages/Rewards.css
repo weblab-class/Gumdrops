@@ -18,16 +18,33 @@
     margin-left: var(--xl);
 }
 
-.Rewards-centerImg{
+.Rewards-centerImg{ /*is sometimes a button*/
+    background-size: cover;
     position: relative;
     left: 50%;
     transform: translate(-50%);
+    width: 10vw;
+    height: 10vw;
     max-width: 20vw;
     max-height: 20vh;
     border-radius: 50%;
+}
+
+.Rewards-centerImg:hover {
+    cursor: var(--cursor-pointer);
 }
 
 .Rewards-title{
     margin-left: var(--m);
     color: var(--textcolor);
 }
+
+.Rewards-subtitle{
+    margin-left: var(--m);
+    color: var(--textcolor);
+}
+
+.Rewards-subText {
+    color: var(--rewards-subtext);
+}
+
