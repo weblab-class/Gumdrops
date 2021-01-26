@@ -29,7 +29,7 @@ import "./StoryCard.css";
             letterindex: prev.letterindex+1,
             blink: !prev.blink,
         }));
-    },500)
+    },100)
     componentDidUpdate(){
         
         if(this.state.storyindex >= this.state.text.length -1 && this.state.sentenceindex >= this.state.text[this.state.storyindex].length-1 && this.state.letterindex >= this.state.text[this.state.storyindex][this.state.sentenceindex].length ){ console.log("end of storycards")
