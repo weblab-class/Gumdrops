@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { get } from "../../utilities.js";
+import { get, handleUnlock } from "../../utilities.js";
 import "./Rewards.css"
 import "../../utilities.css";
 import Img from "../../public/question_mark.png";
 import BabyGummy from "../../public/LilDrop.png";
 import SocialButterfly from "../../public/Butterfly.jpg";
 import WebLabMaster from "../../public/WebLab.png";
-import SpaceBanner from "../../public/space.png";
-import ColorTheme from "../../public/colors.png";
+import BrushBackground from "../../public/brush.jpg";
+import DarkMode from "../../public/colors.png";
 import Role from "../../public/cute_penguin.png";
 
 
@@ -18,7 +18,6 @@ class Rewards extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       achievements: [
         {
@@ -43,21 +42,21 @@ class Rewards extends Component {
       unlockables: [
         {
           imageSource: Img,
-          title: "Space Banner",
+          title: "Brush Background",
           type: "projects", // #/10 Projects
-          progress: undefined
+          progress: undefined,
         },
         {
           imageSource: Img,
-          title: "Color Theme",
+          title: "Dark Mode",
           type: "storycard", // #/10 Story Cards
-          progress: undefined
+          progress: undefined,
         },
         {
           imageSource: Img,
-          title: "Role @Penguin_Overlord",
+          title: "Surprise Penguin",
           type: "tag", // #/10 People Tagged
-          progress: undefined
+          progress: undefined,
         },
       ],
       data: undefined,
@@ -66,8 +65,8 @@ class Rewards extends Component {
         projects1: BabyGummy,
         journal: SocialButterfly,
         views: WebLabMaster,
-        projects2: SpaceBanner,
-        storycard: ColorTheme,
+        projects2: BrushBackground,
+        storycard: DarkMode,
         tag: Role
       }
     };
@@ -160,7 +159,7 @@ class Rewards extends Component {
     updatedUnlockables.forEach((reward, i)=>{
       let unlockable = {...reward};
       if(unlockable.progress==="Complete!"){
-        if(reward.title==="Space Banner"){
+        if(reward.title==="Brush Background"){
           unlockable.imageSource = this.state.images.projects2;
         } else{
           unlockable.imageSource = this.state.images[reward.type];
@@ -198,13 +197,13 @@ class Rewards extends Component {
         return "Complete!";
       } else return`${progress}/5 People Tagged`;
     }
-    if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Space Banner"
+    if(type==="projects"){ //Seperte by title "Baby Gummy" vs "Brush Background"
       if(title==="Baby Gummy"){
         if(progress >= 1){
           return "Complete!";
         } else return`${progress}/1 Project`;
       }
-      if(title==="Space Banner"){
+      if(title==="Brush Background"){
         if(progress >= 10){
           return "Complete!";
         } else return`${progress}/10 Projects`;
@@ -234,7 +233,14 @@ class Rewards extends Component {
                   if(reward.progress==="Complete!"){ //This is where you change the render of unlockables that are unlocked
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img className="Rewards-centerImg" src={reward.imageSource}/>
+                        <button 
+                          className="Rewards-centerImg"
+                          value="Submit"
+                          type="button" 
+                          onClick={()=>handleUnlock(reward.title)}
+                          style={{"background":"url("+reward.imageSource+") 40% center fixed",
+                                  "backgroundSize":"cover"}}>
+                        </button>
                         <h3 className="u-textCenter">{reward.title}</h3>
                         <h4 className="u-textCenter">{reward.progress}</h4>
                       </div>
@@ -242,7 +248,7 @@ class Rewards extends Component {
                   } else{
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img className="Rewards-centerImg" src={reward.imageSource}/>
+                        <img src={reward.imageSource} className="Rewards-centerImg"/> 
                         <h3 className="u-textCenter">{reward.title}</h3>
                         <h4 className="u-textCenter">{reward.progress}</h4>
                       </div>

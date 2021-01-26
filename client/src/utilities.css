@@ -53,6 +53,7 @@
   --exploredisplay-image-container:rgba(121, 229, 233, 0.795);
   --projectpage-headerTitle: var(--primary); 
   --projectpage-headerTitleShadow: var(--primary--dim);
+  --projectpage-background: var(--main-background);
   --storycard-background: var(--primary--dim);
   --storycard-background: #6db89fce;
   --storycard-textColor: var(--textcolor);

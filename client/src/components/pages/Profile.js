@@ -121,7 +121,7 @@ class Profile extends Component {
                 roles = (
                     <>
                         <h2 className="u-textCenter Profile-rolesTitle Profile-subHeading">Roles:</h2>
-                        <div className="Profile-roles">
+                        <div className="Profile-roles u-textCenter">
                             {this.generateRoles()}
                         </div>
                     </>

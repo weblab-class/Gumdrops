@@ -3,6 +3,7 @@ import {Link} from "@reach/router";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import "./NavBar.css";
 import Logo from "../public/GumdropsIcon_Transparent.png";
+import { applyThemeFromLocalStorage  } from "../utilities.js";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "645405290237-qdttkk69k3hubem22c5bm8cf356qr2vg.apps.googleusercontent.com";
@@ -16,7 +17,9 @@ class NavBar extends Component {
         super(props);
       }
     render() {
-        console.log(this.props.userId);
+        if(localStorage.getItem("loggedin")==="true") {
+            applyThemeFromLocalStorage(); //makes sure theme setting is persistant after refresh
+        }
         return(
         <nav className="NavBar-container u-flex">
             {/*<div className="NavBar-title u-inlineBlock">Gumdrops</div>*/} 
