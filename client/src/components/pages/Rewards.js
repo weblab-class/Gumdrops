@@ -43,7 +43,7 @@ class Rewards extends Component {
         {
           imageSource: Img,
           title: "Brush Background",
-          type: "projects", // #/10 Projects
+          type: "projects", // #/5 Projects
           progress: undefined,
           alt: "Unleash the creative side of your project page"
         },
@@ -207,9 +207,9 @@ class Rewards extends Component {
         } else return`${progress}/1 Project`;
       }
       if(title==="Brush Background"){
-        if(progress >= 10){
+        if(progress >= 5){
           return "Complete!";
-        } else return`${progress}/10 Projects`;
+        } else return`${progress}/5 Projects`;
       }
     }
   }

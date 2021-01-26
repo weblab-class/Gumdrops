@@ -76,7 +76,7 @@ class SingleProject extends Component{
                 console.log("View counted");
                 let body2= {projectId:this.props.projectId,changes:{views:1}};
                 post("/api/projectinc",body2).then((sent)=>{
-                    console.log("succes")
+                    console.log("success");
                 });
                 this.viewCounted = true;
             }
