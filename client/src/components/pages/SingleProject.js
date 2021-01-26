@@ -224,7 +224,7 @@ class SingleProject extends Component{
         //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
         let storyTelling;
-        if(this.state.isStoryTelling && this.state.stories) {
+        if(this.state.isStoryTelling && this.state.stories && this.state.stories.length!==0) {
             console.log("Got into story telling");
             storyTelling = (<SingleDisplay stories = {this.state.stories}/>);
         } else {
