@@ -241,7 +241,7 @@ class SingleProject extends Component{
                     <button 
                         className="NewPostInput-button project-buttonPresent u-point"
                         onClick={this.handlePresent}
-                    >Present StoryCards</button>
+                    >{`${!this.state.isStoryTelling?"Present StoryCards":"Exit Presentation"}`}</button>
                     {storiesList}
                     <article className="projectButtons-container">
                         {addStoryButton}
