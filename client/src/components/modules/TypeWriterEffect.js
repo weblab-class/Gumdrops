@@ -16,7 +16,7 @@ import "./StoryCard.css";
      constructor(props){
          super(props);
          this.state = {
-            text : [["this is", "dkj" ],["the ","first story"],["this is the"], ["second story but i will make it very long to", "see how it works "],["this is the"," third story"],],
+            text : this.props.stories,
             blink: true,
             storyindex : 0,
             sentenceindex : 0,
