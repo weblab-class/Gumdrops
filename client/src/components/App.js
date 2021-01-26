@@ -17,6 +17,9 @@ import "./pages/Skeleton.css";
 import ThemeManager from "./modules/ThemeManager.js";
 import user from "../../../server/models/user.js";
 
+
+
+import TypeWriterEffect from "./modules/TypeWriterEffect.js";
 /**
  * Define the "App" component as a class.
  */
@@ -120,6 +123,9 @@ class App extends Component {
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <CreateProject path="/createproject" userId={this.state.userId}/>
           <Rewards path="/rewards" userId={this.state.userId}/>
+          {/* Temporary */}
+          <TypeWriterEffect path="/testing" userId = {this.state.userId}/>
+          {/* Temporary */}
           <NotFound default />
         </Router>
       </>
