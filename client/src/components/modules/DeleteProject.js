@@ -1,6 +1,8 @@
 import React, {Component} from "react";
-import "./NewPostInput.css";
 import {post} from "../../utilities";
+import "../../utilities.css";
+import "./NewPostInput.css";
+import "../pages/SingleProject.css";
 
 /**
  * Delete Project will allow for the deletion of a project
@@ -23,15 +25,15 @@ import {post} from "../../utilities";
     
     render(){
         return(
-        <button 
-        type = "submit"
-        className=  "New PostInput-button u-point"
-        value = "Submit"
-        onClick = {this.handleDelete}
-        >
-            Delete Project
-        </button>
-        )
+            <button 
+                type = "submit"
+                className=  "NewPostInput-button project-buttonDelete u-point"
+                value = "Submit"
+                onClick = {this.handleDelete}
+            >
+                Delete Project
+            </button>
+        );
     }
  }
  export default DeleteProject;

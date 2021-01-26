@@ -13,6 +13,22 @@
     height: 85vh;
 }
 
+.project-buttonNew {
+    padding: var(--xs) var(--s);
+    border-radius: var(--xs);
+    position: absolute;
+    bottom: 0.5vh;
+    left: 11vw;
+}
+
+.project-buttonDelete {
+    padding: var(--xs) var(--s);
+    border-radius: var(--xs);
+    position: absolute;
+    bottom: 0.5vh;
+    left: 3vw;
+}
+
 .projectJournal-container {
     width: 30%;
 }
