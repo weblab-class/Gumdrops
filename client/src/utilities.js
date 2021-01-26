@@ -8,6 +8,11 @@
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
 
+import brush from "./public/brush.jpg";
+import gift from "./public/gift.gif";
+import penguin from "./public/penguin-bounce.gif";
+import gloveCursor from "./public/gloveCursor.png";
+
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"
 function formatParams(params) {
   // iterate of all the keys of params as an array,
@@ -87,20 +92,123 @@ export function applyThemeFromLocalStorage() {
 //Note: This does not change the actual CSS settings being applied.
 export function loadDefaultTheme() {
   //default theme is from :root in utilities.css
+  //focuses on settings that I actually change in rewards
   let defaultTheme = {
       "--primary": "rgb(230, 94, 90)",
       "--primary--dim": "rgb(247, 161, 162)",
-      "--darkgrey": "rgb(0, 0, 0)",
-      "--medgrey": "rgb(222, 221, 213)",
-      "--grey": "rgb(240, 242, 236)",
-      "--darkergrey": "lightgrey",
-      "--white": "#fff",
-      "--aqua": "rgb(1, 182, 216)",
-      "--green": "rgb(105, 182, 73)",
-      "--yellow": "rgb(252, 242, 134)",
       "--textcolor": "black",
       "--subtextcolor": "gray",
+      "--main-background": "var(--grey)",
+      "--navbar-container": "lightpink",
+      "--navbar-bottom-border": "rgb(224, 145, 171)",
+      "--cursor-image": "default",
+      "--cursor-pointer": "url("+gloveCursor+")",
+      "--mode":"light",
+      "--projectpage-background": "var(--main-background)",
   };
   localStorage.setItem("currTheme",JSON.stringify(defaultTheme));
 }
 
+//The following 3 functions are responsible for pushing the corresponding rewards in Rewards page
+function pushDarkMode() {
+  let darkObj = {
+      "--navbar-container":"#2C2F33",
+      "--navbar-bottom-border":"#23272A",
+      "--textcolor":"rgba(255,255,255,0.8)",
+      "--main-background":"#2C2F33",
+      "--primary":"#53585f",
+      "--primary--dim":"#3b3f44",
+      "--mode":"dark",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+function undoDarkMode() {
+  let darkObj = {
+      "--navbar-container": "lightpink",
+      "--navbar-bottom-border": "rgb(224, 145, 171)",
+      "--textcolor": "black",
+      "--main-background": "var(--grey)",
+      "--primary": "rgb(230, 94, 90)",
+      "--primary--dim": "rgb(247, 161, 162)",
+      "--mode":"light",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+function pushPenguinCursor() {
+  let penguinObj = {
+      "--cursor-image":"url("+gift+")",
+      "--cursor-pointer":"url("+penguin+")",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(penguinObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+function undoPenguinCursor() {
+  let penguinObj = {
+    "--cursor-image": "default",
+    "--cursor-pointer": "url("+gloveCursor+")",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(penguinObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+
+function pushBrushTheme() {
+  let brushObj = {
+      "--projectpage-background": "linear-gradient( rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.55)), url("+brush+")",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(brushObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+function undoBrushTheme() {
+  let brushObj = {
+      "--projectpage-background": "var(--main-background)",
+  }
+  localStorage.setItem("currTheme",JSON.stringify(brushObj)); //required to save objects in LocalStorage
+  applyThemeFromLocalStorage();
+}
+
+
+
+//Handles the enforcing and disabling of an unlockable upon click
+export function handleUnlock(unlockName) { 
+  console.log("Handle unlock for "+unlockName)
+  if(!localStorage.hasOwnProperty(unlockName) || localStorage.getItem(unlockName)==="off"){ //current state is off
+    switch(unlockName) {
+      case "Brush Background":
+        console.log("Reached on brush");
+        pushBrushTheme();
+        break;
+      case "Dark Mode":
+        console.log("Reached on dark");
+        pushDarkMode();
+        break;
+      case "Surprise Penguin":
+        console.log("Reached on penguin");
+        pushPenguinCursor();
+        break;
+    }
+    localStorage.setItem(unlockName,"on");
+  } else { //current state is on
+    switch(unlockName) {
+      case "Brush Background":
+        console.log("Reached off brush");
+        undoBrushTheme();
+        break;
+      case "Dark Mode":
+        console.log("Reached off dark");
+        undoDarkMode();
+        break;
+      case "Surprise Penguin":
+        console.log("Reached off penguin");
+        undoPenguinCursor();
+        break;
+    }
+    localStorage.setItem(unlockName,"off");
+  }
+}
