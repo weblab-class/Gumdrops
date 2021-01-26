@@ -11,10 +11,8 @@ import Explore from "./pages/Explore.js";
 import SingleProject from "./pages/SingleProject.js";
 import CreateProject from "./pages/CreateProject.js";
 import Rewards from "./pages/Rewards.js";
-import Cursor from "./modules/Cursor.js";
 import "../utilities.css";
 import "./pages/Skeleton.css";
-import ThemeManager from "./modules/ThemeManager.js";
 import user from "../../../server/models/user.js";
 
 
@@ -110,7 +108,6 @@ class App extends Component {
             handleLogout={this.handleLogout}
             modeValue = {modeValue}
         />
-        <ThemeManager userId={this.state.userId}/>
         {/*<Cursor />*/}
         <Router>
           <Skeleton

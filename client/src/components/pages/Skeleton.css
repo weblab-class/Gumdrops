@@ -11,10 +11,10 @@
     left: 50%;
     transform: translate(-50%);
     width: 60%;
-    margin-top: var(--l);
-    padding-left: var(--xl);
-    padding-right: var(--xl);
-    padding-bottom: var(--xl);
+    margin-top: 4vw;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-bottom: 2.5vw;
     border: 5px solid white;
 }
 

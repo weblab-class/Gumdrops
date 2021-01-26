@@ -10,6 +10,7 @@ import "./Journal.css";
 // projectId: String (id of the project it corresponds to)
 // canSend: Boolean (dictates whether user can send messages in the journal)
 // userRoles: Object (where key is userName and value is an Array of [userName,userId,roleStyle])
+// isStoryTelling: Boolean (indicates whether storycard presentation has been activated)
 
 class Journal extends Component {
     _isMounted = false;
@@ -140,6 +141,7 @@ class Journal extends Component {
                             isTagCountingDone = {this.isTagCountingDone}
                             incTagValue = {(value)=>this.incTagValue(value)}
                             stopTagCount = {()=>this.stopTagCount()}
+                            isStoryTelling={this.props.isStoryTelling}
                         />
                     </div>
                 </div>

@@ -5,6 +5,14 @@
     height: 80vh;
 }
 
+.projectDocJournal-container { /*contains both documentation and journal*/
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    max-height: 80vh;
+    width: 100%;
+}
+
 .projectDocumentation-headerTitle {
     color: var(--projectpage-headerTitle);
     text-shadow: -1px -1px 0 var(--projectpage-headerTitleShadow);
@@ -33,10 +41,6 @@
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
     margin-right: var(--xl);
-    /*
-    position: absolute;
-    bottom: 0.5vh;
-    left: 11vw;*/
 }
 
 .project-buttonDelete {
@@ -44,11 +48,13 @@
     width: 8vw;
     padding: var(--xs) var(--s);
     border-radius: var(--xs);
-    /*
-    position: absolute;
-    bottom: 0.5vh;
-    left: 3vw;
-    */
+}
+
+.project-buttonPresent {
+    height: 4.5vh;
+    width: 8vw;
+    padding: var(--xs) var(--s);
+    border-radius: var(--xs);
 }
 
 .projectJournal-container {

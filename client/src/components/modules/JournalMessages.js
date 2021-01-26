@@ -15,6 +15,7 @@ import { post } from "../../utilities";
  * @param {function} isTagCountingDone Boolean function that returns whether tag counting has been done in this cycle
  * @param {function} incTagValue increments the instance variable in Journal.js by a value (representing number of tags in msg)
  * @param {function} stopTagCount used to switch tag counting status in Journal once last JournalMessage is done counting
+ * @param {Boolean} isStoryTelling used to tell JournalMessages not to scroll to bottom when PresentStorycard is pressed
  */
 class JournalMessages extends Component {
   constructor(props) {
@@ -29,11 +30,16 @@ class JournalMessages extends Component {
   }
 
   componentDidMount() {
-    this.scrollToBottom();
+    if(!this.props.isStoryTelling){
+      this.scrollToBottom();
+    }
+
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
+    if(!this.props.isStoryTelling){
+      this.scrollToBottom();
+    }
   }
   addJournal= (count)=>{
     

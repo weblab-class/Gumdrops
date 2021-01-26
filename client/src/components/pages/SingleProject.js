@@ -10,6 +10,7 @@ import SampleStoryCard from "../modules/SampleStoryCard.js";
 import DivCreator from "../modules/DivCreator.js";
 import "./SingleProject.css";
 import "../../utilities.css";
+import "../modules/NewPostInput.css";
 //this would be used to render what you see w
 //when you open a project 
 //
@@ -178,6 +179,18 @@ class SingleProject extends Component{
             });
         };
     }
+    handlePresent = () => {
+        if(this.state.isStoryTelling) {
+            this.setState({
+                isStoryTelling : false,
+            });
+        } else  {
+            this.setState({
+                isStoryTelling : true,
+            })
+        }
+    }
+
     render(){
         let storiesList = <div>Loading...</div>;
         let stringId = null;
@@ -210,7 +223,7 @@ class SingleProject extends Component{
         //console.log(this.state.stories[0]._id)
         //console.log(typeof this.state.stories[0]._id)
         let storyTelling;
-        if(!this.state.isStoryTelling && this.state.stories) {
+        if(this.state.isStoryTelling && this.state.stories) {
             console.log("Got into story telling");
             storyTelling = (<DivCreator/>);
         } else {
@@ -221,8 +234,13 @@ class SingleProject extends Component{
             <>
             <div className="u-flex project-container">
                 {storyTelling}
+                <div className="projectDocJournal-container">
                 <section className="projectDocumentation-container">
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
+                    <button 
+                        className="NewPostInput-button project-buttonPresent u-point"
+                        onClick={this.handlePresent}
+                    >Present StoryCards</button>
                     {storiesList}
                     <article className="projectButtons-container">
                         {addStoryButton}
@@ -230,9 +248,15 @@ class SingleProject extends Component{
                     </article> 
                 </section>
                 <section className="projectJournal-container">
-                    <Journal userId ={this.props.userId} projectId={this.props.projectId} userRoles={this.state.userRoles} canSend={this.state.edit}/>
+                    <Journal 
+                        userId ={this.props.userId} 
+                        projectId={this.props.projectId} 
+                        userRoles={this.state.userRoles} 
+                        canSend={this.state.edit}
+                        isStoryTelling={this.state.isStoryTelling}
+                    />
                 </section>
-                
+                </div>
 
             </div>
 

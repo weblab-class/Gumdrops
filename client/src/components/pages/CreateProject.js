@@ -117,7 +117,11 @@ class CreateProject extends Component {
               resolve("done");
             }
           });
-          Promise.all([promise1, promise2]).then((values) => {
+          let promise3 = post("/api/rewardinc",
+            { userId:this.props.userId,
+              changes:{projects:1}
+            }); //only increments project count of user creating the project
+          Promise.all([promise1, promise2,promise3]).then((values) => {
             this.setState({ //resets the fields
               projectName: "", 
               collaborators: "", 
