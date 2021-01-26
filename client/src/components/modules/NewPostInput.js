@@ -89,56 +89,11 @@ class NewPostInput extends Component {
   }
 }
 
-// /**
-//  * New Comment is a New Post component for comments
-//  *
-//  * Proptypes
-//  * @param {string} defaultText is the placeholder text
-//  * @param {string} storyId to add comment to
-//  */
-// class NewComment extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   addComment = (value) => {
-//     const body = { parent: this.props.storyId, content: value };
-//     post("/api/comment", body).then((comment) => {
-//       // display this comment on the screen
-//       this.props.addNewComment(comment);
-//     });
-//   };
-
-//   render() {
-//     return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
-//   }
-// }
-
-// /**
-//  * New Story is a New Post component for comments
-//  *
-//  * Proptypes
-//  * @param {string} defaultText is the placeholder text
-//  */
-// class NewStory extends Component {
-//   addStory = (value) => {
-//     const body = { content: value };
-//     post("/api/story", body).then((story) => {
-//       // display this story on the screen
-//       this.props.addNewStory(story);
-//     });
-//   };
-
-//   render() {
-//     return <NewPostInput defaultText="New Story" onSubmit={this.addStory} />;
-//   }
-// }
-
 /**
- * New Message is a New Message component for messages
  *
  * Proptypes
- * @param {UserObject} recipient is the intended recipient
+ * updateMessage
+ * recipient
  */
 class NewJournalMessage extends Component {
   sendMessage = (value) => {
@@ -148,7 +103,7 @@ class NewJournalMessage extends Component {
   };
   
   render() {
-    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
+    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} size={this.props.size}/>;
   }
 }
 

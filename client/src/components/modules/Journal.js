@@ -122,30 +122,18 @@ class Journal extends Component {
         console.log("Journal is re-rendering");
         // if (!this.props.userId) return <div>Log in before using Journal</div>;
         return (
-            <>
-                <div className="u-flex u-relative Journal-container">
-                    {/* <div className="Journal-userList">
-                        <JournalChats
-                        setActiveUser={this.setActiveUser}
-                        userId={this.props.userId}
-                        users={this.state.activeUsers}
-                        active={this.state.activeChat.recipient}
-                        />
-                    </div> */}
-                    <div className="Journal-chatContainer">
-                        <JournalMessages 
-                            data={this.state.activeChat} 
-                            canSend={this.props.canSend} 
-                            userRoles={this.props.userRoles} 
-                            userId={this.props.userId}
-                            isTagCountingDone = {this.isTagCountingDone}
-                            incTagValue = {(value)=>this.incTagValue(value)}
-                            stopTagCount = {()=>this.stopTagCount()}
-                            isStoryTelling={this.props.isStoryTelling}
-                        />
-                    </div>
-                </div>
-            </>
+            <div className="u-flex u-relative Journal-container"> {/*Journal-chatContainer">*/}
+                <JournalMessages 
+                    data={this.state.activeChat} 
+                    canSend={this.props.canSend} 
+                    userRoles={this.props.userRoles} 
+                    userId={this.props.userId}
+                    isTagCountingDone = {this.isTagCountingDone}
+                    incTagValue = {(value)=>this.incTagValue(value)}
+                    stopTagCount = {()=>this.stopTagCount()}
+                    isStoryTelling={this.props.isStoryTelling}
+                />
+            </div>
         );
     }
 }

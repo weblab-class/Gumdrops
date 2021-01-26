@@ -107,7 +107,7 @@ class JournalMessages extends Component {
             </div>
           </div>
           <div className="JournalMessages-newContainer">
-            <NewJournalMessage updateMessage = {this.addJournal} recipient={this.props.data.recipient} />
+            <NewJournalMessage updateMessage = {this.addJournal} recipient={this.props.data.recipient} size="100%"/>
           </div>
         </>
       );
