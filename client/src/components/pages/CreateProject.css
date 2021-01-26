@@ -25,4 +25,8 @@
     color: var(--button-text-hover);
     background-color: var(--button-background-hover);
 }
+
+.CreateProject-text {
+    color: var(--textcolor);
+}
   

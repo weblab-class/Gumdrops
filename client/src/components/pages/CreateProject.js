@@ -140,26 +140,26 @@ class CreateProject extends Component {
       return (
           <div className="u-flexColumn CreateProject-container">
             <section className="CreateProject-inputContainer">
-              <h3 className="u-textCenter">Project Name (Required):</h3>
+              <h3 className="u-textCenter CreateProject-text">Project Name (Required):</h3>
               <NewProjectInput onChange={event => this.projectNameOnChange(event)} value={this.state.projectName}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">Who are your collaborators? (e.g., "@DVILL_17 @Juan")</h4>
+              <h4 className="u-textCenter CreateProject-text">Who are your collaborators? (e.g., "@DVILL_17 @Juan")</h4>
               <NewProjectInput onChange={event => this.collabOnChange(event)} value={this.state.collaborators}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">What are your team's roles?</h4>
-              <h4 className="u-textCenter">Choose from leo-der, researcher, content-creator, developer, desiigner</h4>
-              <h4 className="u-textCenter">(start with yourself and continue in the order that you used in the last question)</h4>
-              <h4 className="u-textCenter">(e.g., "@leo-der @researcher @developer")</h4>
+              <h4 className="u-textCenter CreateProject-text">What are your team's roles?</h4>
+              <h4 className="u-textCenter CreateProject-text">Choose from leo-der, researcher, content-creator, developer, desiigner</h4>
+              <h4 className="u-textCenter CreateProject-text">(start with yourself and continue in the order that you used in the last question)</h4>
+              <h4 className="u-textCenter CreateProject-text">(e.g., "@leo-der @researcher @developer")</h4>
               <NewProjectInput onChange={event => this.rolesOnChange(event)} value={this.state.roles}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
+              <h4 className="u-textCenter CreateProject-text">Two Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
               <NewProjectInput onChange={event => this.projectTagsOnChange(event)} value={this.state.tags}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter">Please select an image for your thumbnail</h4> 
+              <h4 className="u-textCenter CreateProject-text">Please select an image for your thumbnail</h4> 
               <NewThumbnailInput onChange={event => this.thumbnailOnChange(event)} selectedFile={this.state.thumbnail}/>
             </section>
 
