@@ -22,9 +22,9 @@ function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ googleid: user.sub }).then((existingUser) => {
     if (existingUser) return existingUser;
-
+    
     const newUser = new User({
-      name: user.name,
+      name: user.name.replace(" ","_"),
       googleid: user.sub,
       projectIds: ["6002597bb45b7733b322e9ad"], //hardcoded for now. Set to Weekly Project #1
       teamIds: ["1"], //hardcoded for now
