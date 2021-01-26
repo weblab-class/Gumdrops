@@ -80,6 +80,8 @@
   --explorepage-tagTwo: var(--green);
   --explorepage-tagThree: rgb(226, 99, 120);
 
+  /*Rewards Page*/
+  --rewards-subtext: var(--textcolor);
 
   --xxs: 2px;
   --xs: 4px;

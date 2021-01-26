@@ -45,18 +45,21 @@ class Rewards extends Component {
           title: "Brush Background",
           type: "projects", // #/10 Projects
           progress: undefined,
+          alt: "Unleash the creative side of your project page"
         },
         {
           imageSource: Img,
           title: "Dark Mode",
           type: "storycard", // #/10 Story Cards
           progress: undefined,
+          alt: "For the energy-conservationists"
         },
         {
           imageSource: Img,
           title: "Surprise Penguin",
           type: "tag", // #/10 People Tagged
           progress: undefined,
+          alt: "A little something to keep you company throughout the day"
         },
       ],
       data: undefined,
@@ -222,8 +225,8 @@ class Rewards extends Component {
                 {this.state.achievements.map((reward, i)=>(
                   <div className="Rewards-achievement u-inlineBlock" key={i}>
                     <img className="Rewards-centerImg" src={reward.imageSource}/>
-                    <h3 className="u-textCenter">{reward.title}</h3>
-                    <h4 className="u-textCenter">{reward.progress}</h4>
+                    <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                    <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                   </div>
                 ))}
             </div>
@@ -239,18 +242,20 @@ class Rewards extends Component {
                           type="button" 
                           onClick={()=>handleUnlock(reward.title)}
                           style={{"background":"url("+reward.imageSource+") 40% center fixed",
-                                  "backgroundSize":"cover"}}>
+                                  "backgroundSize":"cover"}}
+                          title={reward.alt}
+                        >
                         </button>
-                        <h3 className="u-textCenter">{reward.title}</h3>
-                        <h4 className="u-textCenter">{reward.progress}</h4>
+                        <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                        <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
                     );
                   } else{
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img src={reward.imageSource} className="Rewards-centerImg"/> 
-                        <h3 className="u-textCenter">{reward.title}</h3>
-                        <h4 className="u-textCenter">{reward.progress}</h4>
+                        <img src={reward.imageSource} className="Rewards-centerImg" title={reward.alt}/> 
+                        <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
+                        <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
                     );
                   }

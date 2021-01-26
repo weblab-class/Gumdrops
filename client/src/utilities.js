@@ -105,6 +105,7 @@ export function loadDefaultTheme() {
       "--cursor-pointer": "url("+gloveCursor+")",
       "--mode":"light",
       "--projectpage-background": "var(--main-background)",
+      "--rewards-subtext":"var(--textcolor)",
   };
   localStorage.setItem("currTheme",JSON.stringify(defaultTheme));
 }
@@ -119,6 +120,7 @@ function pushDarkMode() {
       "--primary":"#53585f",
       "--primary--dim":"#3b3f44",
       "--mode":"dark",
+      "--rewards-subtext":"var(--grey)",
   }
   localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
   applyThemeFromLocalStorage();
@@ -133,6 +135,7 @@ function undoDarkMode() {
       "--primary": "rgb(230, 94, 90)",
       "--primary--dim": "rgb(247, 161, 162)",
       "--mode":"light",
+      "--rewards-subtext":"var(--textcolor)",
   }
   localStorage.setItem("currTheme",JSON.stringify(darkObj)); //required to save objects in LocalStorage
   applyThemeFromLocalStorage();

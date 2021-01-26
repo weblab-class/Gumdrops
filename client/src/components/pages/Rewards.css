@@ -30,7 +30,16 @@
     border-radius: 50%;
 }
 
+.Rewards-centerImg:hover {
+    cursor: var(--cursor-pointer);
+}
+
 .Rewards-title{
     margin-left: var(--m);
     color: var(--textcolor);
 }
+
+.Rewards-subText {
+    color: var(--rewards-subtext);
+}
+
