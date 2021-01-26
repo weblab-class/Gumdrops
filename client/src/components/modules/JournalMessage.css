@@ -9,7 +9,7 @@
 }
 
 .JournalMessage-time {
-    color: var(--subtextcolor);
+    color: rgba(0, 0, 0, 0.5);
     margin-right: var(--xs);
     font-size:0.8em;
     order:1;
