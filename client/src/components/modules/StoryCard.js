@@ -57,7 +57,7 @@ class StoryCard extends Component{
     }
     //this would eventually allow to edit stories
     editStory =(changesObj)=>{
-        let body = {_id: this.props.storyObj._id, changes:changesObj}
+        let body = {_id: this.props.storyObj._id, changes:{textContent:changesObj}}
         post("/api/editstorycard",body).then((story) =>{
             this.setState({
                 storytext:changesObj.textContent,

@@ -71,10 +71,10 @@ router.post("/initreward",async(req,res)=>{
       tag:0,
       });
       NewData.save().then((value)=>{
-        res.send(value);
+        res.send(true);
       });
     }
-    else{res.send(DataExists)};
+    else{res.send(false)};
     }
   catch(e){
     console.log(e);
