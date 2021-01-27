@@ -116,3 +116,22 @@ webpack.config.js
   - Unlockables:
     - Once you have obtained an unlockable you should be able to click on its icon to activate/deactivate some cool features we’ve added to the website
 
+
+## Citations:
+
+- Borrowed Code:
+  - NewPostInput(.js and .css), Journal(.js and .css), JournalMessages(.js and .css), JournalMessage (.js and .css), and api.js all have some amount of borrowed code from the Web Lab team's Catbook (https://github.com/weblab-workshops/catbook-react)
+  - ADD MORE CITATIONS HERE
+- Images: 
+  - GumdropsIcon_Transparent.png, GumdropsLogo.png, LilDrop.png, and NewLilDrop.png were all provided by Leighton Kennedy (Gumdrops ELO)
+  - question_mark.png was found online at https://img.icons8.com/bubbles/2x/question-mark.png
+  - Butterfly.jpg was found online at https://i.pinimg.com/originals/41/01/13/410113b454ff9ed0d86dddb8c4f810db.jpg
+  - WebLab.png was found online at https://avatars3.githubusercontent.com/u/16654089?s=280&v=4
+  - colors.png was found online at https://www.color-hex.com/palettes/8228.png
+  - cute-penguin.png was found online at https://data.whicdn.com/images/62995251/original.png
+  - ADD MORE CITATIONS HERE
+
+
+## Note:
+
+- Times used in the journal are in EST
