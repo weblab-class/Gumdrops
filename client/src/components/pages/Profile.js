@@ -111,7 +111,7 @@ class Profile extends Component {
             let roles;
             let output = (
                 <>
-                    <h2 className="u-textCenter Profile-welcome">Welcome, {!this.state.user ? "Anonymous" : this.state.user.name}</h2>
+                    <h2 className="u-textCenter Profile-welcome">{!this.state.user ? "Anonymous" : this.state.user.name}</h2>
                     <hr></hr>
                     <ProfileImage userId={this.props.userId} editing={this.state.editing}/>
                     <ProfileBio userId={this.props.userId} editing={this.state.editing}/>
