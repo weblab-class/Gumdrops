@@ -371,6 +371,7 @@ router.post("/editstorycard",(req,res)=>{
     let urlArray = req.body.changes.imageMedia.split(',');
     let buffer = Buffer.from(urlArray[1], 'base64');
     compress.tryImgCompress(buffer).then((smolImg)=>{
+      let body = {"imageMedia":smolImg,"imageHeader":urlArray[0]};
       StoryCard.updateOne(filter,{"imageMedia":smolImg,"imageHeader":urlArray[0]}).then((result)=>{
         res.send(result);
         }).catch((err)=>console.log("there was an errorr alarm"));

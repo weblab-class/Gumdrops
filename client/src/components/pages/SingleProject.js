@@ -165,6 +165,23 @@ class SingleProject extends Component{
         })
         console.log(tempArray)
     }
+    //imageMedia: Buffer,
+    //imageHeader: String,
+    editImage = (storyObj)=>{
+        let tempArray = [...this.state.stories];
+        console.log("edit image was updated in story card")
+        for(let i=0; i<this.state.stories.length;i++){
+            if(this.state.stories[i]._id == storyObj._id){
+                tempArray[i].imageMedia = storyObj.changes.imageMedia;
+                break;
+            }
+        }
+        if(this._isMounted){
+            this.setState({
+                stories:tempArray,
+            });
+        };
+    }
     editStory = (storyObj) => {
         let tempArray = [...this.state.stories];
         for(let i=0; i<this.state.stories.length;i++){
@@ -212,6 +229,7 @@ class SingleProject extends Component{
                     edit = {this.state.edit}
                     delete = {this.deleteNewStory}
                     onEdit = {this.editStory}
+                    onEditImage = {this.editImage}
                     onAddLink = {this.editLinks}
                 />
             ));
