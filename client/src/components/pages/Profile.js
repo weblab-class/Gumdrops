@@ -30,36 +30,38 @@ class Profile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        get(`/api/user`, { userid: this.props.userId }).then((user) => {
-            if(this._isMounted){
-                this.setState({
-                    user: user 
-                });
-            };
-        });
-        console.log("Preparing profile for user "+this.props.userId)
-        get("/api/projects", {userid: this.props.userId}).then((dataObj=>{ //find some way to get all the roles of a user
-            let rolesObj = {};
-            dataObj.projects.forEach((project)=>{
-                project.collaborators.forEach((person)=>{
-                    if(person.userId===this.props.userId){
-                        rolesObj[person.role] = 1;
-                    }
-                });
+        if(this.props.userId){
+            get(`/api/user`, { userid: this.props.userId }).then((user) => {
+                if(this._isMounted){
+                    this.setState({
+                        user: user 
+                    });
+                };
             });
-            if(this._isMounted){
-                this.setState({
-                    roles: Object.keys(rolesObj),
+            console.log("Preparing profile for user "+this.props.userId)
+            get("/api/projects", {userid: this.props.userId}).then((dataObj=>{ //find some way to get all the roles of a user
+                let rolesObj = {};
+                dataObj.projects.forEach((project)=>{
+                    project.collaborators.forEach((person)=>{
+                        if(person.userId===this.props.userId){
+                            rolesObj[person.role] = 1;
+                        }
+                    });
                 });
-            }
-        }));
-        get("/api/all-user-roles",{projectId:this.props.projectId}).then((result) => {
-            if(this._isMounted){
-                this.setState({
-                    userRoles: result,
-                });
-            }
-        });
+                if(this._isMounted){
+                    this.setState({
+                        roles: Object.keys(rolesObj),
+                    });
+                }
+            }));
+            get("/api/all-user-roles",{projectId:this.props.projectId}).then((result) => {
+                if(this._isMounted){
+                    this.setState({
+                        userRoles: result,
+                    });
+                }
+            });
+        }
     }
 
     componentWillUnmount(){

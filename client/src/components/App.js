@@ -119,7 +119,7 @@ class App extends Component {
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <CreateProject path="/createproject" userId={this.state.userId}/>
           <Rewards path="/rewards" userId={this.state.userId}/>
-          <GetStarted path="/getstarted" userId = {this.state.userId}/>
+          <GetStarted path="/getstarted" userId={this.state.userId}/>
           <NotFound default />
         </Router>
       </>
