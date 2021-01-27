@@ -54,7 +54,9 @@ class App extends Component {
     console.log("requested reward from database")
     post("/api/initreward",{userId: Id}).then((value)=>{
     console.log("initialized reward")
-    console.log(value)
+    if(value){
+      window.location.replace("/getstarted")
+    }
   })
   }
 
