@@ -1,10 +1,13 @@
 .getStarted-title{
     margin-top: 2vw;
+    color: var(--primary-dark);
+    font-size: 2em;
 }
 
 .getStarted-instruct-container {
     display: flex;
     justify-content: center;
+    padding-bottom: 6vh;
 }
 
 .getStarted-step-container {
@@ -18,7 +21,14 @@
     width: 50%;
     max-width: 50%;
     text-align: center;
+
 }
+
+.getStarted-leftStep-text {
+    margin-left: 6vw;
+    margin-right: 6vw;
+}
+
 
 .getStarted-rightStep-container {
     width: 50%;
@@ -27,8 +37,15 @@
 
 .getStarted-textTitle {
     color: var(--primary);
+    padding-bottom: 1vh;
 }
 
 .getStarted-subText {
+    color: var(--textcolor);
+    font-size: 1.2em;
+}
 
+.getStarted-subText + 
+.getStarted-subText {
+    padding-top: 2vh;
 }

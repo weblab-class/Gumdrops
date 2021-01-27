@@ -1,8 +1,9 @@
 .Skeleton-title {
     color: var(--mainpage-title);
     /*text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);*/
-    font-size: 2.5vw;
+    font-size: 2.5vh;
     font-weight: bold;
+    color: var(--textcolor);
 }
 
 .Skeleton-mainPage-Description {
@@ -14,7 +15,7 @@
     margin-top: 3.5vw;
     padding-left: 2.5vw;
     padding-right: 2.5vw;
-    padding-bottom: 2vw;
+    padding-bottom: 1.5vw;
     border: 0.35vw solid white;
 }
 
@@ -30,7 +31,7 @@
     width: 25%;
     padding-left: 2.5vw;
     padding-right: 2.5vw;
-    padding-bottom: 2.5vw;
+    padding-bottom: 2vw;
     border: 0.35vw solid white;
 }
 
@@ -62,6 +63,6 @@
     background: linear-gradient( rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) ), var(--mainpage-background) center 0% fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 115vh;
     
 }

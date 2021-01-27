@@ -24,6 +24,7 @@
 
   /*Pre-defined color sets*/
   --primary: rgb(230, 94, 90);
+  --primary-dark: rgb(230, 94, 90);
   --primary--dim: rgb(247, 161, 162);
   --darkgrey: rgb(0, 0, 0); /*black*/
   --medgrey: rgb(222, 221, 213);
