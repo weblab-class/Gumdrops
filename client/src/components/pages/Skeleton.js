@@ -28,7 +28,7 @@ class Skeleton extends Component {
           </section>
           <section className="u-textCenter Skeleton-mainPage-2ndDescription">
             <h1 className="Skeleton-2ndtitle">How is Gumdrops used?</h1>
-            <p className="Skeleton-mainPage-3rdtext">Gumdrops is itended to sit as an additional layer above cloud storage websites like Google Drive and Github. It offers users a method to organize their links and pictures in the form of "storycards" that makes it easy for them come back to a project and share with others about their progress.</p>
+            <p className="Skeleton-mainPage-3rdtext">Gumdrops is itended to sit as an additional layer above cloud storage websites like Google Drive and Github. It offers users a method to organize their links and pictures in "storycards" that makes it easy for them come back to a project and keep track of their progress.</p>
           </section>
         </div>
 

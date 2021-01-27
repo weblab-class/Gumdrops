@@ -25,7 +25,7 @@
 }
 
 .Skeleton-mainPage-2ndDescription {
-    background: linear-gradient(0deg, rgba(50,50,50,0.3), rgba(100,100,100,0.3));
+    background: linear-gradient(0deg, rgba(50,50,50,0.3), rgba(80,80,80,0.3));
     margin-top: 2.5vw;
     width: 25%;
     padding-left: 2.5vw;
@@ -45,7 +45,7 @@
 }
 
 .Skeleton-mainPage-3rdtext {
-    background-color: rgb(163, 177, 87);
+    background-color: rgb(223, 181, 103);
     color: white;
     font-size: 1.5vw;
 }
