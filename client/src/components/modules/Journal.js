@@ -60,18 +60,6 @@ class Journal extends Component {
         this._isMounted = true;
         this.loadMessageHistory(this.state.activeChat.recipient);
         console.log("In Journal.js, my current projectId is "+this.state.activeChat.recipient._id);
-
-        /*
-        get("/api/activeUsers").then((data) => {
-            // If user is logged in, we load their chats. If they are not logged in,
-            // there's nothing to load. (Also prevents data races with socket event)
-            if(this.props.userId) {
-                this.setState({
-                    activeUsers: data.activeUsers,
-                });
-            };
-        })*/
-
         socket.on("message", (data) => {
             console.log("Received update notice");
             if(this._isMounted){
@@ -95,24 +83,7 @@ class Journal extends Component {
                 }));
             };
         });
-        /*
-        socket.on("activeUsers", (data) => {
-            this.setState({
-                activeUsers: data.activeUsers,
-            });
-        });*/
     }
-
-    /*
-    setActiveUser = (user) => {
-        this.loadMessageHistory(user);
-        this.setState({
-            activeChat: {
-                recipient: user,
-                messages: [],
-            },
-        });
-    }; */
 
     componentWillUnmount(){
         this._isMounted = false;

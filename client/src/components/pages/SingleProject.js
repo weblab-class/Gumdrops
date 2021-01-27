@@ -7,7 +7,6 @@ import Journal from "../modules/Journal.js";
 import NewInputStory from "../modules/NewInputStory.js";
 import DeleteProject from "../modules/DeleteProject.js";
 import SampleStoryCard from "../modules/SampleStoryCard.js";
-import DivCreator from "../modules/DivCreator.js";
 import "./SingleProject.css";
 import "../../utilities.css";
 import "../modules/NewPostInput.css";
