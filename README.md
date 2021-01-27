@@ -53,6 +53,7 @@ webpack.config.js
 
 ## Gumdrops
 - From animated story cards to themed-rewards, Gumdrops offers a fun, collaborative space for students and lifelong-learners to document their projects and reflect on their stories along the way.
+- Link to website: http://gumdrops.herokuapp.com/
 
 
 ## First Things First:
