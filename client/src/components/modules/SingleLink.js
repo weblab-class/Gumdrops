@@ -26,7 +26,7 @@ class SingleLink extends Component{
         let istherefavicon = this.props.linkObj.favicons.length!==0;
         if(istherefavicon){
             icon = (
-                <div>
+                <div className="StoryCard-centerEditing StoryCard-iconContainer">
                     <img 
                         className="StoryCard-centerEditing" 
                         src={this.props.linkObj.favicons[0]} 
@@ -58,9 +58,7 @@ class SingleLink extends Component{
         else{
             return(
                 <div className = "u-flex StoryCard-iconContainer">
-                    <a href={this.props.linkObj.url} className="StoryCard-iconContainer">
-                    {icon}
-                    </a>
+                    <a href={this.props.linkObj.url} className="StoryCard-iconContainer">{icon}</a>
                 </div>     
             );
         }
