@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import "./Profile.css"
+import "./Profile.css";
+import "../../utilities.css";
+
 /**
  * Get Started Page it tells everyone how to use the Gumdrops App
  * 
@@ -17,7 +19,7 @@ import "./Profile.css"
      render(){
          return(
              
-             <h1>Get Get Started</h1>
+             <h1 className="u-textCenter">Get Started with using Gumdrops</h1>
 
          )
      }
