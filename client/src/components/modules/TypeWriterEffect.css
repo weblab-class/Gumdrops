@@ -1,15 +1,21 @@
 .Effect-container{
-    display:flex;
     max-width: 100%;
 }
 .Effect-imageContainer{
-    display: flex;
-    flex: 1 1 auto;
+    display:inline;
+    width: 30%;
+    float:left;
+}
+.Effect-text{
+    padding: 0px;
+    margin: 0px;
 }
 .Effect-textContainer{
-    
-    flex: 2 2  auto;
+    display: inline;
+    width: 70%;
+    float:right;
 }
 .Effect-image{
-    flex-grow:1;
+    
+    max-width: 100%;
 }
