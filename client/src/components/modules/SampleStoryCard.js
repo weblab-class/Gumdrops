@@ -32,10 +32,8 @@ import "./StoryCard.css";
         const links = (
             <section className="StoryCard-linkBlockContainer">
                 <LinkBlock
-                    //onEdit= {this.editLink}
                     editing = {false}
-                    linkArr = {[/*links go here*/]}
-                    //onDel = {this.deleteLink}
+                    linkArr = {["https://docs.google.com/document/d/1k3spUBQJzej7Bn2oiRdaK7IfFao95RBbjgmgJc3FWZw/edit?usp=sharing"]}
                 />
             </section>
         );
