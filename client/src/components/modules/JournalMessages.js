@@ -25,14 +25,11 @@ class JournalMessages extends Component {
   convert = (timeStamp) => {
     const mm = timeStamp.substr(5,2);
     let dd = timeStamp.substr(8,2);
-    console.log(dd);
     let hh = parseInt(timeStamp.substring(11, 13));
-    console.log(hh);
     hh -= 5;
     if(hh<1){
       dd -= 1;
     }
-    console.log(dd);
     const yyyy = timeStamp.substr(0,4);
     return `${mm}/${dd}/${yyyy}`;
   }
