@@ -1,9 +1,8 @@
 .Skeleton-title {
     color: var(--mainpage-title);
     /*text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);*/
-    font-size: 2.5vh;
+    font-size: 2.5vw;
     font-weight: bold;
-    color: var(--textcolor);
 }
 
 .Skeleton-mainPage-Description {
