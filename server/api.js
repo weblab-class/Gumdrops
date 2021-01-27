@@ -463,7 +463,7 @@ router.post("/image",(req,res)=>{
     image: bufferedImg,
   });
   image.save().then(()=>console.log("Profile image saved successfully."));
-  socketManager.getSocketFromUserID(req.body.userId).emit("profile-image", image);
+  socketManager.getSocketFromUserID(req.body.userId).emit("profile-image", {userId: req.body.userId, image: req.body.image});
 });
 
 //Get an image from the database. Expects an object with one or more of the following fields:
