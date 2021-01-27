@@ -129,3 +129,4 @@ webpack.config.js
   - WebLab.png was found online at https://avatars3.githubusercontent.com/u/16654089?s=280&v=4
   - colors.png was found online at https://www.color-hex.com/palettes/8228.png
   - cute-penguin.png was found online at https://data.whicdn.com/images/62995251/original.png
+  - ADD MORE CITATIONS HERE
