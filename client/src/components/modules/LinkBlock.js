@@ -18,6 +18,8 @@ import "./StoryCard.css";
  */
 
 class LinkBlock extends Component {
+    _isMounted = false;
+
     constructor(props){
         super(props);
         this.state={
@@ -27,9 +29,11 @@ class LinkBlock extends Component {
     setLinks=()=>{
         if(this.props.linkArr.length!==0){
             post("/api/link",{links:this.props.linkArr}).then((newLinks)=>{
-                this.setState({
-                    linksData:newLinks
-                });
+                if(this._isMounted){
+                    this.setState({
+                        linksData:newLinks
+                    });
+                }
             });
         }
     }
@@ -38,10 +42,11 @@ class LinkBlock extends Component {
         if(!(tempArray.includes(newLink))){
             post("/api/link",{links: [newLink]}).then((newData)=>{
                 console.log(newData)
-                this.setState({
-                    linksData:this.state.linksData.concat([newData[0]]),
-                
-                });
+                if(this._isMounted){
+                    this.setState({
+                        linksData:this.state.linksData.concat([newData[0]]),
+                    });
+                }
                 this.props.onEdit && this.props.onEdit(newLink);
             }); 
         }
@@ -57,10 +62,11 @@ class LinkBlock extends Component {
             if(this.props.linkArr[i] == removedLink){
                 tempArray.splice(i,1);
                 tempData.splice(i,1);
-                this.setState({
-                    linksData:tempData,
-                
-                });
+                if(this._isMounted){
+                    this.setState({
+                        linksData:tempData,
+                    });
+                }
                 this.props.onDel && this.props.onDel(tempArray);
                 console.log(tempArray);
                 break;
@@ -70,7 +76,11 @@ class LinkBlock extends Component {
         
     }
     componentDidMount(){
+        this._isMounted = true;
         this.setLinks();
+    }
+    componentWillUnmount(){
+        this._isMounted = false;
     }
     render(){
         let linkList = <div className="u-textCenter">No links</div>;
