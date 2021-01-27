@@ -120,7 +120,6 @@ webpack.config.js
 
 - Borrowed Code:
   - NewPostInput(.js and .css), Journal(.js and .css), JournalMessages(.js and .css), JournalMessage (.js and .css), and api.js all have some amount of borrowed code from the Web Lab team's Catbook (https://github.com/weblab-workshops/catbook-react)
-  - ADD MORE CITATIONS HERE
 - Images: 
   - GumdropsIcon_Transparent.png, GumdropsLogo.png, LilDrop.png, and NewLilDrop.png were all provided by Leighton Kennedy (Gumdrops ELO)
   - question_mark.png was found online at https://img.icons8.com/bubbles/2x/question-mark.png
