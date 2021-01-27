@@ -25,13 +25,16 @@ import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
 
     componentDidMount() {
         this._isMounted = true;
-        get(`/api/user`, { userid: this.props.userId }).then((user) => {
-            if(this._isMounted){
-                this.setState({
-                    user: user 
-                });
-            };
-        });
+        if(this.props.userId){
+            console.log(this.props.userId)
+            get(`/api/user`, { userid: this.props.userId }).then((user) => {
+                if(this._isMounted){
+                    this.setState({
+                        user: user 
+                    });
+                };
+            });
+        }
     }
 
     componentWillUnmount(){
