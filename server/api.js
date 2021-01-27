@@ -362,6 +362,7 @@ router.post("/delstorycard",(req,res)=>{
   }).catch((err)=>console.log(err));
 });
 
+//Expects: {_id: String(storycard_id), changes: Object}
 router.post("/editstorycard",(req,res)=>{
   let filter = {"_id" : new ObjectId(req.body._id)};
   //console.log(req.body.changes);
