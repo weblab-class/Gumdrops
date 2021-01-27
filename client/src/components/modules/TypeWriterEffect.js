@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./NewPostInput.css";
 import "./StoryCard.css";
-
+import "./TypeWriterEffect.css";
 /**
  * 
  * Type Writer Effect, this the slide show for each of 
@@ -17,6 +17,7 @@ import "./StoryCard.css";
          super(props);
          this.state = {
             text : this.props.stories,
+            images: this.props.images,
             blink: true,
             storyindex : 0,
             sentenceindex : 0,
@@ -75,15 +76,20 @@ import "./StoryCard.css";
         let displayList = "";
         if(topDisplay.length!==0){
             displayList = topDisplay.map((sentence,i)=>
-                (<h1 key = {i} >{sentence}</h1>)
+                (<h1 className = "Effect-text" key = {i} >{sentence}</h1>)
             )
         }
         
         return(
             <>  
-            <div>
-                {displayList}
-                <h1>{`${this.state.text[this.state.storyindex][this.state.sentenceindex].substring(0,this.state.letterindex)}${this.state.blink?"|":" "}`}</h1>
+            <div className = "Effect-container">
+                <span className = "Effect-imageContainer">
+                <img className = " Effect-image"src = {this.state.images[this.state.storyindex]}/>
+                </span >
+                <span className = "Effect-textContainer">
+                    {displayList}
+                    <h1 className = "Effect-text">{`${this.state.text[this.state.storyindex][this.state.sentenceindex].substring(0,this.state.letterindex)}${this.state.blink?"|":" "}`}</h1>
+                </span>
             </div>
             </>
         )

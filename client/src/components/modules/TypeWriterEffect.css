@@ -1,0 +1,15 @@
+.Effect-container{
+    display:flex;
+    max-width: 100%;
+}
+.Effect-imageContainer{
+    display: flex;
+    flex: 1 1 auto;
+}
+.Effect-textContainer{
+    
+    flex: 2 2  auto;
+}
+.Effect-image{
+    flex-grow:1;
+}
