@@ -22,6 +22,7 @@
     border-left: 1px solid lightgreen;
     border-right: 1px solid lightgreen;
     border-bottom: 1px solid lightgreen;
+    overflow-y: auto;
 }
 
 .ProjectDisplay-text {
@@ -48,4 +49,5 @@
     border-left: 1px solid lightgreen;
     border-right: 1px solid lightgreen;
     border-bottom: 1px solid lightgreen;
+    overflow-y: auto;
 }
