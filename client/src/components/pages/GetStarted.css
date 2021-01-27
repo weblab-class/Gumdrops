@@ -49,3 +49,7 @@
 .getStarted-subText {
     padding-top: 2vh;
 }
+
+.getStarted-img {
+    max-width: 30vw;
+}

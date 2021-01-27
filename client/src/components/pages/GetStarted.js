@@ -4,6 +4,10 @@ import "./Profile.css";
 import "../../utilities.css";
 import "./GetStarted.css";
 import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
+import project_page from "../../public/ProjectPage.png";
+import create_project from "../../public/CreateProject.png";
+import rewards from "../../public/Rewards.png";
+import explore from "../../public/Explore.png";
 
 /**
  * Get Started Page it tells everyone how to use the Gumdrops App
@@ -57,7 +61,7 @@ import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
                            </article>
                        </section>
                        <section className="getStarted-rightStep-container">
-                           <p>This should be where an image resisdes</p>
+                           <img src={create_project} className="getStarted-img"/>
                        </section>
                    </div>
                </div>
@@ -71,7 +75,7 @@ import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
                            </article>
                        </section>
                        <section className="getStarted-rightStep-container">
-                           <p>This should be where an image resisdes</p>
+                           <img src={project_page} className="getStarted-img"/>
                        </section>
                    </div>
                </div>
@@ -84,7 +88,7 @@ import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
                             </article>
                        </section>
                        <section className="getStarted-rightStep-container">
-                           <p>This should be where an image resisdes</p>
+                            <img src={rewards} className="getStarted-img"/>
                        </section>
                    </div>
                </div>
@@ -98,7 +102,7 @@ import gumdrops_icon from "../../public/GumdropsIcon_Transparent.png";
                             </article>
                       </section>
                        <section className="getStarted-rightStep-container">
-                           <p>This should be where an image resisdes</p>
+                            <img src={explore} className="getStarted-img"/>
                        </section>
                    </div>
                </div>
