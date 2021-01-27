@@ -34,19 +34,21 @@ import "./TypeWriterEffect.css";
             blink: !prev.blink,
         }));
     },100)
+    timer2 = ()=>setTimeout(()=>{this.setState((prevState)=>({
+        storyindex : prevState.storyindex+1,
+        sentenceindex: 0,
+        displayArr:[],
+        letterindex: 0,
+    }));
+    console.log("this the end of one story card")},2000);
     componentDidUpdate(){
         
         if(this.state.storyindex >= this.state.text.length -1 && this.state.sentenceindex >= this.state.text[this.state.storyindex].length-1 && this.state.letterindex >= this.state.text[this.state.storyindex][this.state.sentenceindex].length ){ console.log("end of storycards")
         return}
 
         if(this.state.sentenceindex >= this.state.text[this.state.storyindex].length-1 && this.state.letterindex >= this.state.text[this.state.storyindex][this.state.sentenceindex].length){
-            this.setState((prevState)=>({
-                storyindex : prevState.storyindex+1,
-                sentenceindex: 0,
-                displayArr:[],
-                letterindex: 0,
-            }));
-            console.log("this the end of one story card")
+            
+            this.timeoutID2 = this.timer2();
             return
         }
 
@@ -57,6 +59,7 @@ import "./TypeWriterEffect.css";
                 sentenceindex: prevState.sentenceindex+1,
                 letterindex:0,
             }));
+            
             console.log("this is the end of ten words");
             return;
        }
@@ -64,6 +67,7 @@ import "./TypeWriterEffect.css";
     }
     componentWillUnmount(){
         clearTimeout(this.timeoutID);
+        clearTimeout(this.timeoutID2);
     }
     render(){
         let topDisplay = [];
