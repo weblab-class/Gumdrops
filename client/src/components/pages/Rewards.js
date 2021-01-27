@@ -3,7 +3,7 @@ import { get, handleUnlock } from "../../utilities.js";
 import "./Rewards.css"
 import "../../utilities.css";
 import Img from "../../public/question_mark.png";
-import BabyGummy from "../../public/LilDrop.png";
+import BabyGummy from "../../public/NewLilDrop.png";
 import SocialButterfly from "../../public/Butterfly.jpg";
 import WebLabMaster from "../../public/WebLab.png";
 import BrushBackground from "../../public/brush.jpg";
@@ -224,7 +224,9 @@ class Rewards extends Component {
               <h1 className="Rewards-title">Achievements</h1>
                 {this.state.achievements.map((reward, i)=>(
                   <div className="Rewards-achievement u-inlineBlock" key={i}>
-                    <img className="Rewards-centerImg" src={reward.imageSource}/>
+                    <div className="image-cropper">
+                      <img className="Rewards-centerImg" src={reward.imageSource}/>
+                    </div>
                     <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
                     <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                   </div>
@@ -237,16 +239,24 @@ class Rewards extends Component {
                   if(reward.progress==="Complete!"){ //This is where you change the render of unlockables that are unlocked
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <button 
-                          className="Rewards-centerImg"
-                          value="Submit"
-                          type="button" 
-                          onClick={()=>handleUnlock(reward.title)}
-                          style={{"background":"url("+reward.imageSource+") 40% center fixed",
-                                  "backgroundSize":"cover"}}
-                          title={reward.alt}
-                        >
-                        </button>
+                        <div className="image-cropper">
+                          <button 
+                            className="Rewards-centerImg"
+                            value="Submit"
+                            type="button" 
+                            onClick={()=>handleUnlock(reward.title)}
+                            style={{"background":"url("+reward.imageSource+") 40% center",
+                                    "backgroundColor": "white",
+                                    "backgroundSize":"cover",
+                                    "borderWidth":"0",
+                                    "padding":"5vw",
+                                    "position": "relative",
+                                    "left": "50%",
+                                    "transform": "translate(-50%)"}}
+                            title={reward.alt}
+                          >
+                          </button>
+                        </div>
                         <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
                         <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
@@ -254,7 +264,9 @@ class Rewards extends Component {
                   } else{
                     return (
                       <div className="Rewards-unlockables u-inlineBlock" key={i}>
-                        <img src={reward.imageSource} className="Rewards-centerImg" title={reward.alt}/> 
+                        <div className="image-cropper">
+                          <img src={reward.imageSource} className="Rewards-centerImg" title={reward.alt}/>
+                        </div> 
                         <h3 className="u-textCenter Rewards-subText">{reward.title}</h3>
                         <h4 className="u-textCenter Rewards-subText">{reward.progress}</h4>
                       </div>
