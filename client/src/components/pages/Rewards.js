@@ -35,7 +35,7 @@ class Rewards extends Component {
         {
           imageSource: Img,
           title: "Web Lab Master",
-          type: "views", // #/25 Page Views
+          type: "views", // #/25 Project Views
           progress: undefined
         },
       ],
@@ -193,7 +193,7 @@ class Rewards extends Component {
     if(type==="views"){
       if(progress >= 25){
         return "Complete!";
-      } else return`${progress}/25 Page Views`;
+      } else return`${progress}/25 Project Views`;
     }
     if(type==="tag"){
       if(progress >= 5){

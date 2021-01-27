@@ -145,6 +145,7 @@ class CreateProject extends Component {
             </section>
             <section className="CreateProject-inputContainer">
               <h4 className="u-textCenter CreateProject-text">Who are your collaborators? (e.g., "@DVILL_17 @Juan")</h4>
+              <h4 className="u-textCenter CreateProject-text">(Don't include yourself))</h4>
               <NewProjectInput onChange={event => this.collabOnChange(event)} value={this.state.collaborators}/>
             </section>
             <section className="CreateProject-inputContainer">
@@ -155,7 +156,7 @@ class CreateProject extends Component {
               <NewProjectInput onChange={event => this.rolesOnChange(event)} value={this.state.roles}/>
             </section>
             <section className="CreateProject-inputContainer">
-              <h4 className="u-textCenter CreateProject-text">Two Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
+              <h4 className="u-textCenter CreateProject-text">Up to Two Relevant Project Tags: (e.g., "#fun-project #magnetism")</h4> 
               <NewProjectInput onChange={event => this.projectTagsOnChange(event)} value={this.state.tags}/>
             </section>
             <section className="CreateProject-inputContainer">
