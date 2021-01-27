@@ -94,7 +94,6 @@ class SingleProject extends Component{
             let reversedStory = storyObjs;
             reversedStory.map((storyObj)=>{
                 if(this._isMounted){
-                    
                     tempArr = tempArr.concat([storyObj]);
                 };
             });

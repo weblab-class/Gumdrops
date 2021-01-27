@@ -144,8 +144,12 @@ class CreateProject extends Component {
               <NewProjectInput onChange={event => this.projectNameOnChange(event)} value={this.state.projectName}/>
             </section>
             <section className="CreateProject-inputContainer">
+<<<<<<< HEAD
               <h4 className="u-textCenter CreateProject-text">Who are your collaborators? (e.g., "@DVILL_17 @Juan")</h4>
               <h4 className="u-textCenter CreateProject-text">(Don't include yourself))</h4>
+=======
+              <h4 className="u-textCenter CreateProject-text">Who are your collaborators? (e.g., "@DVILL_17 @Juan_Luera") Don't include yourself.</h4>
+>>>>>>> e785f704ed88986765947ca09f752fcc7c090945
               <NewProjectInput onChange={event => this.collabOnChange(event)} value={this.state.collaborators}/>
             </section>
             <section className="CreateProject-inputContainer">
