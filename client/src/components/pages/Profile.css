@@ -18,7 +18,11 @@
 }
 
 .Profile-image {
-    border-radius: 50%;
+    background-size: contain;
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
 }
 
 .h2 {
@@ -72,4 +76,14 @@
 
 .Profile-subHeading {
     color: var(--subtextcolor);
+}
+
+.Profile-imageCropper {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 15vw;
+    height: 15vw;
+    overflow: hidden;
+    border-radius: 50%;
 }
