@@ -11,10 +11,10 @@
     left: 50%;
     transform: translate(-50%);
     width: 60%;
-    margin-top: 4vw;
+    margin-top: 3.5vw;
     padding-left: 2.5vw;
     padding-right: 2.5vw;
-    padding-bottom: 2.5vw;
+    padding-bottom: 2vw;
     border: 5px solid white;
 }
 
@@ -22,6 +22,33 @@
     background-color: palevioletred;
     color: white;
     font-size: 2vw;
+}
+
+.Skeleton-mainPage-2ndDescription {
+    background: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(100,100,100,0.3));
+    margin-top: 2.5vw;
+    width: 25%;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-bottom: 2.5vw;
+    border: 5px solid white;
+}
+
+.Skeleton-mainPage-2ndDescription + .Skeleton-mainPage-2ndDescription {
+    margin-left: 5vw;
+}
+
+.Skeleton-mainPage-2ndtext {
+    background-color: rgb(87, 177, 106);
+    color: white;
+    font-size: 1.5vw;
+}
+
+.Skeleton-2ndtitle {
+    color: var(--mainpage-title);
+    /*text-shadow: -2px -2px 0 var(--primary), 2px -2px 0 var(--primary), -2px 2px 0 var(--primary), 2px 2px 0 var(--primary);*/
+    font-size: 2vw;
+    font-weight: bold;
 }
 
 
