@@ -174,7 +174,7 @@ class StoryCard extends Component{
                             className = "NewPostInput-button StoryCard-editButton u-pointer"
                             value = "Submit"
                             onClick = {this.clickedEditing}
-                        >Cancel
+                        >Done
                         </button>
                     </div>
                 );   

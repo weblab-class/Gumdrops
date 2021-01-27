@@ -24,7 +24,15 @@ class JournalMessages extends Component {
 
   convert = (timeStamp) => {
     const mm = timeStamp.substr(5,2);
-    const dd = timeStamp.substr(8,2);
+    let dd = timeStamp.substr(8,2);
+    console.log(dd);
+    let hh = parseInt(timeStamp.substring(11, 13));
+    console.log(hh);
+    hh -= 5;
+    if(hh<1){
+      dd -= 1;
+    }
+    console.log(dd);
     const yyyy = timeStamp.substr(0,4);
     return `${mm}/${dd}/${yyyy}`;
   }
@@ -59,11 +67,11 @@ class JournalMessages extends Component {
     let renderOutput = [];
     let lastTimeStamp;
     if(this.props.data.messages[0]){ 
-      lastTimeStamp = this.convert(this.props.data.messages[0].timestamp.substr(0,10));
+      lastTimeStamp = this.convert(this.props.data.messages[0].timestamp);
       renderOutput.push(<div key={lastTimeStamp}><hr/><h2 className="JournalMessage-date">{lastTimeStamp}</h2><hr/></div>); //header for first date
     }
     for(var i=0; i<this.props.data.messages.length;i++){
-      let currTimeStamp = this.convert(this.props.data.messages[i].timestamp.substr(0,10));
+      let currTimeStamp = this.convert(this.props.data.messages[i].timestamp);
       if (currTimeStamp!==lastTimeStamp){
         renderOutput.push(<div key={currTimeStamp}><hr/><h2 className="JournalMessage-date">{currTimeStamp}</h2><hr/></div>);
         lastTimeStamp = currTimeStamp;
