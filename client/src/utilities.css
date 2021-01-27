@@ -17,6 +17,8 @@
 /* TODO: REPLACE WITH YOUR OWN FONT! */
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap"); /*no longer used*/
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
 
 :root {
 
@@ -104,14 +106,14 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  font-family: "Lato", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 300;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 300;
 }
 

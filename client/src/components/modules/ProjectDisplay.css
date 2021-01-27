@@ -23,6 +23,7 @@
     border-right: 1px solid lightgreen;
     border-bottom: 1px solid lightgreen;
     overflow-y: auto;
+    font-size: .8em;
 }
 
 .ProjectDisplay-text {
