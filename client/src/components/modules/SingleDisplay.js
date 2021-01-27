@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./NewPostInput.css";
 import "./StoryCard.css";
 import TypeWriterEffect from "./TypeWriterEffect.js";
+import { retrieveStoryCardImg } from "../../utilities.js";
 /** 
  * Single Display: this displays the animation
  * 
@@ -49,18 +50,30 @@ import TypeWriterEffect from "./TypeWriterEffect.js";
         for(let i = 0 ; i<this.props.stories.length; i++){
             tempArr.push(this.props.stories[i].textContent)
         }
-        
         this.formatStories(tempArr);
      }
+
+     getImages = () => {
+        let imgArr = []; //to contain Strings representing URL-encoded image data. Use as <img src={imageData}/>
+        console.log(this.props.stories);
+        for(let i=0; i<this.props.stories.length;i++) {
+            imgArr.push(this.props.stories[i].imageMedia);
+        }
+        this.setState({
+            images: imgArr,
+        });
+     }
+
      componentDidMount(){
         this.getStories();
+        this.getImages();
      }
 
      render(){
          let storiesList = "";
          if(this.state.stories){
              console.log(this.state.stories)
-             storiesList = (<TypeWriterEffect stories = {this.state.stories}/>)
+             storiesList = (<TypeWriterEffect stories = {this.state.stories} images={this.state.images}/>)
          }
          return(
          <div>

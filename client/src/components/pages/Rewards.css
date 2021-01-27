@@ -19,7 +19,7 @@
 }
 
 .Rewards-centerImg{ /*is sometimes a button*/
-    background-size: cover;
+    background-size: contain;
     position: relative;
     left: 50%;
     transform: translate(-50%);

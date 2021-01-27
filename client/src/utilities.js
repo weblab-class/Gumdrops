@@ -75,6 +75,28 @@ export function fileToBuffer(data) {
   return bufferedObj;
 }
 
+
+//Function that pulls image information from a StoryCard object and returns the URL-encoded image information
+//Returns null if imageMedia does not exist.
+export function retrieveStoryCardImg(storyCard) {
+  console.log("In utilities, received ");
+  console.log(storyCard);
+  if((storyCard.imageMedia !== null) && storyCard.imageMedia){
+    let unbufferedImg;
+    if(storyCard.imageHeader && storyCard.imageHeader!=="") {
+      console.log("Type of imageMedia "+typeof(storyCard.imageMedia));
+      console.log(storyCard.imageMedia.toString('base64'));
+        unbufferedImg = storyCard.imageHeader + "," + storyCard.imageMedia.toString('base64'); //recreate URL-encoded image
+    } else {
+        unbufferedImg = storyCard.imageMedia.toString(); //for backwards compatibility with earlier images
+    }
+    console.log("Recovered image string "+unbufferedImg);
+    return unbufferedImg;
+  } else {
+    return "";
+  }
+}
+
 //If it exists, load the theme data from HTML Local Storage and applies it to the root CSS
 export function applyThemeFromLocalStorage() {
   if(localStorage.hasOwnProperty("currTheme")) {
@@ -175,8 +197,6 @@ function undoBrushTheme() {
   localStorage.setItem("currTheme",JSON.stringify(brushObj)); //required to save objects in LocalStorage
   applyThemeFromLocalStorage();
 }
-
-
 
 //Handles the enforcing and disabling of an unlockable upon click
 export function handleUnlock(unlockName) { 

@@ -323,7 +323,22 @@ router.post("/theme",(req,res)=>{
 router.get("/storycards",(req,res)=>{
   let query = { "projectId" : req.query.projectId };
   StoryCard.find(query).then((storyCards)=>{
-    res.send(storyCards);
+    //Proceeds to process the imageMedia to a form usable by <img src={}/>
+    let storyCardArr = [];
+    for(var i=0; i< storyCards.length;i++){
+      let storyCard = {...storyCards[i]._doc}; /*MongoDB objects require accessing of document's data through _doc*/
+      if((storyCard.imageMedia !== null) && storyCard.imageMedia){
+        let unbufferedImg;
+        if(storyCard.imageHeader && storyCard.imageHeader!=="") {
+            unbufferedImg = storyCard.imageHeader + "," + storyCard.imageMedia.toString('base64'); //recreate URL-encoded image
+        } else {
+            unbufferedImg = storyCard.imageMedia.toString(); //for backwards compatibility with earlier images
+        }
+        storyCard.imageMedia = unbufferedImg;
+      }
+      storyCardArr.push(storyCard);
+    }
+    res.send(storyCardArr);
   })
 });
 
