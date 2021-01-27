@@ -104,6 +104,8 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 }
 
 body {
