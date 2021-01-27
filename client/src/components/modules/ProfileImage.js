@@ -53,11 +53,12 @@ class ProfileImage extends Component {
                     <>
                         <div className="Profile-sectionContainer">
                             <h2 className="u-textCenter h2 Profile-subHeading">Profile Pic:</h2>
-                            <img 
-                                style={{height: "15%", width: "15%", objectFit: "contain"}} 
-                                src={this.state.image}
-                                className="Profile-image"
-                            />
+                            <div className="Profile-imageCropper">
+                                <img  
+                                    src={this.state.image}
+                                    className="Profile-image"
+                                />
+                            </div>
                         </div>
                         <div className="Profile-imageInputContainer">
                             <NewProfileImageInput userId={this.props.userId}/>
@@ -68,11 +69,12 @@ class ProfileImage extends Component {
             return(
                 <div className="Profile-sectionContainer">
                     <h2 className="u-textCenter h2 Profile-subHeading">Profile Pic:</h2>
-                    <img 
-                        style={{height: "15%", width: "15%", objectFit: "contain"}} 
-                        src={this.state.image}
-                        className="Profile-image"
-                    />
+                    <div className="Profile-imageCropper">
+                        <img 
+                            src={this.state.image}
+                            className="Profile-image"
+                        />
+                    </div>
                 </div>
             );
         }
