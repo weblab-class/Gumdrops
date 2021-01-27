@@ -65,16 +65,17 @@ class SingleProject extends Component{
     //this will update the view count 
     addViews = (bool)=>{
         if(!bool){
-            get("/api/users-ids",{projectId: this.props.projectId}).then((idArr)=>{
-                let tempArr = idArr;
-                for( let i = 0; i, i<tempArr.length; i++){
-                    let body = {userId: tempArr[i], changes:{views:1}}
-                    post("/api/rewardinc",body).then((newData)=>{
-                    
-                    });
-                }
-            })
+            
             if(!this.viewCounted){
+                get("/api/users-ids",{projectId: this.props.projectId}).then((idArr)=>{
+                    let tempArr = idArr;
+                    for( let i = 0; i, i<tempArr.length; i++){
+                        let body = {userId: tempArr[i], changes:{views:1}}
+                        post("/api/rewardinc",body).then((newData)=>{
+                        
+                        });
+                    }
+                })
                 console.log("View counted");
                 let body2= {projectId:this.props.projectId,changes:{views:1}};
                 post("/api/projectinc",body2).then((sent)=>{
