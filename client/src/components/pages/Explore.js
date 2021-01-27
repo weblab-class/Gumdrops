@@ -22,8 +22,6 @@ class Explore extends Component {
 
     handleInit = () => {
         console.log("Going into handleInit for explore");
-        // let projectNames = [];
-        // Bloodhound = require("typeahead.js/dist/bloodhound.min.js")
         get("/api/explore",{})
         .then((projects)=>{
             if(this._isMounted){
@@ -31,29 +29,7 @@ class Explore extends Component {
                     projects: projects,
                 })
             };
-        })/*.then(()=>{
-            this.state.projects.forEach((project)=>{
-                projectNames.push(project.name);
-            });
-        });
-
-        // constructs the suggestion engine
-        let projects = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: projectNames
-        });
-        
-        $('#bloodhound .typeahead').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        },
-        {
-            name: 'projects',
-            source: projects
-        });
-        */
+        })
     }
 
     search = (value) => {
@@ -178,7 +154,7 @@ class Explore extends Component {
             if(button){
                 return(
                     <>
-                        <div className="Explore-search" /*id="bloodhound"*/>
+                        <div className="Explore-search">
                             {button}
                             <span>
                                 <div className="Explore-searchInput u-inlineBlock">
@@ -186,7 +162,6 @@ class Explore extends Component {
                                         defaultText="Search (You can search by project name or tag)"//(Try searching for a project by name OR try searching by tag (e.g., #math))" 
                                         onSubmit={this.search}
                                         size="100%"
-                                        /*className="typeahead"*/
                                     />
                                 </div>
                             </span>
