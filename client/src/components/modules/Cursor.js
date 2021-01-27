@@ -3,7 +3,7 @@ import "../../utilities.css";
 
 /**
  * Cursor is a component used to provide unique styling to the cursor based on specific actions.
- * 
+ * NOT BEING USED
  * Proptypes 
  * 
  */

@@ -17,9 +17,9 @@ import "./NewPostInput.css";
          super(props);
      }
 
-    handleDelete= (event)=>{
+    handleDelete = (event)=>{
         event.preventDefault();
-        const body = this.props.storyObj
+        let body = { "_id": this.props.storyObj._id };
         post("/api/delstorycard", body).then((storyObj)=>{
             console.log("deleted");   
         });

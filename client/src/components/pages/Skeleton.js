@@ -19,7 +19,7 @@ class Skeleton extends Component {
       <div className="Skeleton-mainPage-container u-flexColumn">
         <section className="u-textCenter Skeleton-mainPage-Description">
           <h1 className="Skeleton-title">Tell a story with your next creative project.</h1>
-          <p className="Skeleton-mainPage-text">From animated story cards to themed-rewards, Gumdrops offers a fun, collaborative space for students and lifelong-learners to document their projects and reflect on the journey they took along the way.</p>
+          <p className="Skeleton-mainPage-text">From animated story cards to themed-rewards, Gumdrops offers a fun, collaborative space for students and lifelong-learners to document their projects and reflect on their stories along the way.</p>
         </section>
         <div className="u-flex u-flex-justifyCenter">
           <section className="u-textCenter Skeleton-mainPage-2ndDescription">
@@ -28,7 +28,7 @@ class Skeleton extends Component {
           </section>
           <section className="u-textCenter Skeleton-mainPage-2ndDescription">
             <h1 className="Skeleton-2ndtitle">How is Gumdrops used?</h1>
-            <p className="Skeleton-mainPage-3rdtext">Gumdrops is itended to sit as an additional layer above cloud storage websites like Google Drive and Github. It offers users a method to organize their links and pictures in "storycards" that makes it easy for them come back to a project and keep track of their progress.</p>
+            <p className="Skeleton-mainPage-3rdtext">Gumdrops is itended to sit as an additional layer above cloud storage websites like Google Drive and Github. It offers users a method to organize their links and pictures in "storycards" that makes it easy for them come back to a project and share their progress with others.</p>
           </section>
         </div>
 

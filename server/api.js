@@ -354,8 +354,9 @@ router.post("/storycards",(req,res)=>{
 //Deletes all StoryCards document that matches the body. 
 //Sends back an object { deletedCount: #of objects deleted }
 router.post("/delstorycard",(req,res)=>{
-  
-  StoryCard.deleteOne(req.body).then((result) => {
+  console.log("Received order for "+req.body._id);
+  let query = { "_id": new ObjectId(req.body._id)};
+  StoryCard.deleteOne(query).then((result) => {
     console.log("Delete story card operation was completed");
     console.log(result.deletedCount);
     res.send({deletedCount: result.deletedCount});
