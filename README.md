@@ -54,3 +54,65 @@ webpack.config.js
 ## Gumdrops
 
 - For all your collaborative project needs :)
+
+
+## First Things First:
+
+- Log into the website using your Google account
+- Although you do get partial access to our website while being signed out, you can’t actively participate unless you create an account
+
+
+## Customize Your Profile:
+
+- Go into your profile and select an image and edit your bio
+
+
+## Create a Project:
+
+- In “My Projects,” create a project by clicking on the :
+  - Make sure to fill in the collaborators field with any usernames that you would like to be able to tag in your project.
+    - DO NOT MAKE YOURSELF A COLLABORATOR
+    - Any username has to be the google account username of a user who has logged in our website. You  have to type the usernames in the form “@”+ the user’s Google Name, with any spaces replaced by an underline “_”.
+    - Make sure to add everyone you want to work with as a collaborator as you will not be able to add collaborators after creating a project.
+    - If you do forget to add a collaborator, delete the project and create another one with ALL collaborators
+  - Give your collaborators and yourself a unique role (starting with yourself)
+  - Your choices are:
+    - @leo-der 
+    - @researcher
+    - @content-creator
+    - @developer
+    - @desiigner
+  - Add any tags you want to the project, but don’t give more than two please (e.g. “#math #CS”). Check out the Explore page if you want to see which tags people have put down!
+  - Add a fun relevant thumbnail image!
+  - Make sure that all inputs are correct BEFORE clicking submit to avoid issues
+
+
+## Add to Your Project:
+
+- Make sure to populate your project with:
+- Story Cards: 
+  - Each should have an image, some text, and links to documents (if relevant). If you add any Google Docs link, please make sure they are set to allow anyone with the link to view (not edit)! 
+- Journal: 
+  - Type out as many messages as you want. The journal entries should represent some form of daily update/shoutout from the team
+- Make sure in either/both story cards and journals that you include shoutout to your team members (e.g. “Good job @Juan_Luera!) You should see the text get some special styling once you click submit
+  - You can click on a tagged team member to view their profile
+
+
+## Explore Other Projects:
+
+- You can view all the projects created on Gumdrops by going to the “Explore” tab
+- All projects in the explore page are organized into groups by tags
+- The search bar will look for projects with either a name or tag that resembles your search
+  - After you have search, you can view all projects again by clicking the “Back” button that appears
+
+
+## Earn Rewards:
+
+- Make sure to check out your Rewards page! 
+- These rewards can be obtained by meeting certain requirements dealing with # of projects created, # of journal entries submitted, # of story cards created, # of views on projects you’re involved in, or # of people you’ve tagged.
+- There are two types of rewards you can earn:
+  - Achievements:
+    - These are like badges that you can only view once you have completed their requirement.
+  - Unlockables:
+    - Once you have obtained an unlockable you should be able to click on its icon to activate/deactivate some cool features we’ve added to the website
+
