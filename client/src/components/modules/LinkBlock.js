@@ -12,7 +12,9 @@ import "./StoryCard.css";
  * that are placed in a story card 
  * Proptypes 
  * @param {[Array]} linkArr: an array with links 
- * 
+ * @param {} onEdit
+ * @param {Boolean} editing
+ * @param {} onDel
  */
 
 class LinkBlock extends Component {
@@ -71,7 +73,7 @@ class LinkBlock extends Component {
         this.setLinks();
     }
     render(){
-        let linkList = <div className="u-textCenter StoryCard-centerLinks">No links</div>;
+        let linkList = <div className="u-textCenter">No links</div>;
         let button = <></>;
         let isthereLink = this.state.linksData.length!==0; 
         if(this.props.editing){
