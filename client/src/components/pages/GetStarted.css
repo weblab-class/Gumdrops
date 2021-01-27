@@ -1,0 +1,23 @@
+.getStarted-title{
+    margin-top: 2vw;
+}
+
+.getStarted-instruct-container {
+    display: flex;
+    justify-content: center;
+}
+
+.getStarted-step-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.getStarted-leftStep-container {
+    margin-left: 20%;
+}
+
+.getStarted-rightStep-container {
+    margin-left: 20%;
+}
