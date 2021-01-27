@@ -52,8 +52,7 @@ webpack.config.js
 ## Good luck on your project :) -->
 
 ## Gumdrops
-
-- For all your collaborative project needs :)
+- From animated story cards to themed-rewards, Gumdrops offers a fun, collaborative space for students and lifelong-learners to document their projects and reflect on their stories along the way.
 
 
 ## First Things First:
@@ -130,7 +129,11 @@ webpack.config.js
   - colors.png was found online at https://www.color-hex.com/palettes/8228.png
   - cute-penguin.png was found online at https://data.whicdn.com/images/62995251/original.png
   - red-x.png was found online at https://uxwing.com/red-x-icon/
-
+  - brush.jpg was found online at https://www.deviantart.com/joeyjazz/art/SP-Brushstrokes-over-Pink-Lines-804368056
+  - retrobackground.png was found online at: https://dribbble.com/shots/14752877--tools-in-design-factory/attachments/6456175?mode=media
+  - penguin-bounce.gif was found online at: https://www.deviantart.com/anneko/art/Art-Trade-For-Maytel-153454239
+  - gift.gif was found online at: https://www.deviantart.com/velvetthebard/art/F2U-Present-Icon-Emote-721102676
+  - gloveCursor.png was found online at: https://icons8.com/icon/102338/hand-cursor
 
 ## Note:
 
