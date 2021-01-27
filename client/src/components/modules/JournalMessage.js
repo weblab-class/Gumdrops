@@ -59,7 +59,7 @@ class JournalMessage extends Component {
   render() { //5hr diff from EST
     let hh = parseInt(this.props.message.timestamp.substring(11, 13));
     hh -= 5;
-    if(hh<1){
+    if(hh<0){
       hh = 24 + hh;
     }
     const mm = this.props.message.timestamp.substring(14, 16);

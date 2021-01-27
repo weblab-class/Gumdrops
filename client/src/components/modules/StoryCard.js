@@ -19,10 +19,13 @@ import "./StoryCard.css";
  * @param {Object} userRoles (where key is userName and value is an Array of [userName,userId,roleStyle])
  */
 class StoryCard extends Component{
+    _isMounted = false;
+
     constructor(props){
         super(props);
         this.state = {
             storytext: this.props.storyObj.textContent,
+            image: this.props.storyObj.imageMedia,
             editing: false
         };
     }
@@ -70,11 +73,20 @@ class StoryCard extends Component{
         let body = {_id: this.props.storyObj._id, changes:changesObj}
         // console.log(body);
         post("/api/editstorycard",body).then((story) =>{
+            if(this._isMounted)
             this.setState({
-                image:changesObj.imageMedia,
+                image: changesObj.imageMedia,
             });
             this.props.onEdit && this.props.onEdit(body);   
         });
+    }
+
+    componentDidMount(){
+        this._isMounted = true;
+    }
+
+    componentWillUnmount(){
+        this._isMounted = false;
     }
 
     render(){ 
@@ -90,12 +102,12 @@ class StoryCard extends Component{
             />
         );
         if(!this.props.edit){ //not allowed to edit 
-            if(this.props.storyObj.imageMedia){
+            if(this.state.image){
                 picture = (
                     <section className="StoryCard-imageBlockContainer">
                         <img 
                             style={{height: "75", width: "75%", objectFit: "contain"}}
-                            src={this.props.storyObj.imageMedia}
+                            src={this.state.image}
                             className="StoryCard-center"
                         />
                     </section>
@@ -109,12 +121,12 @@ class StoryCard extends Component{
             }
         } else{
             if(!this.state.editing){ //not editing right now
-                if(this.props.storyObj.imageMedia){
+                if(this.state.image){
                     picture = (
                         <section className="StoryCard-imageBlockContainer">
                             <img 
                                 style={{height: "75", width: "75%", objectFit: "contain"}}
-                                src={this.props.storyObj.imageMedia}
+                                src={this.state.image}
                                 className="StoryCard-center"
                             />
                         </section>
@@ -137,13 +149,13 @@ class StoryCard extends Component{
                 );
             }
             else{ //is currently editing
-                if(this.props.storyObj.imageMedia){
+                if(this.state.image){
                     picture = (
                         <>
                             <section className="StoryCard-imageBlockContainer">
                                 <img 
                                     style={{height: "75", width: "75%", objectFit: "contain"}}
-                                    src={this.props.storyObj.imageMedia}
+                                    src={this.state.image}
                                     className="StoryCard-centerEditing"
                                 />
                                 <EditStoryCard 
