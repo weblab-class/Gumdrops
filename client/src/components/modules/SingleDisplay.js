@@ -3,6 +3,7 @@ import "./NewPostInput.css";
 import "./StoryCard.css";
 import TypeWriterEffect from "./TypeWriterEffect.js";
 import { retrieveStoryCardImg } from "../../utilities.js";
+import "./TypeWriterEffect.css";
 /** 
  * Single Display: this displays the animation
  * 
@@ -76,7 +77,7 @@ import { retrieveStoryCardImg } from "../../utilities.js";
              storiesList = (<TypeWriterEffect stories = {this.state.stories} images={this.state.images}/>)
          }
          return(
-         <div>
+         <div className = "Effect-container">
              {storiesList}
          </div>
          )

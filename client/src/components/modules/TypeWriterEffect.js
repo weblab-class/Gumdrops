@@ -82,7 +82,7 @@ import "./TypeWriterEffect.css";
         
         return(
             <>  
-            <div className = "Effect-container">
+            
                 <span className = "Effect-imageContainer">
                 <img className = " Effect-image"src = {this.state.images[this.state.storyindex]}/>
                 </span >
@@ -90,7 +90,7 @@ import "./TypeWriterEffect.css";
                     {displayList}
                     <h1 className = "Effect-text">{`${this.state.text[this.state.storyindex][this.state.sentenceindex].substring(0,this.state.letterindex)}${this.state.blink?"|":" "}`}</h1>
                 </span>
-            </div>
+            
             </>
         )
     }
