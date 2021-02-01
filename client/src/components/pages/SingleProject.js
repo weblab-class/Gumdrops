@@ -248,6 +248,15 @@ class SingleProject extends Component{
             storyTelling = (<></>);
         }
         console.log("storyTelling is"+storyTelling);
+
+
+        //handles a string that lists collaborators names
+        let userNames = undefined;
+        if(this.state.userRoles) {
+            userNames = Object.keys(this.state.userRoles).join(", ");
+            userNames = "Project Collaborators: " + userNames;
+            console.log(userNames);
+        }
         return(
             <>
             <div className="u-flex project-container">
@@ -255,6 +264,7 @@ class SingleProject extends Component{
                 <div className="projectDocJournal-container">
                 <section className="projectDocumentation-container">
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
+                    {userNames ? <h3>{userNames}</h3> : <></>}
                     <button 
                         className="NewPostInput-button project-buttonPresent u-point"
                         onClick={this.handlePresent}
