@@ -35,8 +35,9 @@ class NavBar extends Component {
                         <Link to={"/profile/"+this.props.userId} className="NavBar-link">Profile</Link>
                         <Link to="/projects" className="NavBar-link">My Projects</Link>
                         <Link to="/rewards" className="NavBar-link">Rewards</Link>
+                        <Link to="/about-us" className="NavBar-link">About Us</Link>
                     </>
-                ) : (<span></span>)}
+                ) : (<Link to="/about-us" className="NavBar-link">About Us</Link>)}
             </section>
             <section className="NavBar-loginContainer">
                 {this.props.userId ? (

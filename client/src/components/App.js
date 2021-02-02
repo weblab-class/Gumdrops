@@ -15,6 +15,7 @@ import "../utilities.css";
 import "./pages/Skeleton.css";
 import user from "../../../server/models/user.js";
 import GetStarted from "./pages/GetStarted.js";
+import AboutUs from "./pages/AboutUs.js";
 /**
  * Define the "App" component as a class.
  */
@@ -119,7 +120,8 @@ class App extends Component {
           <SingleProject path="/project/:projectId" userId={this.state.userId}/>
           <CreateProject path="/createproject" userId={this.state.userId}/>
           <Rewards path="/rewards" userId={this.state.userId}/>
-          <GetStarted path="/getstarted" userId={this.state.userId}/>
+          <GetStarted path="/get-started" userId={this.state.userId}/>
+          <AboutUs path="/about-us"/>
           <NotFound default />
         </Router>
       </>
