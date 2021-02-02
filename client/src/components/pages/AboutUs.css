@@ -1,7 +1,7 @@
 .AboutUs-title{
-
+    color: var(--textcolor);
 }
 
 .AboutUs-text{
-    
+    color: var(--subtextcolor);
 }
