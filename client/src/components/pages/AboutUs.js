@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../utilities.css";
 import "./AboutUs.css";
-
+import banner from "../../public/GumdropsBanner.png";
 /**
  * About Us Page tells everyone about Gudrops
  * 
@@ -18,6 +18,8 @@ import "./AboutUs.css";
          return(
             <>
                 <h1 className="AboutUs-title">About Us!</h1>
+                <section className="AboutUs-banner-Container"> 
+                </section>
                 <h4 className="AboutUs-text">Gumdrops started as a passion project by a number of first-year MIT students that was 
                     eventually sponsored as an ELO (Experiential Learning Opportunity) by the MIT Edgerton Center under Ed Moriarity. The initial plan for Gumdrops was to develop a crowdsourcing platform for students, by students, to share games, simulations, and videos about educational topics that they are interested in. 
                 </h4>
