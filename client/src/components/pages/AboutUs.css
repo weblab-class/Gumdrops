@@ -18,8 +18,9 @@
 
 .AboutUs-text{
     text-align: center;
-    padding: 0 10vw 1vw 10vw;
-    color: rgb(170, 70, 70);
+    padding: 1.5vw 10vw 1vw 10vw;
+    color: rgb(88, 29, 29);
     font-size: 1.6vw;
-
+    font-weight: 500;
+    line-height: 3vw;
 }
