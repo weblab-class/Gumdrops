@@ -1,7 +1,9 @@
 .AboutUs-title{
-    color: var(--textcolor);
+    padding: 1em;
+    color: rgba(207, 64, 7, 0.945);
 }
 
 .AboutUs-text{
-    color: var(--subtextcolor);
+    padding: 0 2em 2em 2em;
+    color: rgb(241, 131, 28);
 }
