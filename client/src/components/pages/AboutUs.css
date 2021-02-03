@@ -23,3 +23,21 @@
     font-size: 1.6vw;
 
 }
+
+.AboutUs-link{
+    text-align: center;
+    max-width:100%;
+    margin: 0;
+    padding: 0 10vw 1vw 10vw;
+    color: rgb(170, 70, 70);
+    font-size: 1.6vw;
+}
+
+.AboutUs-title2{
+    text-align: center;
+    padding: 1vw;
+    font-size: 2.5vw;
+    color: rgba(187, 64, 15, 0.945);
+    background-color: rgb(247, 241, 223);
+    border: 1px solid grey;
+}
