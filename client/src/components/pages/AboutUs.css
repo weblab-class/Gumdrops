@@ -8,12 +8,14 @@
 
 
 .AboutUs-title{
+    margin-left: 5vw;
+    margin-right: 5vw;
     text-align: center;
     padding: 1vw;
     font-size: 3vw;
     color: rgba(187, 64, 15, 0.945);
     background-color: rgb(247, 241, 223);
-    border: 1px solid grey;
+    border: 2px solid orange;
 }
 
 .AboutUs-text{
@@ -30,16 +32,18 @@
     text-align: center;
     max-width:100%;
     margin: 0;
-    padding: 0 10vw 1vw 10vw;
+    padding: 0 10vw 6vw 10vw;
     color: rgb(170, 70, 70);
-    font-size: 1.6vw;
+    font-size: 2vw;
 }
 
 .AboutUs-title2{
+    margin-left: 5vw;
+    margin-right: 5vw;
     text-align: center;
     padding: 1vw;
-    font-size: 2.5vw;
+    font-size: 2.4vw;
     color: rgba(187, 64, 15, 0.945);
     background-color: rgb(247, 241, 223);
-    border: 1px solid grey;
+    border: 2px solid rgb(240, 158, 34);
 }
