@@ -261,7 +261,7 @@ class SingleProject extends Component{
             <>
             <div className="u-flex project-container">
                 {storyTelling}
-                <div className="projectDocJournal-container">
+            <div className="projectDocJournal-container">
                 <section className="projectDocumentation-container">
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
                     {userNames ? <h3>{userNames}</h3> : <></>}

@@ -1,9 +1,15 @@
 .AboutUs-title{
-    padding: 1em;
-    color: rgba(207, 64, 7, 0.945);
+    text-align: center;
+    padding: 1vw;
+    color: rgba(207, 71, 17, 0.945);
+    background-color: rgb(247, 241, 223);
+    border: 1px solid grey;
 }
 
 .AboutUs-text{
-    padding: 0 2em 2em 2em;
+    text-align: center;
+    padding: 0 4vw 2vw 4vw;
     color: rgb(241, 131, 28);
+    font-size: 1.5vw;
+
 }
