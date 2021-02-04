@@ -34,8 +34,19 @@ class SingleProject extends Component{
             userRoles: undefined,
             edit: undefined,
             isStoryTelling: false,
+            projectObj: undefined, 
         }
     }
+
+    retrieveProjectInfo = () => {
+        get("/api/project",{projectId:this.props.projectId}).then((projectObj)=>{
+            //pull current info about project
+            this.setState({
+                projectObj: projectObj,
+            });
+        });
+    }
+
     retrieveUserRoleInfo = () => {
         get("/api/user-roles",{projectId:this.props.projectId}).then(result=>{
             if(this._isMounted){
@@ -107,6 +118,7 @@ class SingleProject extends Component{
     componentDidMount(){
         this._isMounted = true;
         document.title = "Single Project";
+        this.retrieveProjectInfo();
         this.loadStoryCards();
         this.checkCanEdit();
         this.retrieveUserRoleInfo();
@@ -254,7 +266,7 @@ class SingleProject extends Component{
         let userNames = undefined;
         if(this.state.userRoles) {
             userNames = Object.keys(this.state.userRoles).join(", ");
-            userNames = "Project Collaborators: " + userNames;
+            userNames = "Collaborators: " + userNames;
             console.log(userNames);
         }
         return(
@@ -264,7 +276,11 @@ class SingleProject extends Component{
             <div className="projectDocJournal-container">
                 <section className="projectDocumentation-container">
                     <h2 className="projectDocumentation-headerTitle">Create your own story.</h2>
-                    {userNames ? <h3>{userNames}</h3> : <></>}
+                    {this.state.projectObj ?
+                        <h3 className="projectInfo-text">{"Project Name: "+this.state.projectObj.name}</h3> 
+                        : null
+                    }
+                    {userNames ? <h3 className="projectInfo-text">{userNames}</h3> : null}
                     <button 
                         className="NewPostInput-button project-buttonPresent u-point"
                         onClick={this.handlePresent}

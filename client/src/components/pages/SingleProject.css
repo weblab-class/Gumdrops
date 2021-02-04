@@ -65,3 +65,8 @@
     margin-left: var(--l);
     margin-top: var(--s);
 }
+
+.projectInfo-text {
+    color: var(--textcolor);
+    line-height: 50%;
+}
