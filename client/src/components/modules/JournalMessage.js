@@ -115,6 +115,8 @@ class JournalMessage extends Component {
           }
         }
         }
+    } else if (this.props.message.content==="") { //special case of empty string
+      outputArray = [""];
     } else {
       outputArray = this.props.message.content;
     }
@@ -138,7 +140,8 @@ class JournalMessage extends Component {
         </button>
       );
     }
-
+    console.log("Current type of outputArray "+typeof(outputArray));
+    console.log(outputArray);
     return (
       <div 
         onMouseOver={this.displayButton}
@@ -149,7 +152,7 @@ class JournalMessage extends Component {
         <span className="JournalMessage-time">{readableTime}</span>
         <span className="JournalMessage-content">
           {
-            this.props.userRoles ?
+            (this.props.userRoles) ?
             outputArray.map((value, i)=>{
               if(value in this.props.userRoles){
                   return (

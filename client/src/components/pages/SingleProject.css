@@ -68,5 +68,5 @@
 
 .projectInfo-text {
     color: var(--textcolor);
-    line-height: 50%;
+    margin: 0.4vw;
 }
